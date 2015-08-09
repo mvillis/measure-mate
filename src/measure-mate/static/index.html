@@ -1,0 +1,181 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mighty Mate</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Measure Mate</a>
+        </div>
+      </div>
+    </nav>
+    <div id="content"></div>
+    <script type="text/jsx">
+      // tutorial1.js
+      var DisciplineTable = React.createClass({
+        loadLevelsFromServer: function() {
+          $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+              this.setState({data: data.capabilities, name: data.name, short_desc: data.short_desc});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+        },
+        handleLevelSubmit: function(level) {
+          var levels = this.state.data;
+          var newLevels = levels.concat([level]);
+          this.setState({data: newLevels});
+          $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            type: 'POST',
+            data: level,
+            success: function(data) {
+              this.setState({data: data.capabilities, name: data.name, short_desc: data.short_desc});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+        },
+        getInitialState: function() {
+          return {data: []};
+        },
+        componentDidMount: function() {
+          this.loadLevelsFromServer();
+          setInterval(this.loadLevelsFromServer, this.props.pollInterval);
+        },
+        render: function() {
+          return (
+            <div className="DisciplineTable">
+              <div className="container">
+                <div className="page-header">
+                  <h1>{this.state.name}<small> {this.state.short_desc}</small></h1>
+                </div>
+                <div className="panel panel-default">
+                  <div className="panel-heading">
+                    <h3 className="panel-title">{this.state.name}</h3>
+                  </div>
+                  <div className="panel-body">
+                    <CapabilityList data={this.state.data} />
+                    <LevelForm onLevelSubmit={this.handleLevelSubmit}/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+        });
+
+      // tutorial2.js
+      var CapabilityList = React.createClass({
+        render: function() {
+          var capabilityNodes = this.props.data.map(function (capability) {
+            return (
+              <LevelList key={capability.id} name={capability.name} data={capability.levels}>
+                {capability.levels}
+              </LevelList>
+            );
+          });
+          return (
+            <div className="CapabilityList">
+              {capabilityNodes}
+            </div>
+          );
+        }
+      });
+
+      var LevelForm = React.createClass({
+        handleSubmit: function(e) {
+          e.preventDefault();
+          var author = React.findDOMNode(this.refs.author).value.trim();
+          var text = React.findDOMNode(this.refs.text).value.trim();
+          if (!text || !author) {
+            return;
+          }
+          this.props.onLevelSubmit({author: author, text: text});
+          React.findDOMNode(this.refs.author).value = '';
+          React.findDOMNode(this.refs.text).value = '';
+          return;
+        },
+        render: function() {
+          return (
+            <form className="levelForm" onSubmit={this.handleSubmit}>
+              <input type="text" placeholder="Your name" ref="author"/>
+              <input type="text" placeholder="Say something..." ref="text"/>
+              <input type="submit" value="Post" />
+            </form>
+          );
+        }
+      });
+
+      // tutorial2.js
+      var LevelList = React.createClass({
+        render: function() {
+          var levelNodes = this.props.data.map(function (level) {
+            return (
+              <Level key={level.id} name={level.name} desc={level.desc}>
+                {level}
+              </Level>
+            );
+          });
+          return (
+            <div className="list-group">
+              <a href="#" className="list-group-item active">
+                <h4 className="list-group-item-heading">{this.props.name}</h4>
+                <p className="list-group-item-text">{this.props.desc}</p>
+              </a>
+              {levelNodes}
+            </div>
+          );
+        }
+      });
+
+      // tutorial4.js
+      var Level = React.createClass({
+        render: function() {
+          var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+          return (
+            <a className="list-group-item">
+              <h4 className="list-group-item-heading">{this.props.name}</h4>
+              <p className="list-group-item-text">{this.props.desc}</p>
+            </a>
+          );
+        }
+      });
+
+      React.render(
+      <DisciplineTable url="/disciplines/1/" pollInterval={20000}/>,
+      document.getElementById('content')
+      );
+    </script>
+  </body>
+</html>
