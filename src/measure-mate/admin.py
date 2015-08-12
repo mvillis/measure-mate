@@ -1,7 +1,10 @@
 from django.contrib import admin
-from .models import Discipline, Capability, Level
+from .models import *
 
 
-admin.site.register(Discipline)
-admin.site.register(Capability)
-admin.site.register(Level)
+admin.site.register(Template)
+admin.site.register(Attribute)
+admin.site.register(Rating)
+admin.site.register(Assessment)
+admin.site.register(Measurement)
+admin.site.register(Tag)

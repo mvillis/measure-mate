@@ -11,47 +11,92 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Capability',
+            name='Assessment',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+            ],
+            options={
+                'verbose_name_plural': 'Assessments',
+            },
+        ),
+        migrations.CreateModel(
+            name='Attribute',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=256)),
                 ('desc', models.TextField()),
             ],
             options={
-                'verbose_name_plural': 'Capabilities',
+                'verbose_name_plural': 'attributes',
             },
         ),
         migrations.CreateModel(
-            name='Discipline',
+            name='Measurement',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('observations', models.TextField()),
+                ('assessment', models.ForeignKey(related_name='measurements', to='measure-mate.Assessment')),
+            ],
+            options={
+                'verbose_name_plural': 'Measurements',
+            },
+        ),
+        migrations.CreateModel(
+            name='Rating',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=256)),
+                ('desc', models.TextField()),
+                ('rank', models.IntegerField(default=1)),
+                ('attribute', models.ForeignKey(related_name='ratings', to='measure-mate.Attribute')),
+            ],
+            options={
+                'verbose_name_plural': 'Ratings',
+            },
+        ),
+        migrations.CreateModel(
+            name='Tag',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=256)),
+            ],
+            options={
+                'verbose_name_plural': 'Tags',
+            },
+        ),
+        migrations.CreateModel(
+            name='Template',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=256)),
                 ('short_desc', models.CharField(max_length=256)),
             ],
             options={
-                'verbose_name_plural': 'Disciplines',
-            },
-        ),
-        migrations.CreateModel(
-            name='Level',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=256)),
-                ('desc', models.TextField()),
-                ('rank', models.IntegerField(default=1)),
-                ('capability', models.ForeignKey(related_name='levels', to='measure-mate.Capability')),
-            ],
-            options={
-                'verbose_name_plural': 'Levels',
+                'verbose_name_plural': 'Templates',
             },
         ),
         migrations.AddField(
-            model_name='capability',
+            model_name='measurement',
+            name='rating',
+            field=models.ForeignKey(related_name='measurements', to='measure-mate.Rating'),
+        ),
+        migrations.AddField(
+            model_name='attribute',
             name='discipline',
-            field=models.ForeignKey(related_name='capabilities', to='measure-mate.Discipline'),
+            field=models.ForeignKey(related_name='attributes', to='measure-mate.Template'),
+        ),
+        migrations.AddField(
+            model_name='assessment',
+            name='tags',
+            field=models.ManyToManyField(to='measure-mate.Tag'),
+        ),
+        migrations.AddField(
+            model_name='assessment',
+            name='template',
+            field=models.ForeignKey(related_name='assessments', to='measure-mate.Template'),
         ),
         migrations.AlterUniqueTogether(
-            name='level',
-            unique_together=set([('name', 'rank', 'capability')]),
+            name='rating',
+            unique_together=set([('name', 'rank', 'attribute')]),
         ),
     ]

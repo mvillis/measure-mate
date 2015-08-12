@@ -1,37 +1,58 @@
-from rest_framework import viewsets, generics
-from serializers import DisciplineSerializer
-from serializers import CapabilitySerializer
-from serializers import LevelSerializer
-from models import Capability, Level, Discipline
+from rest_framework import viewsets, generics, filters
+from serializers import *
+from models import *
 
 
-class DisciplineViewSet(viewsets.ModelViewSet):
+class TemplateViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that shows all capabilities for a given discipline.
+    API endpoint for the Template resource.
     """
-    queryset = Discipline.objects.all()
-    serializer_class = DisciplineSerializer
+    queryset = Template.objects.all()
+    serializer_class = TemplateSerializer
 
 
-class CapabilityViewSet(viewsets.ModelViewSet):
+class AttributeViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that shows all capabilities for a given discipline.
+    API endpoint for the Attribute resource.
     """
-    queryset = Capability.objects.all()
-    serializer_class = CapabilitySerializer
+    queryset = Attribute.objects.all()
+    serializer_class = AttributeSerializer
 
 
-class LevelViewSet(viewsets.ModelViewSet):
+class RatingViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that shows all levels for a given capability.
+    API endpoint for the Rating resource.
     """
-    queryset = Level.objects.all()
-    serializer_class = LevelSerializer
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer
 
 
-class MatrixView(generics.RetrieveAPIView):
+class TagViewSet(viewsets.ModelViewSet):
     """
-    Returns a single discipline.
+    API endpoint for the Tag resource.
     """
-    model = Discipline
-    serializer_class = DisciplineSerializer
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+
+
+class TagListView(generics.ListAPIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name',)
+
+
+class AssessmentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for the Assessment resource.
+    """
+    queryset = Assessment.objects.all()
+    serializer_class = AssessmentSerializer
+
+
+class MeasurementViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for the Measurement resource.
+    """
+    queryset = Measurement.objects.all()
+    serializer_class = MeasurementSerializer

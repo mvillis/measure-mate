@@ -1,20 +1,23 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
-from views import DisciplineViewSet, CapabilityViewSet, LevelViewSet
+from views import *
 
 
 router = routers.DefaultRouter()
-router.register(r'disciplines', DisciplineViewSet)
-router.register(r'capabilities', CapabilityViewSet)
-router.register(r'levels', LevelViewSet)
+router.register(r'templates', TemplateViewSet)
+router.register(r'attributes', AttributeViewSet)
+router.register(r'tags', TagViewSet)
+router.register(r'measurements', MeasurementViewSet)
+router.register(r'assessments', AssessmentViewSet)
+router.register(r'ratings', RatingViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include(router.urls)),
-    # url(r'^matrix/(?P<pk>[\d]+)/$', views.MatrixView.as_view(), name='matris'),
-    url(r'^api-auth/', include(
+    url(r'^api/tags?', TagListView.as_view()),
+    url(r'^api/', include(router.urls)),
+    url(r'^api/api-auth/', include(
         'rest_framework.urls', namespace='rest_framework'))
 ]

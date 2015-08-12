@@ -1,25 +1,51 @@
-from models import Discipline, Capability, Level
+from models import *
 from rest_framework import serializers
 
 
-class LevelSerializer(serializers.HyperlinkedModelSerializer):
+class RatingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Level
+        model = Rating
         fields = ('id', 'name', 'desc', 'rank')
 
 
-class CapabilitySerializer(serializers.HyperlinkedModelSerializer):
-    levels = LevelSerializer(many=True, read_only=True)
+class AttributeSerializer(serializers.HyperlinkedModelSerializer):
+    ratings = RatingSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Capability
-        fields = ('id', 'name', 'desc', 'levels')
+        model = Attribute
+        fields = ('id', 'name', 'desc', 'ratings')
 
 
-class DisciplineSerializer(serializers.HyperlinkedModelSerializer):
-    capabilities = CapabilitySerializer(many=True, read_only=True)
+class TemplateSerializer(serializers.HyperlinkedModelSerializer):
+    attributes = AttributeSerializer(many=True, read_only=True)
 
     class Meta:
-        model = Discipline
-        fields = ('id', 'name', 'short_desc', 'capabilities')
+        model = Template
+        fields = ('id', 'name', 'short_desc', 'attributes')
+        depth = 1
+
+
+class TagSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Tag
+        fields = ('id', 'name')
+
+
+class MeasurementSerializer(serializers.HyperlinkedModelSerializer):
+    rating = RatingSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = Template
+        fields = ('id', 'assessment', 'rating', 'observations')
+        depth = 1
+
+
+class AssessmentSerializer(serializers.HyperlinkedModelSerializer):
+    measurements = MeasurementSerializer(many=True, read_only=True)
+    tags = TagSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Assessment
+        fields = ('id', 'name', 'tags', 'measurements')
         depth = 1
