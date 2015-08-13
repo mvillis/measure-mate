@@ -1,6 +1,15 @@
 from rest_framework import viewsets, generics, filters
+from django.shortcuts import render
 from serializers import *
 from models import *
+
+
+def home(request):
+    return render(request, 'index.html')
+
+
+def assessment(request):
+    return render(request, 'assessment.html')
 
 
 class TemplateViewSet(viewsets.ModelViewSet):

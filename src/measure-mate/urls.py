@@ -12,12 +12,13 @@ router.register(r'measurements', MeasurementViewSet)
 router.register(r'assessments', AssessmentViewSet)
 router.register(r'ratings', RatingViewSet)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
+    url(r'^assessment/$', assessment, name='assessment'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/tags?', TagListView.as_view()),
     url(r'^api/', include(router.urls)),
     url(r'^api/api-auth/', include(
-        'rest_framework.urls', namespace='rest_framework'))
+        'rest_framework.urls', namespace='rest_framework')),
+    url(r'^$', home, name='home'),
+
 ]
