@@ -46,22 +46,21 @@
               },
 
               render: function render() {
-                return React.createElement(
-                  'div',
-                  null,
-                  React.createElement(
-                    'label',
-                    null,
-                    this.props.label
-                  ),
-                  React.createElement(Select, {
-                    delimiter: ',',
-                    multi: false,
-                    name: 'template',
-                    asyncOptions: this.loadOptions,
-                    allowCreate: false,
-                    placeholder: 'Type to filter templates',
-                    onChange: this.logChange })
+                return (
+                  <div>
+                    <label>{this.props.label}</label>
+                    <div>
+                      <Select delimeter=','
+                      multi={false} asyncOptions={this.loadOptions}
+                      allowCreate={false}
+                      name='tags'
+                      placeholder='Type to filter templates'
+                      onChange={this.logChange}/>
+                    </div>
+                    <div className='hint'>
+                      Each template includes a unique set of attributes to measure.
+                    </div>
+                  </div>
                 );
               }
             });
@@ -98,27 +97,22 @@
               },
 
               render: function render() {
-                return React.createElement(
-                  'div',
-                  null,
-                  React.createElement(
-                    'label',
-                    null,
-                    this.props.label
-                  ),
-                  React.createElement(Select, {
-                    delimiter: ',',
-                    multi: true,
-                    asyncOptions: this.loadOptions,
-                    allowCreate: true,
-                    name: 'tags',
-                    placeholder: 'Type to find existing tags or create new ones',
-                    onChange: this.logChange }),
-                    React.createElement(
-                      'div',
-                      { className: 'hint' },
-                      'Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.'
-                    )
+                return (
+                  <div>
+                    <label>{this.props.label}</label>
+                    <div>
+                      <Select delimeter=','
+                      multi={true} asyncOptions={this.loadOptions}
+                      allowCreate={true}
+                      name='tags'
+                      inputProps={% templatetag openvariable %}'refsdf': 'gogo'{% templatetag closevariable %}
+                      placeholder='Type to find existing tags or create new ones'
+                      onChange={this.logChange}/>
+                    </div>
+                    <div className='hint'>
+                      Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.
+                    </div>
+                  </div>
                 );
               }
             });
@@ -126,18 +120,19 @@
             var AssessmentCreationForm = React.createClass({
               handleSubmit: function(e) {
                 e.preventDefault();
-                window.location.href = "/assessment";
+                // window.location.href = "/assessment";
                 console.log("hello");
                 var template = React.findDOMNode(this.refs.template);
                 console.log(template);
                 var tags = React.findDOMNode(this.refs.tags);
                 console.log(tags);
+                console.log(tags.name);
               },
               render: function() {
                 return (
                   <form className="assessmentCreationForm" onSubmit={this.handleSubmit}>
-                    <TemplateSelect label= "Template" ref="template"/>
-                    <TagSelect label= "Tags" ref="tags"/>
+                    <TemplateSelect label="Template" ref="template"/>
+                    <TagSelect label="Tags" ref="tags"/>
                     <input className="btn btn-default" type="submit" value="Launch" />
                   </form>
                 );
