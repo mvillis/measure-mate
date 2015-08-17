@@ -22,7 +22,6 @@ class TemplateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Template
         fields = ('id', 'name', 'short_desc', 'attributes')
-        depth = 1
 
 
 class TagSerializer(serializers.HyperlinkedModelSerializer):
@@ -36,16 +35,16 @@ class MeasurementSerializer(serializers.HyperlinkedModelSerializer):
     rating = RatingSerializer(many=False, read_only=True)
 
     class Meta:
-        model = Template
-        fields = ('id', 'assessment', 'rating', 'observations')
+        model = Measurement
+        fields = ('id', 'rating', 'observations')
         depth = 1
 
 
 class AssessmentSerializer(serializers.HyperlinkedModelSerializer):
     measurements = MeasurementSerializer(many=True, read_only=True)
     tags = TagSerializer(many=True, read_only=True)
+    template = TemplateSerializer(many=False, read_only=True)
 
     class Meta:
         model = Assessment
-        fields = ('id', 'name', 'tags', 'measurements')
-        depth = 1
+        fields = ('id', 'template', 'tags', 'measurements')
