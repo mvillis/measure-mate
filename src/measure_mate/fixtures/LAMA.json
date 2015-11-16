@@ -1,0 +1,500 @@
+[
+  {
+    "fields": {
+      "short_desc": "Lightwieght Agile Maturity Assessment",
+      "name": "LAMA"
+    },
+    "model": "measure_mate.template",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "Standups",
+      "template": 1,
+      "desc": "A regular team collaboration opportunity for sharing progress, identifying risks and resolving issues"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "Retrospectives",
+      "template": 1,
+      "desc": "A team activity used for problem identification and solution forming the basis for continuous improvement\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "name": "Backlog Management",
+      "template": 1,
+      "desc": "Teams need a single backlog of work to pull work from. This backlog needs be kept relevant.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "name": "Product Ownership",
+      "template": 1,
+      "desc": "Compulsory for Product Teams\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "name": "Iteration Management",
+      "template": 1,
+      "desc": "Enforces a disciplined approach to agile values/principles and practices within a delivery team\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "name": "Track & Visualise Progress",
+      "template": 1,
+      "desc": "Principles\r\n1. Visible to leadership, onshore/offshore teams\r\n2. Any one in the team should be able to update the wall and visualize the progress\r\n3. Shows Parameters from the Iteration Report\r\n4. Risks and Blockers : effective tracking mechanism with the dates/accountability info\r\n5. Data is up to date\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "name": "Showcases",
+      "template": 1,
+      "desc": "Engaging the customer through showcases, planning, progress and team meetings to support definition and prioritisation.\r\nFor projects, Customer = Product Owner\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "name": "Building Quality In",
+      "template": 1,
+      "desc": "A definition of quality provides the basis for assessing the suitability of work delivered\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "name": "Adaptive Planning",
+      "template": 1,
+      "desc": "The collaborative identification, definition and planning of work and deliverables\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "name": "Risk Management",
+      "template": 1,
+      "desc": "Risk management addresses uncertainty and increases the likelihood of successful outcomes\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "attribute": 1,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "• Stand-up's are not occurring\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "attribute": 1,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "• Stand-up's occur but are irregular (-)\r\n• Team lacking understanding of purpose of Stand Up (-)\r\n• Stand Ups go overtime (-)\r\n• Team members are unclear what work is happening or issues blocking progress (-)\r\n• Team members typically perform additional reporting to highlight work completed (-)\r\n• Core team attendance maybe intermittent (-)\r\n• Team member updates are focus only on status with limited insight into risks or issues (-)\r\n• Distributed team members not included (-)\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "attribute": 1,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "(Includes items from Emerging marked with (+))\r\n\r\n• Stand-up meetings occur regularly but are usually initiated by the Iteration Manager/Project Manager or another facilitator (-)\r\n• At each meeting, all of the core team members answer the questions \"\"What I have done since we last met\"\", \"\"What I plan to do before we next meet\"\", \"\"What is blocking me or may block me\"\" (+)\r\n• Geographically remote team members are involved in Stand-up meetings (+)\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "attribute": 1,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "(Includes items from Growing marked with (+))\r\n\r\n• Stand-up's occur daily\r\n• Stand-up meetings are rarely missed by any core team member and still occur regardless of attendance \r\n• Core team members use the visual wall and point to the work they are doing while answering  the 3 questions \r\n• Stand-up's are completed in under 15mins \r\n• Project stakeholders regularly attend stand-ups and other team collaboration events \r\n• Geographically remote team members feel properly included in Stand-up's and are able to see and hear progress updates \r\n• Blockers and challenges identified during the stand-up are assigned an owner, so that the impediment can be removed \r\n• Visual wall is updated as agreed by the whole team\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "attribute": 2,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "• No Retrospectives occur\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "attribute": 2,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "• Retrospectives happen but are irregular (-)\r\n• Retrospectives have poorly defined or no follow-up actions (-)\r\n• Decisions are taken with limited consideration of evidence or facts (-)\r\n• Actions are not followed through or are ineffective (-)\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "attribute": 2,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "(Includes items from Emerging marked with (+))\r\n\r\n• Retrospectives are regular with actions being generated (+)\r\n• Retrospectives are generally facilitated by the same person (-)\r\n• Retrospective attendance is inconsistent (-)\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "attribute": 2,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "(Includes items from Growing marked with (+))\r\n\r\n• Retrospectives are consistently attended by the core team who actively contribute to concrete actions\r\n• Actions are incorporated into work planning and their timely completion contributes to improvement\r\n• Decisions are fact-based, addressing the root-cause of the problems\r\n• Actions from previous retrospective are reviewed\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "attribute": 3,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "Regressive"
+    },
+    "model": "measure_mate.rating",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "attribute": 3,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "Emerging"
+    },
+    "model": "measure_mate.rating",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "attribute": 3,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "Growing"
+    },
+    "model": "measure_mate.rating",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "attribute": 3,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "Sustainable"
+    },
+    "model": "measure_mate.rating",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "attribute": 4,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "Regressive"
+    },
+    "model": "measure_mate.rating",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "attribute": 4,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "Emerging"
+    },
+    "model": "measure_mate.rating",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "attribute": 4,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "Growing"
+    },
+    "model": "measure_mate.rating",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "attribute": 4,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "Sustainable"
+    },
+    "model": "measure_mate.rating",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "attribute": 5,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "Regressive"
+    },
+    "model": "measure_mate.rating",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "attribute": 5,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "Emerging"
+    },
+    "model": "measure_mate.rating",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "attribute": 5,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "Growing"
+    },
+    "model": "measure_mate.rating",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "attribute": 5,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "Sustainable"
+    },
+    "model": "measure_mate.rating",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "attribute": 6,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "Regressive"
+    },
+    "model": "measure_mate.rating",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "attribute": 6,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "Emerging"
+    },
+    "model": "measure_mate.rating",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "attribute": 6,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "Growing"
+    },
+    "model": "measure_mate.rating",
+    "pk": 23
+  },
+  {
+    "fields": {
+      "attribute": 6,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "Sustainable"
+    },
+    "model": "measure_mate.rating",
+    "pk": 24
+  },
+  {
+    "fields": {
+      "attribute": 7,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "Regressive"
+    },
+    "model": "measure_mate.rating",
+    "pk": 25
+  },
+  {
+    "fields": {
+      "attribute": 7,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "Emerging"
+    },
+    "model": "measure_mate.rating",
+    "pk": 26
+  },
+  {
+    "fields": {
+      "attribute": 7,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "Growing"
+    },
+    "model": "measure_mate.rating",
+    "pk": 27
+  },
+  {
+    "fields": {
+      "attribute": 7,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "Sustainable"
+    },
+    "model": "measure_mate.rating",
+    "pk": 28
+  },
+  {
+    "fields": {
+      "attribute": 8,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "Regressive"
+    },
+    "model": "measure_mate.rating",
+    "pk": 29
+  },
+  {
+    "fields": {
+      "attribute": 8,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "Emerging"
+    },
+    "model": "measure_mate.rating",
+    "pk": 30
+  },
+  {
+    "fields": {
+      "attribute": 8,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "Growing"
+    },
+    "model": "measure_mate.rating",
+    "pk": 31
+  },
+  {
+    "fields": {
+      "attribute": 8,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "Sustainable"
+    },
+    "model": "measure_mate.rating",
+    "pk": 32
+  },
+  {
+    "fields": {
+      "attribute": 9,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "Regressive"
+    },
+    "model": "measure_mate.rating",
+    "pk": 33
+  },
+  {
+    "fields": {
+      "attribute": 9,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "Emerging"
+    },
+    "model": "measure_mate.rating",
+    "pk": 34
+  },
+  {
+    "fields": {
+      "attribute": 9,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "Growing"
+    },
+    "model": "measure_mate.rating",
+    "pk": 35
+  },
+  {
+    "fields": {
+      "attribute": 9,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "Sustainable"
+    },
+    "model": "measure_mate.rating",
+    "pk": 36
+  },
+  {
+    "fields": {
+      "attribute": 10,
+      "name": "Regressive",
+      "rank": 1,
+      "desc": "Regressive"
+    },
+    "model": "measure_mate.rating",
+    "pk": 37
+  },
+  {
+    "fields": {
+      "attribute": 10,
+      "name": "Emerging",
+      "rank": 2,
+      "desc": "Emerging"
+    },
+    "model": "measure_mate.rating",
+    "pk": 38
+  },
+  {
+    "fields": {
+      "attribute": 10,
+      "name": "Growing",
+      "rank": 3,
+      "desc": "Growing"
+    },
+    "model": "measure_mate.rating",
+    "pk": 39
+  },
+  {
+    "fields": {
+      "attribute": 10,
+      "name": "Sustainable",
+      "rank": 4,
+      "desc": "Sustainable"
+    },
+    "model": "measure_mate.rating",
+    "pk": 40
+  }
+]
