@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('measure-mate', '0001_initial'),
+        ('measure_mate', '0001_initial'),
     ]
 
     operations = [
