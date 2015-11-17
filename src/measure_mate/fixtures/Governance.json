@@ -1,0 +1,10 @@
+[
+  {
+    "fields": {
+      "short_desc": "This is amazing!",
+      "name": "Governance"
+    },
+    "model": "measure-mate.template",
+    "pk": 2
+  },
+]

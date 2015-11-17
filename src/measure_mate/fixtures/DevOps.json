@@ -1,0 +1,39 @@
+[
+  {
+    "fields": {
+      "short_desc": "A template to assess the maturity of DevOps in Suncorp",
+      "name": "DevOps"
+    },
+    "model": "measure-mate.template",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "name": "Continuous Integration",
+      "template": 3,
+      "desc": "How quickly is code being socialised?"
+    },
+    "model": "measure-mate.attribute",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "attribute": 11,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Nothing close to good"
+    },
+    "model": "measure-mate.rating",
+    "pk": 41
+  },
+  {
+    "fields": {
+      "attribute": 1,
+      "name": "Alright",
+      "rank": 1,
+      "desc": "There is some evidence of good stuff happening."
+    },
+    "model": "measure-mate.rating",
+    "pk": 42
+  },
+]
