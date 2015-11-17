@@ -1,0 +1,12 @@
+-r base.txt
+
+django-discover-jenkins
+mock
+factory_boy
+flake8
+mccabe
+pyflakes
+pep8
+coverage
+pylint-django
+db-sqlite
