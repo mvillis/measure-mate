@@ -3,14 +3,14 @@
     "fields": {
       "name": "digital"
     },
-    "model": "measure-mate.tag",
+    "model": "measure_mate.tag",
     "pk": 1
   },
   {
     "fields": {
       "name": "corporate"
     },
-    "model": "measure-mate.tag",
+    "model": "measure_mate.tag",
     "pk": 2
-  },
+  }
 ]

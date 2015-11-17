@@ -4,7 +4,7 @@
       "short_desc": "A template to assess the maturity of DevOps in Suncorp",
       "name": "DevOps"
     },
-    "model": "measure-mate.template",
+    "model": "measure_mate.template",
     "pk": 3
   },
   {
@@ -13,7 +13,7 @@
       "template": 3,
       "desc": "How quickly is code being socialised?"
     },
-    "model": "measure-mate.attribute",
+    "model": "measure_mate.attribute",
     "pk": 11
   },
   {
@@ -23,7 +23,7 @@
       "rank": 1,
       "desc": "Nothing close to good"
     },
-    "model": "measure-mate.rating",
+    "model": "measure_mate.rating",
     "pk": 41
   },
   {
@@ -33,7 +33,7 @@
       "rank": 1,
       "desc": "There is some evidence of good stuff happening."
     },
-    "model": "measure-mate.rating",
+    "model": "measure_mate.rating",
     "pk": 42
-  },
+  }
 ]
