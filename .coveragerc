@@ -1,0 +1,12 @@
+[run]
+branch = True
+source =
+    measure-mate
+omit =
+    venv/*
+    src/measure_mate/migrations/*
+    src/measure_mate/tests/*
+    src/measure_mate/settings.py
+    src/measure_mate/wsgi.py
+[report]
+precision = 2

@@ -1,0 +1,11 @@
+language: python
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+before_script:
+  - "export MEASURE_MATE_SECRET_KEY=test_key"
+  - "export DATABASE_URL=sqlite:///:memory"
+script:
+  coverage run src/manage.py test
+after_success:
+  coveralls
