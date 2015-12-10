@@ -15,7 +15,7 @@ Setup
 ```
 virtualenv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements/local.txt
 ```
 
 In order to install mock you may need to update your versions of pip, wheel and setuptools. After creating your virtual environment the following command will do the trick:
