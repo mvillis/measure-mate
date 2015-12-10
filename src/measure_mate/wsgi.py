@@ -11,6 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "snap.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "measure_mate.settings")
 
-application = get_wsgi_application()
+from django.core.wsgi import get_wsgi_application
+from dj_static import Cling
+
+application = Cling(get_wsgi_application())
