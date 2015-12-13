@@ -1,1 +1,1 @@
-web: gunicorn src.measure_mate.wsgi --log-file -
+web: gunicorn measure_mate.wsgi --log-file -

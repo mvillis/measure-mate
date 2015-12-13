@@ -5,6 +5,6 @@ install:
 before_script:
   - "export DATABASE_URL=sqlite:///:memory"
 script:
-  coverage run src/manage.py test
+  coverage run manage.py test
 after_success:
   coveralls

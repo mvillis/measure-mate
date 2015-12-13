@@ -30,7 +30,7 @@ Testing
 ```
 export DJANGO_SETTINGS_MODULE=measure_mate.settings
 export DATABASE_URL=sqlite:///`pwd`/measure_mate.sqlite
-python src/manage.py test
+python manage.py test
 ```
 
 Coverage
@@ -39,7 +39,7 @@ Coverage
 This assumes that the env settings from above are still in place.
 
 ```
-coverage run src/manage.py test
+coverage run manage.py test
 coverage report -m
 ```
 
@@ -49,7 +49,7 @@ Running (locally)
 ```
 export DJANGO_SETTINGS_MODULE=measure_mate.settings
 export DATABASE_URL=sqlite:///`pwd`/measure_mate.sqlite
-python src/manage.py migrate
-python src/manage.py collectstatic
-python src/manage.py runserver
+python manage.py migrate
+python manage.py collectstatic
+python manage.py runserver
 ```
