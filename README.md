@@ -15,7 +15,7 @@ Setup
 ```
 virtualenv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements/local.txt
 ```
 
 In order to install mock you may need to update your versions of pip, wheel and setuptools. After creating your virtual environment the following command will do the trick:
@@ -36,15 +36,19 @@ python src/manage.py test
 Coverage
 -------
 
+This assumes that the env settings from above are still in place.
+
 ```
 coverage run src/manage.py test
 coverage report -m
 ```
 
-Running
+Running (locally)
 -------
 
 ```
+export DJANGO_SETTINGS_MODULE=measure_mate.settings
+export DATABASE_URL=sqlite:///`pwd`/measure_mate.sqlite
 python src/manage.py migrate
 python src/manage.py collectstatic
 python src/manage.py runserver
