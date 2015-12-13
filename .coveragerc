@@ -4,9 +4,9 @@ source =
     measure-mate
 omit =
     venv/*
-    src/measure_mate/migrations/*
-    src/measure_mate/tests/*
-    src/measure_mate/settings.py
-    src/measure_mate/wsgi.py
+    measure_mate/migrations/*
+    measure_mate/tests/*
+    measure_mate/settings.py
+    measure_mate/wsgi.py
 [report]
 precision = 2
