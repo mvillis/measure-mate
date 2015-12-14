@@ -19,6 +19,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+staticfiles/
 
 # Installer logs
 pip-log.txt
@@ -46,6 +47,7 @@ coverage.xml
 *.log
 *.pot
 *.sqlite3
+*.sqlite
 
 # Sphinx documentation
 docs/_build/
@@ -60,3 +62,6 @@ docs/_build/
 # Vim
 *~
 *.swp
+
+# Virtual env
+.venv
