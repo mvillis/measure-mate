@@ -16,7 +16,7 @@
         dataType: 'json',
         cache: false,
         success: function(data) {
-          this.setState({data: data.attributes, name: data.name, short_desc: data.short_desc});
+          this.setState({data: data.attributes, name: data.name, desc: data.desc});
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -33,7 +33,7 @@
         type: 'POST',
         data: rating,
         success: function(data) {
-          this.setState({data: data.attributes, name: data.name, short_desc: data.short_desc});
+          this.setState({data: data.attributes, name: data.name, desc: data.desc});
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -52,7 +52,7 @@
         <div className="TemplateTable">
           <div className="container">
             <div className="page-header">
-              <h1>{this.state.name}<small> {this.state.short_desc}</small></h1>
+              <h1>{this.state.name}<small> {this.state.desc}</small></h1>
             </div>
             <div className="panel panel-default">
               <div className="panel-heading">
@@ -73,7 +73,7 @@
     render: function() {
       var attributeNodes = this.props.data.map(function (attribute) {
         return (
-          <RatingList key={attribute.id} name={attribute.name} data={attribute.ratings}>
+          <RatingList key={attribute.id} name={attribute.name} desc={attribute.desc} data={attribute.ratings}>
             {attribute.ratings}
           </RatingList>
         );
@@ -138,7 +138,7 @@
       return (
         <a className="list-group-item">
           <h4 className="list-group-item-heading">{this.props.name}</h4>
-          <p className="list-group-item-text">{this.props.desc}</p>
+          <pre className="list-group-item-text">{this.props.desc}</pre>
         </a>
       );
     }
