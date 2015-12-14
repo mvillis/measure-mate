@@ -122,7 +122,7 @@
       "attribute": 1,
       "name": "Growing",
       "rank": 3,
-      "desc": "(Includes items from Emerging marked with (+))\r\n\r\n• Stand-up meetings occur regularly but are usually initiated by the Iteration Manager/Project Manager or another facilitator (-)\r\n• At each meeting, all of the core team members answer the questions \"\"What I have done since we last met\"\", \"\"What I plan to do before we next meet\"\", \"\"What is blocking me or may block me\"\" (+)\r\n• Geographically remote team members are involved in Stand-up meetings (+)\r\n"
+      "desc": "(Includes items from Emerging marked with (+))\r\n\r\n• Stand-up meetings occur regularly but are usually initiated by the Iteration Manager/Project Manager or another facilitator (-)\r\n• At each meeting, all of the core team members answer the questions \"What I have done since we last met\", \"What I plan to do before we next meet\", \"What is blocking me or may block me\" (+)\r\n• Geographically remote team members are involved in Stand-up meetings (+)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 3
@@ -362,7 +362,7 @@
       "attribute": 7,
       "name": "Growing",
       "rank": 3,
-      "desc": "• The team has started to hold showcases after each iteration but occasionally they get cancelled due to delivery pressure or perceived lack of \"\"something to show\"\" (-)\r\n"
+      "desc": "• The team has started to hold showcases after each iteration but occasionally they get cancelled due to delivery pressure or perceived lack of \"something to show\" (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 27
@@ -402,7 +402,7 @@
       "attribute": 8,
       "name": "Growing",
       "rank": 3,
-      "desc": "• A quality plan is agreed and understood by the team that incorporates specific measures and targets(+)\r\n• Definitions of \"\"Ready\"\" and \"\"Done\"\" are defined and agreed by the core team (+)\r\n• Test and verification planning is based on risk associated with technical complexity and business impact (+)\r\n• The team has ownership for quality (+)\r\n• For technology assets, testing is largely automated in a scalable fashion (+)"
+      "desc": "• A quality plan is agreed and understood by the team that incorporates specific measures and targets(+)\r\n• Definitions of \"Ready\" and \"Done\" are defined and agreed by the core team (+)\r\n• Test and verification planning is based on risk associated with technical complexity and business impact (+)\r\n• The team has ownership for quality (+)\r\n• For technology assets, testing is largely automated in a scalable fashion (+)"
     },
     "model": "measure_mate.rating",
     "pk": 31
@@ -462,7 +462,7 @@
       "attribute": 10,
       "name": "Regressive",
       "rank": 1,
-      "desc": "• Risks are not identified and not effectively managed\r\n• Risk management:\r\n- Does not exist\r\n- Is an afterthought or \"\"bolted-on\"\"\r\n- Just a box to tick in order to get through a process\r\n- Something to keep risk and audit people happy"
+      "desc": "• Risks are not identified and not effectively managed\r\n• Risk management:\r\n- Does not exist\r\n- Is an afterthought or \"bolted-on\"\r\n- Just a box to tick in order to get through a process\r\n- Something to keep risk and audit people happy"
     },
     "model": "measure_mate.rating",
     "pk": 37
