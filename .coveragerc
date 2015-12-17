@@ -1,7 +1,7 @@
 [run]
 branch = True
 source =
-    measure-mate
+    measure_mate
 omit =
     venv/*
     measure_mate/migrations/*
