@@ -53,3 +53,9 @@ python manage.py migrate
 python manage.py collectstatic
 python manage.py runserver
 ```
+
+Contributing
+-------
+
+Please read
+[CONTRIBUTING.md](https://github.com/mvillis/measure-mate/blob/master/CONTRIBUTING.md) if you wish to contribute.
