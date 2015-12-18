@@ -56,6 +56,14 @@ MIDDLEWARE_CLASSES = (
 
 REST_FRAMEWORK = {'PAGE_SIZE': 10}
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
 ROOT_URLCONF = 'measure_mate.urls'
 
 TEMPLATES = [
