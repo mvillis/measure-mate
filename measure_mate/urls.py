@@ -13,6 +13,7 @@ router.register(r'assessments', AssessmentViewSet)
 router.register(r'ratings', RatingViewSet)
 
 urlpatterns = [
+    url(r'^assessment/list$', assessmentList, name='assessmentlist'),
     url(r'^assessment/$', assessment, name='assessment'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/tags?', TagListView.as_view()),

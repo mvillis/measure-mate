@@ -12,6 +12,10 @@ def assessment(request):
     return render(request, 'assessment.html')
 
 
+def assessmentList(request):
+    return render(request, 'assessment_list.html')
+
+
 class TemplateViewSet(viewsets.ModelViewSet):
     """
     API endpoint for the Template resource.

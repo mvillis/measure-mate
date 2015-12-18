@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Measure Mate{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block body %}
+<div class="container">
+<div id="content"></div>
+</div>
+<script type="text/jsx">
+  var AssessmentTable = React.createClass({
+    loadRatingsFromServer: function() {
+      $.ajax({
+        url: this.props.url,
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+          this.setState({data: data});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    },
+    getInitialState: function() {
+      return {data: []};
+    },
+    componentDidMount: function() {
+      this.loadRatingsFromServer();
+      setInterval(this.loadRatingsFromServer, this.props.pollInterval);
+    },
+    render: function() {
+      return (
+        <div className="AssessmentTable">
+          <div className="container">
+            <div className="page-header">
+              <h1>{this.state.name}<small> Assessments</small></h1>
+            </div>
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h3 className="panel-title">{this.state.name}</h3>
+              </div>
+              <div className="panel-body">
+                <AssessmentList data={this.state.data} />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    });
+
+  var AssessmentList = React.createClass({
+    render: function() {
+      var attributeNodes = this.props.data.map(function (assessment) {
+        return (
+          <div className="list-group">
+            <a href="#" className="list-group-item active">
+              <h4 className="list-group-item-heading">{assessment.id} {assessment.created}</h4>
+            </a>
+          </div>
+        );
+      });
+      return (
+        <div className="AssessmentList">
+          {attributeNodes}
+        </div>
+      );
+    }
+  });
+
+  React.render(
+  <AssessmentTable url="/api/assessments/" pollInterval={20000}/>,
+  document.getElementById('content')
+  );
+</script>
+{% endblock %}
