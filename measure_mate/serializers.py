@@ -2,13 +2,13 @@ from models import *
 from rest_framework import serializers
 
 
-class RatingSerializer(serializers.HyperlinkedModelSerializer):
+class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
         fields = ('id', 'name', 'desc', 'rank')
 
 
-class AttributeSerializer(serializers.HyperlinkedModelSerializer):
+class AttributeSerializer(serializers.ModelSerializer):
     ratings = RatingSerializer(many=True, read_only=True)
 
     class Meta:
@@ -16,7 +16,7 @@ class AttributeSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'desc', 'ratings')
 
 
-class TemplateSerializer(serializers.HyperlinkedModelSerializer):
+class TemplateSerializer(serializers.ModelSerializer):
     attributes = AttributeSerializer(many=True, read_only=True)
 
     class Meta:
@@ -24,14 +24,14 @@ class TemplateSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'short_desc', 'attributes')
 
 
-class TagSerializer(serializers.HyperlinkedModelSerializer):
+class TagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tag
         fields = ('id', 'name')
 
 
-class MeasurementSerializer(serializers.HyperlinkedModelSerializer):
+class MeasurementSerializer(serializers.ModelSerializer):
     rating = RatingSerializer(many=False, read_only=True)
 
     class Meta:
@@ -40,11 +40,7 @@ class MeasurementSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
 
 
-class AssessmentSerializer(serializers.HyperlinkedModelSerializer):
-    measurements = MeasurementSerializer(many=True, read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
-    template = TemplateSerializer(many=False, read_only=True)
+class AssessmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Assessment
-        fields = ('id', 'template', 'tags', 'measurements')
