@@ -132,16 +132,16 @@
               handleSubmit: function() {
                 var template = this.state.template.map(function (value) {
                   return (
-                    value.label
+                    value.value
                   );
                 });
                 var tags = this.state.tags.map(function (value) {
                   return (
-                    value.label
+                    value.value
                   );
                 });
-                //alert("The Template is " + template);
-                //alert("The Tags are " + tags);
+                alert("The Template is " + template);
+                alert("The Tags are " + tags);
                 // window.location = '/assessment?template='+template+'&tags='+tags;
 
                 // using jQuery
@@ -179,13 +179,13 @@
                       url: "/api/assessments/",
                       contentType: "application/json; charset=utf-8",
                       dataType: 'json',
-                      data: '{"template":1,"tags":[1]}',
+                      data: '{"template":' + template + ',"tags":[' + tags + ']}',
                       type: "POST",
                       dataType: 'json',
                       cache: true,
                       success: function(output) {
                         console.log(output);
-                        window.location = '/assessment?id='+output.id;
+                        window.location = '/assessment/'+output.id+'/';
                       },
                       error: function(xhr, status, err) {
                         console.error("fail");

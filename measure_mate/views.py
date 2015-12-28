@@ -9,11 +9,11 @@ def home(request):
     return render(request, 'index.html')
 
 
-def assessment(request):
-    return render(request, 'assessment.html')
+def assessment(request, pk):
+    return render(request, 'assessment.html', {'id': pk})
 
 
-def assessmentList(request):
+def assessment_list(request):
     return render(request, 'assessment_list.html')
 
 
