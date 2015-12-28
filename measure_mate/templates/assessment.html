@@ -10,9 +10,22 @@
 </div>
 <script type="text/jsx">
   var TemplateTable = React.createClass({
-    loadRatingsFromServer: function() {
+    loadAssessmentFromServer: function() {
       $.ajax({
         url: this.props.url,
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+          this.loadRatingsFromServer(data);
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    },
+    loadRatingsFromServer: function(data) {
+      $.ajax({
+        url: '/api/templates/' + data.template.id + '/',
         dataType: 'json',
         cache: false,
         success: function(data) {
@@ -44,8 +57,8 @@
       return {data: []};
     },
     componentDidMount: function() {
-      this.loadRatingsFromServer();
-      setInterval(this.loadRatingsFromServer, this.props.pollInterval);
+      this.loadAssessmentFromServer();
+      setInterval(this.loadAssessmentFromServer, this.props.pollInterval);
     },
     render: function() {
       return (
@@ -145,7 +158,7 @@
   });
 
   React.render(
-  <TemplateTable url="/api/templates/1/" pollInterval={20000}/>,
+  <TemplateTable url="/api/assessments/{{id}}/" pollInterval={20000}/>,
   document.getElementById('content')
   );
 </script>
