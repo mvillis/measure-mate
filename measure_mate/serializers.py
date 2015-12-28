@@ -24,6 +24,13 @@ class TemplateSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'short_desc', 'attributes')
 
 
+class TemplateSimpleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Template
+        # fields = ('id', 'name', 'short_desc')
+
+
 class TagSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -41,6 +48,15 @@ class MeasurementSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Assessment
+        depth = 1
+
+
+class AssessmentCreateSerializer(serializers.ModelSerializer):
+    template = serializers.PrimaryKeyRelatedField(queryset=Template.objects.all())
+    tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
 
     class Meta:
         model = Assessment
+        fields = ('id', 'created', 'updated', 'template', 'tags')
