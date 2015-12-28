@@ -52,13 +52,12 @@ class Tag(models.Model):
 
 class Assessment(models.Model):
     class Meta:
-        unique_together = ()
         verbose_name_plural = "Assessments"
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     template = models.ForeignKey(Template, related_name="assessments")
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag,)
 
     def __unicode__(self):
         return self.created.strftime('%Y-%m-%d %H:%M%Z') + " - " + self.template.name

@@ -53,19 +53,37 @@
 
   var AssessmentList = React.createClass({
     render: function() {
-      var attributeNodes = this.props.data.map(function (assessment) {
+      var tagStyle = {
+        marginRight: '0.5em'
+      };
+      var assessmentNodes = this.props.data.map(function (assessment) {
+        var prettyCreated = new Date(assessment.created).toLocaleDateString("en-AU");
+        var tagNodes = assessment.tags.map(function (tag) {
+          return (
+            <span className="label label-primary" style={tagStyle}>{tag.name}</span>
+          );
+        });
         return (
-          <div className="list-group">
-            <a href="#" className="list-group-item active">
-              <h4 className="list-group-item-heading">{assessment.id} {assessment.created}</h4>
-            </a>
-          </div>
+            <tr key={assessment.id}>
+              <td>{assessment.id}</td>
+              <td>{prettyCreated}</td>
+              <td>{assessment.template.name}</td>
+              <td>{tagNodes}</td>
+            </tr>
         );
       });
       return (
-        <div className="AssessmentList">
-          {attributeNodes}
-        </div>
+        <table className="table table-hover">
+          <tr>
+            <th>#</th>
+            <th>Created Date</th>
+            <th>Template</th>
+            <th>Tags</th>
+          </tr>
+          <tbody>
+            {assessmentNodes}
+          </tbody>
+        </table>
       );
     }
   });

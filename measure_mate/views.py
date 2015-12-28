@@ -1,4 +1,5 @@
-from rest_framework import viewsets, generics, filters
+from rest_framework import viewsets, generics, filters, status
+from rest_framework.response import Response
 from django.shortcuts import render
 from serializers import *
 from models import *
@@ -61,6 +62,13 @@ class AssessmentViewSet(viewsets.ModelViewSet):
     """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = AssessmentCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class MeasurementViewSet(viewsets.ModelViewSet):
