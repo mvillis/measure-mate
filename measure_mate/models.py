@@ -65,7 +65,7 @@ class Assessment(models.Model):
 
 class Measurement(models.Model):
     class Meta:
-        unique_together = ()
+        unique_together = ("assessment", "rating")
         verbose_name_plural = "Measurements"
 
     assessment = models.ForeignKey(Assessment, related_name="measurements")

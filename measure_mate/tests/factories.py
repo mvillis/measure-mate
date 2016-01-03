@@ -1,5 +1,7 @@
 import factory
-from measure_mate.models import Template, Attribute, Assessment, Tag
+import factory.fuzzy
+import string
+from measure_mate.models import *
 
 
 class TemplateFactory(factory.django.DjangoModelFactory):
@@ -43,3 +45,22 @@ class AssessmentFactory(factory.django.DjangoModelFactory):
             # A list of groups were passed in, use them
             for tag in extracted:
                 self.tags.add(tag)
+
+
+class RatingFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Rating
+
+    attribute = factory.SubFactory(AttributeFactory)
+    name = factory.Sequence(lambda n: 'attribute%d' % n)
+    desc = "This is a really good description."
+    rank = factory.Sequence(lambda n: n)
+
+
+class MeasurementFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Measurement
+
+    assessment = factory.SubFactory(AssessmentFactory)
+    rating = factory.SubFactory(RatingFactory)
+    observations = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)

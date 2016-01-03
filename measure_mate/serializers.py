@@ -39,12 +39,20 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class MeasurementSerializer(serializers.ModelSerializer):
-    rating = RatingSerializer(many=False, read_only=True)
+    class Meta:
+        model = Measurement
+        fields = ('id', 'rating', 'observations', 'assessment')
+        depth = 1
+
+
+class MeasurementCreateSerializer(serializers.ModelSerializer):
+    assessment = serializers.PrimaryKeyRelatedField(queryset=Assessment.objects.all())
+    rating = serializers.PrimaryKeyRelatedField(queryset=Rating.objects.all())
+    observations = serializers.CharField()
 
     class Meta:
         model = Measurement
-        fields = ('id', 'rating', 'observations')
-        depth = 1
+        fields = ('id', 'assessment', 'rating', 'observations')
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
