@@ -3,3 +3,7 @@
     font-style: italic;
     color: #999;
 }
+
+tr.clickable-row {
+  cursor: pointer;
+}
