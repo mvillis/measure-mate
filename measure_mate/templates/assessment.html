@@ -9,6 +9,37 @@
 <div id="content"></div>
 </div>
 <script type="text/jsx">
+
+  // using jQuery
+  function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie != '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+              var cookie = jQuery.trim(cookies[i]);
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+  var csrftoken = getCookie('csrftoken');
+
+  function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+  $.ajaxSetup({
+      beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+      }
+  });
+
   var TemplateTable = React.createClass({
     loadAssessmentFromServer: function() {
       $.ajax({
@@ -23,13 +54,13 @@
         }.bind(this)
       });
     },
-    loadRatingsFromServer: function(data) {
+    loadRatingsFromServer: function(assess_data) {
       $.ajax({
-        url: '/api/templates/' + data.template.id + '/',
+        url: '/api/templates/' + assess_data.template.id + '/',
         dataType: 'json',
         cache: false,
         success: function(data) {
-          this.setState({data: data.attributes, name: data.name, desc: data.desc});
+          this.setState({assess_id: assess_data.id, data: data.attributes, name: data.name, desc: data.desc});
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -54,11 +85,14 @@
       });
     },
     getInitialState: function() {
-      return {data: []};
+      return {
+        data: [],
+        assess_id: null
+      };
     },
     componentDidMount: function() {
       this.loadAssessmentFromServer();
-      setInterval(this.loadAssessmentFromServer, this.props.pollInterval);
+      // setInterval(this.loadAssessmentFromServer, this.props.pollInterval);
     },
     render: function() {
       return (
@@ -72,7 +106,7 @@
                 <h3 className="panel-title">{this.state.name}</h3>
               </div>
               <div className="panel-body">
-                <AttributeList data={this.state.data} />
+                <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
                 <RatingForm onRatingSubmit={this.handleRatingSubmit}/>
               </div>
             </div>
@@ -86,11 +120,9 @@
     render: function() {
       var attributeNodes = this.props.data.map(function (attribute) {
         return (
-          <RatingList key={attribute.id} name={attribute.name} desc={attribute.desc} data={attribute.ratings}>
-            {attribute.ratings}
-          </RatingList>
+          <RatingList key={attribute.id} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} data={attribute.ratings}/>
         );
-      });
+      }.bind(this));
       return (
         <div className="AttributeList">
           {attributeNodes}
@@ -125,34 +157,93 @@
 
   // tutorial2.js
   var RatingList = React.createClass({
+    getInitialState: function() {
+      return {
+        measurement_id: null,
+        selected_rating: null
+      };
+    },
+
+    componentDidMount: function() {
+      $.get('/api/measurements/' + '?assessment__id=' + this.props.assess_id  + '&rating__attribute=' + this.props.attribute_id, function(result) {
+        var measurement = result[0];
+        if (this.isMounted()) {
+          if (measurement != null) {
+            this.setState({
+              measurement_id: measurement.id,
+              selected_rating: measurement.rating.id
+            })
+          } else {
+            this.setState({
+              measurement_id: null,
+              selected_rating: null
+            });
+          }
+        }
+      }.bind(this));
+    },
+
+    handleClick: function(data, e) {
+      var create_new_measure = ((this.state.measurement_id == null) ? true : false);
+      console.log('Should a new measurement be created? ' + create_new_measure)
+      var postContent = data.postContent;
+      var postData = {
+        id: this.state.measurement_id,
+        assessment: this.props.assess_id,
+        rating: data,
+        observations: "This is a dummy comment."
+      };
+
+      this.setState({ selected_rating: data });
+
+      $.ajax({
+        type: ((create_new_measure) ? "POST" : "PUT"),
+        contentType: "application/json; charset=utf-8",
+        url: ((create_new_measure) ? "/api/measurements/" : ("/api/measurements/" + this.state.measurement_id + '/')),
+        data: JSON.stringify(postData),
+        dataType: 'json',
+        success: this.handleSubmitSuccess,
+        error: this.handleSubmitFailure,
+      });
+    },
+
+    handleSubmitSuccess: function(data) {
+      this.setState({
+        selected_rating: data.rating,
+        measurement_id: data.id
+      });
+    },
+
+    handleSubmitFailure: function(xhr, ajaxOptions, thrownError) {
+        console.error("There was a failure");
+    },
+
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
-        return (
-          <Rating key={rating.id} name={rating.name} desc={rating.desc}>
-            {rating}
-          </Rating>
-        );
-      });
+          if (this.state.selected_rating == rating.id) {
+            return (
+              <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className="list-group-item list-group-item-success">
+                <h4 className="list-group-item-heading">{rating.name}</h4>
+                <pre className="list-group-item-text">{rating.desc}</pre>
+              </a>
+            );
+          } else {
+            return (
+              <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className="list-group-item">
+                <h4 className="list-group-item-heading">{rating.name}</h4>
+                <pre className="list-group-item-text">{rating.desc}</pre>
+              </a>
+            );
+          }
+      }.bind(this));
       return (
         <div className="list-group">
-          <a href="#" className="list-group-item active">
+          <a className="list-group-item active">
             <h4 className="list-group-item-heading">{this.props.name}</h4>
             <p className="list-group-item-text">{this.props.desc}</p>
           </a>
           {ratingNodes}
         </div>
-      );
-    }
-  });
-
-  // tutorial4.js
-  var Rating = React.createClass({
-    render: function() {
-      return (
-        <a className="list-group-item">
-          <h4 className="list-group-item-heading">{this.props.name}</h4>
-          <pre className="list-group-item-text">{this.props.desc}</pre>
-        </a>
       );
     }
   });
