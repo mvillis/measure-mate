@@ -52,26 +52,14 @@
     });
 
   var AssessmentList = React.createClass({
+
+    handleClick: function(assess_id, e) {
+      console.log(assess_id);
+      console.log(e);
+      window.document.location = ("/assessment/" + assess_id + "/")
+    },
+
     render: function() {
-      var tagStyle = {
-        marginRight: '0.5em'
-      };
-      var assessmentNodes = this.props.data.map(function (assessment) {
-        var prettyCreated = new Date(assessment.created).toLocaleDateString("en-AU");
-        var tagNodes = assessment.tags.map(function (tag) {
-          return (
-            <span className="label label-primary" style={tagStyle}>{tag.name}</span>
-          );
-        });
-        return (
-            <tr key={assessment.id}>
-              <td>{assessment.id}</td>
-              <td>{prettyCreated}</td>
-              <td>{assessment.template.name}</td>
-              <td>{tagNodes}</td>
-            </tr>
-        );
-      });
       return (
         <table className="table table-hover">
           <tr>
@@ -81,12 +69,42 @@
             <th>Tags</th>
           </tr>
           <tbody>
-            {assessmentNodes}
+          {this.props.data.map(function(assessment, i) {
+            var prettyCreated = new Date(assessment.created).toLocaleDateString("en-AU");
+            var boundClick = this.handleClick.bind(this, assessment.id);
+            return (
+              <tr key={assessment.id} className="clickable-row" onClick={boundClick}>
+                <td><a href={"/assessment/" + assessment.id + "/"}>{assessment.id}</a></td>
+                <td>{prettyCreated}</td>
+                <td>{assessment.template.name}</td>
+                <td><TagList tags={assessment.tags}/></td>
+              </tr>
+            );
+          }, this)}
           </tbody>
         </table>
       );
     }
   });
+
+  var TagList = React.createClass({
+    render: function() {
+      var tagStyle = {
+        marginRight: '0.5em'
+      };
+      var tagNodes = this.props.tags.map(function (tag) {
+        return (
+          <span className="label label-primary" style={tagStyle}>{tag.name}</span>
+        );
+      });
+      return (
+        <div>
+        {tagNodes}
+        </div>
+      );
+    }
+  });
+
 
   React.render(
   <AssessmentTable url="/api/assessments/" pollInterval={20000}/>,
