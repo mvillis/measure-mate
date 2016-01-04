@@ -4,6 +4,6 @@
     color: #999;
 }
 
-tr.clickable-row {
+a,tr.clickable-row {
   cursor: pointer;
 }
