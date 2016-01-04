@@ -60,7 +60,7 @@
         dataType: 'json',
         cache: false,
         success: function(data) {
-          this.setState({assess_id: assess_data.id, data: data.attributes, name: data.name, desc: data.desc});
+          this.setState({assess_id: assess_data.id, data: data.attributes, name: data.name, desc: data.short_desc});
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -96,22 +96,12 @@
     },
     render: function() {
       return (
-        <div className="TemplateTable">
           <div className="container">
             <div className="page-header">
               <h1>{this.state.name}<small> {this.state.desc}</small></h1>
             </div>
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">{this.state.name}</h3>
-              </div>
-              <div className="panel-body">
                 <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
-                <RatingForm onRatingSubmit={this.handleRatingSubmit}/>
-              </div>
-            </div>
           </div>
-        </div>
       );
     }
     });
@@ -131,31 +121,6 @@
     }
   });
 
-  var RatingForm = React.createClass({
-    handleSubmit: function(e) {
-      e.preventDefault();
-      var author = React.findDOMNode(this.refs.author).value.trim();
-      var text = React.findDOMNode(this.refs.text).value.trim();
-      if (!text || !author) {
-        return;
-      }
-      this.props.onRatingSubmit({author: author, text: text});
-      React.findDOMNode(this.refs.author).value = '';
-      React.findDOMNode(this.refs.text).value = '';
-      return;
-    },
-    render: function() {
-      return (
-        <form className="ratingForm" onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Your name" ref="author"/>
-          <input type="text" placeholder="Say something..." ref="text"/>
-          <input type="submit" value="Post" />
-        </form>
-      );
-    }
-  });
-
-  // tutorial2.js
   var RatingList = React.createClass({
     getInitialState: function() {
       return {
@@ -222,14 +187,14 @@
       var ratingNodes = this.props.data.map(function (rating) {
           if (this.state.selected_rating == rating.id) {
             return (
-              <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className="list-group-item list-group-item-success">
+              <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className="list-group-item list-group-item-success clickable-row">
                 <h4 className="list-group-item-heading">{rating.name}</h4>
                 <pre className="list-group-item-text">{rating.desc}</pre>
               </a>
             );
           } else {
             return (
-              <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className="list-group-item">
+              <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className="list-group-item clickable-row">
                 <h4 className="list-group-item-heading">{rating.name}</h4>
                 <pre className="list-group-item-text">{rating.desc}</pre>
               </a>
