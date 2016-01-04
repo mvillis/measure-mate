@@ -1,0 +1,26 @@
+{
+  "name": "measure-mate",
+  "authors": [
+    "Michael Villis <mvillis@gmail.com>"
+  ],
+  "description": "Measure Mate",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "http://measuremate.herokuapp.com/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "react": "~0.14.5",
+    "react-select": "https://github.com/JedWatson/react-select.git#v1.0.0-beta8",
+    "bootstrap": "~3.3.6",
+    "babel": "*"
+  }
+}

@@ -12,9 +12,15 @@ Demo
 Setup
 -----
 
+These instructions assume that you already have *npm* installed on your workstation.
+The best way to do this is to just install  [NodeJS](https://nodejs.org/en/).
+
 ```
+npm install -g bower
 virtualenv .venv
 ```
+
+Sometimes admin privilege (ie. sudo) is required to install bower.
 
 Linux|Windows
 ---|---
@@ -62,9 +68,24 @@ Linux|Windows
 <ul><li>```export DJANGO_SETTINGS_MODULE=measure_mate.settings```</li><li>```export DATABASE_URL=sqlite:///`pwd`/measure_mate.sqlite```</li></ul> |<ul><li>```set DJANGO_SETTINGS_MODULE=measure_mate.settings```</li><li>```set DATABASE_URL=sqlite:///C:\\your_sqlite_path\\measure-matemeasure_mate.sqlite```</li></ul>
 ```
 python manage.py migrate
+bower install
 python manage.py collectstatic
 python manage.py runserver
 ```
+
+Running (heroku)
+------
+
+Some custom build packs are needed in heroku to manage the collection of bower dependencies.
+
+```
+$ heroku login
+...
+$ heroku buildpacks:set https://github.com/ddollar/heroku-buildpack-multi.git --app measuremate
+```
+
+This will pick up the config found in ```.buildpacks```.
+
 
 Contributing
 -------
