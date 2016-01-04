@@ -12,7 +12,7 @@
               <div id="content"></div>
             </div>
 
-            <script type="text/jsx">
+            <script type="text/babel">
 
             var TemplateSelect = React.createClass({
               displayName: 'TemplateSelect',
@@ -46,9 +46,9 @@
                   <div>
                     <label>{this.props.label}</label>
                     <div>
-                      <Select delimeter=','
+                      <Select.Async delimeter=','
                       multi={false}
-                      asyncOptions={this.loadOptions}
+                      loadOptions={this.loadOptions}
                       {...this.props}
                       allowCreate={false}
                       name='tags'
@@ -95,8 +95,8 @@
                   <div>
                     <label>{this.props.label}</label>
                     <div>
-                      <Select {...this.props} delimeter=','
-                      multi={true} asyncOptions={this.loadOptions}
+                      <Select.Async {...this.props} delimeter=','
+                      multi={true} loadOptions={this.loadOptions}
                       allowCreate={true}
                       name='tags'
                       placeholder='Type to find existing tags or create new ones'
@@ -117,24 +117,20 @@
                   tags: ""
                 }
               },
-              changeHandlerTemplate: function(val,option) {
+              changeHandlerTemplate: function(val) {
                   this.setState({
-                      template: option
+                      template: val.value
                   })
-                  console.log(option);
+                  console.log(val.value);
               },
-              changeHandlerTags: function(val,option) {
+              changeHandlerTags: function(val) {
                   this.setState({
-                      tags: option
+                      tags: val
                   })
-                  console.log(option);
+                  console.log(val);
               },
               handleSubmit: function() {
-                var template = this.state.template.map(function (value) {
-                  return (
-                    value.value
-                  );
-                });
+                var template = this.state.template;
                 var tags = this.state.tags.map(function (value) {
                   return (
                     value.value

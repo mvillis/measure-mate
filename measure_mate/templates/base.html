@@ -4,17 +4,21 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <script src="{% static "js/react.js" %}"></script>
-    <script src="{% static "js/JSXTransformer.js" %}"></script>
-    <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
-    <script src="{% static "js/classNames.js" %}"></script>
-    <script src="{% static "js/react-input-autosize.min.js" %}"></script>
-    <script src="{% static "js/react-select.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/default.css" %}">
-    <link rel="stylesheet" href="{% static "css/bootstrap-theme.css" %}">
+
+    <script type="text/javascript" src='{% static 'components/jquery/dist/jquery.min.js' %}'></script>
+    <script type="text/javascript" src='{% static 'components/bootstrap/dist/js/bootstrap.min.js' %}'></script>
+
+    <script src="{% static "components/react/react.min.js" %}"></script>
+    <script src="{% static "components/react/react-dom.min.js" %}"></script>
+    <script src="{% static "components/babel/browser.min.js" %}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script> -->
+    <!-- <script src="{% static "react/JSXTransformer.js" %}"></script> -->
+    <script src="{% static "components/classnames/index.js" %}"></script>
+    <script src="{% static "components/react-input-autosize/dist/react-input-autosize.min.js" %}"></script>
+    <script src="{% static "components/react-select/dist/react-select.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static "components/bootstrap/dist/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "components/bootstrap/dist/css/bootstrap-theme.min.css" %}">
+    <link rel="stylesheet" href="{% static "components/react-select/dist/react-select.min.css" %}">
     <link rel="stylesheet" href="{% static "css/measure-mate.css" %}">
     {% block head %}{% endblock %}
 </head>
@@ -45,4 +49,3 @@
     <!-- /.container-fluid -->
 </nav>
 {% block body %}{% endblock %}
-<script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
