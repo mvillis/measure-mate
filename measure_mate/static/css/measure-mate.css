@@ -11,3 +11,8 @@ a,tr.clickable-row {
 .like-pre {
     white-space: pre-wrap;
 }
+
+.v-cent {
+  padding-top: 6px;
+  padding-left: 6px;
+}
