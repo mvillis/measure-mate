@@ -32,6 +32,7 @@ class AssessmentAPITestCases(APITestCase):
     def test_list_assessment_count(self):
         """
         Ensure multiple assessments are returned in a list
+        and sorted by last first
         """
         assessment1 = AssessmentFactory(tags=[TagFactory()])
         assessment2 = AssessmentFactory(tags=[TagFactory()])
@@ -40,7 +41,7 @@ class AssessmentAPITestCases(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), Assessment.objects.count())
-
+        self.assertEqual(response.data[0]['id'], assessment2.id)
 
     def test_create_assessment(self):
         """
