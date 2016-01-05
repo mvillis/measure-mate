@@ -185,21 +185,17 @@
 
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
+          var desc_class = "list-group-item-text " + rating.desc_class
+          var a_class = "list-group-item clickable-row"
           if (this.state.selected_rating == rating.id) {
-            return (
-              <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className="list-group-item list-group-item-success clickable-row">
-                <h4 className="list-group-item-heading">{rating.name}</h4>
-                <pre className="list-group-item-text">{rating.desc}</pre>
-              </a>
-            );
-          } else {
-            return (
-              <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className="list-group-item clickable-row">
-                <h4 className="list-group-item-heading">{rating.name}</h4>
-                <pre className="list-group-item-text">{rating.desc}</pre>
-              </a>
-            );
+            a_class += " list-group-item-success"
           }
+          return (
+            <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className={a_class}>
+              <h4 className="list-group-item-heading">{rating.name}</h4>
+              <span className={desc_class}>{rating.desc}</span>
+            </a>
+          );
       }.bind(this));
       return (
         <div className="list-group">

@@ -32,6 +32,7 @@ class Rating(models.Model):
     attribute = models.ForeignKey(Attribute, related_name='ratings')
     name = models.CharField(max_length=256)
     desc = models.TextField()
+    desc_class = models.TextField(default="")
     rank = models.IntegerField(default=1)
 
     def __unicode__(self):

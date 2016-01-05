@@ -5,7 +5,7 @@ from rest_framework import serializers
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ('id', 'name', 'desc', 'rank')
+        fields = ('id', 'name', 'desc', 'desc_class', 'rank')
 
 
 class AttributeSerializer(serializers.ModelSerializer):
