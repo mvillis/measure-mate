@@ -54,6 +54,7 @@ class Tag(models.Model):
 class Assessment(models.Model):
     class Meta:
         verbose_name_plural = "Assessments"
+        ordering = ['-pk']
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
