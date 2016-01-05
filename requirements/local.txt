@@ -8,3 +8,4 @@ pyflakes==1.0.0
 pep8==1.6.2
 coverage==4.0.3
 pylint-django==0.7.1
+db-sqlite3==0.0.1
