@@ -7,3 +7,7 @@
 a,tr.clickable-row {
   cursor: pointer;
 }
+
+.like-pre {
+    white-space: pre-wrap;
+}

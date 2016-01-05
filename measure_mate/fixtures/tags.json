@@ -1,0 +1,16 @@
+[
+  {
+    "fields": {
+      "name": "digital"
+    },
+    "model": "measure_mate.tag",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "corporate"
+    },
+    "model": "measure_mate.tag",
+    "pk": 2
+  }
+]
