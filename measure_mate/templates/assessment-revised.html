@@ -14,6 +14,8 @@
   var PageHeader = ReactBootstrap.PageHeader;
   var ListGroup = ReactBootstrap.ListGroup;
   var ListGroupItem = ReactBootstrap.ListGroupItem;
+  var Tabs = ReactBootstrap.Tabs;
+  var Tab = ReactBootstrap.Tab;
 
   var TemplateTable = React.createClass({
     loadAssessmentFromServer: function() {
@@ -88,15 +90,17 @@
 
   var AttributeList = React.createClass({
     render: function() {
-      var attributeNodes = this.props.data.map(function (attribute) {
+      var attributeNodes = this.props.data.map(function (attribute, i) {
         return (
-          <RatingList key={attribute.id} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} data={attribute.ratings}/>
+          <Tab eventKey={i} title={<div><span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span>{attribute.name}</span></div>}>
+            <RatingList key={attribute.id} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} data={attribute.ratings}/>
+          </Tab>
         );
       }.bind(this));
       return (
-        <div className="AttributeList">
+        <Tabs defaultActiveKey={0} position="right" tabWidth={3}>
           {attributeNodes}
-        </div>
+        </Tabs>
       );
     }
   });
