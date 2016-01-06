@@ -10,6 +10,11 @@
 </div>
 <script type="text/babel">
 
+  var Alert = ReactBootstrap.Alert;
+  var PageHeader = ReactBootstrap.PageHeader;
+  var ListGroup = ReactBootstrap.ListGroup;
+  var ListGroupItem = ReactBootstrap.ListGroupItem;
+
   var TemplateTable = React.createClass({
     loadAssessmentFromServer: function() {
       $.ajax({
@@ -67,15 +72,15 @@
     render: function() {
       return (
           <div className="container">
-            <div className="alert alert-warning" role="alert">
+            <Alert bsStyle="warning">
               Welcome to the <strong>Beta!</strong> Over the next few days you will see the user
               experience change in line with this <a className="alert-link"
               href="https://github.com/mvillis/measure-mate/issues/46">Github issue</a>.
-            </div>
-            <div className="page-header">
-              <h1>{this.state.name}<small> {this.state.desc}</small></h1>
-            </div>
-                <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
+            </Alert>
+            <PageHeader>
+              {this.state.name} <small> {this.state.desc}</small>
+            </PageHeader>
+            <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
           </div>
       );
     }
@@ -124,6 +129,7 @@
     },
 
     handleClick: function(data, e) {
+      e.preventDefault();
       var create_new_measure = ((this.state.measurement_id == null) ? true : false);
       console.log('Should a new measurement be created? ' + create_new_measure)
       var postContent = data.postContent;
@@ -161,25 +167,23 @@
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
           var desc_class = "list-group-item-text " + rating.desc_class
-          var a_class = "list-group-item clickable-row"
+          var bs_style = ""
           if (this.state.selected_rating == rating.id) {
-            a_class += " list-group-item-success"
+            bs_style = "success"
           }
           return (
-            <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className={a_class}>
-              <h4 className="list-group-item-heading">{rating.name}</h4>
+            <ListGroupItem onClick={this.handleClick.bind(this, rating.id)} key={rating.id} bsStyle={bs_style} header={rating.name}>
               <span className={desc_class}>{rating.desc}</span>
-            </a>
+            </ListGroupItem>
           );
       }.bind(this));
       return (
-        <div className="list-group">
-          <a className="list-group-item active">
-            <h4 className="list-group-item-heading">{this.props.name}</h4>
-            <p className="list-group-item-text">{this.props.desc}</p>
-          </a>
+        <ListGroup>
+          <ListGroupItem active header={this.props.name}>
+            {this.props.desc}
+          </ListGroupItem>
           {ratingNodes}
-        </div>
+        </ListGroup>
       );
     }
   });

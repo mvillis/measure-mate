@@ -21,6 +21,7 @@
     "react": "~0.14.5",
     "react-select": "https://github.com/JedWatson/react-select.git#v1.0.0-beta8",
     "bootstrap": "~3.3.6",
-    "babel": "*"
+    "babel": "*",
+    "react-bootstrap": "~0.28.1"
   }
 }
