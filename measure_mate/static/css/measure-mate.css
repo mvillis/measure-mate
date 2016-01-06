@@ -16,3 +16,7 @@ a,tr.clickable-row {
   padding-top: 6px;
   padding-left: 6px;
 }
+
+button {
+  outline: none;
+}
