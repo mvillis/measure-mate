@@ -11,6 +11,7 @@
     "fields": {
       "name": "Configuration Management",
       "template": 3,
+      "rank": 1,
       "desc": "Ability to track changes made to the artefacts that affect the behaviour of a system and manage multiple contributions to a single artefact.\r\nThis includes source code, libraries, configuration files, tests, environment descriptions, dependant libraries, database schema, support documentation and anything else required to deliver the product."
     },
     "model": "measure_mate.attribute",
@@ -20,6 +21,7 @@
     "fields": {
       "name": "Continuous Integration",
       "template": 3,
+      "rank": 2,
       "desc": "Ability to continuously build and test a product release base to ensure individual changes are compatible with other changes made synchronously.\r\nThis allows the team to manage the rhythm of their work and repeatably release a high quality product on demand."
     },
     "model": "measure_mate.attribute",

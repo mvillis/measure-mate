@@ -19,6 +19,7 @@ class Attribute(models.Model):
     name = models.CharField(max_length=256)
     desc = models.TextField()
     template = models.ForeignKey(Template, related_name='attributes')
+    rank = models.IntegerField(default=1)
 
     def __unicode__(self):
         return self.template.name + " - " + self.name
