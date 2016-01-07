@@ -15,6 +15,7 @@ class Template(models.Model):
 class Attribute(models.Model):
     class Meta:
         verbose_name_plural = "attributes"
+        ordering = ['rank']
 
     name = models.CharField(max_length=256)
     desc = models.TextField()
@@ -22,7 +23,9 @@ class Attribute(models.Model):
     rank = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return self.template.name + " - " + self.name
+        return (self.template.name + " - " +
+                str(self.rank) + " - " +
+                self.name)
 
 
 class Rating(models.Model):
