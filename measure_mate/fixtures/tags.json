@@ -12,5 +12,26 @@
     },
     "model": "measure_mate.tag",
     "pk": 2
+  },
+  {
+    "fields": {
+      "name": "bank"
+    },
+    "model": "measure_mate.tag",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "name": "life"
+    },
+    "model": "measure_mate.tag",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "name": "sbs"
+    },
+    "model": "measure_mate.tag",
+    "pk": 5
   }
 ]

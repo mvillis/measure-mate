@@ -11,6 +11,7 @@
     "fields": {
       "name": "Standups",
       "template": 1,
+      "rank": 1,
       "desc": "A regular team collaboration opportunity for sharing progress, identifying risks and resolving issues"
     },
     "model": "measure_mate.attribute",
@@ -20,6 +21,7 @@
     "fields": {
       "name": "Retrospectives",
       "template": 1,
+      "rank": 2,
       "desc": "A team activity used for problem identification and solution forming the basis for continuous improvement\r\n"
     },
     "model": "measure_mate.attribute",
@@ -29,6 +31,7 @@
     "fields": {
       "name": "Backlog Management",
       "template": 1,
+      "rank": 3,
       "desc": "Teams need a single backlog of work to pull work from. This backlog needs be kept relevant.\r\n"
     },
     "model": "measure_mate.attribute",
@@ -38,6 +41,7 @@
     "fields": {
       "name": "Product Ownership",
       "template": 1,
+      "rank": 4,
       "desc": "Compulsory for Product Teams\r\n"
     },
     "model": "measure_mate.attribute",
@@ -47,6 +51,7 @@
     "fields": {
       "name": "Iteration Management",
       "template": 1,
+      "rank": 5,
       "desc": "Enforces a disciplined approach to agile values/principles and practices within a delivery team\r\n"
     },
     "model": "measure_mate.attribute",
@@ -56,6 +61,7 @@
     "fields": {
       "name": "Track & Visualise Progress",
       "template": 1,
+      "rank": 6,
       "desc": "Principles\r\n1. Visible to leadership, onshore/offshore teams\r\n2. Any one in the team should be able to update the wall and visualize the progress\r\n3. Shows Parameters from the Iteration Report\r\n4. Risks and Blockers : effective tracking mechanism with the dates/accountability info\r\n5. Data is up to date\r\n"
     },
     "model": "measure_mate.attribute",
@@ -65,6 +71,7 @@
     "fields": {
       "name": "Showcases",
       "template": 1,
+      "rank": 7,
       "desc": "Engaging the customer through showcases, planning, progress and team meetings to support definition and prioritisation.\r\nFor projects, Customer = Product Owner\r\n"
     },
     "model": "measure_mate.attribute",
@@ -74,6 +81,7 @@
     "fields": {
       "name": "Building Quality In",
       "template": 1,
+      "rank": 8,
       "desc": "A definition of quality provides the basis for assessing the suitability of work delivered\r\n"
     },
     "model": "measure_mate.attribute",
@@ -83,6 +91,7 @@
     "fields": {
       "name": "Adaptive Planning",
       "template": 1,
+      "rank": 9,
       "desc": "The collaborative identification, definition and planning of work and deliverables\r\n"
     },
     "model": "measure_mate.attribute",
@@ -92,6 +101,7 @@
     "fields": {
       "name": "Risk Management",
       "template": 1,
+      "rank": 10,
       "desc": "Risk management addresses uncertainty and increases the likelihood of successful outcomes\r\n"
     },
     "model": "measure_mate.attribute",
