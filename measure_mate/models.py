@@ -2,20 +2,21 @@ from django.db import models
 
 
 class Template(models.Model):
-    name = models.CharField(max_length=256)
+    class Meta:
+        verbose_name_plural = "Templates"
+
+    name = models.CharField(max_length=256, unique=True)
     short_desc = models.CharField(max_length=256)
 
     def __unicode__(self):
         return self.name
 
-    class Meta:
-        verbose_name_plural = "Templates"
-
 
 class Attribute(models.Model):
     class Meta:
-        verbose_name_plural = "attributes"
-        ordering = ['rank']
+        verbose_name_plural = "Attributes"
+        unique_together = ("template", "name")
+        ordering = ['rank', 'pk']
 
     name = models.CharField(max_length=256)
     desc = models.TextField()
@@ -24,14 +25,14 @@ class Attribute(models.Model):
 
     def __unicode__(self):
         return (self.template.name + " - " +
-                str(self.rank) + " - " +
                 self.name)
 
 
 class Rating(models.Model):
     class Meta:
-        unique_together = ("name", "rank", "attribute")
         verbose_name_plural = "Ratings"
+        unique_together = ("attribute", "name")
+        ordering = ['rank', 'pk']
 
     attribute = models.ForeignKey(Attribute, related_name='ratings')
     name = models.CharField(max_length=256)
@@ -41,15 +42,15 @@ class Rating(models.Model):
 
     def __unicode__(self):
         return (self.attribute.name + " - " +
-                str(self.rank) + " - " +
                 self.name)
 
 
 class Tag(models.Model):
     class Meta:
         verbose_name_plural = "Tags"
+        ordering = ['name']
 
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256, unique=True)
 
     def __unicode__(self):
         return self.name

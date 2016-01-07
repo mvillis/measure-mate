@@ -8,4 +8,4 @@ class RatingTestCases(TestCase):
         template = TemplateFactory()
         attribute = AttributeFactory(template=template)
         rating = RatingFactory(attribute=attribute, rank=1)
-        self.assertEqual("%s - %s - %s" % (attribute.name, 1, rating.name), str(rating))
+        self.assertEqual("%s - %s" % (attribute.name, rating.name), str(rating))
