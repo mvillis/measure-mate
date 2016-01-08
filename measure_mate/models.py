@@ -20,6 +20,7 @@ class Attribute(models.Model):
 
     name = models.CharField(max_length=256)
     desc = models.TextField()
+    desc_class = models.TextField(default="")
     template = models.ForeignKey(Template, related_name='attributes')
     rank = models.IntegerField(default=1)
 
