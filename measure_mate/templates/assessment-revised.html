@@ -16,6 +16,7 @@
   var ListGroupItem = ReactBootstrap.ListGroupItem;
   var Tabs = ReactBootstrap.Tabs;
   var Tab = ReactBootstrap.Tab;
+  var Panel = ReactBootstrap.Panel;
 
   var TemplateTable = React.createClass({
     loadAssessmentFromServer: function() {
@@ -170,14 +171,16 @@
 
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
-          var desc_class = "list-group-item-text " + rating.desc_class
-          var bs_style = ""
-          if (this.state.selected_rating == rating.id) {
-            bs_style = "success"
+          var bs_style = "default"
+          var active = (this.state.selected_rating == rating.id)
+          var ranking_styles = ["default", "danger", "warning", "info", "success"]
+          if (rating.rank) {
+                bs_style = ranking_styles[rating.rank]
           }
+
           return (
-            <ListGroupItem onClick={this.handleClick.bind(this, rating.id)} key={rating.id} bsStyle={bs_style} header={rating.name}>
-              <span className={desc_class}>{rating.desc}</span>
+            <ListGroupItem active={active} className={rating.desc_class} onClick={this.handleClick.bind(this, rating.id)} key={rating.id} bsStyle={bs_style} header={rating.name}>
+              {rating.desc}
             </ListGroupItem>
           );
       }.bind(this));
@@ -185,12 +188,12 @@
       var desc_class = this.props.desc_class || ""
 
       return (
-        <ListGroup>
-          <ListGroupItem active header={this.props.name} className={desc_class}>
-            {this.props.desc}
-          </ListGroupItem>
-          {ratingNodes}
-        </ListGroup>
+        <Panel header={this.props.name} bsStyle="primary">
+            <p className={desc_class}>{this.props.desc}</p>
+            <ListGroup fill>
+                {ratingNodes}
+            </ListGroup>
+        </Panel>
       );
     }
   });
