@@ -62,6 +62,7 @@
       "name": "Track & Visualise Progress",
       "template": 1,
       "rank": 6,
+      "desc_class": "like-pre",
       "desc": "Principles\r\n1. Visible to leadership, onshore/offshore teams\r\n2. Any one in the team should be able to update the wall and visualize the progress\r\n3. Shows Parameters from the Iteration Report\r\n4. Risks and Blockers : effective tracking mechanism with the dates/accountability info\r\n5. Data is up to date\r\n"
     },
     "model": "measure_mate.attribute",
@@ -72,6 +73,7 @@
       "name": "Showcases",
       "template": 1,
       "rank": 7,
+      "desc_class": "like-pre",
       "desc": "Engaging the customer through showcases, planning, progress and team meetings to support definition and prioritisation.\r\nFor projects, Customer = Product Owner\r\n"
     },
     "model": "measure_mate.attribute",

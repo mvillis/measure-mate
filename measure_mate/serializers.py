@@ -13,7 +13,7 @@ class AttributeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Attribute
-        fields = ('id', 'name', 'desc', 'rank', 'ratings')
+        fields = ('id', 'name', 'desc', 'desc_class', 'rank', 'ratings')
 
 
 class TemplateSerializer(serializers.ModelSerializer):
