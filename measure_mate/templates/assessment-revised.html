@@ -16,6 +16,11 @@
   var ListGroupItem = ReactBootstrap.ListGroupItem;
   var Tabs = ReactBootstrap.Tabs;
   var Tab = ReactBootstrap.Tab;
+  var Input = ReactBootstrap.Input;
+  var Tooltip = ReactBootstrap.Tooltip;
+  var OverlayTrigger = ReactBootstrap.OverlayTrigger;
+  var Pager = ReactBootstrap.Pager;
+  var PageItem = ReactBootstrap.PageItem;
 
   var TemplateTable = React.createClass({
     loadAssessmentFromServer: function() {
@@ -89,18 +94,43 @@
     });
 
   var AttributeList = React.createClass({
+    getInitialState: function() {
+      return {
+        active_attribute: 1,
+        rating_selected: false
+      };
+    },
+    handleNext: function () {
+      this.setState({active_attribute: this.state.active_attribute + 1});
+    },
+    handlePrevious: function () {
+      this.setState({active_attribute: this.state.active_attribute - 1});
+    },
+    handleSelect(key) {
+      this.setState({active_attribute: key});
+    },
     render: function() {
       var attributeNodes = this.props.data.map(function (attribute, i) {
         return (
-          <Tab eventKey={i} title={<div><span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span>{attribute.name}</span></div>}>
+          <Tab eventKey={i+1} id={i+1} title={<div><span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span>{attribute.name}</span></div>}>
             <RatingList key={attribute.id} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} desc_class={attribute.desc_class} data={attribute.ratings}/>
           </Tab>
         );
       }.bind(this));
       return (
-        <Tabs defaultActiveKey={0} position="right" tabWidth={3}>
-          {attributeNodes}
-        </Tabs>
+        <div>
+          <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
+            {attributeNodes}
+          </Tabs>
+          <div className="col-xs-9">
+            <Pager>
+              <PageItem onClick={this.handlePrevious}>&larr; Previous</PageItem>
+              {' '}
+              <PageItem onClick={this.handleNext}>Next</PageItem>
+            </Pager>
+          </div>
+          <div className="col-xs-3"/>
+        </div>
       );
     }
   });
@@ -109,7 +139,7 @@
     getInitialState: function() {
       return {
         measurement_id: null,
-        selected_rating: null
+        selected_rating: null,
       };
     },
 
@@ -157,6 +187,11 @@
       });
     },
 
+    handleComplete: function() {
+      console.log("Hi, the complete button has been pushed");
+      this.props.onComplete();
+    },
+
     handleSubmitSuccess: function(data) {
       this.setState({
         selected_rating: data.rating,
@@ -170,20 +205,21 @@
 
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
+          var tool_tip = <Tooltip>Click me to select!</Tooltip>
           var desc_class = "list-group-item-text " + rating.desc_class
           var bs_style = ""
           if (this.state.selected_rating == rating.id) {
             bs_style = "success"
           }
           return (
-            <ListGroupItem onClick={this.handleClick.bind(this, rating.id)} key={rating.id} bsStyle={bs_style} header={rating.name}>
-              <span className={desc_class}>{rating.desc}</span>
-            </ListGroupItem>
+            <OverlayTrigger placement="left" overlay={tool_tip}>
+              <ListGroupItem onClick={this.handleClick.bind(this, rating.id)} key={rating.id} bsStyle={bs_style} header={rating.name}>
+                <span className={desc_class}>{rating.desc}</span>
+              </ListGroupItem>
+            </OverlayTrigger>
           );
       }.bind(this));
-
       var desc_class = this.props.desc_class || ""
-
       return (
         <ListGroup>
           <ListGroupItem active header={this.props.name} className={desc_class}>
