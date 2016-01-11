@@ -206,15 +206,14 @@
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
           var tool_tip = <Tooltip>Click me to select!</Tooltip>
-          var desc_class = "list-group-item-text " + rating.desc_class
           var bs_style = ""
           if (this.state.selected_rating == rating.id) {
             bs_style = "success"
           }
           return (
             <OverlayTrigger placement="left" overlay={tool_tip}>
-              <ListGroupItem onClick={this.handleClick.bind(this, rating.id)} key={rating.id} bsStyle={bs_style} header={rating.name}>
-                <span className={desc_class}>{rating.desc}</span>
+              <ListGroupItem onClick={this.handleClick.bind(this, rating.id)} key={rating.id} bsStyle={bs_style} header={rating.name} className={rating.desc_class}>
+                {rating.desc}
               </ListGroupItem>
             </OverlayTrigger>
           );
