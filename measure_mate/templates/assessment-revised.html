@@ -98,23 +98,75 @@
     getInitialState: function() {
       return {
         active_attribute: 1,
-        rating_selected: false
+        rating_selected: false,
+        measurements: null,
+        next_hide: false,
+        previous_hide: false
       };
     },
+    componentWillReceiveProps: function(nextProps){
+      this.dataSource(nextProps);
+    },
+    dataSource: function(props){
+      props = props || this.props;
+
+      return $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: '/api/measurements/' + '?assessment__id=' + props.assess_id
+      }).done(function(result){
+        this.setState({ measurements: result });
+        this.handleTabChange(1);
+      }.bind(this));
+    },
     handleNext: function () {
-      this.setState({active_attribute: this.state.active_attribute + 1});
+      if (this.state.active_attribute < this.props.data.length && !this.state.next_hide) {
+        var new_tab = this.state.active_attribute + 1;
+        this.setState({active_attribute: new_tab});
+        this.handleTabChange(new_tab);
+      };
     },
     handlePrevious: function () {
-      this.setState({active_attribute: this.state.active_attribute - 1});
+      if (this.state.active_attribute !=1 && !this.state.previous_hide) {
+        var new_tab = this.state.active_attribute - 1;
+        this.setState({active_attribute: new_tab});
+        this.handleTabChange(new_tab);
+      }
     },
     handleSelect(key) {
       this.setState({active_attribute: key});
+      this.handleTabChange(key);
+    },
+    handleTabChange: function (current_tab) {
+      if (current_tab == 1) {
+        this.setState({previous_hide: true});
+      } else {
+        this.setState({previous_hide: false});
+      }
+      if (current_tab >= this.props.data.length) {
+        this.setState({next_hide: true});
+      } else {
+        this.setState({next_hide:false});
+      }
+    },
+    getMeasurementForAttribute(attribute) {
+      if (this.state.measurements != null) {
+        for (var i = 0; i < this.state.measurements.length; i++) {
+          if (attribute.id == this.state.measurements[i].rating.attribute) {
+            return this.state.measurements[i];
+            break;
+          }
+        };
+      } else {
+        return null;
+      }
     },
     render: function() {
       var attributeNodes = this.props.data.map(function (attribute, i) {
+        var measurement = this.getMeasurementForAttribute(attribute);
         return (
           <Tab eventKey={i+1} id={i+1} title={<div><span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span>{attribute.name}</span></div>}>
-            <RatingList key={attribute.id} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} desc_class={attribute.desc_class} data={attribute.ratings}/>
+            <RatingList key={attribute.id} measurement={measurement} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} desc_class={attribute.desc_class} data={attribute.ratings}/>
           </Tab>
         );
       }.bind(this));
@@ -125,9 +177,9 @@
           </Tabs>
           <div className="col-xs-9">
             <Pager>
-              <PageItem onClick={this.handlePrevious}>&larr; Previous</PageItem>
+              <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
               {' '}
-              <PageItem onClick={this.handleNext}>Next &rarr;</PageItem>
+              <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
             </Pager>
           </div>
           <div className="col-xs-3"/>
@@ -138,31 +190,24 @@
 
   var RatingList = React.createClass({
     getInitialState: function() {
-      return {
-        measurement_id: null,
-        selected_rating: null,
-      };
+      if (this.props.measurement) {
+        return {
+          measurement_id: this.props.measurement.id,
+          selected_rating: this.props.measurement.rating.id
+        };
+      } else {
+        return {
+          measurement_id: null,
+          selected_rating: null,
+        };
+      }
     },
-
-    componentDidMount: function() {
-      $.get('/api/measurements/' + '?assessment__id=' + this.props.assess_id  + '&rating__attribute=' + this.props.attribute_id, function(result) {
-        var measurement = result[0];
-        if (this.isMounted()) {
-          if (measurement != null) {
-            this.setState({
-              measurement_id: measurement.id,
-              selected_rating: measurement.rating.id
-            })
-          } else {
-            this.setState({
-              measurement_id: null,
-              selected_rating: null
-            });
-          }
-        }
-      }.bind(this));
+    componentWillReceiveProps: function(newProps) {
+      if (newProps.measurement && newProps.measurement.id != this.measurement_id) {
+        this.setState({measurement_id: newProps.measurement.id,
+                  selected_rating: newProps.measurement.rating.id});
+      }
     },
-
     handleClick: function(data, e) {
       e.preventDefault();
       var create_new_measure = ((this.state.measurement_id == null) ? true : false);
