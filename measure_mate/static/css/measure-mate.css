@@ -41,7 +41,7 @@ button {
   border-left-width: 15px !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
     div .col-xs-3 {
         display: none;
     }
