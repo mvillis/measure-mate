@@ -16,6 +16,7 @@
   var ListGroupItem = ReactBootstrap.ListGroupItem;
   var Tabs = ReactBootstrap.Tabs;
   var Tab = ReactBootstrap.Tab;
+  var Panel = ReactBootstrap.Panel;
   var Input = ReactBootstrap.Input;
   var Tooltip = ReactBootstrap.Tooltip;
   var OverlayTrigger = ReactBootstrap.OverlayTrigger;
@@ -126,7 +127,7 @@
             <Pager>
               <PageItem onClick={this.handlePrevious}>&larr; Previous</PageItem>
               {' '}
-              <PageItem onClick={this.handleNext}>Next</PageItem>
+              <PageItem onClick={this.handleNext}>Next &rarr;</PageItem>
             </Pager>
           </div>
           <div className="col-xs-3"/>
@@ -205,28 +206,22 @@
 
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
-          var tool_tip = <Tooltip>Click me to select!</Tooltip>
-          var desc_class = "list-group-item-text " + rating.desc_class
-          var bs_style = ""
-          if (this.state.selected_rating == rating.id) {
-            bs_style = "success"
-          }
+          var active = (this.state.selected_rating == rating.id)
+          var desc_class = "rating-" + rating.name + (rating.desc_class ? " " + rating.desc_class : "")
           return (
-            <OverlayTrigger placement="left" overlay={tool_tip}>
-              <ListGroupItem onClick={this.handleClick.bind(this, rating.id)} key={rating.id} bsStyle={bs_style} header={rating.name}>
-                <span className={desc_class}>{rating.desc}</span>
-              </ListGroupItem>
-            </OverlayTrigger>
+            <ListGroupItem active={active} onClick={this.handleClick.bind(this, rating.id)} key={rating.id} header={rating.name} className={desc_class}>
+              {rating.desc}
+            </ListGroupItem>
           );
       }.bind(this));
       var desc_class = this.props.desc_class || ""
       return (
-        <ListGroup>
-          <ListGroupItem active header={this.props.name} className={desc_class}>
-            {this.props.desc}
-          </ListGroupItem>
-          {ratingNodes}
-        </ListGroup>
+        <Panel header={this.props.name} bsStyle="primary">
+          <p className={desc_class}>{this.props.desc}</p>
+          <ListGroup fill>
+            {ratingNodes}
+          </ListGroup>
+        </Panel>
       );
     }
   });
