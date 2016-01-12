@@ -41,3 +41,11 @@ button {
   border-left-width: 15px !important;
 }
 
+@media (max-width: 768px) {
+    div .col-xs-3 {
+        display: none;
+    }
+    div .col-xs-9 {
+        width: 100%;
+    }
+}
