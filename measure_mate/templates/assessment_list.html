@@ -16,7 +16,7 @@
         dataType: 'json',
         cache: false,
         success: function(data) {
-          this.setState({data: data});
+          this.setState({data: data, loaded: true});
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -24,7 +24,10 @@
       });
     },
     getInitialState: function() {
-      return {data: []};
+      return {
+        data: [],
+        loaded: false
+      };
     },
     componentDidMount: function() {
       this.loadRatingsFromServer();
@@ -32,21 +35,23 @@
     },
     render: function() {
       return (
-        <div className="AssessmentTable">
-          <div className="container">
-            <div className="page-header">
-              <h1>{this.state.name}<small> Assessments</small></h1>
-            </div>
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">{this.state.name}</h3>
+          <div className="AssessmentTable">
+            <div className="container">
+              <div className="page-header">
+                <h1>{this.state.name}<small> Assessments</small></h1>
               </div>
-              <div className="panel-body">
-                <AssessmentList data={this.state.data} />
-              </div>
+              <Loader loaded={this.state.loaded}>
+                <div className="panel panel-default">
+                  <div className="panel-heading">
+                    <h3 className="panel-title">{this.state.name}</h3>
+                  </div>
+                  <div className="panel-body">
+                      <AssessmentList data={this.state.data} />
+                  </div>
+                </div>
+              </Loader>
             </div>
           </div>
-        </div>
       );
     }
     });
