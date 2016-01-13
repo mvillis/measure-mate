@@ -62,13 +62,13 @@
     render: function() {
       return (
         <table className="table table-hover">
+        <tbody>
           <tr>
             <th>#</th>
             <th>Created Date</th>
             <th>Template</th>
             <th>Tags</th>
           </tr>
-          <tbody>
           {this.props.data.map(function(assessment, i) {
             var prettyCreated = new Date(assessment.created).toLocaleDateString("en-AU");
             var boundClick = this.handleClick.bind(this, assessment.id);
@@ -92,9 +92,9 @@
       var tagStyle = {
         marginRight: '0.5em'
       };
-      var tagNodes = this.props.tags.map(function (tag) {
+      var tagNodes = this.props.tags.map(function (tag, i) {
         return (
-          <span className="label label-primary" style={tagStyle}>{tag.name}</span>
+          <span key={tag.id} className="label label-primary" style={tagStyle}>{tag.name}</span>
         );
       });
       return (
@@ -106,7 +106,7 @@
   });
 
 
-  React.render(
+  ReactDOM.render(
   <AssessmentTable url="/api/assessments/" pollInterval={20000}/>,
   document.getElementById('content')
   );
