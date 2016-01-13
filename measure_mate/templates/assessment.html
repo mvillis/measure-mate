@@ -43,7 +43,13 @@
         dataType: 'json',
         cache: false,
         success: function(data) {
-          this.setState({assess_id: assess_data.id, data: data.attributes, name: data.name, desc: data.short_desc});
+          this.setState({
+            assess_id: assess_data.id,
+            data: data.attributes,
+            name: data.name, 
+            desc: data.short_desc,
+            loaded: true
+          });
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -70,7 +76,8 @@
     getInitialState: function() {
       return {
         data: [],
-        assess_id: null
+        assess_id: null,
+        loaded: false
       };
     },
     componentDidMount: function() {
@@ -80,10 +87,12 @@
     render: function() {
       return (
           <div className="container">
-            <PageHeader>
-              {this.state.name} <small> {this.state.desc}</small>
-            </PageHeader>
-            <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
+            <Loader loaded={this.state.loaded}>
+              <PageHeader>
+                {this.state.name} <small> {this.state.desc}</small>
+              </PageHeader>
+              <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
+            </Loader>
           </div>
       );
     }
