@@ -63,7 +63,7 @@
       "template": 1,
       "rank": 6,
       "desc_class": "like-pre",
-      "desc": "Principles\r\n1. Visible to leadership, onshore/offshore teams\r\n2. Any one in the team should be able to update the wall and visualize the progress\r\n3. Shows Parameters from the Iteration Report\r\n4. Risks and Blockers : effective tracking mechanism with the dates/accountability info\r\n5. Data is up to date\r\n"
+      "desc": "Principles\r\n1. Visible to leadership, onshore/offshore teams\r\n2. Any one in the team should be able to update the wall and visualize the progress\r\n3. Shows Parameters from the Iteration Report\r\n4. Risks and Blockers: effective tracking mechanism with the dates/accountability info\r\n5. Data is up to date\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 6
@@ -148,7 +148,7 @@
       "name": "Sustainable",
       "rank": 4,
       "desc_class": "like-pre",
-      "desc": "(Includes items from Growing marked with (+))\r\n\r\n• Stand-up's occur daily\r\n• Stand-up meetings are rarely missed by any core team member and still occur regardless of attendance \r\n• Core team members use the visual wall and point to the work they are doing while answering  the 3 questions \r\n• Stand-up's are completed in under 15mins \r\n• Project stakeholders regularly attend stand-ups and other team collaboration events \r\n• Geographically remote team members feel properly included in Stand-up's and are able to see and hear progress updates \r\n• Blockers and challenges identified during the stand-up are assigned an owner, so that the impediment can be removed \r\n• Visual wall is updated as agreed by the whole team\r\n"
+      "desc": "(Includes items from Growing marked with (+))\r\n\r\n• Stand-up's occur daily\r\n• Stand-up meetings are rarely missed by any core team member and still occur regardless of attendance \r\n• Core team members use the visual wall and point to the work they are doing while answering the 3 questions \r\n• Stand-up's are completed in under 15mins \r\n• Project stakeholders regularly attend stand-ups and other team collaboration events \r\n• Geographically remote team members feel properly included in Stand-up's and are able to see and hear progress updates \r\n• Blockers and challenges identified during the stand-up are assigned an owner, so that the impediment can be removed \r\n• Visual wall is updated as agreed by the whole team\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 4
@@ -257,7 +257,7 @@
       "name": "Emerging",
       "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Product Owner :\r\n• Not available to team (-)\r\n• No effective stakeholder management in place (-)\r\n• Proxy Product Owner in place (-)\r\n"
+      "desc": "Product Owner:\r\n• Not available to team (-)\r\n• No effective stakeholder management in place (-)\r\n• Proxy Product Owner in place (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 14
@@ -268,7 +268,7 @@
       "name": "Growing",
       "rank": 3,
       "desc_class": "like-pre",
-      "desc": "Product Owner:\r\n• Does not have the right authority (-)\r\n• Rarely present or available (-)\r\n• Unclear on accountabilities (-)\r\n• Multiple Product Owners with conflicting priorities (-)"
+      "desc": "Product Owner:\r\n• Does not have the right authority (-)\r\n• Rarely present or available (-)\r\n• Unclear on accountabilities (-)\r\n• Multiple Product Owners with conflicting priorities (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 15
@@ -279,7 +279,7 @@
       "name": "Sustainable",
       "rank": 4,
       "desc_class": "like-pre",
-      "desc": "Product Owner :\r\n• has authority to make decisions\r\n• is available to team\r\n• manages the backlog effectively\r\n• manages the external stakeholders well\r\n• Has clear roadmap and vision"
+      "desc": "Product Owner:\r\n• has authority to make decisions\r\n• is available to team\r\n• manages the backlog effectively\r\n• manages the external stakeholders well\r\n• Has clear roadmap and vision\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 16
@@ -290,7 +290,7 @@
       "name": "Regressive",
       "rank": 1,
       "desc_class": "like-pre",
-      "desc": "• No Iteration Manager identified"
+      "desc": "• No Iteration Manager identified\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 17
@@ -301,7 +301,7 @@
       "name": "Emerging",
       "rank": 2,
       "desc_class": "like-pre",
-      "desc": "• Iteration Manager is a full time role (-)\r\n• Iteration Manager drives the basic agile fundamentals (-)\r\n• No Standardised Reporting or metrics in place (-)"
+      "desc": "• Iteration Manager is a full time role (-)\r\n• Iteration Manager drives the basic agile fundamentals (-)\r\n• No Standardised Reporting or metrics in place (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 18
@@ -312,7 +312,7 @@
       "name": "Growing",
       "rank": 3,
       "desc_class": "like-pre",
-      "desc": "• Regular Agile reporting is in place (+)\r\n• Iteration Manager facilitates most of the Agile ceremonies. (-)\r\n• Effective impediment removal in place (+)\r\n• IM can train team members in Agile fundamentals (+)"
+      "desc": "• Regular Agile reporting is in place (+)\r\n• Iteration Manager facilitates most of the Agile ceremonies. (-)\r\n• Effective impediment removal in place (+)\r\n• IM can train team members in Agile fundamentals (+)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 19
@@ -345,7 +345,7 @@
       "name": "Emerging",
       "rank": 2,
       "desc_class": "like-pre",
-      "desc": "• A basic wall exists (-)\r\n• Information is intermittently maintained (-)\r\n• Wall does not represent current status (-)\r\n• Wall is maintained by few people (-)"
+      "desc": "• A basic wall exists (-)\r\n• Information is intermittently maintained (-)\r\n• Wall does not represent current status (-)\r\n• Wall is maintained by few people (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 22
@@ -356,7 +356,7 @@
       "name": "Growing",
       "rank": 3,
       "desc_class": "like-pre",
-      "desc": "• Information is maintained and accurate and is sufficient to describe current work, backlog, risks, issues and overall progress (+)\r\n• The team is proud to show visitors the visual management tools used, which also explain what the team does (+)\r\n• The team collaborate around the wall regularly (+)\r\n• BVCs are used and updated regularly (e.g. Burn Up Charts) (+)\r\n• Remotely located team members have no access to update the wall (-)"
+      "desc": "• Information is maintained and accurate and is sufficient to describe current work, backlog, risks, issues and overall progress (+)\r\n• The team is proud to show visitors the visual management tools used, which also explain what the team does (+)\r\n• The team collaborate around the wall regularly (+)\r\n• BVCs are used and updated regularly (e.g. Burn Up Charts) (+)\r\n• Remotely located team members have no access to update the wall (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 23
@@ -367,7 +367,7 @@
       "name": "Sustainable",
       "rank": 4,
       "desc_class": "like-pre",
-      "desc": "• Wall reflects the current progress of work\r\n• Information is kept regularly updated by the team for the team\r\n• Team members remotely located are able to view and update project wall"
+      "desc": "• Wall reflects the current progress of work\r\n• Information is kept regularly updated by the team for the team\r\n• Team members remotely located are able to view and update project wall\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 24
@@ -389,7 +389,7 @@
       "name": "Emerging",
       "rank": 2,
       "desc_class": "like-pre",
-      "desc": "• Showcases happen at irregular intervals (-)\r\n• There is no representation from outside the team (-)"
+      "desc": "• Showcases happen at irregular intervals (-)\r\n• There is no representation from outside the team (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 26
@@ -422,7 +422,7 @@
       "name": "Regressive",
       "rank": 1,
       "desc_class": "like-pre",
-      "desc": "• There is no quality plan and no verification is done to assess the quality of what is delivered.\r\n• Quality is an afterthought and significant rework is often required\r\n• Customer not happy with the quality of deliverables"
+      "desc": "• There is no quality plan and no verification is done to assess the quality of what is delivered.\r\n• Quality is an afterthought and significant rework is often required\r\n• Customer not happy with the quality of deliverables\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 29
@@ -433,7 +433,7 @@
       "name": "Emerging",
       "rank": 2,
       "desc_class": "like-pre",
-      "desc": "• Team have a shared understanding of how quality is defined (+)\r\n• Limited visibility of project/system health amongst team or stakeholders (-)\r\n• A specialised team/group takes responsibility for quality (-)\r\n• For technology assets :  Tests are written and manually executed to verify basic functionality/deliverables (-)"
+      "desc": "• Team have a shared understanding of how quality is defined (+)\r\n• Limited visibility of project/system health amongst team or stakeholders (-)\r\n• A specialised team/group takes responsibility for quality (-)\r\n• For technology assets: Tests are written and manually executed to verify basic functionality/deliverables (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 30
@@ -444,7 +444,7 @@
       "name": "Growing",
       "rank": 3,
       "desc_class": "like-pre",
-      "desc": "• A quality plan is agreed and understood by the team that incorporates specific measures and targets(+)\r\n• Definitions of \"Ready\" and \"Done\" are defined and agreed by the core team (+)\r\n• Test and verification planning is based on risk associated with technical complexity and business impact (+)\r\n• The team has ownership for quality (+)\r\n• For technology assets, testing is largely automated in a scalable fashion (+)"
+      "desc": "• A quality plan is agreed and understood by the team that incorporates specific measures and targets(+)\r\n• Definitions of \"Ready\" and \"Done\" are defined and agreed by the core team (+)\r\n• Test and verification planning is based on risk associated with technical complexity and business impact (+)\r\n• The team has ownership for quality (+)\r\n• For technology assets, testing is largely automated in a scalable fashion (+)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 31
@@ -455,7 +455,7 @@
       "name": "Sustainable",
       "rank": 4,
       "desc_class": "like-pre",
-      "desc": "• All stories/work have clearly defined acceptance criteria\r\n• A quality strategy exists and is measured against frequently\r\n• Target quality is reliably achieved\r\n• Quality is displayed on a Big Visible Chart/Display"
+      "desc": "• All stories/work have clearly defined acceptance criteria\r\n• A quality strategy exists and is measured against frequently\r\n• Target quality is reliably achieved\r\n• Quality is displayed on a Big Visible Chart/Display\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 32
@@ -466,7 +466,7 @@
       "name": "Regressive",
       "rank": 1,
       "desc_class": "like-pre",
-      "desc": "• No plans exist (release or iteration)\r\n• Plans are created without input from team before delivery\r\n• Plans are based upon one major (big bang) release without consideration of smaller incremental releases"
+      "desc": "• No plans exist (release or iteration)\r\n• Plans are created without input from team before delivery\r\n• Plans are based upon one major (big bang) release without consideration of smaller incremental releases\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 33
@@ -488,7 +488,7 @@
       "name": "Growing",
       "rank": 3,
       "desc_class": "like-pre",
-      "desc": "• Release Plans (and/or Iterations Plans) are visible to the team (+)\r\n• Variations in planned vs. delivered are measured and reported. (+)\r\n• Release Plans and Iterations Plans are not adjusted due to variations in planned vs. delivered work. (-)"
+      "desc": "• Release Plans (and/or Iterations Plans) are visible to the team (+)\r\n• Variations in planned vs. delivered are measured and reported. (+)\r\n• Release Plans and Iterations Plans are not adjusted due to variations in planned vs. delivered work. (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 35
@@ -499,7 +499,7 @@
       "name": "Sustainable",
       "rank": 4,
       "desc_class": "like-pre",
-      "desc": "• Release and iteration planning produces an achievable plan that the team is confident to deliver\r\n• Work planned is regularly achieved with only small variations in progress\r\n• An overall (long-term) plan is maintained and accurately reflects the team's understanding of work, timing, resources, dependencies, etc.\r\n• Sliders are used to inform planning\r\n• Long-term plan is adjusted every iteration and agreed with customer(s)"
+      "desc": "• Release and iteration planning produces an achievable plan that the team is confident to deliver\r\n• Work planned is regularly achieved with only small variations in progress\r\n• An overall (long-term) plan is maintained and accurately reflects the team's understanding of work, timing, resources, dependencies, etc.\r\n• Sliders are used to inform planning\r\n• Long-term plan is adjusted every iteration and agreed with customer(s)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 36
@@ -510,7 +510,7 @@
       "name": "Regressive",
       "rank": 1,
       "desc_class": "like-pre",
-      "desc": "• Risks are not identified and not effectively managed\r\n• Risk management:\r\n- Does not exist\r\n- Is an afterthought or \"bolted-on\"\r\n- Just a box to tick in order to get through a process\r\n- Something to keep risk and audit people happy"
+      "desc": "• Risks are not identified and not effectively managed\r\n• Risk management:\r\n- Does not exist\r\n- Is an afterthought or \"bolted-on\"\r\n- Just a box to tick in order to get through a process\r\n- Something to keep risk and audit people happy\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 37
@@ -521,7 +521,7 @@
       "name": "Emerging",
       "rank": 2,
       "desc_class": "like-pre",
-      "desc": "• Risks Identified by Team and Customer [no active management] (+)\r\n• Single Team Register of risks (+)\r\n• Risks are visible to the team (+)"
+      "desc": "• Risks Identified by Team and Customer [no active management] (+)\r\n• Single Team Register of risks (+)\r\n• Risks are visible to the team (+)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 38
@@ -532,7 +532,7 @@
       "name": "Growing",
       "rank": 3,
       "desc_class": "like-pre",
-      "desc": "• Risks regularly reviewed (+)\r\n• Risks have controls and mitigations (+)\r\n• Risks are escalated if outside team authority (+)\r\n• Risk mitigation is treated as normal work (+)\r\n• Risks consequence and impact Identified (+)"
+      "desc": "• Risks regularly reviewed (+)\r\n• Risks have controls and mitigations (+)\r\n• Risks are escalated if outside team authority (+)\r\n• Risk mitigation is treated as normal work (+)\r\n• Risks consequence and impact Identified (+)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 39
@@ -543,7 +543,7 @@
       "name": "Sustainable",
       "rank": 4,
       "desc_class": "like-pre",
-      "desc": "• Risk appetite is used as a guide for decision making\r\n• Every Team Member knows the top 3 risks"
+      "desc": "• Risk appetite is used as a guide for decision making\r\n• Every Team Member knows the top 3 risks\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 40

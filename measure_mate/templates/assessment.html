@@ -10,6 +10,19 @@
 </div>
 <script type="text/babel">
 
+  var Alert = ReactBootstrap.Alert;
+  var PageHeader = ReactBootstrap.PageHeader;
+  var ListGroup = ReactBootstrap.ListGroup;
+  var ListGroupItem = ReactBootstrap.ListGroupItem;
+  var Tabs = ReactBootstrap.Tabs;
+  var Tab = ReactBootstrap.Tab;
+  var Panel = ReactBootstrap.Panel;
+  var Input = ReactBootstrap.Input;
+  var Tooltip = ReactBootstrap.Tooltip;
+  var OverlayTrigger = ReactBootstrap.OverlayTrigger;
+  var Pager = ReactBootstrap.Pager;
+  var PageItem = ReactBootstrap.PageItem;
+
   var TemplateTable = React.createClass({
     loadAssessmentFromServer: function() {
       $.ajax({
@@ -30,7 +43,13 @@
         dataType: 'json',
         cache: false,
         success: function(data) {
-          this.setState({assess_id: assess_data.id, data: data.attributes, name: data.name, desc: data.short_desc});
+          this.setState({
+            assess_id: assess_data.id,
+            data: data.attributes,
+            name: data.name, 
+            desc: data.short_desc,
+            loaded: true
+          });
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -57,7 +76,8 @@
     getInitialState: function() {
       return {
         data: [],
-        assess_id: null
+        assess_id: null,
+        loaded: false
       };
     },
     componentDidMount: function() {
@@ -67,29 +87,106 @@
     render: function() {
       return (
           <div className="container">
-            <div className="alert alert-warning" role="alert">
-              We are working hard to improve the user experience of Measure Mate.
-              Try the <a className="alert-link" href="{% url 'assessment-revised' id %}">new beta view!</a>
-            </div>
-            <div className="page-header">
-              <h1>{this.state.name}<small> {this.state.desc}</small></h1>
-            </div>
-                <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
+            <Loader loaded={this.state.loaded}>
+              <PageHeader>
+                {this.state.name} <small> {this.state.desc}</small>
+              </PageHeader>
+              <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
+            </Loader>
           </div>
       );
     }
     });
 
   var AttributeList = React.createClass({
+    getInitialState: function() {
+      return {
+        active_attribute: 1,
+        rating_selected: false,
+        measurements: null,
+        next_hide: false,
+        previous_hide: false
+      };
+    },
+    componentWillReceiveProps: function(nextProps){
+      this.dataSource(nextProps);
+    },
+    dataSource: function(props){
+      props = props || this.props;
+
+      return $.ajax({
+        type: "get",
+        dataType: 'json',
+        url: '/api/measurements/' + '?assessment__id=' + props.assess_id
+      }).done(function(result){
+        this.setState({ measurements: result });
+        this.handleTabChange(1);
+      }.bind(this));
+    },
+    handleNext: function () {
+      if (this.state.active_attribute < this.props.data.length && !this.state.next_hide) {
+        var new_tab = this.state.active_attribute + 1;
+        this.setState({active_attribute: new_tab});
+        this.handleTabChange(new_tab);
+      };
+    },
+    handlePrevious: function () {
+      if (this.state.active_attribute !=1 && !this.state.previous_hide) {
+        var new_tab = this.state.active_attribute - 1;
+        this.setState({active_attribute: new_tab});
+        this.handleTabChange(new_tab);
+      }
+    },
+    handleSelect(key) {
+      this.setState({active_attribute: key});
+      this.handleTabChange(key);
+    },
+    handleTabChange: function (current_tab) {
+      if (current_tab == 1) {
+        this.setState({previous_hide: true});
+      } else {
+        this.setState({previous_hide: false});
+      }
+      if (current_tab >= this.props.data.length) {
+        this.setState({next_hide: true});
+      } else {
+        this.setState({next_hide:false});
+      }
+    },
+    getMeasurementForAttribute(attribute) {
+      if (this.state.measurements != null) {
+        for (var i = 0; i < this.state.measurements.length; i++) {
+          if (attribute.id == this.state.measurements[i].rating.attribute) {
+            return this.state.measurements[i];
+            break;
+          }
+        };
+      } else {
+        return null;
+      }
+    },
     render: function() {
-      var attributeNodes = this.props.data.map(function (attribute) {
+      var attributeNodes = this.props.data.map(function (attribute, i) {
+        var measurement = this.getMeasurementForAttribute(attribute);
         return (
-          <RatingList key={attribute.id} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} data={attribute.ratings}/>
+          <Tab eventKey={i+1} id={i+1} title={<div><span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span>{attribute.name}</span></div>}>
+            <RatingList key={attribute.id} measurement={measurement} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} desc_class={attribute.desc_class} data={attribute.ratings}/>
+          </Tab>
         );
       }.bind(this));
       return (
-        <div className="AttributeList">
-          {attributeNodes}
+        <div>
+          <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
+            {attributeNodes}
+          </Tabs>
+          <div className="col-xs-9">
+            <Pager>
+              <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
+              {' '}
+              <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
+            </Pager>
+          </div>
+          <div className="col-xs-3"/>
         </div>
       );
     }
@@ -97,32 +194,26 @@
 
   var RatingList = React.createClass({
     getInitialState: function() {
-      return {
-        measurement_id: null,
-        selected_rating: null
-      };
+      if (this.props.measurement) {
+        return {
+          measurement_id: this.props.measurement.id,
+          selected_rating: this.props.measurement.rating.id
+        };
+      } else {
+        return {
+          measurement_id: null,
+          selected_rating: null,
+        };
+      }
     },
-
-    componentDidMount: function() {
-      $.get('/api/measurements/' + '?assessment__id=' + this.props.assess_id  + '&rating__attribute=' + this.props.attribute_id, function(result) {
-        var measurement = result[0];
-        if (this.isMounted()) {
-          if (measurement != null) {
-            this.setState({
-              measurement_id: measurement.id,
-              selected_rating: measurement.rating.id
-            })
-          } else {
-            this.setState({
-              measurement_id: null,
-              selected_rating: null
-            });
-          }
-        }
-      }.bind(this));
+    componentWillReceiveProps: function(newProps) {
+      if (newProps.measurement && newProps.measurement.id != this.measurement_id) {
+        this.setState({measurement_id: newProps.measurement.id,
+                  selected_rating: newProps.measurement.rating.id});
+      }
     },
-
     handleClick: function(data, e) {
+      e.preventDefault();
       var create_new_measure = ((this.state.measurement_id == null) ? true : false);
       console.log('Should a new measurement be created? ' + create_new_measure)
       var postContent = data.postContent;
@@ -146,6 +237,11 @@
       });
     },
 
+    handleComplete: function() {
+      console.log("Hi, the complete button has been pushed");
+      this.props.onComplete();
+    },
+
     handleSubmitSuccess: function(data) {
       this.setState({
         selected_rating: data.rating,
@@ -159,31 +255,27 @@
 
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
-          var desc_class = "list-group-item-text " + rating.desc_class
-          var a_class = "list-group-item clickable-row"
-          if (this.state.selected_rating == rating.id) {
-            a_class += " list-group-item-success"
-          }
+          var active = (this.state.selected_rating == rating.id)
+          var desc_class = "rating-" + rating.name + (rating.desc_class ? " " + rating.desc_class : "")
           return (
-            <a onClick={this.handleClick.bind(this, rating.id)} key={rating.id} className={a_class}>
-              <h4 className="list-group-item-heading">{rating.name}</h4>
-              <span className={desc_class}>{rating.desc}</span>
-            </a>
+            <ListGroupItem active={active} onClick={this.handleClick.bind(this, rating.id)} key={rating.id} header={rating.name} className={desc_class}>
+              {rating.desc}
+            </ListGroupItem>
           );
       }.bind(this));
+      var desc_class = this.props.desc_class || ""
       return (
-        <div className="list-group">
-          <a className="list-group-item active">
-            <h4 className="list-group-item-heading">{this.props.name}</h4>
-            <p className="list-group-item-text">{this.props.desc}</p>
-          </a>
-          {ratingNodes}
-        </div>
+        <Panel header={this.props.name} bsStyle="primary">
+          <p className={desc_class}>{this.props.desc}</p>
+          <ListGroup fill>
+            {ratingNodes}
+          </ListGroup>
+        </Panel>
       );
     }
   });
 
-  React.render(
+  ReactDOM.render(
   <TemplateTable url="/api/assessments/{{id}}/" pollInterval={20000}/>,
   document.getElementById('content')
   );

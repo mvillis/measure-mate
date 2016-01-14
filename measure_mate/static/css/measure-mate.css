@@ -20,3 +20,32 @@ a,tr.clickable-row {
 button {
   outline: none;
 }
+
+.rating-Regressive {
+  border-left-color: Red !important;
+  border-left-width: 15px !important;
+}
+
+.rating-Emerging {
+  border-left-color: Orange !important;
+  border-left-width: 15px !important;
+}
+
+.rating-Growing {
+  border-left-color: Yellow !important;
+  border-left-width: 15px !important;
+}
+
+.rating-Sustainable {
+  border-left-color: Green !important;
+  border-left-width: 15px !important;
+}
+
+@media (max-width: 640px) {
+    div .col-xs-3 {
+        display: none;
+    }
+    div .col-xs-9 {
+        width: 100%;
+    }
+}

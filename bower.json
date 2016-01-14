@@ -22,6 +22,7 @@
     "react-select": "https://github.com/JedWatson/react-select.git#v1.0.0-beta8",
     "bootstrap": "~3.3.6",
     "babel": "*",
-    "react-bootstrap": "~0.28.1"
+    "react-bootstrap": "~0.28.1",
+    "react-loader": "~2.0.0"
   }
 }

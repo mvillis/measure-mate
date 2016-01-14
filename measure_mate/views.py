@@ -12,8 +12,6 @@ def home(request):
 def assessment(request, pk):
     return render(request, 'assessment.html', {'id': pk})
 
-def assessment_revised(request, pk):
-    return render(request, 'assessment-revised.html', {'id': pk})
 
 def assessment_list(request):
     return render(request, 'assessment_list.html')
