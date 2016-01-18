@@ -41,11 +41,18 @@ button {
   border-left-width: 15px !important;
 }
 
+#att-list {
+  padding-bottom: 50px;
+}
+
 @media (max-width: 640px) {
     div .col-xs-3 {
         display: none;
     }
     div .col-xs-9 {
         width: 100%;
+    }
+    .tab-content {
+        padding: 0px !important;
     }
 }
