@@ -5,9 +5,7 @@
 
 {% endblock %}
 {% block body %}
-<div class="container">
-<div id="content"></div>
-</div>
+<div id="content" class="container"></div>
 <script type="text/babel">
 
   var Alert = ReactBootstrap.Alert;
@@ -46,7 +44,7 @@
           this.setState({
             assess_id: assess_data.id,
             data: data.attributes,
-            name: data.name, 
+            name: data.name,
             desc: data.short_desc,
             loaded: true
           });
@@ -86,14 +84,12 @@
     },
     render: function() {
       return (
-          <div className="container">
             <Loader loaded={this.state.loaded}>
               <PageHeader>
                 {this.state.name} <small> {this.state.desc}</small>
               </PageHeader>
               <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
             </Loader>
-          </div>
       );
     }
     });
@@ -126,6 +122,7 @@
     handleNext: function () {
       if (this.state.active_attribute < this.props.data.length && !this.state.next_hide) {
         var new_tab = this.state.active_attribute + 1;
+        this.scrollToTop('#att-list');
         this.setState({active_attribute: new_tab});
         this.handleTabChange(new_tab);
       };
@@ -133,11 +130,13 @@
     handlePrevious: function () {
       if (this.state.active_attribute !=1 && !this.state.previous_hide) {
         var new_tab = this.state.active_attribute - 1;
+        this.scrollToTop('#att-list');
         this.setState({active_attribute: new_tab});
         this.handleTabChange(new_tab);
       }
     },
-    handleSelect(key) {
+    handleSelect: function (key) {
+      this.scrollToTop('#att-list');
       this.setState({active_attribute: key});
       this.handleTabChange(key);
     },
@@ -152,6 +151,15 @@
       } else {
         this.setState({next_hide:false});
       }
+    },
+    scrollToTop: function (att_list) {
+      var $target = $(att_list);
+
+      $('html, body').stop().animate({
+          'scrollTop': $target.offset().top
+      }, 900, 'swing', function () {
+          // window.location.hash = $target;
+      });
     },
     getMeasurementForAttribute(attribute) {
       if (this.state.measurements != null) {
@@ -175,18 +183,15 @@
         );
       }.bind(this));
       return (
-        <div>
+        <div id="att-list" >
           <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
             {attributeNodes}
-          </Tabs>
-          <div className="col-xs-9">
             <Pager>
               <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
               {' '}
               <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
             </Pager>
-          </div>
-          <div className="col-xs-3"/>
+          </Tabs>
         </div>
       );
     }
