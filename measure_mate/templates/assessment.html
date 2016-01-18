@@ -5,9 +5,7 @@
 
 {% endblock %}
 {% block body %}
-<div class="container">
-<div id="content"></div>
-</div>
+<div id="content" class="container"></div>
 <script type="text/babel">
 
   var Alert = ReactBootstrap.Alert;
@@ -86,14 +84,12 @@
     },
     render: function() {
       return (
-          <div className="container">
             <Loader loaded={this.state.loaded}>
               <PageHeader>
                 {this.state.name} <small> {this.state.desc}</small>
               </PageHeader>
               <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
             </Loader>
-          </div>
       );
     }
     });

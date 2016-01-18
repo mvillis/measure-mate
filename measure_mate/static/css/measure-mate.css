@@ -55,4 +55,7 @@ button {
     .tab-content {
         padding: 0px !important;
     }
+    .container {
+        padding: 5px !important;
+    }
 }
