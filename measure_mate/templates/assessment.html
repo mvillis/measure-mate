@@ -190,15 +190,12 @@
         <div id="att-list" >
           <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
             {attributeNodes}
-          </Tabs>
-          <div className="col-xs-9">
             <Pager>
               <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
               {' '}
               <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
             </Pager>
-          </div>
-          <div className="col-xs-3"/>
+          </Tabs>
         </div>
       );
     }
