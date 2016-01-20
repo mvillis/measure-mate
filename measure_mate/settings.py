@@ -144,3 +144,17 @@ LOGGING = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+SWAGGER_SETTINGS = {
+    'api_path': '/api',
+    'api_version': '0.1',
+    'info': {
+        'title': 'Measure Mate',
+        'description': '<p>Simple tool to track maturity assessments.</p>'
+                       '<p>Source available at <a href="https://github.com/mvillis/measure-mate">'
+                       'https://github.com/mvillis/measure-mate</a>.</p>',
+        'license': 'MIT',
+        'licenseUrl': 'https://github.com/mvillis/measure-mate/blob/master/LICENSE.txt',
+    }
+}
+
