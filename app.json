@@ -24,12 +24,4 @@
       "url": "https://github.com/heroku/heroku-buildpack-python.git"
     }
   ]
-  "buildpacks": [
-    {
-      "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
-    },
-    {
-      "url": "https://github.com/heroku/heroku-buildpack-python.git"
-    }
-  ]
 }
