@@ -3,7 +3,7 @@
   "description": "Simple tool to track maturity assessments.",
   "repository": "https://github.com/rloomans/measure-mate",
   "scripts": {
-    "postdeploy": "python manage.py migrate"
+    "postdeploy": "sh .postdeploy.sh"
   },
   "env": {
     "DJANGO_DEBUG": {
