@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}Measure Mate{% endblock %}
 {% block head %}
-
+  <script src="{% static "components/lodash/dist/lodash.min.js" %}"></script>
 {% endblock %}
 {% block body %}
 <div id="content" class="container"></div>
@@ -20,6 +21,7 @@
   var OverlayTrigger = ReactBootstrap.OverlayTrigger;
   var Pager = ReactBootstrap.Pager;
   var PageItem = ReactBootstrap.PageItem;
+  var Glyphicon = ReactBootstrap.Glyphicon;
 
   var TemplateTable = React.createClass({
     loadAssessmentFromServer: function() {
@@ -48,23 +50,6 @@
             desc: data.short_desc,
             loaded: true
           });
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
-    },
-    handleRatingSubmit: function(rating) {
-      var ratings = this.state.data;
-      var newRatings = ratings.concat([rating]);
-      this.setState({data: newRatings});
-      $.ajax({
-        url: this.props.url,
-        dataType: 'json',
-        type: 'POST',
-        data: rating,
-        success: function(data) {
-          this.setState({data: data.attributes, name: data.name, desc: data.desc});
         }.bind(this),
         error: function(xhr, status, err) {
           console.error(this.props.url, status, err.toString());
@@ -104,16 +89,14 @@
         previous_hide: false
       };
     },
-    componentWillReceiveProps: function(nextProps){
-      this.dataSource(nextProps);
+    componentDidMount: function(){
+      this.dataSource();
     },
-    dataSource: function(props){
-      props = props || this.props;
-
+    dataSource: function(){
       return $.ajax({
         type: "get",
         dataType: 'json',
-        url: '/api/measurements/' + '?assessment__id=' + props.assess_id
+        url: '/api/measurements/' + '?assessment__id=' + this.props.assess_id
       }).done(function(result){
         this.setState({ measurements: result });
         this.handleTabChange(1);
@@ -163,7 +146,7 @@
     },
     getMeasurementForAttribute(attribute) {
       if (this.state.measurements != null) {
-        for (var i = 0; i < this.state.measurements.length; i++) {
+        for (var i=0; i < this.state.measurements.length; i++) {
           if (attribute.id == this.state.measurements[i].rating.attribute) {
             return this.state.measurements[i];
             break;
@@ -177,13 +160,13 @@
       var attributeNodes = this.props.data.map(function (attribute, i) {
         var measurement = this.getMeasurementForAttribute(attribute);
         return (
-          <Tab eventKey={i+1} id={i+1} title={<div><span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span>{attribute.name}</span></div>}>
+          <Tab eventKey={i+1} key={attribute.id} id={i+1} title={<div><span className="glyphicon glyphicon-chevron-right"></span> <span>{attribute.name}</span></div>}>
             <RatingList key={attribute.id} measurement={measurement} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} desc_class={attribute.desc_class} data={attribute.ratings}/>
           </Tab>
         );
       }.bind(this));
       return (
-        <div id="att-list" >
+        <div id="att-list">
           <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
             {attributeNodes}
             <Pager>
@@ -197,40 +180,83 @@
     }
   });
 
+  var ObserveInput = React.createClass({
+      getInitialState: function () {
+          return {
+              observations: null
+          };
+      },
+
+      componentWillReceiveProps: function(newProps) {
+        if (this.state.observations == null) {
+          this.setState(
+            {
+              observations: newProps.observations
+            });
+        }
+      },
+
+      componentWillMount: function() {
+        //  this.handleObserveDebounced = _.debounce(function () {
+        //    console.log("Inside debounce: " + this.state.observations);
+        //    this.props.handleObserve.apply(this, [this.state.observations]);
+        //  }, 5000);
+      },
+
+      onChange: function (event) {
+        var new_observations = event.target.value;
+        this.setState({observations: new_observations});
+        this.props.handleSyncState(false);
+        this.props.handleObserve(event.target.value);
+        // this.handleObserveDebounced();
+      },
+
+      render: function () {
+        return (
+          <Input type="textarea" rows="3" label="Observations" placeholder="Some notes on why a particular rating was selected."
+                 ref="observeInput"
+                 value={this.state.observations}
+                 onChange={this.onChange} Input/>
+        );
+      }
+  });
+
   var RatingList = React.createClass({
+    componentWillMount() {
+      this.syncMeasurement = _.debounce(this.syncMeasurement, 2000);
+    },
     getInitialState: function() {
-      if (this.props.measurement) {
+      if (this.props.measurement != null) {
         return {
           measurement_id: this.props.measurement.id,
-          selected_rating: this.props.measurement.rating.id
+          selected_rating: this.props.measurement.rating.id,
+          observations: this.props.measurement.observations,
+          observation_synced: true,
+          saved_rating: true
         };
       } else {
         return {
           measurement_id: null,
           selected_rating: null,
+          observations: "",
+          observation_synced: true,
+          saved_rating: true
         };
       }
     },
     componentWillReceiveProps: function(newProps) {
       if (newProps.measurement && newProps.measurement.id != this.measurement_id) {
-        this.setState({measurement_id: newProps.measurement.id,
-                  selected_rating: newProps.measurement.rating.id});
+        this.setState(
+          {
+            measurement_id: newProps.measurement.id,
+            selected_rating: newProps.measurement.rating.id,
+            observations: newProps.measurement.observations
+          });
       }
     },
-    handleClick: function(data, e) {
-      e.preventDefault();
+    syncMeasurement: function(postData) {
       var create_new_measure = ((this.state.measurement_id == null) ? true : false);
-      console.log('Should a new measurement be created? ' + create_new_measure)
-      var postContent = data.postContent;
-      var postData = {
-        id: this.state.measurement_id,
-        assessment: this.props.assess_id,
-        rating: data,
-        observations: "This is a dummy comment."
-      };
-
-      this.setState({ selected_rating: data });
-
+      console.log('Should a new measurement be created? ' + create_new_measure);
       $.ajax({
         type: ((create_new_measure) ? "POST" : "PUT"),
         contentType: "application/json; charset=utf-8",
@@ -241,16 +267,45 @@
         error: this.handleSubmitFailure,
       });
     },
-
-    handleComplete: function() {
-      console.log("Hi, the complete button has been pushed");
-      this.props.onComplete();
+    handleSyncState: function (synced) {
+      this.setState({observation_synced: synced});
     },
+    handleObserve: function (text) {
+      this.setState(
+        {
+          observations: text,
+        });
+      var postData = {
+        id: this.state.measurement_id,
+        assessment: this.props.assess_id,
+        rating: this.state.selected_rating,
+        observations: text
+      };
+      // this.syncMeasurement(postData);
+    },
+    handleClick: function(data) {
+      var create_new_measure = ((this.state.measurement_id == null) ? true : false);
+      console.log('Should a new measurement be created? ' + create_new_measure);
+      var postContent = data.postContent;
+      var postData = {
+        id: this.state.measurement_id,
+        assessment: this.props.assess_id,
+        rating: data,
+        observations: this.state.observations
+      };
 
+      this.setState(
+        {
+          selected_rating: data,
+          saved_rating: false
+        });
+      this.syncMeasurement(postData);
+    },
     handleSubmitSuccess: function(data) {
       this.setState({
-        selected_rating: data.rating,
-        measurement_id: data.id
+        measurement_id: data.id,
+        observation_synced: true,
+        saved_rating: true
       });
     },
 
@@ -263,15 +318,27 @@
           var active = (this.state.selected_rating == rating.id)
           var desc_class = "rating-" + rating.name + (rating.desc_class ? " " + rating.desc_class : "")
           return (
-            <ListGroupItem active={active} onClick={this.handleClick.bind(this, rating.id)} key={rating.id} header={rating.name} className={desc_class}>
+            <ListGroupItem active={active} onClick={this.handleClick.bind(this, rating.id)} id={rating.id} key={rating.id} header={rating.name} className={desc_class}>
               {rating.desc}
             </ListGroupItem>
           );
       }.bind(this));
+      var syncStatus = function () {
+        if (this.state.observation_synced == true) {
+          return (<p><Glyphicon glyph="glyphicon glyphicon-saved" /> Saved</p>);
+        } else {
+          return (<p><Glyphicon glyph="glyphicon glyphicon-info-sign" /> This comment will be saved once a rating below is selected</p>);
+        }
+      }.bind(this);
       var desc_class = this.props.desc_class || ""
       return (
         <Panel header={this.props.name} bsStyle="primary">
           <p className={desc_class}>{this.props.desc}</p>
+          <ObserveInput observations={this.state.observations} handleSyncState={this.handleSyncState}
+                     handleObserve={this.handleObserve} syncMeasurement={this.syncMeasurement}/>
+          <Loader loaded={this.state.saved_rating}>
+          </Loader>
+          {syncStatus()}
           <ListGroup fill>
             {ratingNodes}
           </ListGroup>
