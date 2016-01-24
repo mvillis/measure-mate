@@ -48,7 +48,7 @@ class MeasurementSerializer(serializers.ModelSerializer):
 class MeasurementCreateSerializer(serializers.ModelSerializer):
     assessment = serializers.PrimaryKeyRelatedField(queryset=Assessment.objects.all())
     rating = serializers.PrimaryKeyRelatedField(queryset=Rating.objects.all())
-    observations = serializers.CharField()
+    observations = serializers.CharField(allow_null=True, allow_blank=True)
 
     class Meta:
         model = Measurement
