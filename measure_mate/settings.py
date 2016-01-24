@@ -39,10 +39,20 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'measure_mate',
+    'opbeat.contrib.django',
 )
 
+OPBEAT = {
+    'ORGANIZATION_ID': 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
+    'APP_ID': '906f4b4169',
+    'SECRET_TOKEN': '853611a92dc27df59c1c8ea73e446055a836eeee',
+}
+
+
 MIDDLEWARE_CLASSES = (
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -143,3 +153,17 @@ LOGGING = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+SWAGGER_SETTINGS = {
+    'api_path': '/api',
+    'api_version': '0.1',
+    'info': {
+        'title': 'Measure Mate',
+        'description': '<p>Simple tool to track maturity assessments.</p>'
+                       '<p>Source available at <a href="https://github.com/mvillis/measure-mate">'
+                       'https://github.com/mvillis/measure-mate</a>.</p>',
+        'license': 'MIT',
+        'licenseUrl': 'https://github.com/mvillis/measure-mate/blob/master/LICENSE.txt',
+    }
+}
+
