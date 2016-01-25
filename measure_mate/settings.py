@@ -146,7 +146,7 @@ LOGGING = {
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 SWAGGER_SETTINGS = {
-    'api_path': '/api',
+    'api_path': '/',
     'api_version': '0.1',
     'info': {
         'title': 'Measure Mate',
