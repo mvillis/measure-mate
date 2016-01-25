@@ -79,6 +79,41 @@ class MeasurementAPITestCases(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Measurement.objects.count(), 1)
 
+    def test_create_measurement_no_rating(self):
+        """
+        Ensure we can't create a new measurement object without a rating.
+        """
+        assessment = AssessmentFactory()
+        url = reverse('measurement-list')
+        data = {"id": None, "assessment": assessment.id, "rating": None, "observations": "123"}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(Measurement.objects.count(), 0)
+
+    def test_create_measurement_blank_observation(self):
+        """
+        Ensure we can create a new measurement object with a "" observation.
+        """
+        assessment = AssessmentFactory()
+        rating = RatingFactory()
+        url = reverse('measurement-list')
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id, "observations": ""}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Measurement.objects.count(), 1)
+
+    def test_create_measurement_no_observation(self):
+        """
+        Ensure we can create a new measurement object without an observation.
+        """
+        assessment = AssessmentFactory()
+        rating = RatingFactory()
+        url = reverse('measurement-list')
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id, "observations": None}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Measurement.objects.count(), 1)
+
     def test_update_measurement(self):
         """
         Ensure we can update an existing measurement object.
