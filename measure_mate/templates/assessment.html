@@ -22,6 +22,7 @@
   var Pager = ReactBootstrap.Pager;
   var PageItem = ReactBootstrap.PageItem;
   var Glyphicon = ReactBootstrap.Glyphicon;
+  var Button = ReactBootstrap.Button;
 
   var TemplateTable = React.createClass({
     loadAssessmentFromServer: function() {
@@ -183,40 +184,86 @@
   var ObserveInput = React.createClass({
       getInitialState: function () {
           return {
-              observations: null
+              save_btn_disabled: true
           };
       },
-
       componentWillReceiveProps: function(newProps) {
         if (this.state.observations == null) {
           this.setState(
             {
-              observations: newProps.observations
+              observations: newProps.observations,
+              observation_synced: newProps.observation_synced,
+              selected_rating: newProps.selected_rating
             });
+        } else {
+          this.setState(
+            {
+              observation_synced: newProps.observation_synced,
+              selected_rating: newProps.selected_rating
+            }
+          )
+        }
+        if (!!newProps.observation_synced == true) {
+          this.setState(
+            {
+              save_btn_disabled: true
+            }
+          )
         }
       },
-
       componentWillMount: function() {
         //  this.handleObserveDebounced = _.debounce(function () {
         //    console.log("Inside debounce: " + this.state.observations);
         //    this.props.handleObserve.apply(this, [this.state.observations]);
         //  }, 5000);
       },
-
       onChange: function (event) {
         var new_observations = event.target.value;
-        this.setState({observations: new_observations});
-        this.props.handleSyncState(false);
-        this.props.handleObserve(event.target.value);
+        if (this.state.selected_rating) {
+          this.setState(
+            {
+              observations: new_observations,
+              observation_synced: false,
+              save_btn_disabled: false
+            });
+        } else {
+          this.setState(
+            {
+              observations: new_observations,
+              observation_synced: false,
+              save_btn_disabled: true
+            });
+        }
+        this.props.observationSyncUpdate(false);
+        this.props.updateObserve(event.target.value);
         // this.handleObserveDebounced();
       },
-
+      handleSave: function() {
+        if (this.state.save_btn_disabled == false) {
+          this.props.saveMeasurement();
+        }
+      },
       render: function () {
+        var syncStatus = function () {
+          if (this.state.observation_synced == true) {
+            return (<span><span>  </span><Glyphicon glyph="glyphicon glyphicon-saved" /> Saved</span>);
+          } else if (this.state.observation_synced == false) {
+            if (!!this.state.selected_rating == false) {
+              return (<span className="text-info"><span>  </span><Glyphicon glyph="glyphicon glyphicon-info-sign" /> Select a rating below to save this comment and complete the form.</span>);
+            }
+          } else {
+            return (<span></span>);
+          };
+        }.bind(this);
         return (
-          <Input type="textarea" rows="3" label="Observations" placeholder="Some notes on why a particular rating was selected."
-                 ref="observeInput"
-                 value={this.state.observations}
-                 onChange={this.onChange} Input/>
+          <div>
+            <Input type="textarea" rows="3" label="Observations" placeholder="Some notes on why a particular rating was selected."
+                   ref="observeInput"
+                   value={this.state.observations}
+                   onChange={this.onChange} Input/>
+                     <Button ref="obsSaveBtn" disabled={this.state.save_btn_disabled} bsStyle="primary" bsSize="xsmall" onClick={this.handleSave.bind(this)}>Save</Button>
+                     {syncStatus()}
+           </div>
         );
       }
   });
@@ -231,7 +278,7 @@
           measurement_id: this.props.measurement.id,
           selected_rating: this.props.measurement.rating.id,
           observations: this.props.measurement.observations,
-          observation_synced: true,
+          observation_synced: null,
           saved_rating: true
         };
       } else {
@@ -239,7 +286,7 @@
           measurement_id: null,
           selected_rating: null,
           observations: "",
-          observation_synced: true,
+          observation_synced: null,
           saved_rating: true
         };
       }
@@ -250,7 +297,7 @@
           {
             measurement_id: newProps.measurement.id,
             selected_rating: newProps.measurement.rating.id,
-            observations: newProps.measurement.observations
+            observations: newProps.measurement.observations,
           });
       }
     },
@@ -267,39 +314,30 @@
         error: this.handleSubmitFailure,
       });
     },
-    handleSyncState: function (synced) {
+    observationSyncUpdate: function (synced) {
       this.setState({observation_synced: synced});
     },
-    handleObserve: function (text) {
-      this.setState(
-        {
-          observations: text,
-        });
+    updateObserve: function(text) {
+      this.setState({observations: text});
+    },
+    saveMeasurement: function () {
       var postData = {
         id: this.state.measurement_id,
         assessment: this.props.assess_id,
         rating: this.state.selected_rating,
-        observations: text
-      };
-      // this.syncMeasurement(postData);
-    },
-    handleClick: function(data) {
-      var create_new_measure = ((this.state.measurement_id == null) ? true : false);
-      console.log('Should a new measurement be created? ' + create_new_measure);
-      var postContent = data.postContent;
-      var postData = {
-        id: this.state.measurement_id,
-        assessment: this.props.assess_id,
-        rating: data,
         observations: this.state.observations
       };
-
       this.setState(
         {
-          selected_rating: data,
           saved_rating: false
         });
       this.syncMeasurement(postData);
+    },
+    handleClick: function(data) {
+      this.setState(
+        {
+          selected_rating: data,
+        }, this.saveMeasurement);
     },
     handleSubmitSuccess: function(data) {
       this.setState({
@@ -308,11 +346,9 @@
         saved_rating: true
       });
     },
-
     handleSubmitFailure: function(xhr, ajaxOptions, thrownError) {
         console.error("There was a failure");
     },
-
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
           var active = (this.state.selected_rating == rating.id)
@@ -323,22 +359,14 @@
             </ListGroupItem>
           );
       }.bind(this));
-      var syncStatus = function () {
-        if (this.state.observation_synced == true) {
-          return (<p><Glyphicon glyph="glyphicon glyphicon-saved" /> Saved</p>);
-        } else {
-          return (<p><Glyphicon glyph="glyphicon glyphicon-info-sign" /> This comment will be saved once a rating below is selected</p>);
-        }
-      }.bind(this);
       var desc_class = this.props.desc_class || ""
       return (
         <Panel header={this.props.name} bsStyle="primary">
           <p className={desc_class}>{this.props.desc}</p>
-          <ObserveInput observations={this.state.observations} handleSyncState={this.handleSyncState}
-                     handleObserve={this.handleObserve} syncMeasurement={this.syncMeasurement}/>
+          <ObserveInput observation_synced={this.state.observation_synced} selected_rating={this.state.selected_rating} observations={this.state.observations} observationSyncUpdate={this.observationSyncUpdate}
+                     updateObserve={this.updateObserve} saveMeasurement={this.saveMeasurement} syncMeasurement={this.syncMeasurement}/>
           <Loader loaded={this.state.saved_rating}>
           </Loader>
-          {syncStatus()}
           <ListGroup fill>
             {ratingNodes}
           </ListGroup>
