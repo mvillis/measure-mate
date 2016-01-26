@@ -1,14 +1,19 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}Measure Mate{% endblock %}
 {% block head %}
-
+  <script src="{% static "components/moment/min/moment.min.js" %}"></script>
 {% endblock %}
 {% block body %}
-<div class="container">
 <div id="content"></div>
-</div>
 <script type="text/babel">
+
+  var Label = ReactBootstrap.Label;
+  var PageHeader = ReactBootstrap.PageHeader;
+  var Panel = ReactBootstrap.Panel;
+  var Table = ReactBootstrap.Table;
+
   var AssessmentTable = React.createClass({
     loadRatingsFromServer: function() {
       $.ajax({
@@ -35,23 +40,12 @@
     },
     render: function() {
       return (
-          <div className="AssessmentTable">
-            <div className="container">
-              <div className="page-header">
-                <h1>{this.state.name}<small> Assessments</small></h1>
-              </div>
-              <Loader loaded={this.state.loaded}>
-                <div className="panel panel-default">
-                  <div className="panel-heading">
-                    <h3 className="panel-title">{this.state.name}</h3>
-                  </div>
-                  <div className="panel-body">
-                      <AssessmentList data={this.state.data} />
-                  </div>
-                </div>
-              </Loader>
-            </div>
-          </div>
+        <div className="container">
+          <PageHeader>Assessments</PageHeader>
+          <Loader loaded={this.state.loaded}>
+              <AssessmentList data={this.state.data} />
+          </Loader>
+        </div>
       );
     }
     });
@@ -66,40 +60,40 @@
 
     render: function() {
       return (
-        <table className="table table-hover">
-        <tbody>
+        <Table hover>
+        <thead>
           <tr>
             <th>#</th>
             <th>Created Date</th>
             <th>Template</th>
             <th>Tags</th>
           </tr>
+        </thead>
+        <tbody>
           {this.props.data.map(function(assessment, i) {
-            var prettyCreated = new Date(assessment.created).toLocaleDateString("en-AU");
+            var prettyCreated = moment(assessment.created).format('DD/MM/YYYY');
+            var relativeCreated = moment(assessment.created).fromNow();
             var boundClick = this.handleClick.bind(this, assessment.id);
             return (
               <tr key={assessment.id} className="clickable-row" onClick={boundClick}>
                 <td><a href={"/assessment/" + assessment.id + "/"}>{assessment.id}</a></td>
-                <td>{prettyCreated}</td>
+                <td>{prettyCreated} <small>({relativeCreated})</small></td>
                 <td>{assessment.template.name}</td>
-                <td><TagList tags={assessment.tags}/></td>
+                <td className="wrap"><TagList tags={assessment.tags}/></td>
               </tr>
             );
           }, this)}
           </tbody>
-        </table>
+        </Table>
       );
     }
   });
 
   var TagList = React.createClass({
     render: function() {
-      var tagStyle = {
-        marginRight: '0.5em'
-      };
       var tagNodes = this.props.tags.map(function (tag, i) {
         return (
-          <span key={tag.id} className="label label-primary" style={tagStyle}>{tag.name}</span>
+          <span><Label ey={tag.id} bsStyle="default" className="label label-primary">{tag.name}</Label>&nbsp;</span>
         );
       });
       return (

@@ -21,6 +21,13 @@ button {
   outline: none;
 }
 
+td.wrap
+{
+  word-wrap: break-word;
+  min-width: 160px;
+  max-width: 160px;
+}
+
 .rating-Regressive {
   border-left-color: Red !important;
   border-left-width: 15px !important;
