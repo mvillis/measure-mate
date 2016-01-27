@@ -24,6 +24,7 @@
     "babel": "*",
     "react-bootstrap": "~0.28.1",
     "react-loader": "~2.0.0",
-    "lodash": "~4.0.0"
+    "lodash": "~4.0.0",
+    "moment": "~2.11.1"
   }
 }
