@@ -15,6 +15,11 @@
             <script type="text/babel">
 
             var TemplateSelect = React.createClass({
+              propTypes: {
+                label: React.PropTypes.string.isRequired,
+                value: React.PropTypes.string.isRequired,
+                onChange: React.PropTypes.func.isRequired,
+              },
               displayName: 'TemplateSelect',
 
               loadOptions: function loadOptions(input, callback) {
@@ -64,6 +69,11 @@
             });
 
             var TagSelect = React.createClass({
+              propTypes: {
+                label: React.PropTypes.string.isRequired,
+                value: React.PropTypes.string.isRequired,
+                onChange: React.PropTypes.func.isRequired,
+              },
               displayName: 'TagSelect',
 
               loadOptions: function loadOptions(input, callback) {
@@ -111,6 +121,7 @@
             });
 
             var AssessmentCreationForm = React.createClass({
+              propTypes: {},
               getInitialState: function() {
                 return {
                   template: "",
