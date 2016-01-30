@@ -27,6 +27,9 @@
   var Popover = ReactBootstrap.Popover;
 
   var TemplateTable = React.createClass({
+    propTypes: {
+      url: React.PropTypes.string.isRequired,
+    },
     loadAssessmentFromServer: function() {
       $.ajax({
         url: this.props.url,
@@ -68,7 +71,6 @@
     },
     componentDidMount: function() {
       this.loadAssessmentFromServer();
-      // setInterval(this.loadAssessmentFromServer, this.props.pollInterval);
     },
     render: function() {
       return (
@@ -83,6 +85,10 @@
     });
 
   var AttributeList = React.createClass({
+    propTypes: {
+      assess_id: React.PropTypes.number,
+      data: React.PropTypes.array.isRequired,
+    },
     getInitialState: function() {
       return {
         active_attribute: 1,
@@ -184,6 +190,15 @@
   });
 
   var ObserveInput = React.createClass({
+      propTypes: {
+        observation_synced: React.PropTypes.bool,
+        selected_rating: React.PropTypes.number,
+        observations: React.PropTypes.string.isRequired,
+        observationSyncUpdate: React.PropTypes.func.isRequired,
+        updateObserve: React.PropTypes.func.isRequired,
+        saveMeasurement: React.PropTypes.func.isRequired,
+        syncMeasurement: React.PropTypes.func.isRequired,
+      },
       getInitialState: function () {
           return {
               save_btn_disabled: true
@@ -271,6 +286,16 @@
   });
 
   var RatingList = React.createClass({
+    propTypes: {
+      key: React.PropTypes.number,
+      measurement: React.PropTypes.object,
+      attribute_id: React.PropTypes.number.isRequired,
+      assess_id: React.PropTypes.number.isRequired,
+      name: React.PropTypes.string.isRequired,
+      desc: React.PropTypes.string.isRequired,
+      desc_class: React.PropTypes.string.isRequired,
+      data: React.PropTypes.array.isRequired,
+    },
     componentWillMount() {
       this.syncMeasurement = _.debounce(this.syncMeasurement, 250);
     },
@@ -383,7 +408,7 @@
                       bsSize='xsmall'>
                       Target
                   </Button>
-                  <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover>You have decided your current rating. Set your future goal by selecting a target button.</Popover>}>
+                  <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id={rating.id}>You have decided your current rating. Set your future goal by selecting a target button.</Popover>}>
                     <Glyphicon className="target-help clickable" glyph="glyphicon glyphicon-question-sign" />
                   </OverlayTrigger>
                 </div>
@@ -423,7 +448,7 @@
   });
 
   ReactDOM.render(
-  <TemplateTable url="/api/assessments/{{id}}/" pollInterval={20000}/>,
+  <TemplateTable url="/api/assessments/{{id}}/"/>,
   document.getElementById('content')
   );
 </script>
