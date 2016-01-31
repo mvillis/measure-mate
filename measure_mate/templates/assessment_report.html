@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Measure Mate{% endblock %}
+{% block head %}
+  <script src="{% static "components/chartist/dist/chartist.min.js" %}"></script>
+  <script src="{% static "components/Chart.js/Chart.min.js" %}"></script>
+  <script src="{% static "components/react-chartjs/dist/react-chartjs.min.js" %}"></script>
+
+  <link rel="stylesheet" href="{% static "components/chartist/dist/chartist.min.css" %}">
+{% endblock %}
+{% block body %}
+<div id="content" class="container"></div>
+<script type="text/babel">
+var PageHeader = ReactBootstrap.PageHeader;
+
+var AssessmentByAttributeGraph = React.createClass({
+  propTypes: {
+    url: React.PropTypes.string.isRequired,
+  },
+  getInitialState: function() {
+    return {
+      assessment_detail: null,
+      template_detail: null,
+      measurements: null,
+      loaded: false
+    };
+  },
+  componentDidMount: function() {
+    this.loadAssessmentFromServer();
+  },
+  loadAssessmentFromServer: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({
+          assessment_detail: data
+        })
+        this.loadRatingsFromServer(data);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  loadRatingsFromServer: function(assess_data) {
+    $.ajax({
+      url: '/api/templates/' + assess_data.template.id + '/',
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({
+          template_detail: data
+        });
+        this.loadMeasurementsFromServer(assess_data.id);
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  loadMeasurementsFromServer: function(assess_id) {
+    $.ajax({
+      url: '/api/measurements/' + '?assessment__id=' + assess_id,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({
+          measurements: data,
+          loaded: true
+        });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  getMeasurementForAttribute(attribute) {
+    if (this.state.measurements != null) {
+      for (var i=0; i < this.state.measurements.length; i++) {
+        if (attribute.id == this.state.measurements[i].rating.attribute) {
+          return this.state.measurements[i];
+          break;
+        }
+      };
+    } else {
+      return null;
+    }
+  },
+  render: function() {
+    var labels = [];
+    var rating_series = {
+      className: 'ct-series-a',
+      name: 'Current Rating',
+      data: [],
+    }
+    var target_series = {
+      className: 'ct-series-b',
+      name: 'Target Rating',
+      data: [],
+    }
+    if (this.state.measurements != null) {
+      (this.state.template_detail.attributes.map(function (attribute, i) {
+        var measurement = this.getMeasurementForAttribute(attribute);
+        labels.push(attribute.name);
+        (measurement) ? rating_series.data.push(measurement.rating.rank) : rating_series.data.push(0);
+        (measurement) ? target_series.data.push(measurement.target_rating.rank) : target_series.data.push(0);
+      }.bind(this)));
+    }
+    var data = {"labels": labels, "series": [rating_series, target_series]};
+    // We are setting a few options for our chart and override the defaults
+    var options = {
+      // Don't draw the line chart points
+      showPoint: false,
+      // Disable line smoothing
+      lineSmooth: false,
+      // X-Axis specific configuration
+      axisX: {
+        // We can disable the grid for this axis
+        showGrid: false,
+        // and show the label
+        showLabel: true
+      },
+      // Y-Axis specific configuration
+      axisY: {
+        // Lets offset the chart a bit from the labels
+        offset: 60,
+        // The label interpolation function enables you to modify the values
+        // used for the labels on each axis. Here we are converting the
+        // values into million pound.
+        labelInterpolationFnc: function(value) {
+          return value;
+        }
+      }
+    };
+    return (
+          <Loader loaded={this.state.loaded}>
+            <ChartistGraph data={data} options={options} type="Bar" width="600" height="250"/>
+          </Loader>
+    );
+  }
+  });
+
+
+var ChartistGraph = React.createClass({
+  displayName: 'ChartistGraph',
+
+  propTypes: {
+    type: React.PropTypes.string.isRequired,
+    data: React.PropTypes.object.isRequired,
+    className: React.PropTypes.string,
+    options: React.PropTypes.object,
+    responsiveOptions: React.PropTypes.array
+  },
+  componentWillReceiveProps: function (newProps) {
+    this.updateChart(newProps);
+  },
+
+  componentWillUnmount: function () {
+    if (this.chartist) {
+      try {
+        this.chartist.detach();
+      } catch (err) {
+        throw new Error('Internal chartist error', err);
+      }
+    }
+  },
+
+  componentDidMount: function () {
+    this.updateChart(this.props);
+  },
+
+  updateChart: function (config) {
+    let Chartist = window.Chartist;
+
+    let { type, data } = config;
+    let options = config.options || {};
+    let responsiveOptions = config.responsiveOptions || [];
+    let event;
+
+    if (this.chartist) {
+      this.chartist.update(data, options, responsiveOptions);
+    } else {
+      this.chartist = new Chartist[type](ReactDOM.findDOMNode(this), data, options, responsiveOptions);
+
+      if (config.listener) {
+        for (event in config.listener) {
+          if (config.listener.hasOwnProperty(event)) {
+            this.chartist.on(event, config.listener[event]);
+          }
+        }
+      }
+
+    }
+    return this.chartist;
+  },
+
+  render: function() {
+    const className = this.props.className ? ' ' + this.props.className : ''
+    const style = this.props.style ? this.props.style : {};
+    return (<div className={'ct-chart' + className} style={style} />)
+  }
+});
+
+var MyComponent = React.createClass({
+  render: function() {
+    return <LineChart data={chartData} options={chartOptions} width="600" height="250"/>
+  }
+});
+
+var AssessmentReport = React.createClass({
+  render: function() {
+    return (
+      <div>
+        <PageHeader>
+          Assessment Summary <small> Current and Target</small>
+        </PageHeader>
+        <AssessmentByAttributeGraph url="/api/assessments/{{id}}/"/>
+      </div>
+    )
+  }
+});
+
+  ReactDOM.render(
+  <AssessmentReport/>,
+  document.getElementById('content')
+  );
+</script>
+{% endblock %}

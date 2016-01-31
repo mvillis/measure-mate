@@ -13,6 +13,10 @@ def assessment(request, pk):
     return render(request, 'assessment.html', {'id': pk})
 
 
+def assessment_report(request, pk):
+    return render(request, 'assessment_report.html', {'id': pk})
+
+
 def assessment_list(request):
     return render(request, 'assessment_list.html')
 
