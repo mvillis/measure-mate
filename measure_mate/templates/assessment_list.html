@@ -15,6 +15,9 @@
   var Table = ReactBootstrap.Table;
 
   var AssessmentTable = React.createClass({
+    propTypes: {
+      url: React.PropTypes.string.isRequired
+    },
     loadRatingsFromServer: function() {
       $.ajax({
         url: this.props.url,
@@ -51,6 +54,9 @@
     });
 
   var AssessmentList = React.createClass({
+    propTypes: {
+      data: React.PropTypes.array.isRequired,
+    },
 
     handleClick: function(assess_id, e) {
       console.log(assess_id);
@@ -90,10 +96,13 @@
   });
 
   var TagList = React.createClass({
+    propTypes: {
+      tags: React.PropTypes.array.isRequired
+    },
     render: function() {
       var tagNodes = this.props.tags.map(function (tag, i) {
         return (
-          <span><Label ey={tag.id} bsStyle="default" className="label label-primary">{tag.name}</Label>&nbsp;</span>
+          <span key={i}><Label ey={tag.id} bsStyle="default" className="label label-primary">{tag.name}</Label>&nbsp;</span>
         );
       });
       return (
@@ -106,7 +115,7 @@
 
 
   ReactDOM.render(
-  <AssessmentTable url="/api/assessments/" pollInterval={20000}/>,
+  <AssessmentTable url="/api/assessments/"/>,
   document.getElementById('content')
   );
 </script>

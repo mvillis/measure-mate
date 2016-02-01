@@ -23,8 +23,13 @@
   var PageItem = ReactBootstrap.PageItem;
   var Glyphicon = ReactBootstrap.Glyphicon;
   var Button = ReactBootstrap.Button;
+  var Table = ReactBootstrap.Table;
+  var Popover = ReactBootstrap.Popover;
 
   var TemplateTable = React.createClass({
+    propTypes: {
+      url: React.PropTypes.string.isRequired,
+    },
     loadAssessmentFromServer: function() {
       $.ajax({
         url: this.props.url,
@@ -66,7 +71,6 @@
     },
     componentDidMount: function() {
       this.loadAssessmentFromServer();
-      // setInterval(this.loadAssessmentFromServer, this.props.pollInterval);
     },
     render: function() {
       return (
@@ -81,6 +85,10 @@
     });
 
   var AttributeList = React.createClass({
+    propTypes: {
+      assess_id: React.PropTypes.number,
+      data: React.PropTypes.array.isRequired,
+    },
     getInitialState: function() {
       return {
         active_attribute: 1,
@@ -182,6 +190,15 @@
   });
 
   var ObserveInput = React.createClass({
+      propTypes: {
+        observation_synced: React.PropTypes.bool,
+        selected_rating: React.PropTypes.number,
+        observations: React.PropTypes.string.isRequired,
+        observationSyncUpdate: React.PropTypes.func.isRequired,
+        updateObserve: React.PropTypes.func.isRequired,
+        saveMeasurement: React.PropTypes.func.isRequired,
+        syncMeasurement: React.PropTypes.func.isRequired,
+      },
       getInitialState: function () {
           return {
               save_btn_disabled: true
@@ -257,11 +274,11 @@
         }.bind(this);
         return (
           <div>
-            <Input type="textarea" rows="3" label="Observations" placeholder="Some notes on why a particular rating was selected."
+            <Input type="textarea" rows="3" label="Observations" placeholder="Discuss your current practices and capture some notes."
                    ref="observeInput"
                    value={this.state.observations}
                    onChange={this.onChange} Input/>
-                     <Button ref="obsSaveBtn" disabled={this.state.save_btn_disabled} bsStyle="primary" bsSize="xsmall" onClick={this.handleSave.bind(this)}>Save</Button>
+                     <Button ref="obsSaveBtn" disabled={this.state.save_btn_disabled} bsStyle="primary" bsSize="xsmall" onClick={this.handleSave}>Save</Button>
                      {syncStatus()}
            </div>
         );
@@ -269,34 +286,49 @@
   });
 
   var RatingList = React.createClass({
+    propTypes: {
+      key: React.PropTypes.number,
+      measurement: React.PropTypes.object,
+      attribute_id: React.PropTypes.number.isRequired,
+      assess_id: React.PropTypes.number.isRequired,
+      name: React.PropTypes.string.isRequired,
+      desc: React.PropTypes.string.isRequired,
+      desc_class: React.PropTypes.string.isRequired,
+      data: React.PropTypes.array.isRequired,
+    },
     componentWillMount() {
-      this.syncMeasurement = _.debounce(this.syncMeasurement, 2000);
+      this.syncMeasurement = _.debounce(this.syncMeasurement, 250);
     },
     getInitialState: function() {
       if (this.props.measurement != null) {
+        var selected_target = (this.props.measurement.target_rating) ? this.props.measurement.target_rating.id : null;
         return {
           measurement_id: this.props.measurement.id,
           selected_rating: this.props.measurement.rating.id,
+          selected_target: selected_target,
           observations: this.props.measurement.observations,
           observation_synced: null,
-          saved_rating: true
+          saved_measurement: true
         };
       } else {
         return {
           measurement_id: null,
           selected_rating: null,
+          selected_target: null,
           observations: "",
           observation_synced: null,
-          saved_rating: true
+          saved_measurement: true
         };
       }
     },
     componentWillReceiveProps: function(newProps) {
       if (newProps.measurement && newProps.measurement.id != this.measurement_id) {
+        var selected_target = (newProps.measurement.target_rating) ? newProps.measurement.target_rating.id : null;
         this.setState(
           {
             measurement_id: newProps.measurement.id,
             selected_rating: newProps.measurement.rating.id,
+            selected_target: selected_target,
             observations: newProps.measurement.observations,
           });
       }
@@ -325,11 +357,12 @@
         id: this.state.measurement_id,
         assessment: this.props.assess_id,
         rating: this.state.selected_rating,
+        target_rating: this.state.selected_target,
         observations: this.state.observations
       };
       this.setState(
         {
-          saved_rating: false
+          saved_measurement: false
         });
       this.syncMeasurement(postData);
     },
@@ -339,11 +372,19 @@
           selected_rating: data,
         }, this.saveMeasurement);
     },
+    handleTargetClick: function(data) {
+      this.setState(
+        {
+          selected_target: data
+        },
+        this.saveMeasurement
+      )
+    },
     handleSubmitSuccess: function(data) {
       this.setState({
         measurement_id: data.id,
         observation_synced: true,
-        saved_rating: true
+        saved_measurement: true
       });
     },
     handleSubmitFailure: function(xhr, ajaxOptions, thrownError) {
@@ -351,21 +392,52 @@
     },
     render: function() {
       var ratingNodes = this.props.data.map(function (rating) {
-          var active = (this.state.selected_rating == rating.id)
+          var rating_active = (this.state.selected_rating == rating.id)
+          var target_active = (this.state.selected_target == rating.id)
+          var target_bs_style = target_active ? "success" : "default";
           var desc_class = "rating-" + rating.name + (rating.desc_class ? " " + rating.desc_class : "")
+          var header = function () {
+            if (!!this.state.selected_rating) {
+              return (
+                <div>
+                  <h4 className="inline clickable">{rating.name}</h4>
+                  <Button ref='currentBtn'
+                      onClick={this.handleTargetClick.bind(this, rating.id)}
+                      bsStyle={target_bs_style} className="target-btn"
+                      active={target_active}
+                      bsSize='xsmall'>
+                      Target
+                  </Button>
+                  <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id={rating.id}>You have decided your current rating. Set your future goal by selecting a target button.</Popover>}>
+                    <Glyphicon className="target-help clickable" glyph="glyphicon glyphicon-question-sign" />
+                  </OverlayTrigger>
+                </div>
+              );
+            } else {
+              return (
+                <div>
+                  <h4 className="inline clickable">{rating.name}</h4>
+                </div>
+              )
+            }
+          }.bind(this)();
           return (
-            <ListGroupItem active={active} onClick={this.handleClick.bind(this, rating.id)} id={rating.id} key={rating.id} header={rating.name} className={desc_class}>
-              {rating.desc}
+            <ListGroupItem active={rating_active} id={rating.id} key={rating.id} header={header} className={desc_class}>
+              <div className="clickable" onClick={this.handleClick.bind(this, rating.id)}>
+                {rating.desc}
+              </div>
             </ListGroupItem>
           );
       }.bind(this));
       var desc_class = this.props.desc_class || ""
       return (
         <Panel header={this.props.name} bsStyle="primary">
-          <p className={desc_class}>{this.props.desc}</p>
+          <Alert className={desc_class} bsStyle="warning">
+            {this.props.desc}
+          </Alert>
           <ObserveInput observation_synced={this.state.observation_synced} selected_rating={this.state.selected_rating} observations={this.state.observations} observationSyncUpdate={this.observationSyncUpdate}
                      updateObserve={this.updateObserve} saveMeasurement={this.saveMeasurement} syncMeasurement={this.syncMeasurement}/>
-          <Loader loaded={this.state.saved_rating}>
+          <Loader loaded={this.state.saved_measurement}>
           </Loader>
           <ListGroup fill>
             {ratingNodes}
@@ -376,7 +448,7 @@
   });
 
   ReactDOM.render(
-  <TemplateTable url="/api/assessments/{{id}}/" pollInterval={20000}/>,
+  <TemplateTable url="/api/assessments/{{id}}/"/>,
   document.getElementById('content')
   );
 </script>

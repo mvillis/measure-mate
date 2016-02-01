@@ -3,6 +3,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="X-UA-Compatible" content="IE=edge">
+
     <title>{% block title %}{% endblock %}</title>
 
     <script type="text/javascript" src='{% static 'components/jquery/dist/jquery.min.js' %}'></script>
@@ -20,7 +22,6 @@
     <script type="text/javascript" src="//js.ruxit.com/jstag/147f273fa2a/emo72556/ea3ad8e4de43c3f5_bs.js"></script>
 
     <link rel="stylesheet" href="{% static "components/bootstrap/dist/css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "components/bootstrap/dist/css/bootstrap-theme.min.css" %}">
     <link rel="stylesheet" href="{% static "components/react-select/dist/react-select.min.css" %}">
     <link rel="stylesheet" href="{% static "css/measure-mate.css" %}">
     {% block head %}{% endblock %}
@@ -33,6 +34,7 @@
     var Nav = ReactBootstrap.Nav;
 
     var MMNavBar = React.createClass({
+      propTypes: {},
         render: function render() {
           return (
             <Navbar fluid>
