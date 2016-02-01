@@ -3,16 +3,20 @@ from rest_framework.response import Response
 from django.shortcuts import render
 from serializers import *
 from models import *
+from headers import x_ua_compatible
 
 
+@x_ua_compatible('IE=edge')
 def home(request):
     return render(request, 'index.html')
 
 
+@x_ua_compatible('IE=edge')
 def assessment(request, pk):
     return render(request, 'assessment.html', {'id': pk})
 
 
+@x_ua_compatible('IE=edge')
 def assessment_list(request):
     return render(request, 'assessment_list.html')
 
