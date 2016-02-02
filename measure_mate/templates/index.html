@@ -5,10 +5,10 @@
 
 {% endblock %}
 {% block body %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="jumbotron">
             <h1>Welcome to Measure Mate!</h1>
-            <div class="container">
+            <div class="container-fluid">
               <div id="content"></div>
             </div>
 
@@ -205,12 +205,8 @@
                           />
                     </div>
                     <div className="form-group">
-                      <div className="col-md-1">
                         <input className="btn btn-default" type="submit" value="Launch" onClick={this.handleSubmit} aria-describedby="helpBlock"/>
-                      </div>
-                      <div className="col-md-11">
-                        <div id="form-error" className="text-danger v-cent hidden"/>
-                      </div>
+                        <span id="form-error" className="text-danger v-cent hidden"/>
                     </div>
                   </form>
                 )
