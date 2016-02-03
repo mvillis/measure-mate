@@ -6,6 +6,19 @@
   <script src="{% static "components/chartist/dist/chartist.min.js" %}"></script>
 
   <link rel="stylesheet" href="{% static "components/chartist/dist/chartist.min.css" %}">
+  <style>
+        .ct-series-a .ct-bar {
+          stroke: #cccccc;
+          stroke-width: 30px;
+        }
+        .ct-series-b .ct-bar {
+          stroke: blue;
+          stroke-width: 20px;
+        }
+        .ct-chart-bar .ct-label {
+          color: black;
+        }
+  </style>
 {% endblock %}
 {% block body %}
 <div id="content" class="container"></div>
@@ -89,53 +102,85 @@ var AssessmentByAttributeGraph = React.createClass({
   },
   render: function() {
     var labels = [];
-    var rating_series = {
-      className: 'ct-series-a',
-      name: 'Current Rating',
-      data: [],
-    }
     var target_series = {
-      className: 'ct-series-b',
+      className: 'ct-series-a',
       name: 'Target Rating',
       data: [],
     }
+    var rating_series = {
+      className: 'ct-series-b',
+      name: 'Current Rating',
+      data: [],
+    }
+    var max_rank = null;
+    var min_rank = null;
+    var ratings_by_rank = {};
     if (this.state.measurements != null) {
       (this.state.template_detail.attributes.map(function (attribute, i) {
         var measurement = this.getMeasurementForAttribute(attribute);
         labels.push(attribute.name);
         (measurement && measurement.rating) ? rating_series.data.push(measurement.rating.rank) : rating_series.data.push(0);
         (measurement && measurement.target_rating) ? target_series.data.push(measurement.target_rating.rank) : target_series.data.push(0);
+        if (max_rank == null) {
+          for (var i=0; i < attribute.ratings.length; i++) {
+            var rating = attribute.ratings[i];
+            ratings_by_rank[rating.rank] = rating
+            if (max_rank == null || max_rank < rating.rank) {
+              max_rank = rating.rank
+            }
+            if (min_rank == null || min_rank > rating.rank) {
+              min_rank = rating.rank
+            }
+          }
+        }
       }.bind(this)));
     }
-    var data = {"labels": labels, "series": [rating_series, target_series]};
+    var data = {"labels": labels, "series": [target_series, rating_series]};
+    var listeners = {
+      draw: function(context) {
+        if (context.type === 'bar' && context.series.name == "Current Rating") {
+          if (Chartist.getMultiValue(context.value) < 0) {
+            context.element.attr({
+              style: 'stroke: red;'
+            });
+          }
+        }
+      }};
     // We are setting a few options for our chart and override the defaults
     var options = {
-      // Don't draw the line chart points
-      showPoint: false,
-      // Disable line smoothing
-      lineSmooth: false,
+      // Stack bars...
+      stackBars: true,
+      // ... but make them overlap, not accumulate
+      stackMode: 'overlap',
       // X-Axis specific configuration
       axisX: {
-        // We can disable the grid for this axis
-        showGrid: false,
+        showGrid: true,
         // and show the label
-        showLabel: true
+        showLabel: true,
+        offset: 100,
       },
       // Y-Axis specific configuration
       axisY: {
-        // Lets offset the chart a bit from the labels
-        offset: 60,
-        // The label interpolation function enables you to modify the values
-        // used for the labels on each axis. Here we are converting the
-        // values into million pound.
+        high: max_rank,
+        low: min_rank,
+        onlyInteger: true,
+
         labelInterpolationFnc: function(value) {
+          if (ratings_by_rank[value]) {
+            return ratings_by_rank[value].name
+          }
+          else if (value == 0) {
+            return "N/A"
+          }
           return value;
         }
-      }
+      },
+      width: 600,
+      height: 400
     };
     return (
           <Loader loaded={this.state.loaded}>
-            <ChartistGraph data={data} options={options} type="Bar" width="600" height="250"/>
+            <ChartistGraph data={data} options={options} listener={listeners} type="Bar" className=""/>
           </Loader>
     );
   }
