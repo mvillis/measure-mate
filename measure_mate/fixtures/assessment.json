@@ -1,7 +1,7 @@
 [
   {
     "model": "measure_mate.assessment",
-    "pk": 1,
+    "pk": 2,
     "fields": {
       "created": "2016-02-03T01:45:14.525Z",
       "updated": "2016-02-03T01:45:14.525Z",
@@ -19,8 +19,8 @@
     "pk": 1,
     "fields": {
       "assessment": 2,
-      "rating": 1,
-      "target_rating": 2,
+      "rating": 101,
+      "target_rating": 102,
       "observations": ""
     }
   },
@@ -29,8 +29,8 @@
     "pk": 2,
     "fields": {
       "assessment": 2,
-      "rating": 6,
-      "target_rating": 8,
+      "rating": 106,
+      "target_rating": 108,
       "observations": ""
     }
   },
@@ -39,8 +39,8 @@
     "pk": 3,
     "fields": {
       "assessment": 2,
-      "rating": 12,
-      "target_rating": 12,
+      "rating": 112,
+      "target_rating": 112,
       "observations": ""
     }
   },
@@ -49,8 +49,8 @@
     "pk": 4,
     "fields": {
       "assessment": 2,
-      "rating": 15,
-      "target_rating": 15,
+      "rating": 115,
+      "target_rating": 115,
       "observations": ""
     }
   },
@@ -59,8 +59,8 @@
     "pk": 5,
     "fields": {
       "assessment": 2,
-      "rating": 19,
-      "target_rating": 20,
+      "rating": 119,
+      "target_rating": 120,
       "observations": ""
     }
   },
@@ -69,7 +69,7 @@
     "pk": 6,
     "fields": {
       "assessment": 2,
-      "rating": 22,
+      "rating": 122,
       "target_rating": null,
       "observations": ""
     }
@@ -79,8 +79,8 @@
     "pk": 7,
     "fields": {
       "assessment": 2,
-      "rating": 25,
-      "target_rating": 28,
+      "rating": 125,
+      "target_rating": 128,
       "observations": ""
     }
   },
@@ -89,7 +89,7 @@
     "pk": 8,
     "fields": {
       "assessment": 2,
-      "rating": 30,
+      "rating": 130,
       "target_rating": null,
       "observations": ""
     }
@@ -99,7 +99,7 @@
     "pk": 9,
     "fields": {
       "assessment": 2,
-      "rating": 35,
+      "rating": 135,
       "target_rating": null,
       "observations": ""
     }
@@ -109,8 +109,8 @@
     "pk": 10,
     "fields": {
       "assessment": 2,
-      "rating": 38,
-      "target_rating": 39,
+      "rating": 138,
+      "target_rating": 139,
       "observations": ""
     }
   }
