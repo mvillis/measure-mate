@@ -4,8 +4,6 @@
 {% block title %}Measure Mate{% endblock %}
 {% block head %}
   <script src="{% static "components/chartist/dist/chartist.min.js" %}"></script>
-  <script src="{% static "components/Chart.js/Chart.min.js" %}"></script>
-  <script src="{% static "components/react-chartjs/dist/react-chartjs.min.js" %}"></script>
 
   <link rel="stylesheet" href="{% static "components/chartist/dist/chartist.min.css" %}">
 {% endblock %}
@@ -105,8 +103,8 @@ var AssessmentByAttributeGraph = React.createClass({
       (this.state.template_detail.attributes.map(function (attribute, i) {
         var measurement = this.getMeasurementForAttribute(attribute);
         labels.push(attribute.name);
-        (measurement) ? rating_series.data.push(measurement.rating.rank) : rating_series.data.push(0);
-        (measurement) ? target_series.data.push(measurement.target_rating.rank) : target_series.data.push(0);
+        (measurement && measurement.rating) ? rating_series.data.push(measurement.rating.rank) : rating_series.data.push(0);
+        (measurement && measurement.target_rating) ? target_series.data.push(measurement.target_rating.rank) : target_series.data.push(0);
       }.bind(this)));
     }
     var data = {"labels": labels, "series": [rating_series, target_series]};
