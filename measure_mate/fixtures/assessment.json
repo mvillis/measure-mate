@@ -113,5 +113,15 @@
       "target_rating": 139,
       "observations": ""
     }
+  },
+  {
+    "model": "measure_mate.measurement",
+    "pk": 11,
+    "fields": {
+      "assessment": 2,
+      "rating": 142,
+      "target_rating": 144,
+      "observations": ""
+    }
   }
 ]
