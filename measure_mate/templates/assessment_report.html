@@ -4,6 +4,8 @@
 {% block title %}Measure Mate{% endblock %}
 {% block head %}
   <script src="{% static "components/chartist/dist/chartist.min.js" %}"></script>
+  <script src="{% static "components/chartist-plugin-legend/chartist-plugin-legend.js" %}"></script>
+  <script src="{% static "components/chartist-plugin-axistitle/dist/chartist-plugin-axistitle.min.js" %}"></script>
 
   <link rel="stylesheet" href="{% static "components/chartist/dist/chartist.min.css" %}">
   <style>
@@ -17,7 +19,52 @@
         }
         .ct-chart-bar .ct-label {
           color: black;
+          fill: black;
+          font-size: 1rem;
+          text-align: center;
         }
+        .ct-legend {
+            position: relative;
+            z-index: 10;
+            list-style-type: none;
+            float: right;
+        }
+
+        .ct-legend li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 3px;
+            font-size: 1rem;
+        }
+
+        .ct-legend li::before {
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            left: 0;
+            content: '';
+            border: 3px solid transparent;
+            border-radius: 2px;
+        }
+
+        .ct-legend li.inactive::before {
+            background: transparent;
+        }
+
+        .ct-legend .ct-legend-inside {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .ct-legend .ct-series-0:before {
+            background-color: #cccccc;
+            border-color: #cccccc;
+        }
+        .ct-legend .ct-series-1:before {
+            background-color: blue;
+            border-color: blue;
+        }
+
   </style>
 {% endblock %}
 {% block body %}
@@ -164,6 +211,8 @@ var AssessmentByAttributeGraph = React.createClass({
         high: max_rank,
         low: min_rank,
         onlyInteger: true,
+        offset: 100,
+
 
         labelInterpolationFnc: function(value) {
           if (ratings_by_rank[value]) {
@@ -175,8 +224,25 @@ var AssessmentByAttributeGraph = React.createClass({
           return value;
         }
       },
-      width: 600,
-      height: 400
+      // width: 600,
+      height: "400px",
+      plugins: [
+        Chartist.plugins.legend(),
+        Chartist.plugins.ctAxisTitle({
+          axisX: {
+          },
+          axisY: {
+            axisTitle: 'Practice Maturity',
+            axisClass: 'ct-axis-title',
+            offset: {
+              x: 0,
+              y: 40
+            },
+            textAnchor: 'middle',
+            flipTitle: true
+          }
+        })
+      ]
     };
     return (
           <Loader loaded={this.state.loaded}>
