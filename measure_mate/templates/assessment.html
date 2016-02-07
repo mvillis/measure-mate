@@ -38,7 +38,8 @@
         template: null,
         assessment: null,
         next_hide: false,
-        previous_hide: false
+        previous_hide: false,
+        initial_load: false
       };
     },
     componentWillMount: function(){
@@ -46,7 +47,8 @@
     },
     measurement_callback: function (data) {
       this.setState( {
-        measurements: data
+        measurements: data,
+        initial_load: true
       });
       this.handleSelect(1);
     },
@@ -141,17 +143,19 @@
       }
       return (
         <div id="att-list">
-          <PageHeader>
-            {!!this.state.assessment == true ? this.state.assessment.template.name : ""} <small> {!!this.state.assessment ? this.state.assessment.template.short_desc : ""}</small>
-          </PageHeader>
-          <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
-            {attributeNodes}
-            <Pager>
-              <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
-              {' '}
-              <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
-            </Pager>
-          </Tabs>
+          <Loader loaded={this.state.initial_load}>
+            <PageHeader>
+              {!!this.state.assessment == true ? this.state.assessment.template.name : ""} <small> {!!this.state.assessment ? this.state.assessment.template.short_desc : ""}</small>
+            </PageHeader>
+            <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
+              {attributeNodes}
+              <Pager>
+                <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
+                {' '}
+                <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
+              </Pager>
+            </Tabs>
+          </Loader>
         </div>
       );
     }
