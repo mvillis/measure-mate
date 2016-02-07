@@ -26,93 +26,56 @@
   var Table = ReactBootstrap.Table;
   var Popover = ReactBootstrap.Popover;
 
-  var TemplateTable = React.createClass({
-    propTypes: {
-      url: React.PropTypes.string.isRequired,
-    },
-    loadAssessmentFromServer: function() {
-      $.ajax({
-        url: this.props.url,
-        dataType: 'json',
-        cache: false,
-        success: function(data) {
-          this.loadRatingsFromServer(data);
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
-    },
-    loadRatingsFromServer: function(assess_data) {
-      $.ajax({
-        url: '/api/templates/' + assess_data.template.id + '/',
-        dataType: 'json',
-        cache: false,
-        success: function(data) {
-          this.setState({
-            assess_id: assess_data.id,
-            data: data.attributes,
-            name: data.name,
-            desc: data.short_desc,
-            loaded: true
-          });
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
-    },
-    getInitialState: function() {
-      return {
-        data: [],
-        assess_id: null,
-        loaded: false
-      };
-    },
-    componentDidMount: function() {
-      this.loadAssessmentFromServer();
-    },
-    render: function() {
-      return (
-            <Loader loaded={this.state.loaded}>
-              <PageHeader>
-                {this.state.name} <small> {this.state.desc}</small>
-              </PageHeader>
-              <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
-            </Loader>
-      );
-    }
-    });
-
   var AttributeList = React.createClass({
     propTypes: {
-      assess_id: React.PropTypes.number,
-      data: React.PropTypes.array.isRequired,
+      assess_id: React.PropTypes.string,
     },
     getInitialState: function() {
       return {
         active_attribute: 1,
         rating_selected: false,
         measurements: null,
+        template: null,
+        assessment: null,
         next_hide: false,
         previous_hide: false
       };
     },
-    componentDidMount: function(){
-      this.dataSource();
+    componentWillMount: function(){
+      this.dataSource("/api/assessments/" + this.props.assess_id + "/", this.assessment_callback);
     },
-    dataSource: function(){
-      return $.ajax({
+    measurement_callback: function (data) {
+      this.setState( {
+        measurements: data
+      });
+      this.handleSelect(1);
+    },
+    template_callback: function (data) {
+      this.setState( {
+        template: data
+      }, this.dataSource("/api/measurements/" + "?assessment__id=" + this.props.assess_id, this.measurement_callback)
+      );
+    },
+    assessment_callback: function (data) {
+      this.setState( {
+        assessment: data
+      }, this.dataSource("/api/templates/" + data.template.id + "/", this.template_callback)
+      );
+    },
+    handleSubmitFailure: function(xhr, ajaxOptions, thrownError) {
+        console.error("There was a failure");
+    },
+    dataSource: function(url, callback){
+      $.ajax({
         type: "get",
         dataType: 'json',
-        url: '/api/measurements/' + '?assessment__id=' + this.props.assess_id
-      }).done(function(result){
-        this.setState({ measurements: result });
-        this.handleTabChange(1);
-      }.bind(this));
+        url: url,
+        success: callback,
+        error: this.handleSubmitFailure,
+      });
     },
     handleNext: function () {
-      if (this.state.active_attribute < this.props.data.length && !this.state.next_hide) {
+      if (this.state.active_attribute < this.state.template.attributes.length && !this.state.next_hide) {
         var new_tab = this.state.active_attribute + 1;
         this.scrollToTop('#att-list');
         this.setState({active_attribute: new_tab});
@@ -138,7 +101,7 @@
       } else {
         this.setState({previous_hide: false});
       }
-      if (current_tab >= this.props.data.length) {
+      if (current_tab >= this.state.template.attributes.length) {
         this.setState({next_hide: true});
       } else {
         this.setState({next_hide:false});
@@ -166,16 +129,21 @@
       }
     },
     render: function() {
-      var attributeNodes = this.props.data.map(function (attribute, i) {
-        var measurement = this.getMeasurementForAttribute(attribute);
-        return (
-          <Tab eventKey={i+1} key={attribute.id} id={i+1} title={<div><span className="glyphicon glyphicon-chevron-right"></span> <span>{attribute.name}</span></div>}>
-            <RatingList key={attribute.id} measurement={measurement} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} desc_class={attribute.desc_class} data={attribute.ratings}/>
-          </Tab>
-        );
-      }.bind(this));
+      if (this.state.template) {
+        var attributeNodes = this.state.template.attributes.map(function (attribute, i) {
+          var measurement = this.getMeasurementForAttribute(attribute);
+          return (
+            <Tab eventKey={i+1} key={attribute.id} id={i+1} title={<div><span className="glyphicon glyphicon-chevron-right"></span> <span>{attribute.name}</span></div>}>
+              <RatingList key={attribute.id} measurement={measurement} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} desc_class={attribute.desc_class} data={attribute.ratings}/>
+            </Tab>
+          );
+        }.bind(this));
+      }
       return (
         <div id="att-list">
+          <PageHeader>
+            {!!this.state.assessment == true ? this.state.assessment.template.name : ""} <small> {!!this.state.assessment ? this.state.assessment.template.short_desc : ""}</small>
+          </PageHeader>
           <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
             {attributeNodes}
             <Pager>
@@ -290,7 +258,7 @@
       key: React.PropTypes.number,
       measurement: React.PropTypes.object,
       attribute_id: React.PropTypes.number.isRequired,
-      assess_id: React.PropTypes.number.isRequired,
+      assess_id: React.PropTypes.string.isRequired,
       name: React.PropTypes.string.isRequired,
       desc: React.PropTypes.string.isRequired,
       desc_class: React.PropTypes.string.isRequired,
@@ -448,7 +416,7 @@
   });
 
   ReactDOM.render(
-  <TemplateTable url="/api/assessments/{{id}}/"/>,
+  <AttributeList assess_id="{{id}}"/>,
   document.getElementById('content')
   );
 </script>
