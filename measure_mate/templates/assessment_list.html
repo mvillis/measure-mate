@@ -16,7 +16,8 @@
 
   var AssessmentTable = React.createClass({
     propTypes: {
-      url: React.PropTypes.string.isRequired
+      url: React.PropTypes.string.isRequired,
+      pollInteval: React.PropTypes.number.isRequired
     },
     loadRatingsFromServer: function() {
       $.ajax({
@@ -115,7 +116,7 @@
 
 
   ReactDOM.render(
-  <AssessmentTable url="/api/assessments/"/>,
+  <AssessmentTable url="/api/assessments/" pollInterval={30000}/>,
   document.getElementById('content')
   );
 </script>

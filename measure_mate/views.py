@@ -80,23 +80,9 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     API endpoint for the Measurement resource.
     """
     queryset = Measurement.objects.all()
-    serializer_class = MeasurementSerializer
+    serializer_class = MeasurementCreateSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('rating__id', 'assessment__id', 'rating__attribute')
-
-    def create(self, request, *args, **kwargs):
-        serializer = MeasurementCreateSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-    def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = MeasurementCreateSerializer(instance=instance, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-        return Response(serializer.data)
 
 
 class MeasurementListView(generics.ListAPIView):

@@ -24,7 +24,7 @@ class MeasurementAPITestCases(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]['id'], measurement1.id)
-        self.assertEqual(response.data[0]['rating']['id'], rating_in_scope.id)
+        self.assertEqual(response.data[0]['rating'], rating_in_scope.id)
         self.assertEqual(len(response.data), 1)
 
     def test_search_measurement2(self):
@@ -63,7 +63,7 @@ class MeasurementAPITestCases(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]['id'], measurement1.id)
-        self.assertEqual(response.data[0]['rating']['id'], rating.id)
+        self.assertEqual(response.data[0]['rating'], rating.id)
         self.assertEqual(len(response.data), 1)
 
     def test_create_measurement(self):
