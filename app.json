@@ -11,6 +11,10 @@
     },
     "DJANGO_SETTINGS_MODULE": {
       "required": true
+    },
+    "DJANGO_SECRET_KEY": {
+      "required": true,
+      "generator": "secret"
     }
   },
   "addons": [
