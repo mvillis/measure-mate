@@ -52,6 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 )
 
 REST_FRAMEWORK = {'PAGE_SIZE': 10}
@@ -162,3 +163,10 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_FRAME_DENY = True
 X_FRAME_OPTIONS = 'DENY'
+
+CSP_DEFAULT_SRC = ("'none'",)
+CSP_SCRIPT_SRC = ("'unsafe-eval'","'unsafe-inline'","'self'","js.ruxit.com",)
+CSP_CONNECT_SRC = ("'self'","js.ruxit.com","*.live.ruxit.com",)
+CSP_STYLE_SRC = ("'unsafe-inline'","'self'",)
+CSP_IMG_SRC = ("'self'","data:")
+CSP_FONT_SRC = ("'self'",)
