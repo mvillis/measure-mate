@@ -7,3 +7,5 @@ dj-static==0.0.6
 static==0.4
 wsgiref==0.1.2
 django-rest-swagger==0.3.5
+django-secure==1.0.1
+django-csp==2.0.3
