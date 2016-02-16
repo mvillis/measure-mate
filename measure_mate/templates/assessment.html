@@ -3,7 +3,6 @@
 
 {% block title %}Measure Mate{% endblock %}
 {% block head %}
-  <script src="{% static "components/lodash/dist/lodash.min.js" %}"></script>
   <script src="{% static "components/underscore/underscore-min.js" %}"></script>
 {% endblock %}
 {% block body %}
@@ -321,7 +320,7 @@
       syncMeasurement: React.PropTypes.func.isRequired,
       attribute: React.PropTypes.object,
     },
-    componentWillMount() {
+    componentWillMount: function() {
       this.props.syncMeasurement = _.debounce(this.props.syncMeasurement, 250);
     },
     saveMeasurement: function (value) {
