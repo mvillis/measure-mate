@@ -2,9 +2,6 @@
   "name": "measure-mate",
   "description": "Simple tool to track maturity assessments.",
   "repository": "https://github.com/rloomans/measure-mate",
-  "scripts": {
-    "postdeploy": "sh .postdeploy.sh"
-  },
   "env": {
     "DJANGO_DEBUG": {
       "required": true
