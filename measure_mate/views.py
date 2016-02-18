@@ -1,5 +1,6 @@
 from rest_framework import viewsets, generics, filters, status
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import render
 from serializers import *
 from models import *
@@ -27,6 +28,7 @@ class TemplateViewSet(viewsets.ModelViewSet):
     """
     queryset = Template.objects.all()
     serializer_class = TemplateSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class AttributeViewSet(viewsets.ModelViewSet):
@@ -35,6 +37,7 @@ class AttributeViewSet(viewsets.ModelViewSet):
     """
     queryset = Attribute.objects.all()
     serializer_class = AttributeSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class RatingViewSet(viewsets.ModelViewSet):
@@ -43,6 +46,7 @@ class RatingViewSet(viewsets.ModelViewSet):
     """
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class TagViewSet(viewsets.ModelViewSet):
