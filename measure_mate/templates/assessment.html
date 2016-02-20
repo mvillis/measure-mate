@@ -4,6 +4,7 @@
 {% block title %}Measure Mate{% endblock %}
 {% block head %}
   <script src="{% static "components/underscore/underscore-min.js" %}"></script>
+  <script src="{% static "components/plotly.js/dist/plotly.min.js" %}"></script>
 {% endblock %}
 {% block body %}
 <div id="content" class="container"></div>
@@ -224,8 +225,20 @@
         var summaryTab = function () {
           return (
             <Tab eventKey={this.state.template ? this.state.template.attributes.length+1 : null} key={this.state.template ? this.state.template.attributes.length+1 : null} id={this.state.template ? this.state.template.attributes.length+1 : null} title={<div><span className="glyphicon glyphicon-stats"></span> <span>Summary</span></div>}>
-              <Panel header="Welcome to the Report" bsStyle="primary">
-                <AssessmentReport {...this.props} />
+              <Panel header="Summary" bsStyle="primary">
+                <Alert bsStyle="warning">
+                  How did you go? Where are you strengths and weaknesses? What are some improvements you could make?
+                </Alert>
+                <AssessmentReport
+                  eventKey={this.state.template ? this.state.template.attributes.length+1 : null}
+                  key={this.state.template ? this.state.template.attributes.length+1 : null}
+                  id={this.state.template ? this.state.template.attributes.length+1 : null}
+                  active_tab={this.state.active_tab}
+                  measurements={this.state.measurements}
+                  attributes={this.state.template.attributes}
+                  template={this.state.template}
+                  assess_id={this.props.assess_id}
+                />
               </Panel>
             </Tab>
           )
@@ -403,6 +416,7 @@
       assessment: React.PropTypes.object,
       measurements: React.PropTypes.array,
       attributes: React.PropTypes.array,
+      template: React.PropTypes.object
     },
     shouldComponentUpdate: function (nextProps, nextState) {
       if (nextProps.active_tab === this.props.eventKey) {
@@ -410,12 +424,126 @@
       }
       return false;
     },
+    getAttributeForRating: function(query_rating) {
+      var matching_attribute = null
+      for (var i = 0; i<this.props.template.attributes.length; i++) {
+        for (var ii = 0; ii<this.props.template.attributes[i].ratings.length; ii++) {
+          if (query_rating == this.props.template.attributes[i].ratings[ii].id) {
+            matching_attribute = this.props.template.attributes[i].id;
+            break;
+          }
+        }
+      }
+      return matching_attribute;
+    },
+    getMeasurementForAttribute: function(attribute) {
+      if (this.props.measurements != null) {
+        for (var i=0; i < this.props.measurements.length; i++) {
+          if (attribute.id == this.getAttributeForRating(this.props.measurements[i].rating)) {
+            return this.props.measurements[i];
+            break;
+          }
+        };
+      } else {
+        return null;
+      }
+    },
     render: function() {
+      var labels = [];
+      var target_series = [];
+      var rating_series = [];
+      if (this.props.measurements != null) {
+        (this.props.attributes.map(function (attribute, i) {
+          var measurement = this.getMeasurementForAttribute(attribute);
+          labels.push(attribute.name);
+          (measurement && measurement.rating) ? rating_series.push(_.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }).rank) : rating_series.push(0);
+          (measurement && measurement.target_rating) ? target_series.push(_.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }).rank) : target_series.push(0);
+        }.bind(this)));
+      }
+      var data = {"labels": labels, "series": [target_series, rating_series]};
+
+      var current_trace = {
+        x: labels,
+        y: rating_series,
+        name: 'Current Rating',
+        type: 'bar',
+        marker: {
+          color: ['rgb(204, 0, 0)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(204, 0, 0)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)'],
+        }
+      };
+
+      var target_trace = {
+        x: labels,
+        y: target_series,
+        name: 'Target Rating',
+        type: 'bar',
+        marker: {
+          color: 'rgb(204,204,204)',
+          line: {
+            color: '#CCCCCC',
+            width: 5
+          }
+        }
+      };
+
+      var data = [target_trace, current_trace];
+
+      var layout = {
+        barmode: 'overlay',
+        margin: {
+          t: 30,
+          b: 150,
+        },
+        yaxis: {
+          showgrid: true,
+          tickmode: 'array',
+          tickvals: [-1, 0, 1, 2, 3],
+          ticktext: ['Regressive', 'N/A', 'Emerging', 'Growing', 'Sustainable'],
+          range: [-1, 3],
+        },
+        xaxis: {
+          showgrid: true,
+          tickangle: -45
+        },
+        bargap :0.50,
+        showlegend: true,
+        autosize: true,
+      };
+      var config = {
+        scrollZoom: false,
+        showLink: false
+      }
       return (
-        <Alert bsStyle="warning">
-          How did you go? Where are you strengths and weaknesses? What actions should you do?
-        </Alert>
-      )
+        <PlotlyComponent data={data} layout={layout} config={config}/>
+      );
+    }
+  });
+
+  var PlotlyComponent = React.createClass({
+
+    displayName: 'Plotly',
+    propTypes: {
+      data: React.PropTypes.array,
+      layout: React.PropTypes.object,
+      config: React.PropTypes.object
+    },
+
+    componentDidMount() {
+      let {data, layout, config} = this.props;
+      Plotly.plot(this.container, data, layout, config);
+    },
+
+    componentDidUpdate() {
+      //TODO use minimal update for given changes
+      this.container.data = this.props.data;
+      this.container.layout = this.props.layout;
+      Plotly.redraw(this.container);
+
+    },
+
+    render: function () {
+      let {data, layout, config, ...other } = this.props;
+      return <div {...other} ref={(node) => this.container=node} />
     }
   });
 
