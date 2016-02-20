@@ -320,9 +320,6 @@
       syncMeasurement: React.PropTypes.func.isRequired,
       attribute: React.PropTypes.object,
     },
-    componentWillMount: function() {
-      this.props.syncMeasurement = _.debounce(this.props.syncMeasurement, 250);
-    },
     saveMeasurement: function (value) {
       var existing_measurement = (this.props.measurement) ? true : false;
       var postData = {
