@@ -135,7 +135,7 @@
       this.setState({observations: observations, dirty_observation: updated_dirty_observation});
     },
     handleNext: function () {
-      if (this.state.active_tab < this.state.template.attributes.length && !this.state.next_hide) {
+      if (this.state.active_tab < this.state.template.attributes.length+1 && !this.state.next_hide) {
         var new_tab = this.state.active_tab + 1;
         this.scrollToTop('#att-list');
         this.setState({active_tab: new_tab});
@@ -161,7 +161,7 @@
       } else {
         this.setState({previous_hide: false});
       }
-      if (current_tab >= this.state.template.attributes.length) {
+      if (current_tab >= this.state.template.attributes.length+1) {
         this.setState({next_hide: true});
       } else {
         this.setState({next_hide:false});
@@ -214,12 +214,22 @@
               <Loader loaded={!this.state.measure_sync_activity}>
               </Loader>
               <ListGroup fill>
-                <RatingList dirty_observation={this.state.dirty_observation} key={attribute.id} measurement={measurement} attribute={attribute} assess_id={this.props.assess_id} syncMeasurement={this.syncMeasurement}/>
+                <RatingList eventKey={i+1} active_tab={this.state.active_tab} dirty_observation={this.state.dirty_observation} key={attribute.id} measurement={measurement} attribute={attribute} assess_id={this.props.assess_id} syncMeasurement={this.syncMeasurement}/>
               </ListGroup>
             </Panel>
             </Tab>
           );
         }.bind(this));
+
+        var summaryTab = function () {
+          return (
+            <Tab eventKey={this.state.template ? this.state.template.attributes.length+1 : null} key={this.state.template ? this.state.template.attributes.length+1 : null} id={this.state.template ? this.state.template.attributes.length+1 : null} title={<div><span className="glyphicon glyphicon-stats"></span> <span>Summary</span></div>}>
+              <Panel header="Welcome to the Report" bsStyle="primary">
+                <AssessmentReport {...this.props} />
+              </Panel>
+            </Tab>
+          )
+        }.bind(this)();
       }
       return (
         <div id="att-list">
@@ -229,6 +239,7 @@
             </PageHeader>
             <Tabs position="right" activeKey={this.state.active_tab} onSelect={this.handleSelect} tabWidth={3}>
               {attributeNodes}
+              {summaryTab}
               <Pager>
                 <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
                 {' '}
@@ -315,10 +326,18 @@
   var RatingList = React.createClass({
     propTypes: {
       key: React.PropTypes.number,
+      eventKey: React.PropTypes.number,
+      active_tab: React.PropTypes.number,
       measurement: React.PropTypes.object,
       assess_id: React.PropTypes.string.isRequired,
       syncMeasurement: React.PropTypes.func.isRequired,
       attribute: React.PropTypes.object,
+    },
+    shouldComponentUpdate: function (nextProps, nextState) {
+      if (nextProps.active_tab === this.props.eventKey) {
+        return true
+      }
+      return false;
     },
     saveMeasurement: function (value) {
       var existing_measurement = (this.props.measurement) ? true : false;
@@ -374,6 +393,29 @@
             {ratingNodes}
             </div>
       );
+    }
+  });
+
+  var AssessmentReport = React.createClass({
+    propTypes: {
+      active_tab: React.PropTypes.number,
+      eventKey: React.PropTypes.number,
+      assessment: React.PropTypes.object,
+      measurements: React.PropTypes.array,
+      attributes: React.PropTypes.array,
+    },
+    shouldComponentUpdate: function (nextProps, nextState) {
+      if (nextProps.active_tab === this.props.eventKey) {
+        return true
+      }
+      return false;
+    },
+    render: function() {
+      return (
+        <Alert bsStyle="warning">
+          How did you go? Where are you strengths and weaknesses? What actions should you do?
+        </Alert>
+      )
     }
   });
 
