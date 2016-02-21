@@ -24,8 +24,8 @@
     "babel": "*",
     "react-bootstrap": "~0.28.1",
     "react-loader": "~2.0.0",
-    "lodash": "~4.0.0",
     "moment": "~2.11.1",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "plotly.js": "^1.5.2"
   }
 }

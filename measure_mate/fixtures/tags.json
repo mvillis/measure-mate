@@ -33,5 +33,19 @@
     },
     "model": "measure_mate.tag",
     "pk": 5
+  },
+  {
+    "fields": {
+      "name": "fixture"
+    },
+    "model": "measure_mate.tag",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "name": "test"
+    },
+    "model": "measure_mate.tag",
+    "pk": 7
   }
 ]
