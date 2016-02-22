@@ -12,7 +12,7 @@
       "name": "Standups",
       "template": 1,
       "rank": 1,
-      "desc": "A regular team collaboration opportunity for sharing progress, identifying risks and resolving issues"
+      "desc": "A regular team collaboration opportunity for sharing progress, identifying risks and resolving issues\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 101
@@ -125,7 +125,7 @@
       "name": "Regressive",
       "rank": -1,
       "desc_class": "like-pre",
-      "desc": "• Stand-up's are not occurring\r\n"
+      "desc": "• Stand-up's are not occurring\r\n\r\n\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 101
@@ -169,7 +169,7 @@
       "name": "Regressive",
       "rank": -1,
       "desc_class": "like-pre",
-      "desc": "• No Retrospectives occur\r\n"
+      "desc": "• No Retrospectives occur\r\n\r\n\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 105
@@ -256,7 +256,7 @@
       "attribute": 104,
       "name": "Regressive",
       "rank": -1,
-      "desc": "• No Product Owner"
+      "desc": "• No Product Owner\r\n\r\n\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 113
@@ -300,7 +300,7 @@
       "name": "Regressive",
       "rank": -1,
       "desc_class": "like-pre",
-      "desc": "• No Iteration Manager identified\r\n"
+      "desc": "• No Iteration Manager identified\r\n\r\n\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 117
@@ -388,7 +388,7 @@
       "name": "Regressive",
       "rank": -1,
       "desc_class": "like-pre",
-      "desc": "• No showcases"
+      "desc": "• No showcases\r\n\r\n\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 125
