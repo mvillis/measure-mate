@@ -1,7 +1,7 @@
 [
   {
     "fields": {
-      "short_desc": "A template to assess the maturity of DevOps in Suncorp",
+      "short_desc": "A template to assess the maturity of DevOps practices",
       "name": "DevOps"
     },
     "model": "measure_mate.template",
@@ -26,6 +26,66 @@
     },
     "model": "measure_mate.attribute",
     "pk": 202
+  },
+  {
+    "fields": {
+      "name": "Data Management",
+      "template": 2,
+      "rank": 3,
+      "desc": "Ability to effectively manage changes to the database schema and application data through the development pipeline to production."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 203
+  },
+  {
+    "fields": {
+      "name": "Environments and Deployments",
+      "template": 2,
+      "rank": 4,
+      "desc": "Availability of appropriate environments for development and testing to ensure the product will work as expected in production. The capability to release into production with minimal work and no disruption to operations and end users."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 204
+  },
+  {
+    "fields": {
+      "name": "Quality Assurance",
+      "template": 2,
+      "rank": 5,
+      "desc": "Concept of systematically discovering issues in the delivery of the product quickly with more frequent and shorter feedback cycles to ensure quality. Discovering defects earlier in the development cycle is less costly and easier to fix. Issues are not exposed to the customer as they are identified and resolved prior to that point."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 205
+  },
+  {
+    "fields": {
+      "name": "Visibility and Traceability",
+      "template": 2,
+      "rank": 6,
+      "desc": "The ability to plan and respond to the product owner's requests for change in a manner that allows a consistent and predictable pace of work that is completely transparent to all."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 206
+  },
+  {
+    "fields": {
+      "name": "Organisational Alignment",
+      "template": 2,
+      "rank": 7,
+      "desc": "The team's ability to share ideas and work together to improve processes and the product, delivering working software in a faster and safer manner. Ability of team to share knowledge and skills and determine the course for improvement."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 207
+  },
+  {
+    "fields": {
+      "name": "Technical Architecture",
+      "template": 2,
+      "rank": 8,
+      "desc": "Bigger picture thinking about technical decisions and their net effect on the business ability to change. This is expensive and difficult to change once the technology is in use. This refers to the mechanism that is in place to make the architectural decisions, not as much about the architecture itself."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 208
   },
   {
     "fields": {
@@ -146,5 +206,365 @@
     },
     "model": "measure_mate.rating",
     "pk": 252
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 253
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 254
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 255
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 256
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 257
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 258
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 259
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 260
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 261
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 262
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 263
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 264
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 265
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 266
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 267
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 268
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 269
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 270
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 271
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 272
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 273
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 274
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 275
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 276
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 277
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 278
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 279
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 280
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 281
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 282
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 283
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 284
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 285
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 286
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 287
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 288
   }
 ]
