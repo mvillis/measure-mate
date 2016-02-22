@@ -131,6 +131,16 @@
   },
   {
     "model": "measure_mate.measurement",
+    "pk": 111,
+    "fields": {
+      "assessment": 1,
+      "rating": 142,
+      "target_rating": 144,
+      "observations": ""
+    }
+  },
+  {
+    "model": "measure_mate.measurement",
     "pk": 201,
     "fields": {
       "assessment": 2,
