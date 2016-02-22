@@ -210,7 +210,7 @@
           return (
             <Tab eventKey={i+1} key={attribute.id} id={i+1} title={<div>{tab_icon} <span>{attribute.name}</span></div>}>
             <Panel header={attribute.name} bsStyle="primary">
-              <Alert bsStyle="warning">
+              <Alert bsStyle="warning" className={attribute.desc_class}>
                 {attribute.desc}
               </Alert>
               <ObserveInput eventKey={i+1} dirty_observation={this.state.dirty_observation} active_tab={this.state.active_tab} measurement={measurement} syncMeasurement={this.syncMeasurement} onObservationChange={this.onObservationChange}/>
@@ -403,7 +403,6 @@
             </ListGroupItem>
           );
       }.bind(this));
-      var desc_class = this.props.desc_class || ""
       return (<div>
             {ratingNodes}
             </div>
@@ -458,40 +457,59 @@
       var labels = [];
       var target_series = [];
       var rating_series = [];
-      var current_colors = [];
+      var current_colors = BLUE;
+
+      // assume that rating names & ranks are the same for all attributes
+      var ratings = this.props.template.attributes[0].ratings.map( function (rating) {
+        return { "rank": rating.rank, "name": rating.name };
+      });
+
+      if ( ! _.find(ratings, function(rating){ return rating.rank == 0; })) {
+        ratings.push( { "rank":  0, "name": "N/A", }, );
+        ratings.sort(function (a, b) { return a.rank - b.rank; })
+      }
+
+      var rank_values = [];
+      var rank_names = [];
+      var rank_min = null;
+      var rank_max = null;
+      ratings.forEach(function (rating, i) {
+        rank_values.push(rating.rank);
+        rank_names.push(rating.name);
+        rank_min = Math.min(rank_min, rating.rank);
+        rank_max = Math.max(rank_max, rating.rank);
+      });
 
       if (this.props.measurements != null) {
         (this.props.attributes.map(function (attribute, i) {
           labels.push(attribute.name);
           var measurement = this.getMeasurementForAttribute(attribute);
           if (measurement && measurement.rating) {
-            var current_rank = _.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }).rank;
-            rating_series.push(current_rank);
-            if (current_rank >= 0) {
-              current_colors.push(BLUE)
-            }
-            else {
-              current_colors.push(RED)
-            }
-            if (measurement.target_rating) {
-              target_series.push(_.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }).rank);
-            }
-            else {
-              target_series.push(0);
-            }
+            rating_series.push(_.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }).rank);
           }
           else {
-            current_colors.push(BLUE)
             rating_series.push(0);
+          }
+          if (measurement && measurement.target_rating) {
+            target_series.push(_.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }).rank);
+          }
+          else {
             target_series.push(0);
           }
         }.bind(this)));
       }
 
+      if (Math.min.apply(Math, rating_series) < 0) {
+        current_colors = [];
+        current_colors = rating_series.map(function (rank) {
+          return (rank < 0 ? RED : BLUE);
+        });
+      }
+
       var current_trace = {
         x: labels,
         y: rating_series,
-        name: 'Current Rating',
+        name: 'Current',
         type: 'bar',
         marker: {
           color: current_colors,
@@ -501,7 +519,7 @@
       var target_trace = {
         x: labels,
         y: target_series,
-        name: 'Target Rating',
+        name: 'Target',
         type: 'bar',
         marker: {
           color: GREY,
@@ -523,9 +541,9 @@
         yaxis: {
           showgrid: true,
           tickmode: 'array',
-          tickvals: [-1, 0, 1, 2, 3],
-          ticktext: ['Regressive', 'N/A', 'Emerging', 'Growing', 'Sustainable'],
-          range: [-1, 3],
+          tickvals: rank_values,
+          ticktext: rank_names,
+          range: [rank_min, rank_max],
         },
         xaxis: {
           showgrid: true,
