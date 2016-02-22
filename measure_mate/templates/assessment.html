@@ -533,6 +533,8 @@
       var data = [target_trace, current_trace];
 
       var layout = {
+        height: 450,
+        width: 600,
         barmode: 'overlay',
         margin: {
           t: 30,
@@ -549,7 +551,7 @@
           showgrid: true,
           tickangle: -45
         },
-        bargap :0.50,
+        bargap: 0.50,
         showlegend: true,
         autosize: true,
       };
@@ -584,7 +586,6 @@
       this.container.data = this.props.data;
       this.container.layout = this.props.layout;
       Plotly.redraw(this.container);
-
     },
 
     render: function () {
@@ -594,8 +595,8 @@
   });
 
   ReactDOM.render(
-  <AttributeList assess_id="{{id}}"/>,
-  document.getElementById('content')
+    <AttributeList assess_id="{{id}}"/>,
+    document.getElementById('content')
   );
 </script>
 {% endblock %}
