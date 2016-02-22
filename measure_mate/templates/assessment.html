@@ -454,15 +454,34 @@
       var labels = [];
       var target_series = [];
       var rating_series = [];
+      var current_colors = [];
       if (this.props.measurements != null) {
         (this.props.attributes.map(function (attribute, i) {
-          var measurement = this.getMeasurementForAttribute(attribute);
           labels.push(attribute.name);
-          (measurement && measurement.rating) ? rating_series.push(_.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }).rank) : rating_series.push(0);
-          (measurement && measurement.target_rating) ? target_series.push(_.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }).rank) : target_series.push(0);
+          var measurement = this.getMeasurementForAttribute(attribute);
+          if (measurement && measurement.rating) {
+            var current_rank = _.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }).rank;
+            rating_series.push(current_rank);
+            if (current_rank >= 0) {
+              current_colors.push("'rgb(0, 0, 204)'")
+            }
+            else {
+              current_colors.push("'rgb(204, 0, 0)'")
+            }
+            if (measurement.target_rating) {
+              target_series.push(_.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }).rank);
+            }
+            else {
+              target_series.push(0);
+            }
+          }
+          else {
+            current_colors.push("'rgb(0, 0, 204)'")
+            rating_series.push(0);
+            target_series.push(0);
+          }
         }.bind(this)));
       }
-      var data = {"labels": labels, "series": [target_series, rating_series]};
 
       var current_trace = {
         x: labels,
@@ -470,7 +489,7 @@
         name: 'Current Rating',
         type: 'bar',
         marker: {
-          color: ['rgb(204, 0, 0)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(204, 0, 0)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)', 'rgb(0, 0, 204)'],
+          color: current_colors,
         }
       };
 
