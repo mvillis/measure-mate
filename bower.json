@@ -18,12 +18,14 @@
   ],
   "dependencies": {
     "jquery": "~2.1.4",
-    "react": "~0.14.5",
-    "react-select": "https://github.com/JedWatson/react-select.git#v1.0.0-beta8",
+    "react": "~0.14.7",
+    "react-select": "https://github.com/JedWatson/react-select.git#v1.0.0-beta9",
     "bootstrap": "~3.3.6",
     "babel": "*",
-    "react-bootstrap": "~0.28.1",
+    "react-bootstrap": "~0.28.3",
     "react-loader": "~2.0.0",
-    "lodash": "~4.0.0"
+    "moment": "~2.11.2",
+    "underscore": "~1.8.3",
+    "plotly.js": "^1.5.2"
   }
 }

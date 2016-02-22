@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'measure_mate',
     'opbeat.contrib.django',
 )
@@ -52,6 +53,7 @@ OPBEAT = {
 
 MIDDLEWARE_CLASSES = (
     'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -59,7 +61,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    'csp.middleware.CSPMiddleware',
 )
 
 REST_FRAMEWORK = {'PAGE_SIZE': 10}
@@ -97,7 +99,7 @@ WSGI_APPLICATION = 'measure_mate.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {'default': dj_database_url.config()}
+DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -152,3 +154,29 @@ LOGGING = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+SWAGGER_SETTINGS = {
+    'api_path': '/',
+    'api_version': '0.1',
+    'info': {
+        'title': 'Measure Mate',
+        'description': '<p>Simple tool to track maturity assessments.</p>'
+                       '<p>Source available at <a href="https://github.com/mvillis/measure-mate">'
+                       'https://github.com/mvillis/measure-mate</a>.</p>',
+        'license': 'MIT',
+        'licenseUrl': 'https://github.com/mvillis/measure-mate/blob/master/LICENSE.txt',
+    }
+}
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_FRAME_DENY = True
+X_FRAME_OPTIONS = 'DENY'
+
+CSP_DEFAULT_SRC = ("'none'",)
+CSP_SCRIPT_SRC = ("'unsafe-eval'","'unsafe-inline'","'self'",)
+CSP_CONNECT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'unsafe-inline'","'self'",)
+CSP_IMG_SRC = ("'self'","data:","blob:",)
+CSP_FONT_SRC = ("'self'",)
+CSP_EXCLUDE_URL_PREFIXES = ("/admin",)

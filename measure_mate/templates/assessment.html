@@ -3,7 +3,8 @@
 
 {% block title %}Measure Mate{% endblock %}
 {% block head %}
-  <script src="{% static "components/lodash/dist/lodash.min.js" %}"></script>
+  <script src="{% static "components/underscore/underscore-min.js" %}"></script>
+  <script src="{% static "components/plotly.js/dist/plotly.min.js" %}"></script>
 {% endblock %}
 {% block body %}
 <div id="content" class="container"></div>
@@ -22,105 +23,137 @@
   var Pager = ReactBootstrap.Pager;
   var PageItem = ReactBootstrap.PageItem;
   var Glyphicon = ReactBootstrap.Glyphicon;
-
-  var TemplateTable = React.createClass({
-    loadAssessmentFromServer: function() {
-      $.ajax({
-        url: this.props.url,
-        dataType: 'json',
-        cache: false,
-        success: function(data) {
-          this.loadRatingsFromServer(data);
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
-    },
-    loadRatingsFromServer: function(assess_data) {
-      $.ajax({
-        url: '/api/templates/' + assess_data.template.id + '/',
-        dataType: 'json',
-        cache: false,
-        success: function(data) {
-          this.setState({
-            assess_id: assess_data.id,
-            data: data.attributes,
-            name: data.name,
-            desc: data.short_desc,
-            loaded: true
-          });
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-        }.bind(this)
-      });
-    },
-    getInitialState: function() {
-      return {
-        data: [],
-        assess_id: null,
-        loaded: false
-      };
-    },
-    componentDidMount: function() {
-      this.loadAssessmentFromServer();
-      // setInterval(this.loadAssessmentFromServer, this.props.pollInterval);
-    },
-    render: function() {
-      return (
-            <Loader loaded={this.state.loaded}>
-              <PageHeader>
-                {this.state.name} <small> {this.state.desc}</small>
-              </PageHeader>
-              <AttributeList assess_id={this.state.assess_id} data={this.state.data} />
-            </Loader>
-      );
-    }
-    });
+  var Button = ReactBootstrap.Button;
+  var Table = ReactBootstrap.Table;
+  var Popover = ReactBootstrap.Popover;
 
   var AttributeList = React.createClass({
+    propTypes: {
+      assess_id: React.PropTypes.string,
+    },
     getInitialState: function() {
       return {
-        active_attribute: 1,
-        rating_selected: false,
+        active_tab: 1,
+        active_attribute: null,
         measurements: null,
+        template: null,
+        assessment: null,
         next_hide: false,
-        previous_hide: false
+        previous_hide: false,
+        initial_load: false,
+        measure_sync_activity: false,
+        observations: {},
+        dirty_observation: {}
       };
     },
-    componentDidMount: function(){
-      this.dataSource();
+    componentWillMount: function(){
+      this.dataSource("/api/assessments/" + this.props.assess_id + "/", this.assessment_callback);
     },
-    dataSource: function(){
-      return $.ajax({
+    measurement_callback: function (data) {
+      this.setState( {
+        measurements: data,
+        initial_load: true
+      });
+      this.handleSelect(1);
+    },
+    template_callback: function (data) {
+      this.setState( {
+        template: data
+      }, this.dataSource("/api/measurements/" + "?assessment__id=" + this.props.assess_id, this.measurement_callback)
+      );
+    },
+    assessment_callback: function (data) {
+      this.setState( {
+        assessment: data
+      }, this.dataSource("/api/templates/" + data.template.id + "/", this.template_callback)
+      );
+    },
+    handleSubmitFailure: function(xhr, ajaxOptions, thrownError) {
+        console.error("There was a failure");
+    },
+    dataSource: function(url, callback){
+      $.ajax({
         type: "get",
         dataType: 'json',
-        url: '/api/measurements/' + '?assessment__id=' + this.props.assess_id
-      }).done(function(result){
-        this.setState({ measurements: result });
-        this.handleTabChange(1);
-      }.bind(this));
+        url: url,
+        success: callback,
+        error: this.handleSubmitFailure,
+      });
+    },
+    measurement_update_callback: function (data) {
+      var existing_measurement_index = _.findIndex(this.state.measurements, function(measurement)
+      {
+        return measurement.id == data.id;
+      });
+      var updated_dirty_observation = this.state.dirty_observation;
+      updated_dirty_observation[this.state.active_tab] = false
+      if (existing_measurement_index != -1) {
+        var updated_measurements = this.state.measurements.slice();
+        updated_measurements[existing_measurement_index] = data;
+        this.setState({
+          measurements: updated_measurements,
+          measure_sync_activity: false,
+          dirty_observation: updated_dirty_observation
+        });
+      }
+      else {
+        var new_measurements = this.state.measurements.concat([data]);
+        this.setState({
+          measurements: new_measurements,
+          measure_sync_activity: false,
+          dirty_observation: updated_dirty_observation
+        });
+      };
+    },
+    syncMeasurement: function(postData) {
+      var create_new_measure = ((postData.id) ? false : true);
+      if (this.state.observations[this.state.active_tab]) {
+        postData["observations"] = this.state.observations[this.state.active_tab]
+      } else {
+        var match_measure = _.find(this.state.measurements, function(measurement)
+          {
+            return measurement.id == postData.id;
+          });
+        (match_measure) ? postData["observations"] = match_measure.observations : postData["observations"] = "";
+      }
+      this.setState({ measure_sync_activity: true });
+      console.log('Should a new measurement be created? ' + create_new_measure);
+      $.ajax({
+        type: ((create_new_measure) ? "POST" : "PUT"),
+        contentType: "application/json; charset=utf-8",
+        url: ((create_new_measure) ? "/api/measurements/" : ("/api/measurements/" + postData.id + '/')),
+        data: JSON.stringify(postData),
+        dataType: 'json',
+        success: this.measurement_update_callback,
+        error: this.handleSubmitFailure,
+      });
+    },
+    onObservationChange: function(text, active_tab) {
+      var observations = this.state.observations;
+      observations[active_tab] = text;
+      var updated_dirty_observation = this.state.dirty_observation;
+      updated_dirty_observation[this.state.active_tab] = true
+      this.setState({observations: observations, dirty_observation: updated_dirty_observation});
     },
     handleNext: function () {
-      if (this.state.active_attribute < this.props.data.length && !this.state.next_hide) {
-        var new_tab = this.state.active_attribute + 1;
+      if (this.state.active_tab < this.state.template.attributes.length+1 && !this.state.next_hide) {
+        var new_tab = this.state.active_tab + 1;
         this.scrollToTop('#att-list');
-        this.setState({active_attribute: new_tab});
+        this.setState({active_tab: new_tab});
         this.handleTabChange(new_tab);
       };
     },
     handlePrevious: function () {
-      if (this.state.active_attribute !=1 && !this.state.previous_hide) {
-        var new_tab = this.state.active_attribute - 1;
+      if (this.state.active_tab !=1 && !this.state.previous_hide) {
+        var new_tab = this.state.active_tab - 1;
         this.scrollToTop('#att-list');
-        this.setState({active_attribute: new_tab});
+        this.setState({active_tab: new_tab});
         this.handleTabChange(new_tab);
       }
     },
     handleSelect: function (key) {
       this.scrollToTop('#att-list');
-      this.setState({active_attribute: key});
+      this.setState({active_tab: key});
       this.handleTabChange(key);
     },
     handleTabChange: function (current_tab) {
@@ -129,7 +162,7 @@
       } else {
         this.setState({previous_hide: false});
       }
-      if (current_tab >= this.props.data.length) {
+      if (current_tab >= this.state.template.attributes.length+1) {
         this.setState({next_hide: true});
       } else {
         this.setState({next_hide:false});
@@ -144,10 +177,22 @@
           // window.location.hash = $target;
       });
     },
-    getMeasurementForAttribute(attribute) {
+    getAttributeForRating: function(query_rating) {
+      var matching_attribute = null
+      for (var i = 0; i<this.state.template.attributes.length; i++) {
+        for (var ii = 0; ii<this.state.template.attributes[i].ratings.length; ii++) {
+          if (query_rating == this.state.template.attributes[i].ratings[ii].id) {
+            matching_attribute = this.state.template.attributes[i].id;
+            break;
+          }
+        }
+      }
+      return matching_attribute;
+    },
+    getMeasurementForAttribute: function(attribute) {
       if (this.state.measurements != null) {
         for (var i=0; i < this.state.measurements.length; i++) {
-          if (attribute.id == this.state.measurements[i].rating.attribute) {
+          if (attribute.id == this.getAttributeForRating(this.state.measurements[i].rating)) {
             return this.state.measurements[i];
             break;
           }
@@ -157,199 +202,401 @@
       }
     },
     render: function() {
-      var attributeNodes = this.props.data.map(function (attribute, i) {
-        var measurement = this.getMeasurementForAttribute(attribute);
-        return (
-          <Tab eventKey={i+1} key={attribute.id} id={i+1} title={<div><span className="glyphicon glyphicon-chevron-right"></span> <span>{attribute.name}</span></div>}>
-            <RatingList key={attribute.id} measurement={measurement} attribute_id={attribute.id} assess_id={this.props.assess_id} name={attribute.name} desc={attribute.desc} desc_class={attribute.desc_class} data={attribute.ratings}/>
-          </Tab>
-        );
-      }.bind(this));
+      if (this.state.template) {
+        var attributeNodes = this.state.template.attributes.map(function (attribute, i) {
+          var measurement = this.getMeasurementForAttribute(attribute);
+          var complete_measurement = measurement && measurement.rating && measurement.target_rating;
+          var tab_icon = (complete_measurement) ? <Glyphicon glyph="ok" tabClassName="text-success"/> : <Glyphicon glyph="minus" />;
+          return (
+            <Tab eventKey={i+1} key={attribute.id} id={i+1} title={<div>{tab_icon} <span>{attribute.name}</span></div>}>
+            <Panel header={attribute.name} bsStyle="primary">
+              <Alert bsStyle="warning" className={attribute.desc_class}>
+                {attribute.desc}
+              </Alert>
+              <ObserveInput eventKey={i+1} dirty_observation={this.state.dirty_observation} active_tab={this.state.active_tab} measurement={measurement} syncMeasurement={this.syncMeasurement} onObservationChange={this.onObservationChange}/>
+              <Loader loaded={!this.state.measure_sync_activity}>
+              </Loader>
+              <ListGroup fill>
+                <RatingList eventKey={i+1} active_tab={this.state.active_tab} dirty_observation={this.state.dirty_observation} key={attribute.id} measurement={measurement} attribute={attribute} assess_id={this.props.assess_id} syncMeasurement={this.syncMeasurement}/>
+              </ListGroup>
+            </Panel>
+            </Tab>
+          );
+        }.bind(this));
+
+        var summaryTab = function () {
+          return (
+            <Tab eventKey={this.state.template ? this.state.template.attributes.length+1 : null} key={this.state.template ? this.state.template.attributes.length+1 : null} id={this.state.template ? this.state.template.attributes.length+1 : null} title={<div><span className="glyphicon glyphicon-stats"></span> <span>Summary</span></div>}>
+              <Panel header="Summary" bsStyle="primary">
+                <Alert bsStyle="warning">
+                  How did you go? Where are you strengths and weaknesses? What are some improvements you could make?
+                </Alert>
+                <AssessmentReport
+                  eventKey={this.state.template ? this.state.template.attributes.length+1 : null}
+                  key={this.state.template ? this.state.template.attributes.length+1 : null}
+                  id={this.state.template ? this.state.template.attributes.length+1 : null}
+                  active_tab={this.state.active_tab}
+                  measurements={this.state.measurements}
+                  attributes={this.state.template.attributes}
+                  template={this.state.template}
+                  assess_id={this.props.assess_id}
+                />
+              </Panel>
+            </Tab>
+          )
+        }.bind(this)();
+      }
       return (
         <div id="att-list">
-          <Tabs position="right" activeKey={this.state.active_attribute} onSelect={this.handleSelect} tabWidth={3}>
-            {attributeNodes}
-            <Pager>
-              <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
-              {' '}
-              <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
-            </Pager>
-          </Tabs>
+          <Loader loaded={this.state.initial_load}>
+            <PageHeader>
+              {!!this.state.assessment == true ? this.state.assessment.template.name : ""} <small> {!!this.state.assessment ? this.state.assessment.template.short_desc : ""}</small>
+            </PageHeader>
+            <Tabs position="right" activeKey={this.state.active_tab} onSelect={this.handleSelect} tabWidth={3}>
+              {attributeNodes}
+              {summaryTab}
+              <Pager>
+                <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
+                {' '}
+                <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
+              </Pager>
+            </Tabs>
+          </Loader>
         </div>
       );
     }
   });
 
   var ObserveInput = React.createClass({
+      propTypes: {
+        measurement: React.PropTypes.object,
+        syncMeasurement: React.PropTypes.func.isRequired,
+        onObservationChange: React.PropTypes.func.isRequired,
+        dirty_observation: React.PropTypes.object,
+        active_tab: React.PropTypes.number,
+        eventKey: React.PropTypes.number
+      },
       getInitialState: function () {
           return {
-              observations: null
+              save_btn_disabled: true,
+              observations: ""
           };
       },
-
-      componentWillReceiveProps: function(newProps) {
-        if (this.state.observations == null) {
-          this.setState(
-            {
-              observations: newProps.observations
-            });
+      componentWillMount: function() {
+         this.handleObserveDebounced = _.debounce(function () {
+           this.props.onObservationChange.apply(this, [this.state.observations, this.props.active_tab]);
+         }, 1000);
+      },
+      onChange: function (event) {
+        this.setState({ observations: event.target.value });
+        this.handleObserveDebounced();
+      },
+      handleSave: function() {
+        if (this.state.save_btn_disabled == false) {
+          var postData = {
+            id: this.props.measurement.id,
+            assessment: this.props.measurement.assessment,
+            rating: this.props.measurement.rating,
+            target_rating: this.props.measurement.target_rating
+          };
+          this.props.syncMeasurement(postData);
         }
       },
+      componentWillReceiveProps: function (nextProps) {
+        if (nextProps.measurement && !this.state.observations) {
+          this.setState({observations: nextProps.measurement.observations})
+        }
 
-      componentWillMount: function() {
-        //  this.handleObserveDebounced = _.debounce(function () {
-        //    console.log("Inside debounce: " + this.state.observations);
-        //    this.props.handleObserve.apply(this, [this.state.observations]);
-        //  }, 5000);
+        if (nextProps.measurement) { this.setState({save_btn_disabled: false})};
       },
-
-      onChange: function (event) {
-        var new_observations = event.target.value;
-        this.setState({observations: new_observations});
-        this.props.handleSyncState(false);
-        this.props.handleObserve(event.target.value);
-        // this.handleObserveDebounced();
+      shouldComponentUpdate: function (nextProps, nextState) {
+        if (nextProps.active_tab === this.props.eventKey) {
+          return true
+        }
+        return false;
       },
-
       render: function () {
+        var syncStatus = function () {
+          if (this.props.dirty_observation[this.props.active_tab] == false && this.props.measurement) {
+            return (<span><span>   </span><Glyphicon glyph="glyphicon glyphicon-saved" /></span>);
+          } else if (this.props.dirty_observation[this.props.active_tab] == true && !this.props.measurement) {
+              return (<span className="text-info"><span>  </span><Glyphicon glyph="glyphicon glyphicon-info-sign" /> Select a rating below to save this comment and complete the form.</span>);
+          } else {
+            return (<span></span>);
+          };
+        }.bind(this);
         return (
-          <Input type="textarea" rows="3" label="Observations" placeholder="Some notes on why a particular rating was selected."
-                 ref="observeInput"
-                 value={this.state.observations}
-                 onChange={this.onChange} Input/>
+          <div>
+            <Input type="textarea" rows="3" label="Observations" placeholder="Discuss your current practices and capture some notes."
+                   ref="observeInput"
+                   value={this.state.observations}
+                   onChange={this.onChange} Input/>
+                     <Button ref="obsSaveBtn" disabled={this.state.save_btn_disabled} bsStyle="primary" bsSize="xsmall" onClick={this.handleSave}>Save</Button>
+                     {syncStatus()}
+           </div>
         );
       }
   });
 
   var RatingList = React.createClass({
-    componentWillMount() {
-      this.syncMeasurement = _.debounce(this.syncMeasurement, 2000);
+    propTypes: {
+      key: React.PropTypes.number,
+      eventKey: React.PropTypes.number,
+      active_tab: React.PropTypes.number,
+      measurement: React.PropTypes.object,
+      assess_id: React.PropTypes.string.isRequired,
+      syncMeasurement: React.PropTypes.func.isRequired,
+      attribute: React.PropTypes.object,
     },
-    getInitialState: function() {
-      if (this.props.measurement != null) {
-        return {
-          measurement_id: this.props.measurement.id,
-          selected_rating: this.props.measurement.rating.id,
-          observations: this.props.measurement.observations,
-          observation_synced: true,
-          saved_rating: true
-        };
-      } else {
-        return {
-          measurement_id: null,
-          selected_rating: null,
-          observations: "",
-          observation_synced: true,
-          saved_rating: true
-        };
+    shouldComponentUpdate: function (nextProps, nextState) {
+      if (nextProps.active_tab === this.props.eventKey) {
+        return true
       }
+      return false;
     },
-    componentWillReceiveProps: function(newProps) {
-      if (newProps.measurement && newProps.measurement.id != this.measurement_id) {
-        this.setState(
-          {
-            measurement_id: newProps.measurement.id,
-            selected_rating: newProps.measurement.rating.id,
-            observations: newProps.measurement.observations
-          });
-      }
-    },
-    syncMeasurement: function(postData) {
-      var create_new_measure = ((this.state.measurement_id == null) ? true : false);
-      console.log('Should a new measurement be created? ' + create_new_measure);
-      $.ajax({
-        type: ((create_new_measure) ? "POST" : "PUT"),
-        contentType: "application/json; charset=utf-8",
-        url: ((create_new_measure) ? "/api/measurements/" : ("/api/measurements/" + this.state.measurement_id + '/')),
-        data: JSON.stringify(postData),
-        dataType: 'json',
-        success: this.handleSubmitSuccess,
-        error: this.handleSubmitFailure,
-      });
-    },
-    handleSyncState: function (synced) {
-      this.setState({observation_synced: synced});
-    },
-    handleObserve: function (text) {
-      this.setState(
-        {
-          observations: text,
-        });
+    saveMeasurement: function (value) {
+      var existing_measurement = (this.props.measurement) ? true : false;
       var postData = {
-        id: this.state.measurement_id,
+        id: (this.props.measurement) ? this.props.measurement.id : "",
         assessment: this.props.assess_id,
-        rating: this.state.selected_rating,
-        observations: text
+        rating: (value['rating']) ? value['rating'] : this.props.measurement.rating,
+        target_rating: (value['target']) ? value['target'] : ((existing_measurement && this.props.measurement.target_rating) ? this.props.measurement.target_rating : ""),
       };
-      // this.syncMeasurement(postData);
+      this.props.syncMeasurement(postData);
     },
-    handleClick: function(data) {
-      var create_new_measure = ((this.state.measurement_id == null) ? true : false);
-      console.log('Should a new measurement be created? ' + create_new_measure);
-      var postContent = data.postContent;
-      var postData = {
-        id: this.state.measurement_id,
-        assessment: this.props.assess_id,
-        rating: data,
-        observations: this.state.observations
-      };
-
-      this.setState(
-        {
-          selected_rating: data,
-          saved_rating: false
-        });
-      this.syncMeasurement(postData);
-    },
-    handleSubmitSuccess: function(data) {
-      this.setState({
-        measurement_id: data.id,
-        observation_synced: true,
-        saved_rating: true
-      });
-    },
-
-    handleSubmitFailure: function(xhr, ajaxOptions, thrownError) {
-        console.error("There was a failure");
-    },
-
     render: function() {
-      var ratingNodes = this.props.data.map(function (rating) {
-          var active = (this.state.selected_rating == rating.id)
+      var ratingNodes = this.props.attribute.ratings.map(function (rating) {
+          var rating_active = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating == rating.id) : false;
+          var target_active = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating == rating.id) : false;
+          var target_bs_style = target_active ? "success" : "default";
           var desc_class = "rating-" + rating.name + (rating.desc_class ? " " + rating.desc_class : "")
+          var header = function () {
+            if ((this.props.measurement && this.props.measurement.rating)) {
+              return (
+                <div>
+                  <h4 className="inline clickable" onClick={this.saveMeasurement.bind(this, {rating: rating.id})}>{rating.name}</h4>
+                  <Button ref='currentBtn'
+                      onClick={this.saveMeasurement.bind(this, {target: rating.id})}
+                      bsStyle={target_bs_style} className="target-btn"
+                      active={target_active}
+                      bsSize='xsmall'>
+                      Target
+                  </Button>
+                  <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id={rating.id}>You have decided your current rating. Set your future goal by selecting a target button.</Popover>}>
+                    <Glyphicon className="target-help clickable" glyph="glyphicon glyphicon-question-sign" />
+                  </OverlayTrigger>
+                </div>
+              );
+            } else {
+              return (
+                <div>
+                  <h4 className="inline clickable" onClick={this.saveMeasurement.bind(this, {rating: rating.id})}>{rating.name}</h4>
+                </div>
+              )
+            }
+          }.bind(this)();
           return (
-            <ListGroupItem active={active} onClick={this.handleClick.bind(this, rating.id)} id={rating.id} key={rating.id} header={rating.name} className={desc_class}>
-              {rating.desc}
+            <ListGroupItem active={rating_active} id={rating.id} key={rating.id} header={header} className={desc_class}>
+              <div className="clickable" onClick={this.saveMeasurement.bind(this, {rating: rating.id})}>
+                {rating.desc}
+              </div>
             </ListGroupItem>
           );
       }.bind(this));
-      var syncStatus = function () {
-        if (this.state.observation_synced == true) {
-          return (<p><Glyphicon glyph="glyphicon glyphicon-saved" /> Saved</p>);
-        } else {
-          return (<p><Glyphicon glyph="glyphicon glyphicon-info-sign" /> This comment will be saved once a rating below is selected</p>);
-        }
-      }.bind(this);
-      var desc_class = this.props.desc_class || ""
-      return (
-        <Panel header={this.props.name} bsStyle="primary">
-          <p className={desc_class}>{this.props.desc}</p>
-          <ObserveInput observations={this.state.observations} handleSyncState={this.handleSyncState}
-                     handleObserve={this.handleObserve} syncMeasurement={this.syncMeasurement}/>
-          <Loader loaded={this.state.saved_rating}>
-          </Loader>
-          {syncStatus()}
-          <ListGroup fill>
+      return (<div>
             {ratingNodes}
-          </ListGroup>
-        </Panel>
+            </div>
       );
     }
   });
 
+  var AssessmentReport = React.createClass({
+    propTypes: {
+      active_tab: React.PropTypes.number,
+      eventKey: React.PropTypes.number,
+      assessment: React.PropTypes.object,
+      measurements: React.PropTypes.array,
+      attributes: React.PropTypes.array,
+      template: React.PropTypes.object
+    },
+    shouldComponentUpdate: function (nextProps, nextState) {
+      if (nextProps.active_tab === this.props.eventKey) {
+        return true
+      }
+      return false;
+    },
+    getAttributeForRating: function(query_rating) {
+      var matching_attribute = null
+      for (var i = 0; i<this.props.template.attributes.length; i++) {
+        for (var ii = 0; ii<this.props.template.attributes[i].ratings.length; ii++) {
+          if (query_rating == this.props.template.attributes[i].ratings[ii].id) {
+            matching_attribute = this.props.template.attributes[i].id;
+            break;
+          }
+        }
+      }
+      return matching_attribute;
+    },
+    getMeasurementForAttribute: function(attribute) {
+      if (this.props.measurements != null) {
+        for (var i=0; i < this.props.measurements.length; i++) {
+          if (attribute.id == this.getAttributeForRating(this.props.measurements[i].rating)) {
+            return this.props.measurements[i];
+            break;
+          }
+        };
+      } else {
+        return null;
+      }
+    },
+    render: function() {
+      var BLUE = "#0000CC";
+      var RED = "#CC0000";
+      var GREY = "#CCCCCC";
+
+      var labels = [];
+      var target_series = [];
+      var rating_series = [];
+      var current_colors = BLUE;
+
+      // assume that rating names & ranks are the same for all attributes
+      var ratings = this.props.template.attributes[0].ratings.map( function (rating) {
+        return { "rank": rating.rank, "name": rating.name };
+      });
+
+      if ( ! _.find(ratings, function(rating){ return rating.rank == 0; })) {
+        ratings.push( { "rank":  0, "name": "N/A", }, );
+        ratings.sort(function (a, b) { return a.rank - b.rank; })
+      }
+
+      var rank_values = [];
+      var rank_names = [];
+      var rank_min = null;
+      var rank_max = null;
+      ratings.forEach(function (rating, i) {
+        rank_values.push(rating.rank);
+        rank_names.push(rating.name);
+        rank_min = Math.min(rank_min, rating.rank);
+        rank_max = Math.max(rank_max, rating.rank);
+      });
+
+      if (this.props.measurements != null) {
+        (this.props.attributes.map(function (attribute, i) {
+          labels.push(attribute.name);
+          var measurement = this.getMeasurementForAttribute(attribute);
+          if (measurement && measurement.rating) {
+            rating_series.push(_.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }).rank);
+          }
+          else {
+            rating_series.push(0);
+          }
+          if (measurement && measurement.target_rating) {
+            target_series.push(_.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }).rank);
+          }
+          else {
+            target_series.push(0);
+          }
+        }.bind(this)));
+      }
+
+      if (Math.min.apply(Math, rating_series) < 0) {
+        current_colors = [];
+        current_colors = rating_series.map(function (rank) {
+          return (rank < 0 ? RED : BLUE);
+        });
+      }
+
+      var current_trace = {
+        x: labels,
+        y: rating_series,
+        name: 'Current',
+        type: 'bar',
+        marker: {
+          color: current_colors,
+        }
+      };
+
+      var target_trace = {
+        x: labels,
+        y: target_series,
+        name: 'Target',
+        type: 'bar',
+        marker: {
+          color: GREY,
+          line: {
+            color: GREY,
+            width: 5
+          }
+        }
+      };
+
+      var data = [target_trace, current_trace];
+
+      var layout = {
+        height: 450,
+        width: 600,
+        barmode: 'overlay',
+        margin: {
+          t: 30,
+          b: 150,
+        },
+        yaxis: {
+          showgrid: true,
+          tickmode: 'array',
+          tickvals: rank_values,
+          ticktext: rank_names,
+          range: [rank_min, rank_max],
+        },
+        xaxis: {
+          showgrid: true,
+          tickangle: -45
+        },
+        bargap: 0.50,
+        showlegend: true,
+        autosize: true,
+      };
+
+      var config = {
+        scrollZoom: false,
+        showLink: false
+      }
+
+      return (
+        <PlotlyComponent data={data} layout={layout} config={config}/>
+      );
+    }
+  });
+
+  var PlotlyComponent = React.createClass({
+
+    displayName: 'Plotly',
+    propTypes: {
+      data: React.PropTypes.array,
+      layout: React.PropTypes.object,
+      config: React.PropTypes.object
+    },
+
+    componentDidMount() {
+      let {data, layout, config} = this.props;
+      Plotly.plot(this.container, data, layout, config);
+    },
+
+    componentDidUpdate() {
+      //TODO use minimal update for given changes
+      this.container.data = this.props.data;
+      this.container.layout = this.props.layout;
+      Plotly.redraw(this.container);
+    },
+
+    render: function () {
+      let {data, layout, config, ...other } = this.props;
+      return <div {...other} ref={(node) => this.container=node} />
+    }
+  });
+
   ReactDOM.render(
-  <TemplateTable url="/api/assessments/{{id}}/" pollInterval={20000}/>,
-  document.getElementById('content')
+    <AttributeList assess_id="{{id}}"/>,
+    document.getElementById('content')
   );
 </script>
 {% endblock %}

@@ -3,13 +3,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="X-UA-Compatible" content="IE=edge">
+
     <title>{% block title %}{% endblock %}</title>
 
     <script type="text/javascript" src='{% static 'components/jquery/dist/jquery.min.js' %}'></script>
     <script src="{% static "components/react/react.min.js" %}"></script>
     <script src="{% static "components/react/react-dom.min.js" %}"></script>
     <script src="{% static "components/babel/browser.min.js" %}"></script>
-    <script src='{% static 'components/react-bootstrap/react-bootstrap.min.js' %}'></script>
+    <script src='{% static "components/react-bootstrap/react-bootstrap.min.js" %}'></script>
     <script src="{% static "components/classnames/index.js" %}"></script>
     <script src="{% static "components/react-input-autosize/dist/react-input-autosize.min.js" %}"></script>
     <script src="{% static "components/react-select/dist/react-select.min.js" %}"></script>
@@ -17,12 +19,8 @@
     <script src="{% static "components/react-loader/lib/react-loader.js" %}"></script>
 
     <script src="{% static "js/csrf-setup.js" %}"></script>
-    <script type="text/javascript" src="//js.ruxit.com/jstag/147f273fa2a/emo72556/ea3ad8e4de43c3f5_bs.js"></script>
-
     <link rel="stylesheet" href="{% static "components/bootstrap/dist/css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "components/bootstrap/dist/css/bootstrap-theme.min.css" %}">
     <link rel="stylesheet" href="{% static "components/react-select/dist/react-select.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/measure-mate.css" %}">
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -33,6 +31,7 @@
     var Nav = ReactBootstrap.Nav;
 
     var MMNavBar = React.createClass({
+      propTypes: {},
         render: function render() {
           return (
             <Navbar>
@@ -60,4 +59,5 @@
 
   </script>
 {% block body %}{% endblock %}
+<link rel="stylesheet" href="{% static "css/measure-mate.css" %}">
 </body>

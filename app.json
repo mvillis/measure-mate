@@ -2,15 +2,16 @@
   "name": "autolama",
   "description": "Simple tool to track maturity assessments.",
   "repository": "https://github.com/rloomans/measure-mate",
-  "scripts": {
-    "postdeploy": "sh .postdeploy.sh"
-  },
   "env": {
     "DJANGO_DEBUG": {
       "required": true
     },
     "DJANGO_SETTINGS_MODULE": {
       "required": true
+    },
+    "DJANGO_SECRET_KEY": {
+      "required": true,
+      "generator": "secret"
     }
   },
   "addons": [

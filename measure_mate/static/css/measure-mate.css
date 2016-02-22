@@ -17,8 +17,11 @@ a,tr.clickable-row {
   padding-left: 6px;
 }
 
-button {
-  outline: none;
+td.wrap
+{
+  word-wrap: break-word;
+  min-width: 160px;
+  max-width: 160px;
 }
 
 .rating-Regressive {
@@ -41,8 +44,27 @@ button {
   border-left-width: 15px !important;
 }
 
+.target-btn {
+   position: absolute;
+   right: 25px;
+}
+
+.target-help {
+   position: absolute;
+   right: 5px;
+   top: 13px;
+}
+
 #att-list {
   padding-bottom: 50px;
+}
+
+.inline {
+  display: inline
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 @media (max-width: 640px) {

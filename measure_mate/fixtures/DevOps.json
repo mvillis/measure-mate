@@ -1,150 +1,570 @@
 [
   {
     "fields": {
-      "short_desc": "A template to assess the maturity of DevOps in Suncorp",
+      "short_desc": "A template to assess the maturity of DevOps practices",
       "name": "DevOps"
     },
     "model": "measure_mate.template",
-    "pk": 3
+    "pk": 2
   },
   {
     "fields": {
       "name": "Configuration Management",
-      "template": 3,
+      "template": 2,
       "rank": 1,
       "desc": "Ability to track changes made to the artefacts that affect the behaviour of a system and manage multiple contributions to a single artefact.\r\nThis includes source code, libraries, configuration files, tests, environment descriptions, dependant libraries, database schema, support documentation and anything else required to deliver the product."
     },
     "model": "measure_mate.attribute",
-    "pk": 11
+    "pk": 201
   },
   {
     "fields": {
       "name": "Continuous Integration",
-      "template": 3,
+      "template": 2,
       "rank": 2,
       "desc": "Ability to continuously build and test a product release base to ensure individual changes are compatible with other changes made synchronously.\r\nThis allows the team to manage the rhythm of their work and repeatably release a high quality product on demand."
     },
     "model": "measure_mate.attribute",
-    "pk": 12
+    "pk": 202
   },
   {
     "fields": {
-      "attribute": 11,
+      "name": "Data Management",
+      "template": 2,
+      "rank": 3,
+      "desc": "Ability to effectively manage changes to the database schema and application data through the development pipeline to production."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 203
+  },
+  {
+    "fields": {
+      "name": "Environments and Deployments",
+      "template": 2,
+      "rank": 4,
+      "desc": "Availability of appropriate environments for development and testing to ensure the product will work as expected in production. The capability to release into production with minimal work and no disruption to operations and end users."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 204
+  },
+  {
+    "fields": {
+      "name": "Quality Assurance",
+      "template": 2,
+      "rank": 5,
+      "desc": "Concept of systematically discovering issues in the delivery of the product quickly with more frequent and shorter feedback cycles to ensure quality. Discovering defects earlier in the development cycle is less costly and easier to fix. Issues are not exposed to the customer as they are identified and resolved prior to that point."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 205
+  },
+  {
+    "fields": {
+      "name": "Visibility and Traceability",
+      "template": 2,
+      "rank": 6,
+      "desc": "The ability to plan and respond to the product owner's requests for change in a manner that allows a consistent and predictable pace of work that is completely transparent to all."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 206
+  },
+  {
+    "fields": {
+      "name": "Organisational Alignment",
+      "template": 2,
+      "rank": 7,
+      "desc": "The team's ability to share ideas and work together to improve processes and the product, delivering working software in a faster and safer manner. Ability of team to share knowledge and skills and determine the course for improvement."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 207
+  },
+  {
+    "fields": {
+      "name": "Technical Architecture",
+      "template": 2,
+      "rank": 8,
+      "desc": "Bigger picture thinking about technical decisions and their net effect on the business ability to change. This is expensive and difficult to change once the technology is in use. This refers to the mechanism that is in place to make the architectural decisions, not as much about the architecture itself."
+    },
+    "model": "measure_mate.attribute",
+    "pk": 208
+  },
+  {
+    "fields": {
+      "attribute": 201,
       "name": "Poor",
       "rank": 1,
       "desc": "Changes are made by multiple team members simultaneously without any effort to maintain versions or track who made what change and when.\r\nIf version control exists, it usually performed by individuals who need the structure to organize the activities they are responsible for.\r\nThere is no means for a team to roll back to a previous working version.\r\n"
     },
     "model": "measure_mate.rating",
-    "pk": 41
+    "pk": 241
   },
   {
     "fields": {
-      "attribute": 11,
+      "attribute": 201,
       "name": "Basic",
       "rank": 2,
       "desc": "Version control is recognised as required to maintain stability of the product and is used to manage main development artifacts as source code, build scripts and unit tests.\r\nSimultaneous updates to artifacts is difficult and results in conflicts.\r\nMaintenance and tracking of changes is not enforced.\r\nUncontrolled branching and versioning is common.\r\nThe repository usually sits on an unmanaged machine.\r\n"
     },
     "model": "measure_mate.rating",
-    "pk": 42
+    "pk": 242
   },
   {
     "fields": {
-      "attribute": 11,
+      "attribute": 201,
       "name": "Alright",
       "rank": 3,
       "desc": "The version control system is used consistently for managing some artifacts.\r\nVersioning of items requires the knowledge of key individuals who understand how the VCS works.\r\nMore items are identified as requiring version control, but heavy reliance on manual processes prevents this from happening.\r\nFrequency of check-ins varies and may be lengthy.\r\nThere are systematic ways to resolve conflicts when they occur.\r\nThere are standards for creating branches, which may be based on releases or some other time based factor.\r\nThere are standards the team should follow for using the version control system, but these are not enforced.\r\nDistributed teams maintain separate repositories.\r\nThe repository is on managed server and may be backed up."
     },
     "model": "measure_mate.rating",
-    "pk": 43
+    "pk": 243
   },
   {
     "fields": {
-      "attribute": 11,
+      "attribute": 201,
       "name": "Good",
       "rank": 4,
       "desc": "All items required for configuring all environments are identified.\r\nA single tool set for product configuration management has been determined and there is an effort to move all delivery artifacts into version control.\r\nTest scripts, libraries and dependencies are managed.\r\nAll team members are checking in on a regular, frequent basis.\r\nThe entire team respects the integrity of the repository.\r\nBranches are created only to support releases.\r\nRepository can be reproduced if it crashes."
     },
     "model": "measure_mate.rating",
-    "pk": 44
+    "pk": 244
   },
   {
     "fields": {
-      "attribute": 11,
+      "attribute": 201,
       "name": "Very Good",
       "rank": 5,
       "desc": "All configuration artifacts are identified, managed and versioned together.\r\nChanges to dependant systems are pull based.\r\nAny team member can create new and retrieve previous versions successfully as required to deploy to any environment.\r\nThe standard is to develop code on the main trunk.\r\nBranches are created rarely and are short lived.\r\nCheck-ins occur multiple times each day.\r\nDistributed teams work against a single repository.\r\nEnvironment specifications are managed and versioned along with all other artifacts."
     },
     "model": "measure_mate.rating",
-    "pk": 45
+    "pk": 245
   },
   {
     "fields": {
-      "attribute": 11,
+      "attribute": 201,
       "name": "Excellent",
       "rank": 6,
       "desc": "The change management policy is frequently validated as supporting rapid and reliable release.\r\nThe team changes practice and items as the product continues to evolve.\r\nNew versioning tools are assessed and implemented to meet the evolving need of the product release practices.\r\nTrunk based development is the standard practice and the team manages releases and features without resorting to branches.\r\nThe repository is virtual and easily accessed by all team members, regardless of their location."
     },
     "model": "measure_mate.rating",
-    "pk": 46
+    "pk": 246
   },
   {
     "fields": {
-      "attribute": 12,
+      "attribute": 202,
       "name": "Poor",
       "rank": 1,
       "desc": "Discovery of errors made due to incompatibility of the changes happens in production.\r\nNo standards or practice in place to check for compatibility."
     },
     "model": "measure_mate.rating",
-    "pk": 47
+    "pk": 247
   },
   {
     "fields": {
-      "attribute": 12,
+      "attribute": 202,
       "name": "Basic",
       "rank": 2,
       "desc": "Manual builds are lengthy and  often broken at the core functioning level.\r\nIntegration tests are run manually and infrequently and are usually dependent on the knowledge and skill of individuals.\r\nDevelopers continue to work while errors are occurring in the build.\r\nIntegration to other systems is ignored.\r\nFunctional integration within the application occurs late in the release cycle, if at all."
     },
     "model": "measure_mate.rating",
-    "pk": 48
+    "pk": 248
   },
   {
     "fields": {
-      "attribute": 12,
+      "attribute": 202,
       "name": "Alright",
       "rank": 3,
       "desc": "Infrequent builds on a central server may happen regularly (nightly).\r\nInfrequent commits are made.\r\nBuilds can be recreated from source control but requires the knowledge and skill of key individuals.\r\n"
     },
     "model": "measure_mate.rating",
-    "pk": 49
+    "pk": 249
   },
   {
     "fields": {
-      "attribute": 12,
+      "attribute": 202,
       "name": "Good",
       "rank": 4,
       "desc": "There is a CI server that runs the build and tests automatically  with each check-in.\r\nThere is use of scripts and other artefacts from a common tool set.\r\nThe build environment is more complex, with efforts to mimic integration with other systems.\r\nThe build status is visible to all.\r\nWhen the build breaks, no further check-ins are allowed until the build is fixed.\r\n"
     },
     "model": "measure_mate.rating",
-    "pk": 50
+    "pk": 250
   },
   {
     "fields": {
-      "attribute": 12,
+      "attribute": 202,
       "name": "Very Good",
       "rank": 5,
       "desc": "Build times tracked, made visible and managed.\r\nThe automatic build employs multiple stages of testing with deployment into additional environments for different types of testing.\r\nDifferent types of build are running at varying frequencies and times (E.g.\r\nFast vs.\r\nSlow).\r\nThe team actively manages the build time and their own build environment and is capable of maintaining the build, taking responsibility for this.\r\nCode is maintained to impersonate other systems to enable integration testing.\r\nThe build status is highly visible, along with other metrics.\r\n"
     },
     "model": "measure_mate.rating",
-    "pk": 51
+    "pk": 251
   },
   {
     "fields": {
-      "attribute": 12,
+      "attribute": 202,
       "name": "Excellent",
       "rank": 6,
       "desc": "Each successful build is a release candidate.\r\nFocus is on committing more frequently with increasing confidence in the quality of the product.\r\nThe CI build creates and provisions environments to allow scalability for testing.\r\nTests are run in parallel across multiple machines.\r\nThe build pipeline extends directly into production.\r\n"
     },
     "model": "measure_mate.rating",
-    "pk": 52
+    "pk": 252
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 253
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 254
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 255
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 256
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 257
+  },
+  {
+    "fields": {
+      "attribute": 203,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 258
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 259
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 260
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 261
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 262
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 263
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 264
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 265
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 266
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 267
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 268
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 269
+  },
+  {
+    "fields": {
+      "attribute": 205,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 270
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 271
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 272
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 273
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 274
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 275
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 276
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 277
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 278
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 279
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 280
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 281
+  },
+  {
+    "fields": {
+      "attribute": 207,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 282
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Poor",
+      "rank": 1,
+      "desc": "Poor"
+    },
+    "model": "measure_mate.rating",
+    "pk": 283
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Basic",
+      "rank": 2,
+      "desc": "Basic"
+    },
+    "model": "measure_mate.rating",
+    "pk": 284
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Alright",
+      "rank": 3,
+      "desc": "Alright"
+    },
+    "model": "measure_mate.rating",
+    "pk": 285
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Good",
+      "rank": 4,
+      "desc": "Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 286
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Very Good",
+      "rank": 5,
+      "desc": "Very Good"
+    },
+    "model": "measure_mate.rating",
+    "pk": 287
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "Excellent",
+      "rank": 6,
+      "desc": "Excellent"
+    },
+    "model": "measure_mate.rating",
+    "pk": 288
   }
 ]
