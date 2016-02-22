@@ -562,7 +562,7 @@
     "fields": {
       "attribute": 111,
       "name": "Regressive",
-      "rank": 1,
+      "rank": -1,
       "desc_class": "like-pre",
       "desc": "• Not a one team culture (us vs them)\r\n• Teams from different locations not seen as equal peers\r\n"
     },
@@ -573,7 +573,7 @@
     "fields": {
       "attribute": 111,
       "name": "Emerging",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
       "desc": "• Mutually agreed cadence (+)\r\n• We learn from each other - two way flow (+)\r\n• Single consistent way of working (+)\r\n• Continuously improve our joint way of working and collaborate as the one team (+)\r\n• Majority of meetings are face 2 face [VC, Lync Video, etc] (+)\r\n"
     },
@@ -584,7 +584,7 @@
     "fields": {
       "attribute": 111,
       "name": "Growing",
-      "rank": 3,
+      "rank": 2,
       "desc_class": "like-pre",
       "desc": "• Collaboration Tools are enabling us, not blocking us (+)\r\n• We celebrate our diversity in language and culture (+)\r\n• Team celebrate success together (+)\r\n• Current skillset/capability of all team members understood and regularly reviewed (+)\r\n• Strategy and roadmap is co-created by the whole team (+)\r\n"
     },
@@ -595,7 +595,7 @@
     "fields": {
       "attribute": 111,
       "name": "Sustainable",
-      "rank": 4,
+      "rank": 3,
       "desc_class": "like-pre",
       "desc": "• Equal participation from the whole distributed team\r\n• Hands-off between geographical locations are minimised\r\n• Specific actions exists to increase every team member's capability\r\n"
     },
