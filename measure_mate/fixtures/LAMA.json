@@ -256,6 +256,7 @@
       "attribute": 104,
       "name": "Regressive",
       "rank": -1,
+      "desc_class": "like-pre",
       "desc": "• No Product Owner\r\n\r\n\r\n"
     },
     "model": "measure_mate.rating",
