@@ -63,7 +63,7 @@ class MeasurementCreateSerializer(serializers.ModelSerializer):
 class AssessmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assessment
-        depth = 1
+        depth = 2
 
 
 class AssessmentCreateSerializer(serializers.ModelSerializer):
@@ -72,4 +72,27 @@ class AssessmentCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Assessment
-        fields = ('id', 'created', 'updated', 'template', 'tags')
+        fields = ('id', 'created', 'updated', 'template', 'tags', 'team')
+
+
+class AssessmentSimpleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Assessment
+        fields = ('id', 'template', 'created', 'updated')
+
+
+class TeamSerializer(serializers.ModelSerializer):
+    assessments = AssessmentSimpleSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Team
+        fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags', 'assessments')
+
+class TeamCreateSerializer(serializers.ModelSerializer):
+    tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
+
+    class Meta:
+        model = Team
+        fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags')
+

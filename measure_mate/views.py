@@ -93,14 +93,14 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementCreateSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('rating__id', 'rating__attribute__id', 'assessment__id')
+    filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
 
 
 class MeasurementListView(generics.ListAPIView):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('rating__id', 'rating__attribute__id', 'assessment__id')
+    filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
 
 class TeamViewSet(viewsets.ModelViewSet):
     """

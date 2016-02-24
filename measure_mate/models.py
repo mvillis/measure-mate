@@ -64,7 +64,7 @@ class Tag(models.Model):
 class Team(models.Model):
     class Meta:
         verbose_name_plural = "Teams"
-        ordering = ['-pk']
+        ordering = ['pk']
 
     id = models.AutoField(primary_key=True, verbose_name="Team ID")
     name = models.CharField(max_length=256, unique=True, verbose_name="Team Name")

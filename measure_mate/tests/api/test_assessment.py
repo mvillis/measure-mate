@@ -4,7 +4,7 @@ from time import timezone
 from django.core.urlresolvers import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from measure_mate.tests.factories import AssessmentFactory, TemplateFactory, TagFactory
+from measure_mate.tests.factories import AssessmentFactory, TemplateFactory, TagFactory, TeamFactory
 from measure_mate.models import Assessment
 
 
@@ -13,7 +13,7 @@ class AssessmentAPITestCases(APITestCase):
         """
         List all assessments and check that all fields are returned
         """
-        assessment1 = AssessmentFactory(tags=[TagFactory()])
+        assessment1 = AssessmentFactory(tags=[TagFactory()], team=TeamFactory())
 
         url = reverse('assessment-list')
         response = self.client.get(url)
@@ -24,6 +24,8 @@ class AssessmentAPITestCases(APITestCase):
         self.assertEqual(response.data[0]['tags'][0]['name'], assessment1.tags.first().name)
         self.assertEqual(response.data[0]['template']['name'], assessment1.template.name)
         self.assertEqual(response.data[0]['template']['id'], assessment1.template.id)
+        self.assertEqual(response.data[0]['team']['name'], assessment1.team.name)
+        self.assertEqual(response.data[0]['team']['id'], assessment1.team.id)
         self.assertEqual(datetime.datetime.strptime(response.data[0]['created'], '%Y-%m-%dT%H:%M:%S.%fZ'),
                          assessment1.created.replace(tzinfo=None))
         self.assertEqual(datetime.datetime.strptime(response.data[0]['updated'], '%Y-%m-%dT%H:%M:%S.%fZ'),
@@ -92,3 +94,18 @@ class AssessmentAPITestCases(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
+
+    def test_create_assessment_team(self):
+        """
+        Ensure we can create a new assessment object with a team.
+        """
+        tag = TagFactory()
+        template = TemplateFactory()
+        team = TeamFactory()
+
+        url = reverse('assessment-list')
+	data = {"template": template.id, "tags": [tag.id], "team": team.id}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Assessment.objects.count(), 1)
+
