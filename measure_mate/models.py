@@ -79,7 +79,7 @@ class Assessment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     template = models.ForeignKey(Template, related_name="assessments")
-    template = models.ForeignKey(Team, null=True)
+    team = models.ForeignKey(Team, null=True, related_name="assessments")
     tags = models.ManyToManyField(Tag,)
 
     def __unicode__(self):
