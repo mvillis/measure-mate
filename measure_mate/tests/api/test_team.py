@@ -1,8 +1,9 @@
+import datetime
+from time import timezone
+
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.test import APITestCase
-
-import dateutil.parser
 
 from measure_mate.models import Team
 from measure_mate.tests.factories import TeamFactory, TagFactory
@@ -23,8 +24,10 @@ class TeamAPITestCases(APITestCase):
         self.assertEqual(response.data[0]['id'], team.id)
         self.assertEqual(response.data[0]['name'], team.name)
         self.assertEqual(response.data[0]['short_desc'], team.short_desc)
-        self.assertEqual(dateutil.parser.parse(response.data[0]['created']), team.created)
-        self.assertEqual(dateutil.parser.parse(response.data[0]['updated']), team.updated)
+        self.assertEqual(datetime.datetime.strptime(response.data[0]['created'], '%Y-%m-%dT%H:%M:%S.%fZ'),
+                         team.created.replace(tzinfo=None))
+        self.assertEqual(datetime.datetime.strptime(response.data[0]['updated'], '%Y-%m-%dT%H:%M:%S.%fZ'),
+                         team.updated.replace(tzinfo=None))
 
     def test_create_team(self):
         """
