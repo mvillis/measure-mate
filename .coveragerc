@@ -6,8 +6,7 @@ omit =
     venv/*
     measure_mate/migrations/*
     measure_mate/tests/*
-    measure_mate/settings.py
-    measure_mate/*
+    measure_mate/settings/*.py
     measure_mate/wsgi.py
 [report]
 precision = 2
