@@ -11,6 +11,7 @@ router.register(r'tags', TagViewSet)
 router.register(r'measurements', MeasurementViewSet)
 router.register(r'assessments', AssessmentViewSet)
 router.register(r'ratings', RatingViewSet)
+router.register(r'teams', TeamViewSet)
 
 urlpatterns = [
     url(r'^assessment/list$', assessment_list, name='assessmentlist'),
