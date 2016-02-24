@@ -9,7 +9,7 @@ class AssessmentListViewTestCases(TestCase):
     def test_assessment_list_view(self):
 
         assessment = AssessmentFactory(tags=[TagFactory()])
-        response = self.client.get(reverse('assessment-list'))
+        response = self.client.get(reverse('assessment-showlist'))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTemplateUsed(response, 'assessment_list.html')
