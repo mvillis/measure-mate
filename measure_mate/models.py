@@ -5,7 +5,8 @@ class Template(models.Model):
     class Meta:
         verbose_name_plural = "Templates"
 
-    name = models.CharField(max_length=256, unique=True)
+    id = models.AutoField(primary_key=True, verbose_name="Template ID")
+    name = models.CharField(max_length=256, unique=True, verbose_name="Template Name")
     short_desc = models.CharField(max_length=256)
 
     def __unicode__(self):
@@ -18,7 +19,8 @@ class Attribute(models.Model):
         unique_together = ("template", "name")
         ordering = ['rank', 'pk']
 
-    name = models.CharField(max_length=256)
+    id = models.AutoField(primary_key=True, verbose_name="Attribute ID")
+    name = models.CharField(max_length=256, verbose_name="Attribute Name")
     desc = models.TextField()
     desc_class = models.TextField(default="")
     template = models.ForeignKey(Template, related_name='attributes')
@@ -35,6 +37,7 @@ class Rating(models.Model):
         unique_together = ("attribute", "name")
         ordering = ['rank', 'pk']
 
+    id = models.AutoField(primary_key=True, verbose_name="Rating ID")
     attribute = models.ForeignKey(Attribute, related_name='ratings')
     name = models.CharField(max_length=256)
     desc = models.TextField()
@@ -51,7 +54,8 @@ class Tag(models.Model):
         verbose_name_plural = "Tags"
         ordering = ['name']
 
-    name = models.CharField(max_length=256, unique=True)
+    id = models.AutoField(primary_key=True, verbose_name="Tag ID")
+    name = models.CharField(max_length=256, unique=True, verbose_name="Tag Name")
 
     def __unicode__(self):
         return self.name
@@ -62,6 +66,7 @@ class Assessment(models.Model):
         verbose_name_plural = "Assessments"
         ordering = ['-pk']
 
+    id = models.AutoField(primary_key=True, verbose_name="Assessment ID")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     template = models.ForeignKey(Template, related_name="assessments")
