@@ -5,11 +5,11 @@ from rest_framework import status
 from measure_mate.tests.factories import AssessmentFactory, TagFactory
 
 
-class AssessmentViewTestCases(TestCase):
-    def test_assessment_view(self):
+class AssessmentListViewTestCases(TestCase):
+    def test_assessment_list_view(self):
 
         assessment = AssessmentFactory(tags=[TagFactory()])
-        response = self.client.get(reverse('assessment', args=[assessment.id]))
+        response = self.client.get(reverse('assessment-list'))
 
-        self.assertTemplateUsed(response, 'assessment.html')
+        self.assertTemplateUsed(response, 'assessment_list.html')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
