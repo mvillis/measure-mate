@@ -11,5 +11,5 @@ class AssessmentListViewTestCases(TestCase):
         assessment = AssessmentFactory(tags=[TagFactory()])
         response = self.client.get(reverse('assessment-showlist'))
 
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTemplateUsed(response, 'assessment_list.html')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
