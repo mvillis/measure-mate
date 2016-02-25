@@ -24,24 +24,48 @@ td.wrap
   max-width: 160px;
 }
 
-.rating-Regressive {
+.list-group-item .rating-Regressive {
   border-left-color: Red !important;
   border-left-width: 15px !important;
 }
 
-.rating-Emerging {
+.list-group-item .rating-Emerging {
   border-left-color: Orange !important;
   border-left-width: 15px !important;
 }
 
-.rating-Growing {
+.list-group-item .rating-Growing {
   border-left-color: Yellow !important;
   border-left-width: 15px !important;
 }
 
-.rating-Sustainable {
+.list-group-item .rating-Sustainable {
   border-left-color: Green !important;
   border-left-width: 15px !important;
+}
+
+td.rating-Regressive {
+  background-color: Red !important;
+  font-weight: bold;
+  color: white;
+}
+
+td.rating-Emerging {
+  background-color: Orange !important;
+  font-weight: bold;
+  color: white;
+}
+
+td.rating-Growing {
+  background-color: Yellow !important;
+  font-weight: bold;
+  color: black;
+}
+
+td.rating-Sustainable {
+  background-color: Green !important;
+  font-weight: bold;
+  color: white;
 }
 
 .target-btn {
