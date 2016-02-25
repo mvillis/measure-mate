@@ -480,24 +480,44 @@
         rank_max = Math.max(rank_max, rating.rank);
       });
 
+      var summaryRows = [];
+
       if (this.props.measurements != null) {
         (this.props.attributes.map(function (attribute, i) {
           labels.push(attribute.name);
+
           var measurement = this.getMeasurementForAttribute(attribute);
-          if (measurement && measurement.rating) {
-            rating_series.push(_.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }).rank);
-          }
-          else {
-            rating_series.push(0);
-          }
-          if (measurement && measurement.target_rating) {
-            target_series.push(_.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }).rank);
-          }
-          else {
-            target_series.push(0);
-          }
+
+          var current_rating = (measurement && measurement.rating) ? _.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }) : null;
+          var target_rating = (measurement && measurement.target_rating) ? _.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }) : null;
+
+          rating_series.push(current_rating ? current_rating.rank : 0);
+          target_series.push(target_rating ? target_rating.rank : 0);
+
+          summaryRows.push(
+            <tr>
+              <td>{attribute.name}</td>
+	      <td className={ "text-center" + (current_rating ? " rating-" + current_rating.name : "") }>{current_rating ? current_rating.name : '-'}</td>
+              <td className={ "text-center" + (target_rating ? " rating-" + target_rating.name : "") }>{target_rating ? target_rating.name : '-'}</td>
+            </tr>
+          )
         }.bind(this)));
       }
+
+      var summaryTable = (
+        <Table striped bordered condensed hover className="assessment-report">
+          <thead>
+            <tr>
+              <th>Practice/Capability</th>
+              <th className="text-center">Current</th>
+              <th className="text-center">Target</th>
+            </tr>
+          </thead>
+          <tbody>
+          {summaryRows}
+          </tbody>
+        </Table>
+      );
 
       if (Math.min.apply(Math, rating_series) < 0) {
         current_colors = [];
@@ -562,7 +582,10 @@
       }
 
       return (
-        <PlotlyComponent data={data} layout={layout} config={config}/>
+        <div className="assessment-report">
+          <PlotlyComponent data={data} layout={layout} config={config}/>
+          {summaryTable}
+        </div>
       );
     }
   });
