@@ -24,22 +24,22 @@ td.wrap
   max-width: 160px;
 }
 
-.list-group-item .rating-Regressive {
+.list-group-item.rating-Regressive {
   border-left-color: Red !important;
   border-left-width: 15px !important;
 }
 
-.list-group-item .rating-Emerging {
+.list-group-item.rating-Emerging {
   border-left-color: Orange !important;
   border-left-width: 15px !important;
 }
 
-.list-group-item .rating-Growing {
+.list-group-item.rating-Growing {
   border-left-color: Yellow !important;
   border-left-width: 15px !important;
 }
 
-.list-group-item .rating-Sustainable {
+.list-group-item.rating-Sustainable {
   border-left-color: Green !important;
   border-left-width: 15px !important;
 }
@@ -84,11 +84,17 @@ td.rating-Sustainable {
 }
 
 .inline {
-  display: inline
+  display: inline;
 }
 
 .clickable {
   cursor: pointer;
+}
+
+.assessment-report {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
 }
 
 @media (max-width: 640px) {
@@ -103,5 +109,18 @@ td.rating-Sustainable {
     }
     .container {
         padding: 5px !important;
+    }
+    .assessment-report {
+      margin-left: auto;
+      margin-right: auto;
+      width: 400px !important;
+    }
+}
+
+@media (max-width: 800px) {
+    .assessment-report {
+      margin-left: auto;
+      margin-right: auto;
+      width: 400px !important;
     }
 }

@@ -505,7 +505,7 @@
       }
 
       var summaryTable = (
-        <Table striped bordered condensed hover responsive>
+        <Table striped bordered condensed hover className="assessment-report">
           <thead>
             <tr>
               <th>Practice/Capability</th>
@@ -582,7 +582,7 @@
       }
 
       return (
-        <div>
+        <div className="assessment-report">
           <PlotlyComponent data={data} layout={layout} config={config}/>
           {summaryTable}
         </div>
