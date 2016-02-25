@@ -111,14 +111,6 @@ class TeamViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('tags__id', 'tags__name')
 
-
-class TeamListView(generics.ListAPIView):
-    queryset = Team.objects.all()
-    serializer_class = TeamSerializer
-    filter_backends = (filters.SearchFilter,filters.DjangoFilterBackend,)
-    search_fields = ('name',)
-    filter_fields = ('tags__id', 'tags__name')
-
     def create(self, request, *args, **kwargs):
         serializer = TeamCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
