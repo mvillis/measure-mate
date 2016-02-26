@@ -61,6 +61,21 @@ class Tag(models.Model):
         return self.name
 
 
+class Team(models.Model):
+    class Meta:
+        verbose_name_plural = "Teams"
+        ordering = ['pk']
+
+    id = models.AutoField(primary_key=True, verbose_name="Team ID")
+    name = models.CharField(max_length=256, unique=True, verbose_name="Team Name")
+    short_desc = models.CharField(max_length=256)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    tags = models.ManyToManyField(Tag,)
+
+    def __unicode__(self):
+        return self.name
+
 class Assessment(models.Model):
     class Meta:
         verbose_name_plural = "Assessments"
@@ -70,6 +85,7 @@ class Assessment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     template = models.ForeignKey(Template, related_name="assessments")
+    team = models.ForeignKey(Team, null=True, related_name="assessments")
     tags = models.ManyToManyField(Tag,)
 
     def __unicode__(self):
