@@ -18,7 +18,6 @@ urlpatterns = [
     url(r'^assessment/(?P<pk>[0-9]+)/$', assessment, name='assessment'),
     url(r'^assessment/report/(?P<pk>[0-9]+)/$', assessment_report, name='assessment-report'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/tags?', TagListView.as_view()),
     url(r'^api/', include(router.urls)),
     url(r'^api/api-auth/', include(
         'rest_framework.urls', namespace='rest_framework')),
