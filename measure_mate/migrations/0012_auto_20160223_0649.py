@@ -13,9 +13,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='assessment',
-            name='template',
+            name='team',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='measure_mate.Team'),
         ),
     ]
