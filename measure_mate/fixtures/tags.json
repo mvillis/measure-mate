@@ -54,7 +54,7 @@
     },
     "model": "measure_mate.tag",
     "pk": 8
-  }
+  },
   {
     "fields": {
       "name": "agile"
