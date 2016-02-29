@@ -26,6 +26,9 @@
   var Button = ReactBootstrap.Button;
   var Table = ReactBootstrap.Table;
   var Popover = ReactBootstrap.Popover;
+  var Grid = ReactBootstrap.Grid;
+  var Row = ReactBootstrap.Row;
+  var Col = ReactBootstrap.Col;
 
   var AttributeList = React.createClass({
     propTypes: {
@@ -481,6 +484,7 @@
       });
 
       var summaryRows = [];
+      var assess_stats = {'min': null, 'max': null, 'diff': null};
 
       if (this.props.measurements != null) {
         (this.props.attributes.map(function (attribute, i) {
@@ -490,10 +494,20 @@
 
           var current_rating = (measurement && measurement.rating) ? _.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }) : null;
           var target_rating = (measurement && measurement.target_rating) ? _.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }) : null;
-
+          console.log(current_rating);
+          console.log(target_rating);
           rating_series.push(current_rating ? current_rating.rank : 0);
           target_series.push(target_rating ? target_rating.rank : 0);
-
+          if (!assess_stats['min']) {
+            assess_stats['min'] = {'attribute': attribute, rank: current_rating.rank}
+            assess_stats['max'] = {'attribute': attribute, rank: current_rating.rank}
+            assess_stats['diff'] = {'attribute': attribute, value: 0}
+          }
+          assess_stats['min'] = (current_rating && assess_stats['min'] && current_rating.rank < assess_stats['min'].rank) ? {'attribute': attribute, rank: current_rating.rank} : assess_stats['min'];
+          assess_stats['max'] = (current_rating && assess_stats['max'] && current_rating.rank > assess_stats['max'].rank) ? {'attribute': attribute, rank: current_rating.rank} : assess_stats['max'];
+          var diff = (target_rating && current_rating) ? (target_rating.rank - current_rating.rank) : null;
+          assess_stats['diff'] = (diff && assess_stats['diff'] && diff > assess_stats['diff'].value) ? {'attribute': attribute, value: diff} : assess_stats['diff'];
+          console.log(assess_stats);
           summaryRows.push(
             <tr>
               <td>{attribute.name}</td>
@@ -582,9 +596,34 @@
       }
 
       return (
-        <div className="assessment-report">
-          <PlotlyComponent data={data} layout={layout} config={config}/>
-          {summaryTable}
+        <div>
+          <Row>
+            <Col xs={6} md={4}>
+              <Panel header="Best" className="text-center" bsStyle="success">
+                <div><strong>{assess_stats['max'].attribute.name}</strong></div>
+              </Panel>
+            </Col>
+            <Col xs={6} md={4}>
+                <Panel header="Worst" className="text-center" bsStyle="danger">
+                  <div><strong>{assess_stats['min'].attribute.name}</strong></div>
+                </Panel>
+            </Col>
+            <Col xs={6} md={4}>
+              <Panel header="Promote" className="text-center" bsStyle="warning">
+                <div><strong>{assess_stats['diff'].attribute.name}</strong></div>
+              </Panel>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <PlotlyComponent data={data} layout={layout} config={config}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              {summaryTable}
+            </Col>
+          </Row>
         </div>
       );
     }
