@@ -11,9 +11,10 @@ router.register(r'tags', TagViewSet)
 router.register(r'measurements', MeasurementViewSet)
 router.register(r'assessments', AssessmentViewSet)
 router.register(r'ratings', RatingViewSet)
+router.register(r'teams', TeamViewSet)
 
 urlpatterns = [
-    url(r'^assessment/list$', assessment_list, name='assessmentlist'),
+    url(r'^assessment/list$', assessment_list, name='assessment-showlist'),
     url(r'^assessment/(?P<pk>[0-9]+)/$', assessment, name='assessment'),
     url(r'^assessment/report/(?P<pk>[0-9]+)/$', assessment_report, name='assessment-report'),
     url(r'^admin/', include(admin.site.urls)),

@@ -29,7 +29,7 @@
   },
   {
     "fields": {
-      "name": "sbs"
+      "name": "tdl"
     },
     "model": "measure_mate.tag",
     "pk": 5
@@ -47,5 +47,19 @@
     },
     "model": "measure_mate.tag",
     "pk": 7
+  },
+  {
+    "fields": {
+      "name": "agile-and-lean"
+    },
+    "model": "measure_mate.tag",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "name": "agile"
+    },
+    "model": "measure_mate.tag",
+    "pk": 9
   }
 ]

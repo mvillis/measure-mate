@@ -9,3 +9,4 @@ class HomeViewTestCases(TestCase):
         response = self.client.get(reverse('home'))
         self.assertTemplateUsed(response, 'index.html')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['X-UA-Compatible'], 'IE=edge')

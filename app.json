@@ -1,7 +1,9 @@
 {
   "name": "autolama",
   "description": "Simple tool to track maturity assessments.",
-  "repository": "https://github.com/rloomans/measure-mate",
+  "repository": "https://github.com/mvillis/measure-mate",
+  "website": "https://github.com/mvillis/measure-mate",
+  "license": "MIT",
   "env": {
     "DJANGO_DEBUG": {
       "required": true

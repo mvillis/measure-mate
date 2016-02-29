@@ -75,6 +75,8 @@ class AssessmentViewSet(viewsets.ModelViewSet):
     """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('team__id', 'team__name', 'template__id', 'template__name', 'tags__id', 'tags__name')
 
     def create(self, request, *args, **kwargs):
         serializer = AssessmentCreateSerializer(data=request.data)
@@ -91,11 +93,29 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementCreateSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('rating__id', 'assessment__id', 'rating__attribute')
+    filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
 
 
 class MeasurementListView(generics.ListAPIView):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('rating__id', 'assessment__id', 'rating__attribute__id')
+    filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
+
+class TeamViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for the Team resource.
+    """
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('tags__id', 'tags__name')
+
+    def create(self, request, *args, **kwargs):
+        serializer = TeamCreateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
