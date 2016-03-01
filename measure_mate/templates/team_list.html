@@ -45,9 +45,8 @@
     render: function() {
       return (
         <div className="container">
-          <PageHeader>Teams</PageHeader>
           <Loader loaded={this.state.loaded}>
-              <TeamList data={this.state.data} />
+            <TeamList data={this.state.data} />
           </Loader>
         </div>
       );
@@ -67,31 +66,33 @@
 
     render: function() {
       return (
-        <Table hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Created Date</th>
-            <th>Name</th>
-            <th>Tags</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.data.map(function(team, i) {
-            var prettyCreated = moment(team.created).format('DD/MM/YYYY');
-            var relativeCreated = moment(team.created).fromNow();
-            var boundClick = this.handleClick.bind(this, team.id);
-            return (
-              <tr key={team.id} className="clickable-row" onClick={boundClick}>
-                <td><a href={"/teams/" + team.id + "/"}>{team.id}</a></td>
-                <td>{prettyCreated} <small>({relativeCreated})</small></td>
-                <td>{team.name}</td>
-                <td className="wrap"><TagList tags={team.tags}/></td>
-              </tr>
-            );
-          }, this)}
-          </tbody>
-        </Table>
+        <Panel header="Teams" bsStyle="primary">
+          <Table hover fill striped>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Created Date</th>
+              <th>Name</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.data.map(function(team, i) {
+              var prettyCreated = moment(team.created).format('DD/MM/YYYY');
+              var relativeCreated = moment(team.created).fromNow();
+              var boundClick = this.handleClick.bind(this, team.id);
+              return (
+                <tr key={team.id} className="clickable-row" onClick={boundClick}>
+                  <td><a href={"/teams/" + team.id + "/"}>{team.id}</a></td>
+                  <td>{prettyCreated} <small>({relativeCreated})</small></td>
+                  <td>{team.name}</td>
+                  <td className="wrap"><TagList tags={team.tags}/></td>
+                </tr>
+              );
+            }, this)}
+            </tbody>
+          </Table>
+        </Panel>
       );
     }
   });
