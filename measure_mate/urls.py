@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.views.generic import TemplateView
 from django.contrib import admin
 from rest_framework import routers
 from views import *
@@ -14,6 +15,7 @@ router.register(r'ratings', RatingViewSet)
 router.register(r'teams', TeamViewSet)
 
 urlpatterns = [
+    url(r'^index-trial/', TemplateView.as_view(template_name='index-trial.html')),
     url(r'^assessment/list$', assessment_list, name='assessment-showlist'),
     url(r'^assessment/(?P<pk>[0-9]+)/$', assessment, name='assessment'),
     url(r'^assessment/report/(?P<pk>[0-9]+)/$', assessment_report, name='assessment-report'),
