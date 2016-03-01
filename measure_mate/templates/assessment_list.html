@@ -45,9 +45,8 @@
     render: function() {
       return (
         <div className="container">
-          <PageHeader>Assessments</PageHeader>
           <Loader loaded={this.state.loaded}>
-              <AssessmentList data={this.state.data} />
+            <AssessmentList data={this.state.data} />
           </Loader>
         </div>
       );
@@ -67,31 +66,33 @@
 
     render: function() {
       return (
-        <Table hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Created Date</th>
-            <th>Template</th>
-            <th>Tags</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.data.map(function(assessment, i) {
-            var prettyCreated = moment(assessment.created).format('DD/MM/YYYY');
-            var relativeCreated = moment(assessment.created).fromNow();
-            var boundClick = this.handleClick.bind(this, assessment.id);
-            return (
-              <tr key={assessment.id} className="clickable-row" onClick={boundClick}>
-                <td><a href={"/assessment/" + assessment.id + "/"}>{assessment.id}</a></td>
-                <td>{prettyCreated} <small>({relativeCreated})</small></td>
-                <td>{assessment.template.name}</td>
-                <td className="wrap"><TagList tags={assessment.tags}/></td>
-              </tr>
-            );
-          }, this)}
-          </tbody>
-        </Table>
+        <Panel header="Assessments" bsStyle="primary">
+          <Table hover fill striped>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Created Date</th>
+              <th>Template</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.data.map(function(assessment, i) {
+              var prettyCreated = moment(assessment.created).format('DD/MM/YYYY');
+              var relativeCreated = moment(assessment.created).fromNow();
+              var boundClick = this.handleClick.bind(this, assessment.id);
+              return (
+                <tr key={assessment.id} className="clickable-row" onClick={boundClick}>
+                  <td><a href={"/assessment/" + assessment.id + "/"}>{assessment.id}</a></td>
+                  <td>{prettyCreated} <small>({relativeCreated})</small></td>
+                  <td>{assessment.template.name}</td>
+                  <td className="wrap"><TagList tags={assessment.tags}/></td>
+                </tr>
+              );
+            }, this)}
+            </tbody>
+          </Table>
+        </Panel>
       );
     }
   });
