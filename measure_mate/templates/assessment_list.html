@@ -19,7 +19,7 @@
       url: React.PropTypes.string.isRequired,
       pollInteval: React.PropTypes.number.isRequired
     },
-    loadRatingsFromServer: function() {
+    loadAssessmentsFromServer: function() {
       $.ajax({
         url: this.props.url,
         dataType: 'json',
@@ -39,8 +39,8 @@
       };
     },
     componentDidMount: function() {
-      this.loadRatingsFromServer();
-      setInterval(this.loadRatingsFromServer, this.props.pollInterval);
+      this.loadAssessmentsFromServer();
+      setInterval(this.loadAssessmentsFromServer, this.props.pollInterval);
     },
     render: function() {
       return (

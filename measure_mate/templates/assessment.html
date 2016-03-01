@@ -40,6 +40,7 @@
         assessment: null,
         next_hide: false,
         previous_hide: false,
+        summary_hide: false,
         initial_load: false,
         measure_sync_activity: false,
         observations: {},
@@ -156,6 +157,9 @@
       this.setState({active_tab: key});
       this.handleTabChange(key);
     },
+    handleSelectSummary: function () {
+      this.handleSelect(this.state.template.attributes.length+1);
+    },
     handleTabChange: function (current_tab) {
       if (current_tab == 1) {
         this.setState({previous_hide: true});
@@ -164,8 +168,10 @@
       }
       if (current_tab >= this.state.template.attributes.length+1) {
         this.setState({next_hide: true});
+        this.setState({summary_hide: true});
       } else {
         this.setState({next_hide:false});
+        this.setState({summary_hide: false});
       }
     },
     scrollToTop: function (att_list) {
@@ -259,6 +265,8 @@
                 <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
                 {' '}
                 <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
+                {' '}
+                <PageItem className="summary-button" disabled={this.state.summary_hide} onClick={this.handleSelectSummary}>Summary &rArr;</PageItem>
               </Pager>
             </Tabs>
           </Loader>
@@ -497,7 +505,7 @@
           summaryRows.push(
             <tr>
               <td>{attribute.name}</td>
-	      <td className={ "text-center" + (current_rating ? " rating-" + current_rating.name : "") }>{current_rating ? current_rating.name : '-'}</td>
+              <td className={ "text-center" + (current_rating ? " rating-" + current_rating.name : "") }>{current_rating ? current_rating.name : '-'}</td>
               <td className={ "text-center" + (target_rating ? " rating-" + target_rating.name : "") }>{target_rating ? target_rating.name : '-'}</td>
             </tr>
           )
