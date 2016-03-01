@@ -83,7 +83,7 @@
               var boundClick = this.handleClick.bind(this, team.id);
               return (
                 <tr key={team.id} className="clickable-row" onClick={boundClick}>
-                  <td><a href={"/teams/" + team.id + "/"}>{team.id}</a></td>
+                  <td><a href={"/team/" + team.id + "/"}>{team.id}</a></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
                   <td>{team.name}</td>
                   <td className="wrap"><TagList tags={team.tags}/></td>
