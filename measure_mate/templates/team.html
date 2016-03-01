@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Measure Mate{% endblock %}
+{% block head %}
+  <script src="{% static "components/moment/min/moment.min.js" %}"></script>
+{% endblock %}
+{% block body %}
+<div id="content"></div>
+<script type="text/babel">
+
+  var Label = ReactBootstrap.Label;
+  var PageHeader = ReactBootstrap.PageHeader;
+  var Panel = ReactBootstrap.Panel;
+  var Table = ReactBootstrap.Table;
+
+  var TeamDetails = React.createClass({
+    propTypes: {
+      url: React.PropTypes.string.isRequired,
+      pollInteval: React.PropTypes.number.isRequired
+    },
+    loadTeamFromServer: function() {
+      $.ajax({
+        url: this.props.url,
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+          this.setState({team: data, loaded: true});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    },
+    getInitialState: function() {
+      return {
+        team: [],
+        loaded: false
+      };
+    },
+    componentDidMount: function() {
+      this.loadTeamFromServer();
+      setInterval(this.loadTeamFromServer, this.props.pollInterval);
+    },
+    render: function() {
+      return (
+        <div>
+	  <PageHeader>
+              {!!this.state.team == true ? this.state.team.name : ""} <small> {!!this.state.team ? this.state.team.short_desc : ""}</small>
+    	  </PageHeader>
+          <Loader loaded={this.state.loaded}>
+              <Table hover fill>
+                <tr>
+                  <th>Name</th>
+                  <td>{this.state.team.name}</td>
+                </tr>
+                <tr>
+                  <th>Description</th>
+                  <td>{this.state.team.short_desc}</td>
+                </tr>
+                <tr>
+                  <th>Tags</th>
+                  <td><TagList tags={this.state.team.tags}/></td>
+                </tr>
+                <tr>
+                  <th>Created</th>
+                  <td>{this.state.team.created}</td>
+                </tr>
+                <tr>
+                  <th>Updated</th>
+                  <td>{this.state.team.updated}</td>
+                </tr>
+              </Table>
+          </Loader>
+        </div>
+      );
+    }
+    });
+
+  var AssessmentTable = React.createClass({
+    propTypes: {
+      url: React.PropTypes.string.isRequired,
+      pollInteval: React.PropTypes.number.isRequired
+    },
+    loadAssessmentsFromServer: function() {
+      $.ajax({
+        url: this.props.url,
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+          this.setState({data: data, loaded: true});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    },
+    getInitialState: function() {
+      return {
+        data: [],
+        loaded: false
+      };
+    },
+    componentDidMount: function() {
+      this.loadAssessmentsFromServer();
+      setInterval(this.loadAssessmentsFromServer, this.props.pollInterval);
+    },
+    render: function() {
+      return (
+        <div>
+          <PageHeader>Assessments</PageHeader>
+          <Loader loaded={this.state.loaded}>
+              <AssessmentList data={this.state.data} />
+          </Loader>
+        </div>
+      );
+    }
+    });
+
+  var AssessmentList = React.createClass({
+    propTypes: {
+      data: React.PropTypes.array.isRequired,
+    },
+
+    handleClick: function(assess_id, e) {
+      console.log(assess_id);
+      console.log(e);
+      window.document.location = ("/assessment/" + assess_id + "/")
+    },
+
+    render: function() {
+      return (
+        <Table hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Created Date</th>
+            <th>Template</th>
+            <th>Tags</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.props.data.map(function(assessment, i) {
+            var prettyCreated = moment(assessment.created).format('DD/MM/YYYY');
+            var relativeCreated = moment(assessment.created).fromNow();
+            var boundClick = this.handleClick.bind(this, assessment.id);
+            return (
+              <tr key={assessment.id} className="clickable-row" onClick={boundClick}>
+                <td><a href={"/assessment/" + assessment.id + "/"}>{assessment.id}</a></td>
+                <td>{prettyCreated} <small>({relativeCreated})</small></td>
+                <td>{assessment.template.name}</td>
+                <td className="wrap"><TagList tags={assessment.tags}/></td>
+              </tr>
+            );
+          }, this)}
+          </tbody>
+        </Table>
+      );
+    }
+  });
+
+  var TagList = React.createClass({
+    propTypes: {
+      tags: React.PropTypes.array.isRequired
+    },
+    render: function() {
+      var tagNodes = this.props.tags.map(function (tag, i) {
+        return (
+          <span key={i}><Label ey={tag.id} bsStyle="default" className="label label-primary">{tag.name}</Label>&nbsp;</span>
+        );
+      });
+      return (
+        <div>
+        {tagNodes}
+        </div>
+      );
+    }
+  });
+
+
+
+
+  ReactDOM.render(
+    <div className="container">
+      <TeamDetails url="/api/teams/{{id}}" pollInterval={30000}/>
+      <AssessmentTable url="/api/assessments/?team__id={{id}}" pollInterval={30000}/>
+    </div>,
+    document.getElementById('content')
+  );
+</script>
+{% endblock %}

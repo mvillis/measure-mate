@@ -22,6 +22,16 @@ def assessment_list(request):
     return render(request, 'assessment_list.html')
 
 
+@x_ua_compatible('IE=edge')
+def team(request, pk):
+    return render(request, 'team.html', {'id': pk})
+
+
+@x_ua_compatible('IE=edge')
+def team_list(request):
+    return render(request, 'team_list.html')
+
+
 class TemplateViewSet(viewsets.ModelViewSet):
     """
     API endpoint for the Template resource.
