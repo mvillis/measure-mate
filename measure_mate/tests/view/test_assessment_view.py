@@ -13,3 +13,11 @@ class AssessmentViewTestCases(TestCase):
 
         self.assertTemplateUsed(response, 'assessment.html')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_assessment_summary_view(self):
+
+        assessment = AssessmentFactory(tags=[TagFactory()])
+        response = self.client.get(reverse('assessment', args=[assessment.id]), {'summary': 1})
+
+        self.assertTemplateUsed(response, 'assessment.html')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
