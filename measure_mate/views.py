@@ -14,7 +14,11 @@ def home(request):
 
 @x_ua_compatible('IE=edge')
 def assessment(request, pk):
-    return render(request, 'assessment.html', {'id': pk})
+    show_summary = False
+    if "summary" in request.GET: 
+      if request.GET["summary"]:
+        show_summary = True
+    return render(request, 'assessment.html', {'id': pk, "summary": show_summary})
 
 
 @x_ua_compatible('IE=edge')

@@ -55,7 +55,13 @@
         measurements: data,
         initial_load: true
       });
-      this.handleSelect(1);
+
+      if ("{{summary}}" == "True") {
+          this.handleSelectSummary();
+      }
+      else {
+          this.handleSelect(1);
+      }
     },
     template_callback: function (data) {
       this.setState( {
@@ -257,6 +263,7 @@
           )
         }.bind(this)();
       }
+
       return (
         <div id="att-list">
           <Loader loaded={this.state.initial_load}>
