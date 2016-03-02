@@ -232,7 +232,12 @@
 
         var summaryTab = function () {
           return (
-            <Tab eventKey={this.state.template ? this.state.template.attributes.length+1 : null} key={this.state.template ? this.state.template.attributes.length+1 : null} id={this.state.template ? this.state.template.attributes.length+1 : null} title={<div><span className="glyphicon glyphicon-stats"></span> <span>Summary</span></div>}>
+            <Tab
+              eventKey={this.state.template ? this.state.template.attributes.length+1 : null}
+              key={this.state.template ? this.state.template.attributes.length+1 : null}
+              id={this.state.template ? this.state.template.attributes.length+1 : null}
+              title={<div><Glyphicon glyph="stats"/> <span>Summary</span></div>}
+            >
               <Panel header="Summary" bsStyle="primary">
                 <Alert bsStyle="warning">
                   How did you go? Where are you strengths and weaknesses? What are some improvements you could make?
@@ -262,11 +267,17 @@
               {attributeNodes}
               {summaryTab}
               <Pager>
-                <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
+                <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
+                  <Glyphicon glyph="chevron-left" /> {' '} Previous
+                </PageItem>
                 {' '}
-                <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>Next &rarr;</PageItem>
+                <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
+                  Next {' '} <Glyphicon glyph="chevron-right" />
+                </PageItem>
                 {' '}
-                <PageItem className="summary-button" disabled={this.state.summary_hide} onClick={this.handleSelectSummary}>Summary &rArr;</PageItem>
+                <PageItem disabled={this.state.summary_hide} onClick={this.handleSelectSummary} className="summary-button">
+                  <Glyphicon glyph="stats"/> Summary {' '}
+                </PageItem>
               </Pager>
             </Tabs>
           </Loader>
@@ -326,9 +337,9 @@
       render: function () {
         var syncStatus = function () {
           if (this.props.dirty_observation[this.props.active_tab] == false && this.props.measurement) {
-            return (<span><span>   </span><Glyphicon glyph="glyphicon glyphicon-saved" /></span>);
+            return (<span><span>   </span><Glyphicon glyph="saved" /></span>);
           } else if (this.props.dirty_observation[this.props.active_tab] == true && !this.props.measurement) {
-              return (<span className="text-info"><span>  </span><Glyphicon glyph="glyphicon glyphicon-info-sign" /> Select a rating below to save this comment and complete the form.</span>);
+              return (<span className="text-info"><span>  </span><Glyphicon glyph="info-sign" /> Select a rating below to save this comment and complete the form.</span>);
           } else {
             return (<span></span>);
           };
@@ -391,7 +402,7 @@
                       Target
                   </Button>
                   <OverlayTrigger trigger="click" placement="left" rootClose overlay={<Popover id={rating.id}>You have decided your current rating. Set your future goal by selecting a target button.</Popover>}>
-                    <Glyphicon className="target-help clickable" glyph="glyphicon glyphicon-question-sign" />
+                    <Glyphicon className="target-help clickable" glyph="question-sign" />
                   </OverlayTrigger>
                 </div>
               );
