@@ -61,7 +61,7 @@
     handleClick: function(assess_id, e) {
       console.log(assess_id);
       console.log(e);
-      window.document.location = ("/assessment/" + assess_id + "/")
+      window.document.location = ("/assessment/" + assess_id + "/?summary=1")
     },
 
     render: function() {
@@ -83,7 +83,7 @@
               var boundClick = this.handleClick.bind(this, assessment.id);
               return (
                 <tr key={assessment.id} className="clickable-row" onClick={boundClick}>
-                  <td><a href={"/assessment/" + assessment.id + "/"}>{assessment.id}</a></td>
+                  <td><a href={"/assessment/" + assessment.id + "/?summary=1"}>{assessment.id}</a></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
                   <td>{assessment.template.name}</td>
                   <td className="wrap"><TagList tags={assessment.tags}/></td>
