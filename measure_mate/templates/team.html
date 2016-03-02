@@ -46,7 +46,7 @@
       return (
         <div>
           <Loader loaded={this.state.loaded}>
-            <Panel header="Team" bsStyle="primary">
+            <Panel header=<b>Team</b> >
               <Table hover fill>
                 <tr>
                   <th>Name</th>
@@ -59,14 +59,6 @@
                 <tr>
                   <th>Tags</th>
                   <td><TagList tags={this.state.team.tags}/></td>
-                </tr>
-                <tr>
-                  <th>Created</th>
-                  <td>{this.state.team.created}</td>
-                </tr>
-                <tr>
-                  <th>Updated</th>
-                  <td>{this.state.team.updated}</td>
                 </tr>
               </Table>
             </Panel>
@@ -126,9 +118,11 @@
       window.document.location = ("/assessment/" + assess_id + "/")
     },
 
+
     render: function() {
+
       return (
-        <Panel header="Assessments" bsStyle="primary">
+        <Panel header=<b>Assessments</b> >
           <Table hover fill striped>
           <thead>
             <tr>
