@@ -55,19 +55,18 @@
         measurements: data,
         initial_load: true
       });
-
-      if ("{{summary}}" == "True") {
-          this.handleSelectSummary();
-      }
-      else {
-          this.handleSelect(1);
-      }
     },
     template_callback: function (data) {
       this.setState( {
         template: data
       }, this.dataSource("/api/measurements/" + "?assessment__id=" + this.props.assess_id, this.measurement_callback)
       );
+      if ("{{summary}}" == "True") {
+          this.handleSelectSummary();
+      }
+      else {
+          this.handleSelect(1);
+      }
     },
     assessment_callback: function (data) {
       this.setState( {
