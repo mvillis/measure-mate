@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
+from os.path import abspath, basename, dirname, join, normpath
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+SITE_ROOT = dirname(DJANGO_ROOT)
+SITE_NAME = basename(DJANGO_ROOT)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -25,7 +28,6 @@ SECRET_KEY = 'p*=rq2jp5_q&wpuory=)d78449^2ytct2m+#5frn8ce3i&1@j*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', True)
-
 ALLOWED_HOSTS = ['*']
 
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'pipeline',
     'measure_mate',
 )
 
@@ -74,10 +77,9 @@ ROOT_URLCONF = 'measure_mate.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
-            'debug': True,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -115,14 +117,57 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 STATIC_URL = '/static/'
+STATIC_ROOT = normpath(join(SITE_ROOT, 'static'))
+STATICFILES_DIRS = ()
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
 )
+
+# Django Pipeline (and browserify)
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+PIPELINE = {
+    'JS_COMPRESSOR': 'pipeline.compressors.uglifyjs.UglifyJSCompressor',
+    'CSS_COMPRESSOR': 'pipeline.compressors.NoopCompressor',
+    'COMPILERS': ('pipeline_browserify.compiler.BrowserifyCompiler', ),
+    'BROWSERIFY_ARGUMENTS': '-t [ babelify --presets [ react ] ]',
+    'STYLESHEETS': {
+        'measure_mate_css': {
+            'source_filenames': (
+                'css/measure-mate.css',
+                'bower_components/bootstrap/dist/css/bootstrap.css',
+                'bower_components/react-select/dist/react-select.css',
+            ),
+            'output_filename': 'css/measure_mate.css',
+        },
+    },
+    'JAVASCRIPT': {
+        'measure_mate_js': {
+            'source_filenames': (
+                'js/bower_components/jquery/dist/jquery.min.js',
+                'js/bower_components/bootstrap/dist/js/bootstrap.js',
+                'js/bower_components/classnames/index.js',
+                'js/bower_components/moment/moment.js',
+                'js/bower_components/plotly.js/plotly.js',
+                'js/bower_components/react/react.js',
+                'js/bower_components/react/react-dom.js',
+                'js/bower_components/react-bootstrap/react-bootstrap.js',
+                'js/bower_components/react-input-autosize/dist/react-input-autosize.js',
+                'js/bower_components/react-loader/lib/react-loader.js',
+                'js/bower_components/react-select/dist/react-select.js',
+                'js/bower_components/spin.js/spin.js',
+                'js/bower_components/underscore/underscore.js',
+                'js/csrf-setup.js',
+                'js/app.browserify.js',
+            ),
+            'output_filename': 'js/measure_mate.js',
+        }
+    }
+}
 
 LOGGING = {
     'version': 1,
@@ -137,13 +182,20 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
     },
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        'pipeline.templatetags.pipeline': {
+            'handlers': ['console'],
+            'level': 'ERROR',
         },
     }
 }
