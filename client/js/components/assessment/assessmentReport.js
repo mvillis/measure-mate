@@ -1,7 +1,7 @@
 "use strict";
 
 var React = require('react');
-var _ = require('underscore');
+var _ = require('lodash');
 var PlotlyComponent = require('./plotlyComponent');
 var ReactBootstrap = require('react-bootstrap');
 var Table = ReactBootstrap.Table;

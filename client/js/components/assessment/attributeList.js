@@ -2,7 +2,7 @@
 
 var React = require('react');
 var ReactBootstrap = require('react-bootstrap');
-var _ = require('underscore');
+var _ = require('lodash');
 var PageHeader = ReactBootstrap.PageHeader;
 var Tabs = ReactBootstrap.Tabs;
 var Tab = ReactBootstrap.Tab;
