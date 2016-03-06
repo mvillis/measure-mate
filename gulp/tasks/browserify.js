@@ -21,7 +21,7 @@ gulp.task('browserify', function (callback) {
       cache: {},
       packageCache: {},
       // full system file paths, disable for production
-      fullPaths: true,
+      fullPaths: !config.production,
       // Add file extentions to make optional in your requires
       extensions: config.extensions,
       // Enable source maps
@@ -41,7 +41,7 @@ gulp.task('browserify', function (callback) {
         // stream gulp compatible. Specifiy the
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
-        .pipe(config.production ? streamify(uglify(bundleConfig.outputName)) : util.noop())
+        .pipe(config.production ? streamify(uglify()) : util.noop())
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished)
