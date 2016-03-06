@@ -1,8 +1,6 @@
 var util = require('gulp-util');
 var production = !!util.env.production;
 
-console.log(production);
-
 var dest = "build";
 var src = "client";
 
@@ -99,7 +97,8 @@ module.exports = {
       dest: dest + '/js',
       outputName: 'bundle.js'
     }],
-    production: production
+    production: production,
+    gzipAppend: { append: true }
   },
   lint: {
     src: [

@@ -2,6 +2,7 @@ var browserSync = require('browser-sync')
 var browserify = require('browserify')
 var watchify = require('watchify')
 var uglify = require('gulp-uglify')
+var gzip = require('gulp-gzip')
 var streamify = require('gulp-streamify')
 var bundleLogger = require('../util/bundleLogger')
 var gulp = require('gulp')
@@ -42,6 +43,7 @@ gulp.task('browserify', function (callback) {
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
         .pipe(config.production ? streamify(uglify()) : util.noop())
+        .pipe(config.production ? streamify(gzip(config.gzipAppend)) : util.noop())
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished)
