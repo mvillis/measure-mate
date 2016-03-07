@@ -22,7 +22,7 @@ Run the follow commands to set up your npm dependencies and your python virtual 
 
 ```
 $ npm install -g gulp
-n$ pm install
+$ npm install
 $ virtualenv .venv
 ```
 
