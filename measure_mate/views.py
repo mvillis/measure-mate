@@ -60,11 +60,6 @@ class TagViewSet(viewsets.ModelViewSet):
     """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
-
-
-class TagListView(generics.ListAPIView):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
 
@@ -95,12 +90,6 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
 
-
-class MeasurementListView(generics.ListAPIView):
-    queryset = Measurement.objects.all()
-    serializer_class = MeasurementSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
 
 class TeamViewSet(viewsets.ModelViewSet):
     """
