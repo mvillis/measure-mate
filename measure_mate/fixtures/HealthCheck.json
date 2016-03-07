@@ -154,9 +154,10 @@
     "fields": {
       "attribute": 401,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 401
@@ -165,9 +166,10 @@
     "fields": {
       "attribute": 401,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 402
@@ -176,9 +178,10 @@
     "fields": {
       "attribute": 401,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 403
@@ -187,9 +190,10 @@
     "fields": {
       "attribute": 402,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 404
@@ -198,9 +202,10 @@
     "fields": {
       "attribute": 402,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 405
@@ -209,9 +214,10 @@
     "fields": {
       "attribute": 402,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 406
@@ -220,9 +226,10 @@
     "fields": {
       "attribute": 403,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 407
@@ -231,9 +238,10 @@
     "fields": {
       "attribute": 403,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 408
@@ -242,9 +250,10 @@
     "fields": {
       "attribute": 403,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 409
@@ -253,9 +262,10 @@
     "fields": {
       "attribute": 404,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 410
@@ -264,9 +274,10 @@
     "fields": {
       "attribute": 404,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 411
@@ -275,9 +286,10 @@
     "fields": {
       "attribute": 404,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 412
@@ -286,9 +298,10 @@
     "fields": {
       "attribute": 405,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 413
@@ -297,9 +310,10 @@
     "fields": {
       "attribute": 405,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 414
@@ -308,9 +322,10 @@
     "fields": {
       "attribute": 405,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 415
@@ -319,9 +334,10 @@
     "fields": {
       "attribute": 406,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 416
@@ -330,9 +346,10 @@
     "fields": {
       "attribute": 406,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 417
@@ -341,9 +358,10 @@
     "fields": {
       "attribute": 406,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 418
@@ -352,9 +370,10 @@
     "fields": {
       "attribute": 407,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 419
@@ -363,9 +382,10 @@
     "fields": {
       "attribute": 407,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 420
@@ -374,9 +394,10 @@
     "fields": {
       "attribute": 407,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 421
@@ -385,9 +406,10 @@
     "fields": {
       "attribute": 408,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 422
@@ -396,9 +418,10 @@
     "fields": {
       "attribute": 408,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 423
@@ -407,9 +430,10 @@
     "fields": {
       "attribute": 408,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 424
@@ -418,9 +442,10 @@
     "fields": {
       "attribute": 409,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 425
@@ -429,9 +454,10 @@
     "fields": {
       "attribute": 409,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 426
@@ -440,9 +466,10 @@
     "fields": {
       "attribute": 409,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 427
@@ -451,9 +478,10 @@
     "fields": {
       "attribute": 410,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 428
@@ -462,9 +490,10 @@
     "fields": {
       "attribute": 410,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 429
@@ -473,9 +502,10 @@
     "fields": {
       "attribute": 410,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 430
@@ -484,9 +514,10 @@
     "fields": {
       "attribute": 411,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 431
@@ -495,9 +526,10 @@
     "fields": {
       "attribute": 411,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 432
@@ -506,9 +538,10 @@
     "fields": {
       "attribute": 411,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 433
@@ -517,9 +550,10 @@
     "fields": {
       "attribute": 412,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 434
@@ -528,9 +562,10 @@
     "fields": {
       "attribute": 412,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 435
@@ -539,9 +574,10 @@
     "fields": {
       "attribute": 412,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 436
@@ -550,9 +586,10 @@
     "fields": {
       "attribute": 413,
       "name": "Green",
-      "rank": 1,
+      "rank": 2,
       "desc_class": "like-pre",
-      "desc": "Green\r\n"
+      "desc": "Green\r\n",
+      "colour": "Green"
     },
     "model": "measure_mate.rating",
     "pk": 437
@@ -561,9 +598,10 @@
     "fields": {
       "attribute": 413,
       "name": "Yellow",
-      "rank": 2,
+      "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Yellow\r\n"
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
     },
     "model": "measure_mate.rating",
     "pk": 438
@@ -572,9 +610,10 @@
     "fields": {
       "attribute": 413,
       "name": "Red",
-      "rank": 3,
+      "rank": -1,
       "desc_class": "like-pre",
-      "desc": "Red\r\n"
+      "desc": "Red\r\n",
+      "colour": "Red"
     },
     "model": "measure_mate.rating",
     "pk": 439
