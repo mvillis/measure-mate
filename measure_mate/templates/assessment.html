@@ -394,7 +394,7 @@
           var rating_active = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating == rating.id) : false;
           var target_active = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating == rating.id) : false;
           var target_bs_style = target_active ? "success" : "default";
-          var desc_class = "rating-" + rating.name + (rating.desc_class ? " " + rating.desc_class : "")
+          var desc_class = (rating.desc_class ? " " + rating.desc_class : "") + (rating.colour ? " rating-colour" : "")
           var header = function () {
             if ((this.props.measurement && this.props.measurement.rating)) {
               return (
@@ -420,14 +420,16 @@
               )
             }
           }.bind(this)();
+
           return (
-            <ListGroupItem active={rating_active} id={rating.id} key={rating.id} header={header} className={desc_class}>
+            <ListGroupItem active={rating_active} id={rating.id} key={rating.id} header={header} className={desc_class} style={ { 'border-left-color': rating.colour } }>
               <div className="clickable" onClick={this.saveMeasurement.bind(this, {rating: rating.id})}>
                 {rating.desc}
               </div>
             </ListGroupItem>
           );
       }.bind(this));
+
       return (<div>
             {ratingNodes}
             </div>
@@ -475,9 +477,9 @@
       }
     },
     render: function() {
-      var BLUE = "#0000CC";
-      var RED = "#CC0000";
-      var GREY = "#CCCCCC";
+      var BLUE = "#337ab7";
+      var RED = "#b73333";
+      var GREY = "#b7b7b7";
 
       var labels = [];
       var target_series = [];
@@ -519,11 +521,24 @@
           rating_series.push(current_rating ? current_rating.rank : 0);
           target_series.push(target_rating ? target_rating.rank : 0);
 
+          var current_colour = (current_rating ? current_rating.colour : "");
+          var current_style = {
+              'background-color': current_colour,
+              'font-weight': 'bold',
+              'color': (current_colour == "Yellow") ? 'Black' : 'White',
+          };
+          var target_colour = (target_rating ? target_rating.colour : "");
+          var target_style = {
+              'background-color': target_colour,
+              'font-weight': 'bold',
+              'color': (target_colour == "Yellow") ? 'Black' : 'White',
+          };
+
           summaryRows.push(
             <tr>
               <td>{attribute.name}</td>
-              <td className={ "text-center" + (current_rating ? " rating-" + current_rating.name : "") }>{current_rating ? current_rating.name : '-'}</td>
-              <td className={ "text-center" + (target_rating ? " rating-" + target_rating.name : "") }>{target_rating ? target_rating.name : '-'}</td>
+	      <td className="text-center" style={current_style}>{current_rating ? current_rating.name : '-'}</td>
+              <td className="text-center" style={target_style}>{target_rating ? target_rating.name : '-'}</td>
             </tr>
           )
         }.bind(this)));
@@ -570,7 +585,7 @@
           color: GREY,
           line: {
             color: GREY,
-            width: 5
+            width: 2
           }
         }
       };
