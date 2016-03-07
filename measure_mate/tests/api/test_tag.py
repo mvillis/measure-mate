@@ -34,3 +34,12 @@ class TagAPITestCases(APITestCase):
         self.assertEqual(response.data[0]['name'], tag.name)
         self.assertEqual(len(response.data), 1)
 
+    def test_create_tag(self):
+        """
+        Ensure we can create a new tag object.
+        """
+        url = reverse('tag-list')
+        data = {"name": "test-tag-alpha", }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Tag.objects.count(), 1)
