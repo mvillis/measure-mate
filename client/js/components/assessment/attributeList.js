@@ -239,7 +239,7 @@ var AttributeList = React.createClass({
       }.bind(this)();
     }
     return (
-      <div id="att-list" className="container-fluid">
+      <div id="att-list">
         <Loader loaded={this.state.initial_load}>
           <PageHeader>
             {!!this.state.assessment == true ? this.state.assessment.template.name : ""} <small> {!!this.state.assessment ? this.state.assessment.template.short_desc : ""}</small>

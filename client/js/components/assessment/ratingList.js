@@ -70,7 +70,7 @@ var RatingList = React.createClass({
           }
         }.bind(this)();
         return (
-          <ListGroupItem active={rating_active} id={rating.id} key={rating.id} header={header} className={desc_class} style={ { 'border-left-color': rating.colour } }>
+          <ListGroupItem active={rating_active} id={rating.id} key={rating.id} header={header} className={desc_class} style={ { 'borderLeftColor': rating.colour } }>
             <div className="clickable" onClick={this.saveMeasurement.bind(this, {rating: rating.id})}>
               {rating.desc}
             </div>

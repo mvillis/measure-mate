@@ -93,14 +93,14 @@ var AssessmentReport = React.createClass({
 
         var current_colour = (current_rating ? current_rating.colour : "");
         var current_style = {
-            'background-color': current_colour,
-            'font-weight': 'bold',
+            'backgroundColor': current_colour,
+            'fontWeight': 'bold',
             'color': (current_colour == "Yellow") ? 'Black' : 'White',
         };
         var target_colour = (target_rating ? target_rating.colour : "");
         var target_style = {
-            'background-color': target_colour,
-            'font-weight': 'bold',
+            'backgroundColor': target_colour,
+            'fontWeight': 'bold',
             'color': (target_colour == "Yellow") ? 'Black' : 'White',
         };
 
