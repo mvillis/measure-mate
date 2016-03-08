@@ -12,30 +12,6 @@ def home(request):
     return render(request, 'index.html')
 
 
-@x_ua_compatible('IE=edge')
-def assessment(request, pk):
-    show_summary = False
-    if "summary" in request.GET: 
-      if request.GET["summary"]:
-        show_summary = True
-    return render(request, 'assessment.html', {'id': pk, "summary": show_summary})
-
-
-@x_ua_compatible('IE=edge')
-def assessment_list(request):
-    return render(request, 'assessment_list.html')
-
-
-@x_ua_compatible('IE=edge')
-def team(request, pk):
-    return render(request, 'team.html', {'id': pk})
-
-
-@x_ua_compatible('IE=edge')
-def team_list(request):
-    return render(request, 'team_list.html')
-
-
 class TemplateViewSet(viewsets.ModelViewSet):
     """
     API endpoint for the Template resource.
@@ -115,5 +91,3 @@ class TeamViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-

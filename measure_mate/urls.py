@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.views.generic import TemplateView
 from django.contrib import admin
 from rest_framework import routers
 from views import *
@@ -14,10 +15,6 @@ router.register(r'ratings', RatingViewSet)
 router.register(r'teams', TeamViewSet)
 
 urlpatterns = [
-    url(r'^assessment/list$', assessment_list, name='assessment-showlist'),
-    url(r'^assessment/(?P<pk>[0-9]+)/$', assessment, name='assessment'),
-    url(r'^team/list$', team_list, name='team-showlist'),
-    url(r'^team/(?P<pk>[0-9]+)/$', team, name='team'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api/api-auth/', include(
