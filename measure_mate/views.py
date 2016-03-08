@@ -12,16 +12,6 @@ def home(request):
     return render(request, 'index.html')
 
 
-@x_ua_compatible('IE=edge')
-def assessment(request, pk):
-    return render(request, 'assessment.html', {'id': pk})
-
-
-@x_ua_compatible('IE=edge')
-def assessment_list(request):
-    return render(request, 'assessment_list.html')
-
-
 class TemplateViewSet(viewsets.ModelViewSet):
     """
     API endpoint for the Template resource.
@@ -101,5 +91,3 @@ class TeamViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-
