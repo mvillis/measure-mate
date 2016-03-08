@@ -1,5 +1,5 @@
-var gulp = require('gulp');
+var gulp = require('gulp')
 
-gulp.task('build', ['browserify', 'css', 'fonts', 'assets', 'templates', 'lint'], function(){
-    global.isBuilding = false;
-});
+gulp.task('build', ['envSetup', 'browserify', 'css', 'fonts', 'assets', 'templates', 'lint'], function () {
+  global.isBuilding = false
+})

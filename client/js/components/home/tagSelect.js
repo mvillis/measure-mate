@@ -1,60 +1,59 @@
-"use strict";
+'use strict'
 
-var React = require('react');
-var Select = require('react-select');
-var $ = require('jquery');
+var React = require('react')
+var Select = require('react-select')
+var $ = require('jquery')
 
 var TagSelect = React.createClass({
   propTypes: {
     label: React.PropTypes.string.isRequired,
     value: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired,
+    onChange: React.PropTypes.func.isRequired
   },
   displayName: 'TagSelect',
 
-  loadOptions: function loadOptions(input, callback) {
-      setTimeout(function() {
-          $.ajax({
-            url: "/api/tags?search=" + input,
-            dataType: 'json',
-            cache: false,
-            success: function(data) {
-              var options = data.map(function (item) {
-                return (
-                  { value: item.id, label: item.name }
-                );
-              });
-              callback(null, {
-                  options: options,
-                  complete: false
-              });
-            },
-            error: function(xhr, status, err) {
-              console.error(this.props.url, status, err.toString());
-            }
-          });
-      }, 500);
+  loadOptions: function loadOptions (input, callback) {
+    setTimeout(function () {
+      $.ajax({
+        url: '/api/tags?search=' + input,
+        dataType: 'json',
+        cache: false,
+        success: function (data) {
+          var options = data.map(function (item) {
+            return (
+              { value: item.id, label: item.name }
+            )
+          })
+          callback(null, {
+            options: options,
+            complete: false
+          })
+        },
+        error: function (xhr, status, err) {
+          console.error(window.location, status, err.toString())
+        }
+      })
+    }, 500)
   },
 
-  render: function render() {
+  render: function render () {
     return (
       <div>
         <label>{this.props.label}</label>
         <div>
           <Select.Async {...this.props} delimeter=','
-          multi={true} loadOptions={this.loadOptions}
-          allowCreate={true}
-          name='tags'
-          placeholder='Type to find existing tags or create new ones'
+            multi loadOptions={this.loadOptions}
+            allowCreate
+            name='tags'
+            placeholder='Type to find existing tags or create new ones'
           />
         </div>
         <div className='hint'>
           Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.
         </div>
       </div>
-    );
+    )
   }
-});
+})
 
-
-module.exports = TagSelect;
+module.exports = TagSelect
