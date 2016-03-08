@@ -43,7 +43,7 @@ var RatingList = React.createClass({
         var rating_active = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating == rating.id) : false;
         var target_active = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating == rating.id) : false;
         var target_bs_style = target_active ? "success" : "default";
-        var desc_class = "rating-" + rating.name + (rating.desc_class ? " " + rating.desc_class : "")
+        var desc_class = (rating.desc_class ? " " + rating.desc_class : "") + (rating.colour ? " rating-colour" : "")
         var header = function () {
           if ((this.props.measurement && this.props.measurement.rating)) {
             return (
@@ -70,7 +70,7 @@ var RatingList = React.createClass({
           }
         }.bind(this)();
         return (
-          <ListGroupItem active={rating_active} id={rating.id} key={rating.id} header={header} className={desc_class}>
+          <ListGroupItem active={rating_active} id={rating.id} key={rating.id} header={header} className={desc_class} style={ { 'border-left-color': rating.colour } }>
             <div className="clickable" onClick={this.saveMeasurement.bind(this, {rating: rating.id})}>
               {rating.desc}
             </div>
