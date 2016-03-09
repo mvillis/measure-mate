@@ -3,7 +3,7 @@
 var React = require('react')
 
 var TeamDetails = require('./teamDetails')
-var AssessmentTable = require('../assessment/AssessmentTable')
+var AssessmentTable = require('../assessment/assessmentTable')
 
 var Team = React.createClass({
   propTypes: {
