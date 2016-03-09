@@ -1,31 +1,30 @@
-var util = require('gulp-util');
-var production = !!util.env.production;
+var util = require('gulp-util')
+var production = !!util.env.production
 
-var dest = "build";
-var src = "client";
+var dest = "build"
+var src = "client"
 
 var cssSource = [
   'node_modules/bootstrap/dist/css/bootstrap.min.css',
-  'node_modules/react-select/dist/react-select.min.css',
-];
-var cssDestination = dest + "/css";
-var assetsSource = src + "/assets/**";
-var assetsDestination = dest + "/assets";
-var fontsSource = src + "/assets/**";
+  'node_modules/react-select/dist/react-select.min.css'
+]
+var cssDestination = dest + '/css'
+var assetsSource = src + '/assets/**'
+var assetsDestination = dest + '/assets'
 var fontsSource = [
-  'node_modules/bootstrap/dist/fonts/**',
-];
-var fontsDestination = dest + "/fonts";
-var imagesSource = src + "/assets/img/**/*.{gif,jpg,jpeg,tiff,png,svg}";
-var imagesDestination = src + "/assets/img";
-var templatesSource = "templates/**";
-var templatesDestination = dest;
+  'node_modules/bootstrap/dist/fonts/**'
+]
+var fontsDestination = dest + '/fonts'
+var imagesSource = src + '/assets/img/**/*.{gif,jpg,jpeg,tiff,png,svg}'
+var imagesDestination = src + '/assets/img'
+var templatesSource = 'templates/**'
+var templatesDestination = dest
 
 module.exports = {
 
   clientDir: src,
 
-  browserSyncMode: "proxy",
+  browserSyncMode: 'proxy',
   browserSyncDebug: false,
 
   browserSync: {
@@ -36,17 +35,17 @@ module.exports = {
     },
     debug: {
       logFileChanges: true,
-      logLevel: "debug"
+      logLevel: 'debug'
     },
     serverOptions: {
       server: {
         baseDir: dest
       },
       files: [
-        dest + "/**",
+        dest + '/**',
         // Exclude Map files
-        "!" + dest + "/**.map"
-      ],
+        '!' + dest + '/**.map'
+      ]
     },
     proxyOptions: {
       proxy: 'localhost:8000'
@@ -54,14 +53,14 @@ module.exports = {
   },
 
   css: {
-    src: 	cssSource,
+    src: cssSource,
     dest: cssDestination,
     production: production
   },
 
   fonts: {
-    src: 	fontsSource,
-    dest: fontsDestination,
+    src: fontsSource,
+    dest: fontsDestination
   },
 
   assets: {
@@ -77,6 +76,10 @@ module.exports = {
     },
     imgSrc: imagesSource,
     imgDest: imagesDestination
+  },
+
+  envSetup: {
+    production: production
   },
 
   templates: {
@@ -116,4 +119,4 @@ module.exports = {
       'reporter': 'spec'
     }
   }
-};
+}

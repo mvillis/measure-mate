@@ -3,13 +3,13 @@
    - gulp/tasks/browserSync.js watches and reloads compiled files
 */
 
-var gulp  = require('gulp');
-var config= require('../config');
-var startBrowserSync = require('../util/startBrowserSync');
+var gulp = require('gulp')
+var config = require('../config')
+var startBrowserSync = require('../util/startBrowserSync')
 
-gulp.task('watch', ['build'], function() {
-  startBrowserSync();
-  gulp.watch(config.assets.src, ['assets']);
-  gulp.watch(config.templates.src, ['templates']);
-  gulp.watch(config.clientDir + '/js/**', ['lint', 'test']);
-});
+gulp.task('watch', ['build'], function () {
+  startBrowserSync()
+  gulp.watch(config.assets.src, ['assets'])
+  gulp.watch(config.templates.src, ['templates'])
+  gulp.watch(config.clientDir + '/js/**', ['lint', 'test'])
+})

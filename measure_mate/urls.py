@@ -1,5 +1,4 @@
 from django.conf.urls import url, include
-from django.views.generic import TemplateView
 from django.contrib import admin
 from rest_framework import routers
 from views import *

@@ -6,7 +6,7 @@ var gzip = require('gulp-gzip')
 var streamify = require('gulp-streamify')
 var bundleLogger = require('../util/bundleLogger')
 var gulp = require('gulp')
-var util = require('gulp-util');
+var util = require('gulp-util')
 var handleErrors = require('../util/handleErrors')
 var source = require('vinyl-source-stream')
 var config = require('../config').browserify
@@ -47,7 +47,7 @@ gulp.task('browserify', function (callback) {
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished)
-    };
+    }
 
     if (isWatching) {
       util.log('Enabling Watchify for Browserify')
@@ -57,7 +57,7 @@ gulp.task('browserify', function (callback) {
       bundler.on('update', bundle)
     }
 
-    var reportFinished = function() {
+    var reportFinished = function () {
       // Log when bundling completes
       bundleLogger.end(bundleConfig.outputName)
 
@@ -66,7 +66,7 @@ gulp.task('browserify', function (callback) {
         if (bundleQueue === 0) {
           // If queue is empty, tell gulp the task is complete.
           // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
-          callback();
+          callback()
           // reload browserSync on changes
           browserSync.reload()
         } else {
@@ -74,10 +74,10 @@ gulp.task('browserify', function (callback) {
           browserSync.reload()
         }
       }
-    };
+    }
 
     return bundle()
-  };
+  }
 
   // Start bundling with Browserify for each bundleConfig specified
   config.bundleConfigs.forEach(browserifyThis)

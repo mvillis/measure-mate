@@ -1,14 +1,14 @@
-"use strict";
+'use strict'
 
-var React = require('react');
-var _ = require('lodash');
-var PlotlyComponent = require('./plotlyComponent');
-var ReactBootstrap = require('react-bootstrap');
-var Table = ReactBootstrap.Table;
+var React = require('react')
+var _ = require('lodash')
+var PlotlyComponent = require('./plotlyComponent')
+var ReactBootstrap = require('react-bootstrap')
+var Table = ReactBootstrap.Table
 
 var AssessmentReport = React.createClass({
   propTypes: {
-    active_tab: React.PropTypes.number,
+    activeTab: React.PropTypes.number,
     eventKey: React.PropTypes.number,
     assessment: React.PropTypes.object,
     measurements: React.PropTypes.array,
@@ -16,139 +16,137 @@ var AssessmentReport = React.createClass({
     template: React.PropTypes.object
   },
   shouldComponentUpdate: function (nextProps, nextState) {
-    if (nextProps.active_tab === this.props.eventKey) {
+    if (nextProps.activeTab === this.props.eventKey) {
       return true
     }
-    return false;
+    return false
   },
-  getAttributeForRating: function(query_rating) {
-    var matching_attribute = null
-    for (var i = 0; i<this.props.template.attributes.length; i++) {
-      for (var ii = 0; ii<this.props.template.attributes[i].ratings.length; ii++) {
-        if (query_rating == this.props.template.attributes[i].ratings[ii].id) {
-          matching_attribute = this.props.template.attributes[i].id;
-          break;
+  getAttributeForRating: function (queryRating) {
+    var matchingAttribute = null
+    for (var i = 0; i < this.props.template.attributes.length; i++) {
+      for (var ii = 0; ii < this.props.template.attributes[i].ratings.length; ii++) {
+        if (queryRating === this.props.template.attributes[i].ratings[ii].id) {
+          matchingAttribute = this.props.template.attributes[i].id
+          break
         }
       }
     }
-    return matching_attribute;
+    return matchingAttribute
   },
-  getMeasurementForAttribute: function(attribute) {
+  getMeasurementForAttribute: function (attribute) {
     if (this.props.measurements != null) {
-      for (var i=0; i < this.props.measurements.length; i++) {
-        if (attribute.id == this.getAttributeForRating(this.props.measurements[i].rating)) {
-          return this.props.measurements[i];
-          break;
+      for (var i = 0; i < this.props.measurements.length; i++) {
+        if (attribute.id === this.getAttributeForRating(this.props.measurements[i].rating)) {
+          return this.props.measurements[i]
         }
       };
     } else {
-      return null;
+      return null
     }
   },
-  render: function() {
-    var BLUE = "#337ab7";
-    var RED = "#b73333";
-    var GREY = "#b7b7b7";
+  render: function () {
+    var BLUE = '#337ab7'
+    var RED = '#b73333'
+    var GREY = '#b7b7b7'
 
-
-    var labels = [];
-    var target_series = [];
-    var rating_series = [];
-    var current_colors = BLUE;
+    var labels = []
+    var targetSeries = []
+    var ratingSeries = []
+    var currentColors = BLUE
 
     // assume that rating names & ranks are the same for all attributes
-    var ratings = this.props.template.attributes[0].ratings.map( function (rating) {
-      return { "rank": rating.rank, "name": rating.name };
-    });
+    var ratings = this.props.template.attributes[0].ratings.map(function (rating) {
+      return { 'rank': rating.rank, 'name': rating.name }
+    })
 
-    if ( ! _.find(ratings, function(rating){ return rating.rank == 0; })) {
-      ratings.push( { "rank":  0, "name": "N/A", } );
-      ratings.sort(function (a, b) { return a.rank - b.rank; })
+    if (!_.find(ratings, function (rating) { return rating.rank === 0 })) {
+      ratings.push({ 'rank': 0, 'name': 'N/A' })
+      ratings.sort(function (a, b) { return a.rank - b.rank })
     }
 
-    var rank_values = [];
-    var rank_names = [];
-    var rank_min = null;
-    var rank_max = null;
+    var rankValues = []
+    var rankNames = []
+    var rankMin = null
+    var rankMax = null
     ratings.forEach(function (rating, i) {
-      rank_values.push(rating.rank);
-      rank_names.push(rating.name);
-      rank_min = Math.min(rank_min, rating.rank);
-      rank_max = Math.max(rank_max, rating.rank);
-    });
+      rankValues.push(rating.rank)
+      rankNames.push(rating.name)
+      rankMin = Math.min(rankMin, rating.rank)
+      rankMax = Math.max(rankMax, rating.rank)
+    })
 
-    var summaryRows = [];
+    var summaryRows = []
 
     if (this.props.measurements != null) {
       (this.props.attributes.map(function (attribute, i) {
-        labels.push(attribute.name);
+        labels.push(attribute.name)
 
-        var measurement = this.getMeasurementForAttribute(attribute);
+        var measurement = this.getMeasurementForAttribute(attribute)
 
-        var current_rating = (measurement && measurement.rating) ? _.find(attribute.ratings, function(rating){ return measurement.rating == rating.id; }) : null;
-        var target_rating = (measurement && measurement.target_rating) ? _.find(attribute.ratings, function(rating){ return measurement.target_rating == rating.id; }) : null;
+        var currentRating = (measurement && measurement.rating) ? _.find(attribute.ratings, function (rating) { return measurement.rating === rating.id }) : null
+        var targetRating = (measurement && measurement.targetRating) ? _.find(attribute.ratings, function (rating) { return measurement.targetRating === rating.id }) : null
 
-        rating_series.push(current_rating ? current_rating.rank : 0);
-        target_series.push(target_rating ? target_rating.rank : 0);
+        ratingSeries.push(currentRating ? currentRating.rank : 0)
+        targetSeries.push(targetRating ? targetRating.rank : 0)
 
-        var current_colour = (current_rating ? current_rating.colour : "");
-        var current_style = {
-            'backgroundColor': current_colour,
-            'fontWeight': 'bold',
-            'color': (current_colour == "Yellow") ? 'Black' : 'White',
-        };
-        var target_colour = (target_rating ? target_rating.colour : "");
-        var target_style = {
-            'backgroundColor': target_colour,
-            'fontWeight': 'bold',
-            'color': (target_colour == "Yellow") ? 'Black' : 'White',
-        };
+        var currentColour = (currentRating ? currentRating.colour : '')
+        var currentStyle = {
+          'backgroundColor': currentColour,
+          'fontWeight': 'bold',
+          'color': (currentColour == 'Yellow') ? 'Black' : 'White'
+        }
+        var targetColour = (targetRating ? targetRating.colour : '')
+        var targetStyle = {
+          'backgroundColor': targetColour,
+          'fontWeight': 'bold',
+          'color': (targetColour == 'Yellow') ? 'Black' : 'White'
+        }
 
         summaryRows.push(
           <tr>
             <td>{attribute.name}</td>
-            <td className="text-center" style={current_style}>{current_rating ? current_rating.name : '-'}</td>
-            <td className="text-center" style={target_style}>{target_rating ? target_rating.name : '-'}</td>
+            <td className='text-center' style={currentStyle}>{currentRating ? currentRating.name : '-'}</td>
+            <td className='text-center' style={targetStyle}>{targetRating ? targetRating.name : '-'}</td>
           </tr>
         )
-      }.bind(this)));
+      }.bind(this)))
     }
 
     var summaryTable = (
-      <Table striped bordered condensed hover className="assessment-report">
+      <Table striped bordered condensed hover className='assessment-report'>
         <thead>
           <tr>
             <th>Practice/Capability</th>
-            <th className="text-center">Current</th>
-            <th className="text-center">Target</th>
+            <th className='text-center'>Current</th>
+            <th className='text-center'>Target</th>
           </tr>
         </thead>
         <tbody>
         {summaryRows}
         </tbody>
       </Table>
-    );
+    )
 
-    if (Math.min.apply(Math, rating_series) < 0) {
-      current_colors = [];
-      current_colors = rating_series.map(function (rank) {
-        return (rank < 0 ? RED : BLUE);
-      });
+    if (Math.min.apply(Math, ratingSeries) < 0) {
+      currentColors = []
+      currentColors = ratingSeries.map(function (rank) {
+        return (rank < 0 ? RED : BLUE)
+      })
     }
 
-    var current_trace = {
+    var currentTrace = {
       x: labels,
-      y: rating_series,
+      y: ratingSeries,
       name: 'Current',
       type: 'bar',
       marker: {
-        color: current_colors,
+        color: currentColors
       }
-    };
+    }
 
-    var target_trace = {
+    var targetTrace = {
       x: labels,
-      y: target_series,
+      y: targetSeries,
       name: 'Target',
       type: 'bar',
       marker: {
@@ -158,9 +156,9 @@ var AssessmentReport = React.createClass({
           width: 5
         }
       }
-    };
+    }
 
-    var data = [target_trace, current_trace];
+    var data = [targetTrace, currentTrace]
 
     var layout = {
       height: 450,
@@ -168,14 +166,14 @@ var AssessmentReport = React.createClass({
       barmode: 'overlay',
       margin: {
         t: 30,
-        b: 150,
+        b: 150
       },
       yaxis: {
         showgrid: true,
         tickmode: 'array',
-        tickvals: rank_values,
-        ticktext: rank_names,
-        range: [rank_min, rank_max],
+        tickvals: rankValues,
+        ticktext: rankNames,
+        range: [rankMin, rankMax]
       },
       xaxis: {
         showgrid: true,
@@ -183,8 +181,8 @@ var AssessmentReport = React.createClass({
       },
       bargap: 0.50,
       showlegend: true,
-      autosize: true,
-    };
+      autosize: true
+    }
 
     var config = {
       scrollZoom: false,
@@ -192,12 +190,12 @@ var AssessmentReport = React.createClass({
     }
 
     return (
-      <div className="assessment-report">
+      <div className='assessment-report'>
         <PlotlyComponent data={data} layout={layout} config={config}/>
         {summaryTable}
       </div>
-    );
+    )
   }
-});
+})
 
-module.exports = AssessmentReport;
+module.exports = AssessmentReport
