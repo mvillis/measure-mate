@@ -40,6 +40,12 @@ var Team = React.createClass({
     this.loadTeamFromServer()
   },
   render: function () {
+    var initialTags = this.state.loaded ? this.state.team.tags.map(function (value) {
+      return (
+        { value: value.id, label: value.name }
+      )
+    }) : []
+
     return (
       <div>
         <div className='row'>
@@ -49,10 +55,10 @@ var Team = React.createClass({
                 <TeamDetails team={this.state.team}/>
               </Panel>
             </div>
-            <div className='col-sm-6 push-right'>
+            <div className='col-sm-6 xpush-right'>
               <Panel header='Create Assessment'>
                 <div className='container-fluid'>
-                  <AssessmentCreationForm team={this.state.team} initialTags={this.state.team.tags}/>
+                  <AssessmentCreationForm team={this.state.team} initialTags={initialTags}/>
                 </div>
               </Panel>
             </div>

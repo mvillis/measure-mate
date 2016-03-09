@@ -7,7 +7,7 @@ var $ = require('jquery')
 var TemplateSelect = React.createClass({
   propTypes: {
     label: React.PropTypes.string.isRequired,
-    value: React.PropTypes.string.isRequired,
+    value: React.PropTypes.any.isRequired,
     onChange: React.PropTypes.func.isRequired
   },
   displayName: 'TemplateSelect',
