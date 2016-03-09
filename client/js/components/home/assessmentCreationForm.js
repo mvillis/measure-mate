@@ -19,7 +19,7 @@ var AssessmentCreationForm = React.createClass({
       formError: ''
     }
   },
-  componentDidMount: function () {
+  componentWillMount: function () {
     this.setState({
       tags: this.props.initialTags
     })
