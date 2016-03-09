@@ -12,7 +12,7 @@ var AssessmentTable = React.createClass({
   loadAssessmentsFromServer: function () {
     var url = '/api/assessments/'
     if (this.props.teamId) {
-      url += '?teamId=' + this.props.teamId
+      url += '?team__id=' + this.props.teamId
     }
     $.ajax({
       url: url,
