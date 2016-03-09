@@ -84,22 +84,28 @@ var AssessmentReport = React.createClass({
         var measurement = this.getMeasurementForAttribute(attribute)
 
         var currentRating = (measurement && measurement.rating) ? _.find(attribute.ratings, function (rating) { return measurement.rating === rating.id }) : null
-        var targetRating = (measurement && measurement.targetRating) ? _.find(attribute.ratings, function (rating) { return measurement.targetRating === rating.id }) : null
+        var targetRating = (measurement && measurement.target_rating) ? _.find(attribute.ratings, function (rating) { return measurement.target_rating === rating.id }) : null
 
         ratingSeries.push(currentRating ? currentRating.rank : 0)
         targetSeries.push(targetRating ? targetRating.rank : 0)
 
+        var currentStyle = {}
         var currentColour = (currentRating ? currentRating.colour : '')
-        var currentStyle = {
-          'backgroundColor': currentColour,
-          'fontWeight': 'bold',
-          'color': (currentColour == 'Yellow') ? 'Black' : 'White'
+        if (currentColour) {
+          currentStyle = {
+            'backgroundColor': currentColour,
+            'fontWeight': 'bold',
+            'color': (currentColour == 'Yellow') ? 'Black' : 'White'
+          }
         }
+        var targetStyle = {}
         var targetColour = (targetRating ? targetRating.colour : '')
-        var targetStyle = {
-          'backgroundColor': targetColour,
-          'fontWeight': 'bold',
-          'color': (targetColour == 'Yellow') ? 'Black' : 'White'
+        if (targetColour) {
+          targetStyle = {
+            'backgroundColor': targetColour,
+            'fontWeight': 'bold',
+            'color': (targetColour == 'Yellow') ? 'Black' : 'White'
+          }
         }
 
         summaryRows.push(

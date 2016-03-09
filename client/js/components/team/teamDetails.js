@@ -13,7 +13,7 @@ var TeamDetails = React.createClass({
     teamId: React.PropTypes.string.isRequired
   },
   loadTeamFromServer: function () {
-    var url = '/api/teams/' + this.props.teamId
+    var url = '/api/teams/' + this.props.teamId + '/'
     $.ajax({
       url: url,
       dataType: 'json',
