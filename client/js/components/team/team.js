@@ -49,25 +49,29 @@ var Team = React.createClass({
     return (
       <div>
         <div className='row'>
-          <Loader loaded={this.state.loaded}>
-            <div className='col-sm-6'>
-              <Panel header='Team'>
+          <div className='col-sm-6'>
+            <Panel header='Team' bsStyle='primary'>
+              <Loader loaded={this.state.loaded}>
                 <TeamDetails team={this.state.team}/>
-              </Panel>
-            </div>
-            <div className='col-sm-6 xpush-right'>
-              <Panel header='Create Assessment'>
+              </Loader>
+            </Panel>
+          </div>
+          <div className='col-sm-6 push-right'>
+            <Panel header='Create Assessment' bsStyle='info'>
+              <Loader loaded={this.state.loaded}>
                 <div className='container-fluid'>
                   <AssessmentCreationForm team={this.state.team} initialTags={initialTags}/>
                 </div>
-              </Panel>
-            </div>
-          </Loader>
+              </Loader>
+            </Panel>
+          </div>
         </div>
         <div className='row'>
-          <Panel header='Assessments'>
-            <AssessmentTable teamId={this.props.params.id}/>
-          </Panel>
+          <div className='container-fluid'>
+            <Panel header='Assessments' bsStyle='info'>
+              <AssessmentTable teamId={this.props.params.id}/>
+            </Panel>
+          </div>
         </div>
       </div>
     )
