@@ -39,8 +39,8 @@ var TagSelect = React.createClass({
   render: function render () {
     return (
       <div>
-        <label>{this.props.label}</label>
-        <div>
+        <label className='control-label col-xs-2'>{this.props.label}</label>
+        <div className='col-xs-10'>
           <Select.Async {...this.props} delimeter=','
             multi loadOptions={this.loadOptions}
             allowCreate
@@ -48,7 +48,7 @@ var TagSelect = React.createClass({
             placeholder='Type to find existing tags or create new ones'
           />
         </div>
-        <div className='hint'>
+        <div className='col-xs-10 col-xs-offset-2 hint'>
           Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.
         </div>
       </div>

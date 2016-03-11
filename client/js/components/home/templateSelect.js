@@ -39,8 +39,8 @@ var TemplateSelect = React.createClass({
   render: function render () {
     return (
       <div>
-        <label>{this.props.label}</label>
-        <div>
+        <label className='control-label col-xs-2'>{this.props.label}</label>
+        <div className='col-xs-10'>
           <Select.Async delimeter=','
             multi={false}
             loadOptions={this.loadOptions}
@@ -50,7 +50,7 @@ var TemplateSelect = React.createClass({
             placeholder='Type to filter templates'
             />
         </div>
-        <div className='hint'>
+        <div className='col-xs-10 col-xs-offset-2 hint'>
           Each template includes a unique set of attributes to measure.
         </div>
       </div>

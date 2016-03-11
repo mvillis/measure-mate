@@ -1,18 +1,17 @@
 'use strict'
 
 var React = require('react')
-var AssessmentCreationForm = require('./assessmentCreationForm')
+var ReactBootstrap = require('react-bootstrap')
+var Panel = ReactBootstrap.Panel
+var TeamCreationForm = require('./teamCreationForm')
 
 var Home = React.createClass({
   render: function () {
     return (
-      <div>
-        <div className='container-fluid'>
-          <div className='jumbotron'>
-            <h1>Welcome to Measure Mate!</h1>
-            <AssessmentCreationForm />
-          </div>
-        </div>
+      <div className='container-fluid'>
+        <Panel header='Team' bsStyle='primary'>
+          <TeamCreationForm />
+        </Panel>
       </div>
     )
   }
