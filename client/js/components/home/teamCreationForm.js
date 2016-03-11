@@ -4,8 +4,6 @@ var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
 var Input = ReactBootstrap.Input
-var ButtonInput = ReactBootstrap.ButtonInput
-var Button = ReactBootstrap.Button
 var TagSelect = require('./tagSelect')
 var $ = require('jquery')
 
@@ -35,7 +33,6 @@ var TeamCreationForm = React.createClass({
     e.preventDefault()
 
     if (this.state.teamName && this.state.teamDesc && this.state.tags.length > 0) {
-
       var teamName = this.state.teamName
       var teamDesc = this.state.teamDesc
       var tags = this.state.tags.map(function (value) {
