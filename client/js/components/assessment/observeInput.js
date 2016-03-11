@@ -58,9 +58,9 @@ var ObserveInput = React.createClass({
   render: function () {
     var syncStatus = function () {
       if (this.props.dirtyObservation[this.props.activeTab] === false && this.props.measurement) {
-        return (<span><span>&nbsp;&nbsp;&nbsp;</span><Glyphicon glyph='glyphicon glyphicon-saved' /></span>)
+        return (<span><span>&nbsp;&nbsp;&nbsp;</span><Glyphicon glyph='saved' /></span>)
       } else if (this.props.dirtyObservation[this.props.activeTab] === true && !this.props.measurement) {
-        return (<span className='text-info'><span>&nbsp;&nbsp;</span><Glyphicon glyph='glyphicon glyphicon-info-sign' /> Select a rating below to save this comment and complete the form.</span>)
+        return (<span className='text-info'><span>&nbsp;&nbsp;</span><Glyphicon glyph='info-sign' /> Select a rating below to save this comment and complete the form.</span>)
       } else {
         return (<span></span>)
       }

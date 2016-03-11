@@ -212,7 +212,7 @@ var AttributeList = React.createClass({
 
       var summaryTab = function () {
         return (
-          <Tab eventKey={this.state.template ? this.state.template.attributes.length + 1 : null} key={this.state.template ? this.state.template.attributes.length + 1 : null} id={this.state.template ? this.state.template.attributes.length + 1 : null} title={<div><span className='glyphicon glyphicon-stats'></span> <span>Summary</span></div>}>
+          <Tab eventKey={this.state.template ? this.state.template.attributes.length + 1 : null} key={this.state.template ? this.state.template.attributes.length + 1 : null} id={this.state.template ? this.state.template.attributes.length + 1 : null} title={<div><Glyphicon glyph='stats'/> <span>Summary</span></div>}>
             <Panel header='Summary' bsStyle='primary'>
               <Alert bsStyle='warning'>
                 How did you go? Where are you strengths and weaknesses? What are some improvements you could make?
@@ -242,9 +242,13 @@ var AttributeList = React.createClass({
             {attributeNodes}
             {summaryTab}
             <Pager>
-              <PageItem disabled={this.state.previousHide} onClick={this.handlePrevious}>&larr; Previous</PageItem>
+              <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
+                <Glyphicon glyph="chevron-left" /> {' '} Previous
+              </PageItem>
               {' '}
-              <PageItem disabled={this.state.nextHide} onClick={this.handleNext}>Next &rarr;</PageItem>
+              <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
+                Next {' '} <Glyphicon glyph="chevron-right" />
+              </PageItem>
             </Pager>
           </Tabs>
         </Loader>

@@ -54,7 +54,7 @@ var RatingList = React.createClass({
                 Target
               </Button>
               <OverlayTrigger trigger='click' placement='left' rootClose overlay={<Popover id={rating.id}>You have decided your current rating. Set your future goal by selecting a target button.</Popover>}>
-                <Glyphicon className='target-help clickable' glyph='glyphicon glyphicon-question-sign' />
+                <Glyphicon className='target-help clickable' glyph='question-sign' />
               </OverlayTrigger>
             </div>
           )

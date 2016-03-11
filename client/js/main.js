@@ -22,8 +22,9 @@ ReactDOM.render(
       <Route path='/assessment/:id' component={AttributeList}/>
       <Route path='/team/list' component={TeamTable}/>
       <Route path='/team/:id' component={Team}/>
-      <Route status={404} path='*' component={NotFoundPage} />
+      <Route status={404} path='*' component={NotFoundPage}/>
     </Route>
   </Router>,
   document.getElementById('app')
 )
+
