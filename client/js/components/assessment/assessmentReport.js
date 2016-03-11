@@ -45,9 +45,9 @@ var AssessmentReport = React.createClass({
     }
   },
   render: function () {
-    var BLUE = '#0000CC'
-    var RED = '#CC0000'
-    var GREY = '#CCCCCC'
+    var BLUE = '#337ab7'
+    var RED = '#b73333'
+    var GREY = '#b7b7b7'
 
     var labels = []
     var targetSeries = []
@@ -89,11 +89,30 @@ var AssessmentReport = React.createClass({
         ratingSeries.push(currentRating ? currentRating.rank : 0)
         targetSeries.push(targetRating ? targetRating.rank : 0)
 
+        var currentStyle = {}
+        var currentColour = (currentRating ? currentRating.colour : '')
+        if (currentColour) {
+          currentStyle = {
+            'backgroundColor': currentColour,
+            'fontWeight': 'bold',
+            'color': (currentColour == 'Yellow') ? 'Black' : 'White'
+          }
+        }
+        var targetStyle = {}
+        var targetColour = (targetRating ? targetRating.colour : '')
+        if (targetColour) {
+          targetStyle = {
+            'backgroundColor': targetColour,
+            'fontWeight': 'bold',
+            'color': (targetColour == 'Yellow') ? 'Black' : 'White'
+          }
+        }
+
         summaryRows.push(
           <tr key={attribute.id}>
             <td>{attribute.name}</td>
-            <td className={'text-center' + (currentRating ? ' rating-' + currentRating.name : '')}>{currentRating ? currentRating.name : '-'}</td>
-            <td className={'text-center' + (targetRating ? ' rating-' + targetRating.name : '')}>{targetRating ? targetRating.name : '-'}</td>
+            <td className='text-center' style={currentStyle}>{currentRating ? currentRating.name : '-'}</td>
+            <td className='text-center' style={targetStyle}>{targetRating ? targetRating.name : '-'}</td>
           </tr>
         )
       }.bind(this)))

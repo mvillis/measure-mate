@@ -15,7 +15,7 @@ var Header = React.createClass({
   render: function render () {
     return (
       <div>
-        <Navbar>
+        <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
               <LinkContainer to={{pathname: '/'}}>
@@ -29,12 +29,17 @@ var Header = React.createClass({
               <LinkContainer to={{pathname: '/assessment/list'}}>
                 <NavItem eventKey={2}>Assessments</NavItem>
               </LinkContainer>
+              <LinkContainer to={{pathname: '/team/list'}}>
+                <NavItem eventKey={3}>Teams</NavItem>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        {this.props.children}
+        <div className='container-fluid'>
+          {this.props.children}
+        </div>
       </div>
-		)
+    )
   }
 })
 

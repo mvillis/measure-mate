@@ -40,7 +40,7 @@ var RatingList = React.createClass({
       var ratingActive = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating === rating.id) : false
       var targetActive = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating === rating.id) : false
       var targetBsStyle = targetActive ? 'success' : 'default'
-      var descClass = 'rating-' + rating.name + (rating.desc_class ? ' ' + rating.desc_class : '')
+      var descClass = (rating.desc_class ? ' ' + rating.desc_class : '') + (rating.colour ? ' rating-colour' : '')
       var header = function () {
         if ((this.props.measurement && this.props.measurement.rating)) {
           return (
@@ -54,7 +54,7 @@ var RatingList = React.createClass({
                 Target
               </Button>
               <OverlayTrigger trigger='click' placement='left' rootClose overlay={<Popover id={rating.id}>You have decided your current rating. Set your future goal by selecting a target button.</Popover>}>
-                <Glyphicon className='target-help clickable' glyph='glyphicon glyphicon-question-sign' />
+                <Glyphicon className='target-help clickable' glyph='question-sign' />
               </OverlayTrigger>
             </div>
           )
@@ -67,7 +67,7 @@ var RatingList = React.createClass({
         }
       }.bind(this)()
       return (
-        <ListGroupItem active={ratingActive} id={rating.id} key={rating.id} header={header} className={descClass}>
+        <ListGroupItem active={ratingActive} id={rating.id} key={rating.id} header={header} className={descClass} style={{'borderLeftColor': rating.colour}}>
           <div className='clickable' onClick={this.saveMeasurement.bind(this, {rating: rating.id})}>
             {rating.desc}
           </div>

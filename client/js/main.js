@@ -10,6 +10,8 @@ var Header = require('./components/common/header')
 var Home = require('./components/home/home')
 var AttributeList = require('./components/assessment/attributeList')
 var AssessmentTable = require('./components/assessment/assessmentTable')
+var Team = require('./components/team/team')
+var TeamTable = require('./components/team/teamTable')
 var NotFoundPage = require('./components/notFoundPage')
 
 ReactDOM.render(
@@ -18,8 +20,11 @@ ReactDOM.render(
       <Route path='/' component={Home}/>
       <Route path='/assessment/list' component={AssessmentTable}/>
       <Route path='/assessment/:id' component={AttributeList}/>
-      <Route status={404} path='*' component={NotFoundPage} />
+      <Route path='/team/list' component={TeamTable}/>
+      <Route path='/team/:id' component={Team}/>
+      <Route status={404} path='*' component={NotFoundPage}/>
     </Route>
   </Router>,
   document.getElementById('app')
 )
+

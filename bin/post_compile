@@ -1,7 +1,10 @@
 #! /bin/sh
 
 python manage.py migrate
-python manage.py loaddata LAMA Governance DevOps tags
+python manage.py loaddata LAMA Governance DevOps HealthCheck tags
 
 # won't work if there are already assessments, so ignore failures
 python manage.py loaddata assessment || true
+
+# won't work if there are already teams, so ignore failures
+python manage.py loaddata team team_assessment || true

@@ -3,26 +3,19 @@
 var React = require('react')
 var Loader = require('react-loader')
 var $ = require('jquery')
-var AssessmentList = require('./assessmentList')
+var TeamList = require('./teamList')
 
-var AssessmentTable = React.createClass({
-  propTypes: {
-    teamId: React.PropTypes.string
-  },
-  loadAssessmentsFromServer: function () {
-    var url = '/api/assessments/'
-    if (this.props.teamId) {
-      url += '?team__id=' + this.props.teamId
-    }
+var TeamTable = React.createClass({
+  loadTeamsFromServer: function () {
     $.ajax({
-      url: url,
+      url: '/api/teams/',
       dataType: 'json',
       cache: false,
       success: function (data) {
         this.setState({data: data, loaded: true})
       }.bind(this),
       error: function (xhr, status, err) {
-        console.error(window.location, status, err.toString())
+        console.error('/api/teams', status, err.toString())
       }
     })
   },
@@ -33,17 +26,17 @@ var AssessmentTable = React.createClass({
     }
   },
   componentDidMount: function () {
-    this.loadAssessmentsFromServer()
+    this.loadTeamsFromServer()
   },
   render: function () {
     return (
       <div>
         <Loader loaded={this.state.loaded}>
-          <AssessmentList data={this.state.data} />
+          <TeamList data={this.state.data} />
         </Loader>
       </div>
     )
   }
 })
 
-module.exports = AssessmentTable
+module.exports = TeamTable

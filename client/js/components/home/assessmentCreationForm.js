@@ -1,16 +1,28 @@
 'use strict'
 
 var React = require('react')
+var ReactBootstrap = require('react-bootstrap')
+var Alert = ReactBootstrap.Alert
 var TagSelect = require('./tagSelect')
 var TemplateSelect = require('./templateSelect')
 var $ = require('jquery')
 
 var AssessmentCreationForm = React.createClass({
+  propTypes: {
+    initialTags: React.PropTypes.array,
+    team: React.PropTypes.object
+  },
   getInitialState: function () {
     return {
       template: '',
-      tags: ''
+      tags: '',
+      formError: ''
     }
+  },
+  componentWillMount: function () {
+    this.setState({
+      tags: this.props.initialTags
+    })
   },
   changeHandlerTemplate: function (val) {
     this.setState({
@@ -31,26 +43,32 @@ var AssessmentCreationForm = React.createClass({
           value.value
         )
       })
-      this.createAssessment(template, tags)
+      var teamId = this.props.team ? this.props.team.id : ''
+      this.createAssessment(template, tags, teamId)
     } else {
-      var message = 'Template &amp; tag/s required.'
+      var message = 'Template & tag/s required.'
       this.showError(message)
     }
   },
 
   showError: function (message) {
-    document.getElementById('form-error').innerHTML = message
-    document.getElementById('form-error').className =
-    document.getElementById('form-error').className.replace(/(?:^|\s)hidden(?!\S)/g, '')
+    this.setState({
+      formError: message
+    })
   },
 
-  createAssessment: function (template, tags) {
+  createAssessment: function (template, tags, teamId) {
+    var data = {
+      team: teamId,
+      template: template,
+      tags: tags
+    }
     $.ajax({
       context: this,
       url: '/api/assessments/',
       contentType: 'application/json; charset=utf-8',
       dataType: 'json',
-      data: '{"template":' + template + ',"tags":[' + tags + ']}',
+      data: JSON.stringify(data),
       type: 'POST',
       cache: true,
       success: function (output) {
@@ -66,6 +84,9 @@ var AssessmentCreationForm = React.createClass({
   render: function () {
     return (
       <form className='form-horizontal'>
+        <Alert bsStyle='danger' className={this.state.formError ? '' : 'hidden'}>
+          {this.state.formError}
+        </Alert>
         <div className='form-group'>
           <TemplateSelect
             label='Template'
@@ -85,12 +106,7 @@ var AssessmentCreationForm = React.createClass({
           />
         </div>
         <div className='form-group'>
-          <div className='col-md-1'>
-            <input className='btn btn-default' type='submit' value='Launch' onClick={this.handleSubmit} aria-describedby='helpBlock'/>
-          </div>
-          <div className='col-md-11'>
-            <div id='form-error' className='text-danger v-cent hidden'/>
-          </div>
+          <input className='btn btn-default' type='submit' value='Launch' onClick={this.handleSubmit}/>
         </div>
       </form>
     )

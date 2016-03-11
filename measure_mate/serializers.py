@@ -5,7 +5,7 @@ from rest_framework import serializers
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ('id', 'name', 'desc', 'desc_class', 'rank')
+        fields = ('id', 'name', 'desc', 'desc_class', 'rank', 'colour')
 
 
 class AttributeSerializer(serializers.ModelSerializer):
@@ -80,6 +80,7 @@ class AssessmentSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assessment
         fields = ('id', 'template', 'created', 'updated')
+        depth = 2
 
 
 class TeamSerializer(serializers.ModelSerializer):
@@ -88,6 +89,7 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags', 'assessments')
+        depth = 2
 
 class TeamCreateSerializer(serializers.ModelSerializer):
     tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
