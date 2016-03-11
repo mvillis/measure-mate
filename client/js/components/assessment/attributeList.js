@@ -243,11 +243,11 @@ var AttributeList = React.createClass({
             {summaryTab}
             <Pager>
               <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
-                <Glyphicon glyph="chevron-left" /> {' '} Previous
+                <Glyphicon glyph='chevron-left' /> {' '} Previous
               </PageItem>
               {' '}
               <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
-                Next {' '} <Glyphicon glyph="chevron-right" />
+                Next {' '} <Glyphicon glyph='chevron-right' />
               </PageItem>
             </Pager>
           </Tabs>
