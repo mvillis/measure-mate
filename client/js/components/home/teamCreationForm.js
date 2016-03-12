@@ -57,7 +57,7 @@ var TeamCreationForm = React.createClass({
   createTeam: function (teamName, teamDesc, tags) {
     var data = {
       name: teamName,
-      short_desc: teamDesc,
+      short_desc: teamDesc, // eslint-disable-line camelcase
       tags: tags
     }
     $.ajax({

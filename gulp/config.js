@@ -31,7 +31,8 @@ module.exports = {
     all: {
       port: process.env.PORT || 3000,
       // open browser window on start
-      open: true
+      open: true,
+      browser: 'google chrome'
     },
     debug: {
       logFileChanges: true,

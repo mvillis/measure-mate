@@ -51,14 +51,14 @@ var Team = React.createClass({
         <div className='row'>
           <div className='col-sm-6'>
             <Panel header='Team' bsStyle='primary'>
-              <Loader loaded={this.state.loaded}>
+              <Loader scale={0.25} top={10} loaded={this.state.loaded}>
                 <TeamDetails team={this.state.team}/>
               </Loader>
             </Panel>
           </div>
           <div className='col-sm-6 push-right'>
             <Panel header='Create Assessment' bsStyle='info'>
-              <Loader loaded={this.state.loaded}>
+              <Loader scale={0.25} top={10} loaded={this.state.loaded}>
                 <div className='container-fluid'>
                   <AssessmentCreationForm team={this.state.team} initialTags={initialTags}/>
                 </div>
