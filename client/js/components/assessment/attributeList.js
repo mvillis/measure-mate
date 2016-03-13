@@ -2,29 +2,29 @@
 
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
-var _ = require('lodash')
+var ReactRouterBootstrap = require('react-router-bootstrap')
 var PageHeader = ReactBootstrap.PageHeader
-var Tabs = ReactBootstrap.Tabs
-var Tab = ReactBootstrap.Tab
-var Panel = ReactBootstrap.Panel
-var Alert = ReactBootstrap.Alert
-var ListGroup = ReactBootstrap.ListGroup
+var Nav = ReactBootstrap.Nav
+var NavItem = ReactBootstrap.NavItem
+var Grid = ReactBootstrap.Grid
+var Row = ReactBootstrap.Row
+var Col = ReactBootstrap.Col
 var Pager = ReactBootstrap.Pager
 var PageItem = ReactBootstrap.PageItem
 var Glyphicon = ReactBootstrap.Glyphicon
+var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Loader = require('react-loader')
-var RatingList = require('./ratingList')
-var ObserveInput = require('./observeInput')
-var AssessmentReport = require('./assessmentReport')
 var $ = require('jquery')
 
 var AttributeList = React.createClass({
   propTypes: {
-    params: React.PropTypes.object
+    params: React.PropTypes.object,
+    location: React.PropTypes.object,
+    children: React.PropTypes.object
   },
   getInitialState: function () {
     return {
-      activeTab: 1,
+      activeTab: parseInt(this.props.location.query.tab, 10) || 1,
       activeAttribute: null,
       measurements: null,
       template: null,
@@ -40,18 +40,11 @@ var AttributeList = React.createClass({
   componentWillMount: function () {
     this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
   },
-  measurementCallback: function (data) {
-    this.setState({
-      measurements: data,
-      initialLoad: true
-    })
-    this.handleSelect(1)
-  },
   templateCallback: function (data) {
     this.setState({
-      template: data
-    }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.assessmentId, this.measurementCallback)
-    )
+      template: data,
+      initialLoad: true
+    })
   },
   assessmentCallback: function (data) {
     this.setState({
@@ -70,58 +63,6 @@ var AttributeList = React.createClass({
       success: callback,
       error: this.handleSubmitFailure
     })
-  },
-  measurementUpdateCallback: function (data) {
-    var existingMeasurementIndex = _.findIndex(this.state.measurements, function (measurement) {
-      return measurement.id === data.id
-    })
-    var updatedDirtyObservation = this.state.dirtyObservation
-    updatedDirtyObservation[this.state.activeTab] = false
-    if (existingMeasurementIndex !== -1) {
-      var updatedMeasurements = this.state.measurements.slice()
-      updatedMeasurements[existingMeasurementIndex] = data
-      this.setState({
-        measurements: updatedMeasurements,
-        measureSyncActivity: false,
-        dirtyObservation: updatedDirtyObservation
-      })
-    } else {
-      var newMeasurements = this.state.measurements.concat([data])
-      this.setState({
-        measurements: newMeasurements,
-        measureSyncActivity: false,
-        dirtyObservation: updatedDirtyObservation
-      })
-    }
-  },
-  syncMeasurement: function (postData) {
-    var createNewMeasure = !postData.id
-    if (this.state.observations[this.state.activeTab]) {
-      postData['observations'] = this.state.observations[this.state.activeTab]
-    } else {
-      var matchMeasure = _.find(this.state.measurements, function (measurement) {
-        return measurement.id === postData.id
-      })
-      postData['observations'] = (matchMeasure ? matchMeasure.observations : '')
-    }
-    this.setState({ measureSyncActivity: true })
-    console.log('Should a new measurement be created? ' + createNewMeasure)
-    $.ajax({
-      type: ((createNewMeasure) ? 'POST' : 'PUT'),
-      contentType: 'application/json; charset=utf-8',
-      url: ((createNewMeasure) ? '/api/measurements/' : ('/api/measurements/' + postData.id + '/')),
-      data: JSON.stringify(postData),
-      dataType: 'json',
-      success: this.measurementUpdateCallback,
-      error: this.handleSubmitFailure
-    })
-  },
-  onObservationChange: function (text, activeTab) {
-    var observations = this.state.observations
-    observations[activeTab] = text
-    var updatedDirtyObservation = this.state.dirtyObservation
-    updatedDirtyObservation[this.state.activeTab] = true
-    this.setState({observations: observations, dirtyObservation: updatedDirtyObservation})
   },
   handleNext: function () {
     if (this.state.activeTab < this.state.template.attributes.length + 1 && !this.state.nextHide) {
@@ -195,41 +136,18 @@ var AttributeList = React.createClass({
         var completeMeasurement = measurement && measurement.rating && measurement.target_rating
         var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' tabClassName='text-success'/> : <Glyphicon glyph='minus' />
         return (
-          <Tab eventKey={i + 1} key={attribute.id} id={i + 1} title={<div>{tabIcon} <span>{attribute.name}</span></div>}>
-            <Panel header={attribute.name} bsStyle='primary'>
-              <Alert bsStyle='warning' className={attribute.desc_class}>
-                {attribute.desc}
-              </Alert>
-              <ObserveInput eventKey={i + 1} dirtyObservation={this.state.dirtyObservation} activeTab={this.state.activeTab} measurement={measurement} syncMeasurement={this.syncMeasurement} onObservationChange={this.onObservationChange}/>
-              <Loader loaded={!this.state.measureSyncActivity}/>
-              <ListGroup fill>
-                <RatingList eventKey={i + 1} activeTab={this.state.activeTab} dirtyObservation={this.state.dirtyObservation} key={attribute.id} measurement={measurement} attribute={attribute} assessId={this.props.params.assessmentId} syncMeasurement={this.syncMeasurement}/>
-              </ListGroup>
-            </Panel>
-          </Tab>
+          <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}}>
+            <NavItem activeClassName='active' eventKey={i + 1} id={i + 1}>{attribute.name}</NavItem>
+          </LinkContainer>
         )
       }.bind(this))
 
-      var summaryTab = function () {
-        var key = this.state.template ? this.state.template.attributes.length + 1 : null
+      var summaryNode = function () {
+        if (!this.state.template) return (undefined)
         return (
-          <Tab eventKey={key} key={key} id={key} title={<div><Glyphicon glyph='stats'/> <span>Summary</span></div>}>
-            <Panel header='Summary' bsStyle='primary'>
-              <Alert bsStyle='warning'>
-                How did you go? Where are you strengths and weaknesses? What are some improvements you could make?
-              </Alert>
-              <AssessmentReport
-                eventKey={key}
-                key={key}
-                id={key}
-                activeTab={this.state.activeTab}
-                measurements={this.state.measurements}
-                attributes={this.state.template.attributes}
-                template={this.state.template}
-                assessId={this.props.params.assessmentId}
-              />
-            </Panel>
-          </Tab>
+          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
+            <NavItem activeClassName='active' eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}>Summary</NavItem>
+          </LinkContainer>
         )
       }.bind(this)()
     }
@@ -239,19 +157,28 @@ var AttributeList = React.createClass({
           <PageHeader>
             {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''}</small>
           </PageHeader>
-          <Tabs position='right' activeKey={this.state.activeTab} onSelect={this.handleSelect} tabWidth={3}>
-            {attributeNodes}
-            {summaryTab}
-            <Pager>
-              <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
-                <Glyphicon glyph='chevron-left' /> {' '} Previous
-              </PageItem>
-              {' '}
-              <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
-                Next {' '} <Glyphicon glyph='chevron-right' />
-              </PageItem>
-            </Pager>
-          </Tabs>
+          <Grid>
+            <Row>
+              <Col xs={12} md={8}>
+                {React.cloneElement(this.props.children, {attributes: this.state.attributes})}
+                <Pager>
+                  <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
+                    <Glyphicon glyph='chevron-left' /> {' '} Previous
+                  </PageItem>
+                  {' '}
+                  <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
+                    Next {' '} <Glyphicon glyph='chevron-right' />
+                  </PageItem>
+                </Pager>
+              </Col>
+              <Col xs={6} md={4}>
+                <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
+                  {attributeNodes}
+                  {summaryNode}
+                </Nav>
+              </Col>
+            </Row>
+          </Grid>
         </Loader>
       </div>
     )
