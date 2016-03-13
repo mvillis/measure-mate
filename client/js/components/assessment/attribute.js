@@ -25,18 +25,28 @@ var Attribute = React.createClass({
       measurement: null,
       measureSyncActivity: false,
       dirtyObservation: false,
-      loaded: false
+      loaded: false,
+      observations: ''
     }
   },
   componentDidMount: function () {
     this.getData(this.props.params.id, this.props.params.attribute)
   },
   componentWillReceiveProps: function (nextProps) {
-    this.getData(nextProps.params.id, nextProps.params.attribute)
+    if (nextProps.params.attribute !== this.props.params.attribute) {
+      this.getData(nextProps.params.id, nextProps.params.attribute)
+    }
   },
   getData: function (id, attribute) {
     var setAttribute = function (data) { this.setState({attribute: data}) }.bind(this)
-    var setMeasurement = function (data) { this.setState({measurement: _.head(data), loaded: true}) }.bind(this)
+    var setMeasurement = function (data) {
+      this.setState({
+        measurement: _.first(data),
+        loaded: true,
+        dirtyObservation: false,
+        observations: (_.first(data)) ? _.first(data).observations : ''
+      })
+    }.bind(this)
     this.dataSource('/api/attributes/' + attribute, setAttribute)
     this.dataSource('/api/measurements/' + '?assessment__id=' + id + '&rating__attribute=' + attribute, setMeasurement)
   },
@@ -55,7 +65,7 @@ var Attribute = React.createClass({
   saveMeasurement: function (ratingType, value) {
     var existingMeasurement = this.state.measurement
     var postData = {
-      observations: (this.state.measurement.observations) ? this.state.measurement.observations : '',
+      observations: (this.state.observations) ? this.state.observations : '',
       id: (this.state.measurement) ? this.state.measurement.id : '',
       assessment: this.props.params.id,
       rating: (ratingType === 'rating') ? value : this.state.measurement.rating,
@@ -67,7 +77,8 @@ var Attribute = React.createClass({
     this.setState({
       measurement: data,
       measureSyncActivity: false,
-      dirtyObservation: false
+      dirtyObservation: false,
+      observations: data.observations
     })
   },
   syncMeasurement: function (postData) {
@@ -84,6 +95,9 @@ var Attribute = React.createClass({
       error: this.handleSubmitFailure
     })
   },
+  onObservationChange: function (text) {
+    this.setState({observations: text, dirtyObservation: true})
+  },
   render: function () {
     if (this.state.attribute !== null) {
       var ratingList = this.state.attribute.ratings.map(function (rating) {
@@ -96,13 +110,14 @@ var Attribute = React.createClass({
     return (
       <Loader loaded={this.state.loaded}>
         <Panel header={(this.state.attribute && this.state.attribute.name) ? this.state.attribute.name : ''} bsStyle='primary'>
-            <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
-              {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
-            </Alert>
-            <Loader loaded={!this.state.measureSyncActivity}/>
-            <ListGroup fill>
-              {ratingList}
-            </ListGroup>
+          <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
+            {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
+          </Alert>
+          <ObserveInput measurement={this.state.measurement} syncMeasurement={this.syncMeasurement} onObservationChange={this.onObservationChange} dirtyObservation={this.state.dirtyObservation}/>
+          <Loader loaded={!this.state.measureSyncActivity}/>
+          <ListGroup fill>
+            {ratingList}
+          </ListGroup>
         </Panel>
       </Loader>
     )

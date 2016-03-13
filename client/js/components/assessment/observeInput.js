@@ -12,9 +12,7 @@ var ObserveInput = React.createClass({
     measurement: React.PropTypes.object,
     syncMeasurement: React.PropTypes.func.isRequired,
     onObservationChange: React.PropTypes.func.isRequired,
-    dirtyObservation: React.PropTypes.object,
-    activeTab: React.PropTypes.number,
-    eventKey: React.PropTypes.number
+    dirtyObservation: React.PropTypes.bool
   },
   getInitialState: function () {
     return {
@@ -24,8 +22,19 @@ var ObserveInput = React.createClass({
   },
   componentWillMount: function () {
     this.handleObserveDebounced = _.debounce(function () {
-      this.props.onObservationChange.apply(this, [this.state.observations, this.props.activeTab])
+      this.props.onObservationChange.apply(this, [this.state.observations])
     }, 1000)
+  },
+  componentWillReceiveProps: function (nextProps) {
+    if (nextProps.measurement && this.props.measurement && nextProps.measurement.id !== this.props.measurement.id) {
+      this.setState({observations: nextProps.measurement.observations, saveBtnDisabled: false})
+    }
+    if (nextProps.measurement && !nextProps.dirtyObservation) {
+      this.setState({observations: nextProps.measurement.observations, saveBtnDisabled: false})
+    }
+    if (!nextProps.dirtyObservation && !nextProps.measurement) {
+      this.setState({observations: '', saveBtnDisabled: true})
+    }
   },
   onChange: function (event) {
     this.setState({ observations: event.target.value })
@@ -37,29 +46,17 @@ var ObserveInput = React.createClass({
         id: this.props.measurement.id,
         assessment: this.props.measurement.assessment,
         rating: this.props.measurement.rating,
-        targetRating: this.props.measurement.targetRating
+        targetRating: this.props.measurement.targetRating,
+        observations: this.state.observations
       }
       this.props.syncMeasurement(postData)
     }
   },
-  componentWillReceiveProps: function (nextProps) {
-    if (nextProps.measurement && !this.state.observations) {
-      this.setState({observations: nextProps.measurement.observations})
-    }
-
-    if (nextProps.measurement) { this.setState({saveBtnDisabled: false}) }
-  },
-  shouldComponentUpdate: function (nextProps, nextState) {
-    if (nextProps.activeTab === this.props.eventKey) {
-      return true
-    }
-    return false
-  },
   render: function () {
     var syncStatus = function () {
-      if (this.props.dirtyObservation[this.props.activeTab] === false && this.props.measurement) {
+      if (this.props.dirtyObservation === false && this.props.measurement) {
         return (<span><span>&nbsp;&nbsp;&nbsp;</span><Glyphicon glyph='saved' /></span>)
-      } else if (this.props.dirtyObservation[this.props.activeTab] === true && !this.props.measurement) {
+      } else if (this.props.dirtyObservation === true && !this.props.measurement) {
         return (<span className='text-info'><span>&nbsp;&nbsp;</span><Glyphicon glyph='info-sign' /> Select a rating below to save this comment and complete the form.</span>)
       } else {
         return (<span></span>)
