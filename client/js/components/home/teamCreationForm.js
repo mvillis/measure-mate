@@ -125,7 +125,7 @@ var TeamCreationForm = React.createClass({
         </div>
         <div className='form-group'>
           <div className='col-xs-2 col-xs-offset-2'>
-            <input className='btn btn-default' type='submit' value='Create' onClick={this.handleSubmit}/>
+            <input className='btn btn-default btn-primary' type='submit' value='Create' onClick={this.handleSubmit}/>
           </div>
         </div>
       </form>

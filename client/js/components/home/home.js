@@ -9,7 +9,7 @@ var Home = React.createClass({
   render: function () {
     return (
       <div className='container-fluid'>
-        <Panel header='Team' bsStyle='primary'>
+        <Panel header='Create Team' bsStyle='primary' style={{maxWidth: '768px'}} className='center-block'>
           <TeamCreationForm />
         </Panel>
       </div>
