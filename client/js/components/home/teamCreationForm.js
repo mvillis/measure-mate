@@ -54,7 +54,6 @@ var TeamCreationForm = React.createClass({
       var message = 'Name, description & tag/s required.'
       this.showError(message)
     }
-    alert(JSON.stringify(this.state))
   },
 
   showError: function (message) {
