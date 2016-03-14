@@ -1,6 +1,8 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
+from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.storage import staticfiles_storage
 from views import *
 
 
@@ -20,5 +22,12 @@ urlpatterns = [
         'rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^$', home, name='home'),
+    url(r'^favicon\.ico$',
+      RedirectView.as_view(
+        url=staticfiles_storage.url('assets/favicon.ico'),
+        permanent=False
+      ),
+      name="favicon"
+    ),
 
 ]
