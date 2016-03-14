@@ -1,0 +1,621 @@
+[
+  {
+    "fields": {
+      "short_desc": "An assessment of Team Health",
+      "name": "Team Health Check"
+    },
+    "model": "measure_mate.template",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 1,
+      "name": "Product (Backlog) owner",
+      "desc_class": "like-pre",
+      "desc": "Be aligned to and work closely with a Customer using Single Backlog and Clear Prioritisation\r\n\r\nThe team has a clear and engaged product (Backlog) owner that prioritises the work and takes both business value and tech aspects into consideration.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 401
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 2,
+      "name": "Team coherence ",
+      "desc_class": "like-pre",
+      "desc": "Stable, Persistent Team (bring the work to the team)\r\n\r\nThe team is stable with managed rotations and the set up with partners is stable, where stable means no more than 1 personnel change per month.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 402
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 3,
+      "name": "Team capability",
+      "desc_class": "like-pre",
+      "desc": "Cross Functional. Be able to deliver most work end-to-end with minimum hand-offs\r\n\r\nThe team has all the necessary skills and knowledge required to perform their job and deliver maximum value directly to the customer or users of your products or services.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 403
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 4,
+      "name": "Mission",
+      "desc_class": "like-pre",
+      "desc": "Clarity of purpose\r\n\r\nThe team has a mission that everyone knows and cares about, and a backlog with features linked to a road map.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 404
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 5,
+      "name": "Influencing work",
+      "desc_class": "like-pre",
+      "desc": "Each team member can influence his/her work, be an active part in planning and choose which tasks to work on.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 405
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 6,
+      "name": "Team has fun ",
+      "desc_class": "like-pre",
+      "desc": "The environment is friendly and motivating\r\n\r\nGood Team atmosphere. Team Temperature Metric in Place.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 406
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 7,
+      "name": "Easy to release",
+      "desc_class": "like-pre",
+      "desc": "We live by : Release Early, Release Often\r\n\r\nThe team can (and does!) get stuff live with minimal hassle and sync. This is evident in low cycle times\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 407
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 8,
+      "name": "Continuous Improvement",
+      "desc_class": "like-pre",
+      "desc": "The team feels ownership of their way of working and continuously improves it.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 408
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 9,
+      "name": "Organisational support",
+      "desc_class": "like-pre",
+      "desc": "The team have the support they need to be successful and solve their own problems, and leaders have the capacity to prioritise and clear any escalated blockages.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 409
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 10,
+      "name": "Distributed Delivery Tools",
+      "desc_class": "like-pre",
+      "desc": "Do the communication tools allow us to work effectively, making the distributed team members seem almost co-located.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 410
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 11,
+      "name": "Run a team as a business",
+      "desc_class": "like-pre",
+      "desc": "The team is run as a business with a known budget. The team has good knowledge of their customer's strategy and KPIs, the cost of delivering features and the value delivered.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 411
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 12,
+      "name": "Sustainable Pace",
+      "desc_class": "like-pre",
+      "desc": "The pace is sustainable and balances delivery with growing the team capability.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 412
+  },
+  {
+    "fields": {
+      "template": 4,
+      "rank": 13,
+      "name": "Innovation",
+      "desc_class": "like-pre",
+      "desc": "Capacity (10% of total) to experiment and safe to learn.\r\n"
+    },
+    "model": "measure_mate.attribute",
+    "pk": 413
+  },
+  {
+    "fields": {
+      "attribute": 401,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 401
+  },
+  {
+    "fields": {
+      "attribute": 401,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 402
+  },
+  {
+    "fields": {
+      "attribute": 401,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 403
+  },
+  {
+    "fields": {
+      "attribute": 402,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 404
+  },
+  {
+    "fields": {
+      "attribute": 402,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 405
+  },
+  {
+    "fields": {
+      "attribute": 402,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 406
+  },
+  {
+    "fields": {
+      "attribute": 403,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 407
+  },
+  {
+    "fields": {
+      "attribute": 403,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 408
+  },
+  {
+    "fields": {
+      "attribute": 403,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 409
+  },
+  {
+    "fields": {
+      "attribute": 404,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 410
+  },
+  {
+    "fields": {
+      "attribute": 404,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 411
+  },
+  {
+    "fields": {
+      "attribute": 404,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 412
+  },
+  {
+    "fields": {
+      "attribute": 405,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 413
+  },
+  {
+    "fields": {
+      "attribute": 405,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 414
+  },
+  {
+    "fields": {
+      "attribute": 405,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 415
+  },
+  {
+    "fields": {
+      "attribute": 406,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 416
+  },
+  {
+    "fields": {
+      "attribute": 406,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 417
+  },
+  {
+    "fields": {
+      "attribute": 406,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 418
+  },
+  {
+    "fields": {
+      "attribute": 407,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 419
+  },
+  {
+    "fields": {
+      "attribute": 407,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 420
+  },
+  {
+    "fields": {
+      "attribute": 407,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 421
+  },
+  {
+    "fields": {
+      "attribute": 408,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 422
+  },
+  {
+    "fields": {
+      "attribute": 408,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 423
+  },
+  {
+    "fields": {
+      "attribute": 408,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 424
+  },
+  {
+    "fields": {
+      "attribute": 409,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 425
+  },
+  {
+    "fields": {
+      "attribute": 409,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 426
+  },
+  {
+    "fields": {
+      "attribute": 409,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 427
+  },
+  {
+    "fields": {
+      "attribute": 410,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 428
+  },
+  {
+    "fields": {
+      "attribute": 410,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 429
+  },
+  {
+    "fields": {
+      "attribute": 410,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 430
+  },
+  {
+    "fields": {
+      "attribute": 411,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 431
+  },
+  {
+    "fields": {
+      "attribute": 411,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 432
+  },
+  {
+    "fields": {
+      "attribute": 411,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 433
+  },
+  {
+    "fields": {
+      "attribute": 412,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 434
+  },
+  {
+    "fields": {
+      "attribute": 412,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 435
+  },
+  {
+    "fields": {
+      "attribute": 412,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 436
+  },
+  {
+    "fields": {
+      "attribute": 413,
+      "name": "Green",
+      "rank": 2,
+      "desc_class": "like-pre",
+      "desc": "Green\r\n",
+      "colour": "Green"
+    },
+    "model": "measure_mate.rating",
+    "pk": 437
+  },
+  {
+    "fields": {
+      "attribute": 413,
+      "name": "Yellow",
+      "rank": 1,
+      "desc_class": "like-pre",
+      "desc": "Yellow\r\n",
+      "colour": "Yellow"
+    },
+    "model": "measure_mate.rating",
+    "pk": 438
+  },
+  {
+    "fields": {
+      "attribute": 413,
+      "name": "Red",
+      "rank": -1,
+      "desc_class": "like-pre",
+      "desc": "Red\r\n",
+      "colour": "Red"
+    },
+    "model": "measure_mate.rating",
+    "pk": 439
+  }
+]

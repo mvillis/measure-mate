@@ -17,7 +17,7 @@ class Attribute(models.Model):
     class Meta:
         verbose_name_plural = "Attributes"
         unique_together = ("template", "name")
-        ordering = ['rank', 'pk']
+        ordering = ['template', 'rank', 'pk']
 
     id = models.AutoField(primary_key=True, verbose_name="Attribute ID")
     name = models.CharField(max_length=256, verbose_name="Attribute Name")
@@ -35,14 +35,15 @@ class Rating(models.Model):
     class Meta:
         verbose_name_plural = "Ratings"
         unique_together = ("attribute", "name")
-        ordering = ['rank', 'pk']
+        ordering = ['attribute', 'rank', 'pk']
 
     id = models.AutoField(primary_key=True, verbose_name="Rating ID")
     attribute = models.ForeignKey(Attribute, related_name='ratings')
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256, verbose_name="Rating Name")
     desc = models.TextField()
     desc_class = models.TextField(default="")
     rank = models.IntegerField(default=1)
+    colour = models.CharField(max_length=256, null=True)
 
     def __unicode__(self):
         return (self.attribute.name + " - " +
@@ -85,7 +86,7 @@ class Assessment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     template = models.ForeignKey(Template, related_name="assessments")
-    team = models.ForeignKey(Team, null=True, related_name="assessments")
+    team = models.ForeignKey(Team, related_name="assessments")
     tags = models.ManyToManyField(Tag,)
 
     def __unicode__(self):

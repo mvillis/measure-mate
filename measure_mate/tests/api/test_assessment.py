@@ -13,7 +13,7 @@ class AssessmentAPITestCases(APITestCase):
         """
         List all assessments and check that all fields are returned
         """
-        assessment1 = AssessmentFactory(tags=[TagFactory()], team=TeamFactory())
+        assessment1 = AssessmentFactory(tags=[TagFactory()])
 
         url = reverse('assessment-list')
         response = self.client.get(url)
@@ -45,9 +45,9 @@ class AssessmentAPITestCases(APITestCase):
         self.assertEqual(len(response.data), Assessment.objects.count())
         self.assertEqual(response.data[0]['id'], assessment2.id)
 
-    def test_create_assessment(self):
+    def test_create_assessment_no_team(self):
         """
-        Ensure we can create a new assessment object.
+        Ensure we can't create a new assessment object without a team.
         """
         tag = TagFactory()
         template = TemplateFactory()
@@ -55,17 +55,18 @@ class AssessmentAPITestCases(APITestCase):
         url = reverse('assessment-list')
         data = {"template": template.id, "tags": [tag.id]}
         response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Assessment.objects.count(), 1)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(Assessment.objects.count(), 0)
 
     def test_fail_create_assessment(self):
         """
         Ensure that invalid template id returns a 400.
         """
         tag = TagFactory()
+        team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"template": "foo", "tags": [tag.id]}
+        data = {"template": "foo", "tags": [tag.id], "team": team.id}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
@@ -75,9 +76,10 @@ class AssessmentAPITestCases(APITestCase):
         Ensure that request fails when no template is specified.
         """
         tag = TagFactory()
+        team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"tags": [tag.id]}
+        data = {"tags": [tag.id], "team": team.id}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
@@ -88,9 +90,10 @@ class AssessmentAPITestCases(APITestCase):
         """
         tag = TagFactory()
         template = TemplateFactory()
+        team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"template": template.id}
+        data = {"template": template.id, "team": team.id}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)

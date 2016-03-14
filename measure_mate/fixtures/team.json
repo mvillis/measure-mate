@@ -1,0 +1,19 @@
+[
+  {
+    "model": "measure_mate.team",
+    "pk": 1,
+    "fields": {
+      "name": "Agile Capability",
+      "short_desc": "Agile Capability Team",
+      "created": "2016-02-29T06:17:30.608Z",
+      "updated": "2016-02-29T06:17:30.608Z",
+      "tags": [
+        9,
+        8,
+        6,
+        5,
+        7
+      ]
+    }
+  }
+]

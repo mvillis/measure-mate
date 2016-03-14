@@ -1,4 +1,2 @@
--r base.txt
+-r prod.txt
 
-psycopg2==2.5.1
-gunicorn==19.4.5

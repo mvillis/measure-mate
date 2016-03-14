@@ -1,9 +1,3 @@
 from measure_mate.settings.base import *
 
-INSTALLED_APPS += (
-    'gunicorn',
-
-    # last application
-    'djsupervisor'
-)
-
+CSP_CONNECT_SRC = ("'self'", "ws://localhost:3000", "ws://127.0.0.1:3000")

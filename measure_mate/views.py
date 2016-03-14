@@ -12,21 +12,6 @@ def home(request):
     return render(request, 'index.html')
 
 
-@x_ua_compatible('IE=edge')
-def assessment(request, pk):
-    return render(request, 'assessment.html', {'id': pk})
-
-
-@x_ua_compatible('IE=edge')
-def assessment_report(request, pk):
-    return render(request, 'assessment_report.html', {'id': pk})
-
-
-@x_ua_compatible('IE=edge')
-def assessment_list(request):
-    return render(request, 'assessment_list.html')
-
-
 class TemplateViewSet(viewsets.ModelViewSet):
     """
     API endpoint for the Template resource.
@@ -60,11 +45,6 @@ class TagViewSet(viewsets.ModelViewSet):
     """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
-
-
-class TagListView(generics.ListAPIView):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name',)
 
@@ -96,12 +76,6 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
 
 
-class MeasurementListView(generics.ListAPIView):
-    queryset = Measurement.objects.all()
-    serializer_class = MeasurementSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
-
 class TeamViewSet(viewsets.ModelViewSet):
     """
     API endpoint for the Team resource.
@@ -117,5 +91,3 @@ class TeamViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-

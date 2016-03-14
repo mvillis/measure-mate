@@ -30,11 +30,13 @@ class TagFactory(factory.django.DjangoModelFactory):
     name = factory.Sequence(lambda n: 'tag%d' % n)
 
 
-class AssessmentFactory(factory.django.DjangoModelFactory):
+class TeamFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = Assessment
+        model = Team
+#        django_get_or_create = ('name', 'short_desc', 'created', 'updated')
 
-    template = factory.SubFactory(TemplateFactory)
+    name = factory.Sequence(lambda n: 'Team %d' % n)
+    short_desc = 'Test Team Short Description'
 
     @factory.post_generation
     def tags(self, create, extracted, **kwargs):
@@ -46,14 +48,23 @@ class AssessmentFactory(factory.django.DjangoModelFactory):
             for tag in extracted:
                 self.tags.add(tag)
 
+
+class AssessmentFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Assessment
+
+    template = factory.SubFactory(TemplateFactory)
+    team = factory.SubFactory(TeamFactory)
+
     @factory.post_generation
-    def team(self, create, team, **kwargs):
+    def tags(self, create, extracted, **kwargs):
         if not create:
             return
 
-        if team:
-            # A team was passed in, use it
-            self.team = team
+        if extracted:
+            # A list of groups were passed in, use them
+            for tag in extracted:
+                self.tags.add(tag)
 
 
 class RatingFactory(factory.django.DjangoModelFactory):
@@ -73,24 +84,5 @@ class MeasurementFactory(factory.django.DjangoModelFactory):
     assessment = factory.SubFactory(AssessmentFactory)
     rating = factory.SubFactory(RatingFactory)
     observations = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
-
-
-class TeamFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = Team
-#        django_get_or_create = ('name', 'short_desc', 'created', 'updated')
-
-    name = factory.Sequence(lambda n: 'Team %d' % n)
-    short_desc = 'Test Team Short Description'
-
-    @factory.post_generation
-    def tags(self, create, extracted, **kwargs):
-        if not create:
-            return
-
-        if extracted:
-            # A list of groups were passed in, use them
-            for tag in extracted:
-                self.tags.add(tag)
 
 
