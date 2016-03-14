@@ -102,7 +102,9 @@ module.exports = {
       outputName: 'bundle.js'
     }],
     production: production,
-    gzipAppend: { append: true }
+    gzipConfig: {
+      append: true
+    }
   },
   lint: {
     src: [
