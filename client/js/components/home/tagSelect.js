@@ -48,7 +48,7 @@ var TagSelect = React.createClass({
             placeholder='Type to find existing tags or create new ones'
           />
         </div>
-        <div className='col-xs-10 col-xs-offset-2 hint'>
+        <div className='col-xs-10 col-xs-offset-2 help-block'>
           Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.
         </div>
       </div>

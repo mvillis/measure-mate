@@ -50,7 +50,7 @@ var TemplateSelect = React.createClass({
             placeholder='Type to filter templates'
             />
         </div>
-        <div className='col-xs-10 col-xs-offset-2 hint'>
+        <div className='col-xs-10 col-xs-offset-2 help-block'>
           Each template includes a unique set of attributes to measure.
         </div>
       </div>

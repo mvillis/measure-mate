@@ -1,4 +1,4 @@
-.hint {
+.hint, .help-block {
 /*    margin: 5px 0; */
     font-style: italic;
     color: #999;
