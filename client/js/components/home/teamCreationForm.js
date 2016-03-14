@@ -42,10 +42,11 @@ var TeamCreationForm = React.createClass({
       })
       this.showError('')
       this.createTeam(teamName, teamDesc, tags)
-    } else if (this.state.formError) {
+    } else {
       var message = 'Name, description & tag/s required.'
       this.showError(message)
     }
+    alert(JSON.stringify(this.state))
   },
 
   showError: function (message) {
