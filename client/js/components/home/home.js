@@ -20,7 +20,7 @@ var Home = React.createClass({
             </Jumbotron>
           </Col>
           <Col md={6}>
-            <Panel header='Create Team' bsStyle='primary' className='center-block'>
+            <Panel header='Create Team' bsStyle='info' className='center-block'>
               <TeamCreationForm />
             </Panel>
           </Col>

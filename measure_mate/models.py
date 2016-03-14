@@ -22,7 +22,7 @@ class Attribute(models.Model):
     id = models.AutoField(primary_key=True, verbose_name="Attribute ID")
     name = models.CharField(max_length=256, verbose_name="Attribute Name")
     desc = models.TextField()
-    desc_class = models.TextField(default="")
+    desc_class = models.TextField(default="", blank=True)
     template = models.ForeignKey(Template, related_name='attributes')
     rank = models.IntegerField(default=1)
 
