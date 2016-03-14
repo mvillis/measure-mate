@@ -29,6 +29,14 @@ var TeamCreationForm = React.createClass({
       tags: val
     })
   },
+  handleChange: function () {
+    // This could also be done using ReactLink:
+    // http://facebook.github.io/react/docs/two-way-binding-helpers.html
+    this.setState({
+      teamName: this.refs.teamName.getValue(),
+      teamDesc: this.refs.teamDesc.getValue()
+    })
+  },
   handleSubmit: function (e) {
     e.preventDefault()
 
@@ -79,15 +87,6 @@ var TeamCreationForm = React.createClass({
     })
   },
 
-  handleChange: function () {
-    // This could also be done using ReactLink:
-    //     // http://facebook.github.io/react/docs/two-way-binding-helpers.html
-    this.setState({
-      teamName: this.refs.teamName.getValue(),
-      teamDesc: this.refs.teamDesc.getValue()
-    })
-  },
-
   render: function () {
     return (
       <form className='form-horizontal'>
@@ -126,7 +125,9 @@ var TeamCreationForm = React.createClass({
           />
         </div>
         <div className='form-group'>
-          <Input className='btn btn-default' type='submit' value='Create' onClick={this.handleSubmit} wrapperClassName='col-xs-2 col-xs-offset-2' />
+          <div className='col-xs-2 col-xs-offset-2'>
+            <input className='btn btn-default' type='submit' value='Create' onClick={this.handleSubmit}/>
+          </div>
         </div>
       </form>
     )
