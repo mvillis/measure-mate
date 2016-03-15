@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'p*=rq2jp5_q&wpuory=)d78449^2ytct2m+#5frn8ce3i&1@j*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', True)
+DEBUG = os.environ.get('DJANGO_DEBUG', False)
 
 ALLOWED_HOSTS = ['*']
 
@@ -125,6 +125,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 LOGGING = {
     'version': 1,
