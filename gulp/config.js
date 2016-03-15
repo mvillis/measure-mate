@@ -6,7 +6,8 @@ var src = "client"
 
 var cssSource = [
   'node_modules/bootstrap/dist/css/bootstrap.min.css',
-  'node_modules/react-select/dist/react-select.min.css'
+  'node_modules/react-select/dist/react-select.min.css',
+  'client/css/measure-mate.css'
 ]
 var cssDestination = dest + '/css'
 var assetsSource = src + '/assets/**'
@@ -56,7 +57,14 @@ module.exports = {
   css: {
     src: cssSource,
     dest: cssDestination,
-    production: production
+    production: production,
+    uglifyOptions: {
+      "maxLineLen": 80,
+      "uglyComments": true
+    },
+    gzipConfig: {
+      append: true
+    }
   },
 
   fonts: {
