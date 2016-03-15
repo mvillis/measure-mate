@@ -1,7 +1,6 @@
 .hint, .help-block {
-/*    margin: 5px 0; */
-    font-style: italic;
-    color: #999;
+  font-style: italic;
+  color: #999;
 }
 
 a,tr.clickable-row {
@@ -9,7 +8,7 @@ a,tr.clickable-row {
 }
 
 .like-pre {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 .v-cent {
@@ -57,37 +56,27 @@ td.wrap
   width: 600px;
 }
 
-.summary-button {
-  display: none !important;
-}
-
 @media (max-width: 640px) {
-    div .col-xs-3 {
-        display: none;
-    }
-    div .col-xs-9 {
-        width: 100%;
-    }
-    .tab-content {
-        padding: 0px !important;
-    }
-    .container {
-        padding: 5px !important;
-    }
-    .assessment-report {
-        margin-left: auto;
-        margin-right: auto;
-        width: 400px !important;
-    }
-    .summary-button {
-        display: inline !important;
-    }
+  div .col-xs-3 {
+    display: none;
+  }
+  div .col-xs-9 {
+    width: 100%;
+  }
+  .tab-content {
+    padding: 0px !important;
+  }
+  .assessment-report {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px !important;
+  }
 }
 
 @media (max-width: 800px) {
-    .assessment-report {
-        margin-left: auto;
-        margin-right: auto;
-        width: 400px !important;
-    }
+  .assessment-report {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px !important;
+  }
 }
