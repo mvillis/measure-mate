@@ -44,7 +44,10 @@ gulp.task('browserify', function (callback) {
         .pipe(source(bundleConfig.outputName))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
+          // transforms here
+          .pipe(uglify())
+          // Report compile errors
+          .on('error', handleErrors)
         .pipe(sourcemaps.write('./'))
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
