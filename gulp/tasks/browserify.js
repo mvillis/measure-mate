@@ -2,7 +2,6 @@ var browserSync = require('browser-sync')
 var browserify = require('browserify')
 var watchify = require('watchify')
 var uglify = require('gulp-uglify')
-var gzip = require('gulp-gzip')
 var bundleLogger = require('../util/bundleLogger')
 var gulp = require('gulp')
 var util = require('gulp-util')
@@ -43,13 +42,10 @@ gulp.task('browserify', function (callback) {
         // stream gulp compatible. Specifiy the
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
-        // write un-uglified bundle
-        .pipe(gulp.dest(bundleConfig.dest))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(config.production ? uglify() : util.noop())
+        .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(config.production ? gzip(config.gzipConfig) : util.noop())
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished)
