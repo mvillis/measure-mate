@@ -13,6 +13,8 @@ gulp.task('css', function () {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(concat('bundle.css'))
     .on('error', handleErrors)
+    // write out un-uglified files
+    .pipe(gulp.dest(config.dest))
     .pipe(config.production ?  uglifycss(config.uglifyOptions) : util.noop())
     .pipe(sourcemaps.write('./'))
     .pipe(config.production ? gzip(config.gzipConfig) : util.noop())
