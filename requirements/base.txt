@@ -8,4 +8,4 @@ django-rest-swagger==0.3.5
 django-secure==1.0.1
 django-csp==2.0.3
 whitenoise==3.0b1
-brotlipy==0.2.0
+#brotlipy==0.2.0
