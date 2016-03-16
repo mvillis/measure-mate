@@ -4,6 +4,7 @@ install:
   - nvm install stable
   - nvm use stable
   - npm install
+  - gulp build
   - pip install -r requirements/local.txt
   - pip install coveralls
   - python manage.py collectstatic --no-input
