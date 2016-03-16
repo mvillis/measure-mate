@@ -61,9 +61,6 @@ module.exports = {
     uglifyOptions: {
       "maxLineLen": 80,
       "uglyComments": true
-    },
-    gzipConfig: {
-      append: true
     }
   },
 
@@ -109,11 +106,9 @@ module.exports = {
       dest: dest + '/js',
       outputName: 'bundle.js'
     }],
-    production: production,
-    gzipConfig: {
-      append: true
-    }
+    production: production
   },
+
   lint: {
     src: [
       'gulpfile.js',
@@ -128,6 +123,14 @@ module.exports = {
     mochaOptions: {
       'ui': 'bdd',
       'reporter': 'spec'
+    }
+  },
+
+  gzip: {
+    src: './build/**/*.{js,css,map}',
+    dest: dest,
+    gzipConfig: {
+      append: true
     }
   }
 }

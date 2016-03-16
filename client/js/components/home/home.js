@@ -17,6 +17,7 @@ var Home = React.createClass({
           <Col md={6}>
             <Jumbotron>
               <h1>Welcome to Measure Mate!</h1>
+              <p>A tool to track maturity assessments for your team.</p>
             </Jumbotron>
           </Col>
           <Col md={6}>
