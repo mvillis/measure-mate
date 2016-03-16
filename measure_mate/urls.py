@@ -22,12 +22,5 @@ urlpatterns = [
         'rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^$', home, name='home'),
-    url(r'^favicon\.ico$',
-      RedirectView.as_view(
-        url=staticfiles_storage.url('assets/favicon.ico'),
-        permanent=False
-      ),
-      name="favicon"
-    ),
 
 ]
