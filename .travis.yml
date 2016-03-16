@@ -3,7 +3,7 @@ install:
   - . $HOME/.nvm/nvm.sh
   - nvm install stable
   - nvm use stable
-  - non install gulp
+  - npn install gulp
   - npm install
   - gulp build
   - pip install -r requirements/local.txt
