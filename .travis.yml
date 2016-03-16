@@ -1,10 +1,11 @@
 language: python
-before_install:
-  - npm install gulp
 install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+  - npm install
   - pip install -r requirements/local.txt
   - pip install coveralls
-  - npm install
   - python manage.py collectstatic
 before_script:
   - "export DATABASE_URL=sqlite:///:memory"
