@@ -15,7 +15,7 @@ var TagSelect = React.createClass({
   loadOptions: function loadOptions (input, callback) {
     setTimeout(function () {
       $.ajax({
-        url: '/api/tags?search=' + input,
+        url: '/api/tags/?search=' + input,
         dataType: 'json',
         cache: false,
         success: function (data) {
