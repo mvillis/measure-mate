@@ -132,5 +132,17 @@ module.exports = {
     gzipConfig: {
       append: true
     }
+  },
+
+  lintCss: {
+    src: [
+      'client/css/*.css'
+    ],
+    lintOptions: {
+      stylelint: {
+        extends: 'stylelint-config-standard'
+      },
+      debug: true
+    }
   }
 }

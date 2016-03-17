@@ -1,9 +1,11 @@
-.hint, .help-block {
+.hint,
+.help-block {
   font-style: italic;
   color: #999;
 }
 
-a,tr.clickable-row {
+a,
+tr.clickable-row {
   cursor: pointer;
 }
 
@@ -16,8 +18,7 @@ a,tr.clickable-row {
   padding-left: 6px;
 }
 
-td.wrap
-{
+td.wrap {
   word-wrap: break-word;
   min-width: 160px;
   max-width: 160px;
@@ -28,14 +29,14 @@ td.wrap
 }
 
 .target-btn {
-   position: absolute;
-   right: 25px;
+  position: absolute;
+  right: 25px;
 }
 
 .target-help {
-   position: absolute;
-   right: 5px;
-   top: 13px;
+  position: absolute;
+  right: 5px;
+  top: 13px;
 }
 
 #att-list {
@@ -64,7 +65,7 @@ td.wrap
     width: 100%;
   }
   .tab-content {
-    padding: 0px !important;
+    padding: 0 !important;
   }
   .assessment-report {
     margin-left: auto;
