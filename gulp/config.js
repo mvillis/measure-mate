@@ -115,7 +115,7 @@ module.exports = {
       './client/js/main.js',
       './client/js/**/*.js'
     ],
-    configSrc: './gulp/eslint.config.json'
+    configSrc: '.eslintrc'
   },
 
   test: {

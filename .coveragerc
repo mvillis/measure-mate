@@ -3,7 +3,7 @@ branch = True
 source =
     measure_mate
 omit =
-    venv/*
+    .venv/*
     measure_mate/migrations/*
     measure_mate/tests/*
     measure_mate/settings/*.py
