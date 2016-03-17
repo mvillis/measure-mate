@@ -211,16 +211,17 @@ var AttributeList = React.createClass({
       }.bind(this))
 
       var summaryTab = function () {
+        var key = this.state.template ? this.state.template.attributes.length + 1 : null
         return (
-          <Tab eventKey={this.state.template ? this.state.template.attributes.length + 1 : null} key={this.state.template ? this.state.template.attributes.length + 1 : null} id={this.state.template ? this.state.template.attributes.length + 1 : null} title={<div><Glyphicon glyph='stats'/> <span>Summary</span></div>}>
+          <Tab eventKey={key} key={key} id={key} title={<div><Glyphicon glyph='stats'/> <span>Summary</span></div>}>
             <Panel header='Summary' bsStyle='primary'>
               <Alert bsStyle='warning'>
                 How did you go? Where are you strengths and weaknesses? What are some improvements you could make?
               </Alert>
               <AssessmentReport
-                eventKey={this.state.template ? this.state.template.attributes.length + 1 : null}
-                key={this.state.template ? this.state.template.attributes.length + 1 : null}
-                id={this.state.template ? this.state.template.attributes.length + 1 : null}
+                eventKey={key}
+                key={key}
+                id={key}
                 activeTab={this.state.activeTab}
                 measurements={this.state.measurements}
                 attributes={this.state.template.attributes}
