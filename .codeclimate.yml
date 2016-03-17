@@ -1,0 +1,6 @@
+exclude_paths:
+- .venv/**/*
+- measure_mate/migrations/*.py
+- measure_mate/tests/*.py
+- client/test/*
+- build/**/*
