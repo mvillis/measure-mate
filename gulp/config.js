@@ -139,9 +139,6 @@ module.exports = {
       'client/css/*.css'
     ],
     lintOptions: {
-      stylelint: {
-        extends: 'stylelint-config-standard'
-      },
       debug: true
     }
   }
