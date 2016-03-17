@@ -1,7 +1,7 @@
 {
   "extends": ["standard", "standard-react"],
   "env": {
-    "amd": true,
+    "commonjs": true,
     "browser": true,
     "node": true,
     "jquery": true,

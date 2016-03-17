@@ -115,7 +115,7 @@ module.exports = {
       './client/js/main.js',
       './client/js/**/*.js'
     ],
-    configSrc: '.eslintrc'
+    configSrc: '.eslintrc.json'
   },
 
   test: {
