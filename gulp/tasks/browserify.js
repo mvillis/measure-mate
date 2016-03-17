@@ -31,6 +31,23 @@ gulp.task('browserify', function (callback) {
     // Specify the entry point of your app
     .require(bundleConfig.entries, {entry: true})
 
+    var reportFinished = function () {
+      // Log when bundling completes
+      bundleLogger.end(bundleConfig.outputName)
+
+      if (bundleQueue) {
+        // reload browserSync on changes
+        browserSync.reload()
+
+        bundleQueue--
+        if (bundleQueue === 0) {
+          // If queue is empty, tell gulp the task is complete.
+          // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
+          return callback()
+        }
+      }
+    }
+
     var bundle = function () {
       // Log when bundling starts
       bundleLogger.start(bundleConfig.outputName)
@@ -60,25 +77,6 @@ gulp.task('browserify', function (callback) {
       bundler = watchify(bundler)
       // Rebundle on update
       bundler.on('update', bundle)
-    }
-
-    var reportFinished = function () {
-      // Log when bundling completes
-      bundleLogger.end(bundleConfig.outputName)
-
-      if (bundleQueue) {
-        bundleQueue--
-        if (bundleQueue === 0) {
-          // If queue is empty, tell gulp the task is complete.
-          // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
-          callback()
-          // reload browserSync on changes
-          browserSync.reload()
-        } else {
-          // reload browserSync on changes
-          browserSync.reload()
-        }
-      }
     }
 
     return bundle()

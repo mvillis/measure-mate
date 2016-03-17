@@ -34,12 +34,12 @@ var AssessmentReport = React.createClass({
     return matchingAttribute
   },
   getMeasurementForAttribute: function (attribute) {
-    if (this.props.measurements != null) {
+    if (this.props.measurements !== null) {
       for (var i = 0; i < this.props.measurements.length; i++) {
         if (attribute.id === this.getAttributeForRating(this.props.measurements[i].rating)) {
           return this.props.measurements[i]
         }
-      };
+      }
     } else {
       return null
     }
@@ -77,7 +77,7 @@ var AssessmentReport = React.createClass({
 
     var summaryRows = []
 
-    if (this.props.measurements != null) {
+    if (this.props.measurements !== null) {
       (this.props.attributes.map(function (attribute, i) {
         labels.push(attribute.name)
 
@@ -95,7 +95,7 @@ var AssessmentReport = React.createClass({
           currentStyle = {
             'backgroundColor': currentColour,
             'fontWeight': 'bold',
-            'color': (currentColour == 'Yellow') ? 'Black' : 'White'
+            'color': (currentColour === 'Yellow') ? 'Black' : 'White'
           }
         }
         var targetStyle = {}
@@ -104,7 +104,7 @@ var AssessmentReport = React.createClass({
           targetStyle = {
             'backgroundColor': targetColour,
             'fontWeight': 'bold',
-            'color': (targetColour == 'Yellow') ? 'Black' : 'White'
+            'color': (targetColour === 'Yellow') ? 'Black' : 'White'
           }
         }
 

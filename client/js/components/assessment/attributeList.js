@@ -50,7 +50,7 @@ var AttributeList = React.createClass({
   templateCallback: function (data) {
     this.setState({
       template: data
-    }, this.dataSource('/api/measurements/' + '?assessment__id=' + this.props.params.id, this.measurementCallback)
+    }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.id, this.measurementCallback)
     )
   },
   assessmentCallback: function (data) {
@@ -102,7 +102,7 @@ var AttributeList = React.createClass({
       var matchMeasure = _.find(this.state.measurements, function (measurement) {
         return measurement.id === postData.id
       })
-      matchMeasure ? postData['observations'] = matchMeasure.observations : postData['observations'] = ''
+      postData['observations'] = (matchMeasure ? matchMeasure.observations : '')
     }
     this.setState({ measureSyncActivity: true })
     console.log('Should a new measurement be created? ' + createNewMeasure)
@@ -178,7 +178,7 @@ var AttributeList = React.createClass({
     return matchingAttribute
   },
   getMeasurementForAttribute: function (attribute) {
-    if (this.state.measurements != null) {
+    if (this.state.measurements !== null) {
       for (var i = 0; i < this.state.measurements.length; i++) {
         if (attribute.id === this.getAttributeForRating(this.state.measurements[i].rating)) {
           return this.state.measurements[i]

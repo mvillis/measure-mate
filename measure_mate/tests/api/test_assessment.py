@@ -107,7 +107,7 @@ class AssessmentAPITestCases(APITestCase):
         team = TeamFactory()
 
         url = reverse('assessment-list')
-	data = {"template": template.id, "tags": [tag.id], "team": team.id}
+        data = {"template": template.id, "tags": [tag.id], "team": team.id}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Assessment.objects.count(), 1)
