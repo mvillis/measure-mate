@@ -13,15 +13,12 @@ class AssessmentAPITestCases(APITestCase):
         """
         List all assessments and check that all fields are returned
         """
-        assessment1 = AssessmentFactory(tags=[TagFactory()])
+        assessment1 = AssessmentFactory()
 
         url = reverse('assessment-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]['id'], assessment1.id)
-        self.assertEqual(len(response.data[0]['tags']), len(assessment1.tags.all()))
-        self.assertEqual(response.data[0]['tags'][0]['id'], assessment1.tags.first().id)
-        self.assertEqual(response.data[0]['tags'][0]['name'], assessment1.tags.first().name)
         self.assertEqual(response.data[0]['template']['name'], assessment1.template.name)
         self.assertEqual(response.data[0]['template']['id'], assessment1.template.id)
         self.assertEqual(response.data[0]['team']['name'], assessment1.team.name)
@@ -36,8 +33,8 @@ class AssessmentAPITestCases(APITestCase):
         Ensure multiple assessments are returned in a list
         and sorted by last first
         """
-        assessment1 = AssessmentFactory(tags=[TagFactory()])
-        assessment2 = AssessmentFactory(tags=[TagFactory()])
+        assessment1 = AssessmentFactory()
+        assessment2 = AssessmentFactory()
 
         url = reverse('assessment-list')
         response = self.client.get(url)
@@ -49,11 +46,10 @@ class AssessmentAPITestCases(APITestCase):
         """
         Ensure we can't create a new assessment object without a team.
         """
-        tag = TagFactory()
         template = TemplateFactory()
 
         url = reverse('assessment-list')
-        data = {"template": template.id, "tags": [tag.id]}
+        data = {"template": template.id}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
@@ -62,11 +58,10 @@ class AssessmentAPITestCases(APITestCase):
         """
         Ensure that invalid template id returns a 400.
         """
-        tag = TagFactory()
         team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"template": "foo", "tags": [tag.id], "team": team.id}
+        data = {"template": "foo", "team": team.id}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
@@ -75,25 +70,10 @@ class AssessmentAPITestCases(APITestCase):
         """
         Ensure that request fails when no template is specified.
         """
-        tag = TagFactory()
         team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"tags": [tag.id], "team": team.id}
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(Assessment.objects.count(), 0)
-
-    def test_fail_create_assessment_no_tag(self):
-        """
-        Ensure that request fails when no tag is specified.
-        """
-        tag = TagFactory()
-        template = TemplateFactory()
-        team = TeamFactory()
-
-        url = reverse('assessment-list')
-        data = {"template": template.id, "team": team.id}
+        data = {"team": team.id}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
@@ -102,12 +82,11 @@ class AssessmentAPITestCases(APITestCase):
         """
         Ensure we can create a new assessment object with a team.
         """
-        tag = TagFactory()
         template = TemplateFactory()
         team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"template": template.id, "tags": [tag.id], "team": team.id}
+        data = {"template": template.id, "team": team.id}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Assessment.objects.count(), 1)
