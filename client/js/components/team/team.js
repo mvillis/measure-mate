@@ -14,10 +14,12 @@ var AssessmentCreationForm = require('../home/assessmentCreationForm')
 
 var Team = React.createClass({
   propTypes: {
-    params: React.PropTypes.object.isRequired
+    params: React.PropTypes.object
   },
+
   loadTeamFromServer: function () {
-    var url = '/api/teams/' + this.props.params.id + '/'
+    var teamId = parseInt(this.props.params.teamId)
+    var url = '/api/teams/' + teamId + '/'
     $.ajax({
       url: url,
       dataType: 'json',
@@ -40,12 +42,7 @@ var Team = React.createClass({
     this.loadTeamFromServer()
   },
   render: function () {
-    var initialTags = this.state.loaded ? this.state.team.tags.map(function (value) {
-      return (
-        { value: value.id, label: value.name }
-      )
-    }) : []
-
+    var teamId = parseInt(this.props.params.teamId)
     return (
       <div>
         <div className='row'>
@@ -58,18 +55,16 @@ var Team = React.createClass({
           </div>
           <div className='col-sm-6 push-right'>
             <Panel header='Create Assessment' bsStyle='info'>
-              <Loader scale={0.25} top='10' loaded={this.state.loaded}>
-                <div className='container-fluid'>
-                  <AssessmentCreationForm team={this.state.team} initialTags={initialTags}/>
-                </div>
-              </Loader>
+              <div className='container-fluid'>
+                <AssessmentCreationForm teamId={teamId}/>
+              </div>
             </Panel>
           </div>
         </div>
         <div className='row'>
           <div className='container-fluid'>
             <Panel header='Assessments' bsStyle='info'>
-              <AssessmentTable teamId={this.props.params.id}/>
+              <AssessmentTable teamId={teamId}/>
             </Panel>
           </div>
         </div>
