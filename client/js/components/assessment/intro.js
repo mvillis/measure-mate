@@ -28,7 +28,10 @@ var Intro = React.createClass({
           <LinkContainer to={{pathname: '/assessment/' + this.props.params.id + '/' + ((this.props.attributes) ? this.props.attributes[0].id : '')}}>
             <Button bsStyle='primary'>Begin</Button>
           </LinkContainer>
-          &nbsp;<Button bsStyle='default'>See Results</Button>
+          &nbsp;
+          <LinkContainer to={{pathname: '/assessment/' + this.props.params.id + '/summary'}}>
+            <Button bsStyle='default'>See Results</Button>
+          </LinkContainer>
         </span>
       </Jumbotron>
     )

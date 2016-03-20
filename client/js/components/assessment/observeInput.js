@@ -24,6 +24,9 @@ var ObserveInput = React.createClass({
     this.handleObserveDebounced = _.debounce(function () {
       this.props.onObservationChange.apply(this, [this.state.observations])
     }, 1000)
+    if (this.props.measurement) {
+      this.setState({observations: this.props.measurement.observations, saveBtnDisabled: false})
+    }
   },
   componentWillReceiveProps: function (nextProps) {
     if (nextProps.measurement && this.props.measurement && nextProps.measurement.id !== this.props.measurement.id) {
@@ -49,6 +52,7 @@ var ObserveInput = React.createClass({
         targetRating: this.props.measurement.targetRating,
         observations: this.state.observations
       }
+      console.log(postData)
       this.props.syncMeasurement(postData)
     }
   },

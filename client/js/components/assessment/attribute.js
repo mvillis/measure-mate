@@ -9,7 +9,6 @@ var _ = require('lodash')
 var Panel = ReactBootstrap.Panel
 var Alert = ReactBootstrap.Alert
 var ListGroup = ReactBootstrap.ListGroup
-var $ = require('jquery')
 
 var Attribute = React.createClass({
   propTypes: {
@@ -17,7 +16,11 @@ var Attribute = React.createClass({
     eventKey: React.PropTypes.number,
     activeTab: React.PropTypes.number,
     attribute: React.PropTypes.object,
-    params: React.PropTypes.object
+    params: React.PropTypes.object,
+    template: React.PropTypes.object,
+    measurements: React.PropTypes.array,
+    syncMeasurement: React.PropTypes.func,
+    measureSyncActivity: React.PropTypes.bool
   },
   getInitialState: function () {
     return {
@@ -30,37 +33,42 @@ var Attribute = React.createClass({
     }
   },
   componentDidMount: function () {
-    this.getData(this.props.params.id, this.props.params.attribute)
+    var attribute = this.getAttributeViaTemplate(this.props.template, this.props.params.attribute)
+    var measurement = this.getMeasurementForAttribute(this.props.measurements, attribute)
+    this.setState(
+      {
+        attribute: attribute,
+        measurement: measurement,
+        dirtyObservation: false,
+        observations: (measurement) ? measurement.observations : '',
+        loaded: true
+      }
+    )
   },
   componentWillReceiveProps: function (nextProps) {
-    if (nextProps.params.attribute !== this.props.params.attribute) {
-      this.getData(nextProps.params.id, nextProps.params.attribute)
-    }
+    var attribute = this.getAttributeViaTemplate(nextProps.template, nextProps.params.attribute)
+    var measurement = this.getMeasurementForAttribute(nextProps.measurements, attribute)
+    this.setState(
+      {
+        attribute: attribute,
+        measurement: measurement,
+        dirtyObservation: (nextProps.params.attribute !== this.props.params.attribute) ? false : (this.state.observations !== measurement.observations),
+        observations: (measurement) ? (nextProps.params.attribute !== this.props.params.attribute) ? measurement.observations : this.state.observations : '',
+        loaded: true
+      }
+    )
   },
-  getData: function (id, attribute) {
-    var setAttribute = function (data) { this.setState({attribute: data}) }.bind(this)
-    var setMeasurement = function (data) {
-      this.setState({
-        measurement: _.first(data),
-        loaded: true,
-        dirtyObservation: false,
-        observations: (_.first(data)) ? _.first(data).observations : ''
-      })
-    }.bind(this)
-    this.dataSource('/api/attributes/' + attribute, setAttribute)
-    this.dataSource('/api/measurements/' + '?assessment__id=' + id + '&rating__attribute=' + attribute, setMeasurement)
-  },
-  dataSource: function (url, callback) {
-    $.ajax({
-      type: 'get',
-      dataType: 'json',
-      url: url,
-      success: callback,
-      error: this.handleSubmitFailure
+  getAttributeViaTemplate: function (template, attributeId) {
+    var match = _.find(template.attributes, function (attribute) {
+      return attribute.id === parseInt(attributeId, 10)
     })
+    return match
   },
-  handleSubmitFailure: function (xhr, ajaxOptions, thrownError) {
-    console.error('There was a failure')
+  getMeasurementForAttribute: function (measurements, attribute) {
+    var ids = _.map(attribute.ratings, 'id')
+    return _.head(_.filter(measurements, function (c) {
+      return ids.indexOf(c.rating) !== -1
+    }))
   },
   saveMeasurement: function (ratingType, value) {
     var existingMeasurement = this.state.measurement
@@ -71,29 +79,7 @@ var Attribute = React.createClass({
       rating: (ratingType === 'rating') ? value : this.state.measurement.rating,
       target_rating: (ratingType === 'target') ? value : ((existingMeasurement && this.state.measurement.target_rating) ? this.state.measurement.target_rating : '') // eslint-disable-line camelcase
     }
-    this.syncMeasurement(postData)
-  },
-  measurementUpdateCallback: function (data) {
-    this.setState({
-      measurement: data,
-      measureSyncActivity: false,
-      dirtyObservation: false,
-      observations: data.observations
-    })
-  },
-  syncMeasurement: function (postData) {
-    var createNewMeasure = !postData.id
-    this.setState({ measureSyncActivity: true })
-    console.log('Should a new measurement be created? ' + createNewMeasure)
-    $.ajax({
-      type: ((createNewMeasure) ? 'POST' : 'PUT'),
-      contentType: 'application/json; charset=utf-8',
-      url: ((createNewMeasure) ? '/api/measurements/' : ('/api/measurements/' + postData.id + '/')),
-      data: JSON.stringify(postData),
-      dataType: 'json',
-      success: this.measurementUpdateCallback,
-      error: this.handleSubmitFailure
-    })
+    this.props.syncMeasurement(postData)
   },
   onObservationChange: function (text) {
     this.setState({observations: text, dirtyObservation: true})
@@ -113,8 +99,8 @@ var Attribute = React.createClass({
           <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
             {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
           </Alert>
-          <ObserveInput measurement={this.state.measurement} syncMeasurement={this.syncMeasurement} onObservationChange={this.onObservationChange} dirtyObservation={this.state.dirtyObservation}/>
-          <Loader loaded={!this.state.measureSyncActivity}/>
+          <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} dirtyObservation={this.state.dirtyObservation}/>
+          <Loader loaded={!this.props.measureSyncActivity}/>
           <ListGroup fill>
             {ratingList}
           </ListGroup>

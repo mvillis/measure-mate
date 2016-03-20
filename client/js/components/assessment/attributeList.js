@@ -3,6 +3,7 @@
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
+var _ = require('lodash')
 var PageHeader = ReactBootstrap.PageHeader
 var Nav = ReactBootstrap.Nav
 var NavItem = ReactBootstrap.NavItem
@@ -40,11 +41,17 @@ var AttributeList = React.createClass({
   componentWillMount: function () {
     this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
   },
-  templateCallback: function (data) {
+  measurementCallback: function (data) {
     this.setState({
-      template: data,
+      measurements: data,
       initialLoad: true
     })
+  },
+  templateCallback: function (data) {
+    this.setState({
+      template: data
+    }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.id, this.measurementCallback)
+    )
   },
   assessmentCallback: function (data) {
     this.setState({
@@ -61,6 +68,41 @@ var AttributeList = React.createClass({
       dataType: 'json',
       url: url,
       success: callback,
+      error: this.handleSubmitFailure
+    })
+  },
+  measurementUpdateCallback: function (data) {
+    var existingMeasurementIndex = _.findIndex(this.state.measurements, function (measurement) {
+      return measurement.id === data.id
+    })
+    if (existingMeasurementIndex !== -1) {
+      var updatedMeasurements = this.state.measurements.slice()
+      updatedMeasurements[existingMeasurementIndex] = data
+      this.setState({
+        measurements: updatedMeasurements,
+        measureSyncActivity: false,
+        dirtyObservation: false
+      })
+    } else {
+      var newMeasurements = this.state.measurements.concat([data])
+      this.setState({
+        measurements: newMeasurements,
+        measureSyncActivity: false,
+        dirtyObservation: false
+      })
+    }
+  },
+  syncMeasurement: function (postData) {
+    var createNewMeasure = !postData.id
+    this.setState({ measureSyncActivity: true })
+    console.log('Should a new measurement be created? ' + createNewMeasure)
+    $.ajax({
+      type: ((createNewMeasure) ? 'POST' : 'PUT'),
+      contentType: 'application/json; charset=utf-8',
+      url: ((createNewMeasure) ? '/api/measurements/' : ('/api/measurements/' + postData.id + '/')),
+      data: JSON.stringify(postData),
+      dataType: 'json',
+      success: this.measurementUpdateCallback,
       error: this.handleSubmitFailure
     })
   },
@@ -160,7 +202,12 @@ var AttributeList = React.createClass({
           <Grid>
             <Row>
               <Col xs={12} md={8}>
-                {React.cloneElement(this.props.children, {attributes: this.state.attributes})}
+                {React.cloneElement(this.props.children, {
+                  template: this.state.template,
+                  measurements: this.state.measurements,
+                  syncMeasurement: this.syncMeasurement,
+                  measureSyncActivity: this.state.measureSyncActivity
+                })}
                 <Pager>
                   <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
                     <Glyphicon glyph='chevron-left' /> {' '} Previous
