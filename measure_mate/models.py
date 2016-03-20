@@ -104,3 +104,19 @@ class Measurement(models.Model):
 
     def __unicode__(self):
         return str(self.assessment) + " - " + str(self.rating)
+
+
+class Action(models.Model):
+    class Meta:
+        verbose_name_plural = "Actions"
+        ordering = ['assessment', 'measurement', 'rank']
+
+    assessment = models.ForeignKey(Assessment, related_name="actions")
+    measurement = models.ForeignKey(Measurement, null=True, related_name="actions")
+    rank = models.IntegerField(default=1)
+    description = models.TextField()
+    key_metric = models.TextField()
+    review_date = models.DateTimeField()
+
+    def __unicode__(self):
+        return str(self.assessment) + " - " + str(self.measurement) + " - " + self.id
