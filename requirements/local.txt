@@ -9,3 +9,7 @@ pep8==1.6.2
 coverage==4.0.3
 pylint-django==0.7.1
 db-sqlite3==0.0.1
+django-extensions==1.6.1
+pyparsing==1.5.7
+pydot==1.0.2
+#pygraphviz==1.1
