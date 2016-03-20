@@ -56,7 +56,7 @@ class AssessmentViewSet(viewsets.ModelViewSet):
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('team__id', 'team__name', 'template__id', 'template__name', 'tags__id', 'tags__name')
+    filter_fields = ('team__id', 'team__name', 'template__id', 'template__name')
 
     def create(self, request, *args, **kwargs):
         serializer = AssessmentCreateSerializer(data=request.data)

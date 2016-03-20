@@ -69,11 +69,10 @@ class AssessmentSerializer(serializers.ModelSerializer):
 class AssessmentCreateSerializer(serializers.ModelSerializer):
     template = serializers.PrimaryKeyRelatedField(queryset=Template.objects.all())
     team = serializers.PrimaryKeyRelatedField(queryset=Team.objects.all())
-    tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
 
     class Meta:
         model = Assessment
-        fields = ('id', 'created', 'updated', 'template', 'tags', 'team')
+        fields = ('id', 'created', 'updated', 'template', 'team')
 
 
 class AssessmentSimpleSerializer(serializers.ModelSerializer):
