@@ -38,7 +38,7 @@ var AttributeList = React.createClass({
     }
   },
   componentWillMount: function () {
-    this.dataSource('/api/assessments/' + this.props.params.id + '/', this.assessmentCallback)
+    this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
   },
   measurementCallback: function (data) {
     this.setState({
@@ -50,7 +50,7 @@ var AttributeList = React.createClass({
   templateCallback: function (data) {
     this.setState({
       template: data
-    }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.id, this.measurementCallback)
+    }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.assessmentId, this.measurementCallback)
     )
   },
   assessmentCallback: function (data) {
@@ -203,7 +203,7 @@ var AttributeList = React.createClass({
               <ObserveInput eventKey={i + 1} dirtyObservation={this.state.dirtyObservation} activeTab={this.state.activeTab} measurement={measurement} syncMeasurement={this.syncMeasurement} onObservationChange={this.onObservationChange}/>
               <Loader loaded={!this.state.measureSyncActivity}/>
               <ListGroup fill>
-                <RatingList eventKey={i + 1} activeTab={this.state.activeTab} dirtyObservation={this.state.dirtyObservation} key={attribute.id} measurement={measurement} attribute={attribute} assessId={this.props.params.id} syncMeasurement={this.syncMeasurement}/>
+                <RatingList eventKey={i + 1} activeTab={this.state.activeTab} dirtyObservation={this.state.dirtyObservation} key={attribute.id} measurement={measurement} attribute={attribute} assessId={this.props.params.assessmentId} syncMeasurement={this.syncMeasurement}/>
               </ListGroup>
             </Panel>
           </Tab>
@@ -226,7 +226,7 @@ var AttributeList = React.createClass({
                 measurements={this.state.measurements}
                 attributes={this.state.template.attributes}
                 template={this.state.template}
-                assessId={this.props.params.id}
+                assessId={this.props.params.assessmentId}
               />
             </Panel>
           </Tab>

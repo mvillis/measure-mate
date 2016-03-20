@@ -7,7 +7,7 @@ var AssessmentList = require('./assessmentList')
 
 var AssessmentTable = React.createClass({
   propTypes: {
-    teamId: React.PropTypes.string
+    teamId: React.PropTypes.number
   },
   loadAssessmentsFromServer: function () {
     var url = '/api/assessments/'
@@ -39,7 +39,7 @@ var AssessmentTable = React.createClass({
     return (
       <div>
         <Loader loaded={this.state.loaded}>
-          <AssessmentList data={this.state.data} />
+          <AssessmentList data={this.state.data} showTeams={!this.props.teamId}/>
         </Loader>
       </div>
     )

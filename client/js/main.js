@@ -19,9 +19,9 @@ ReactDOM.render(
     <Route component={Header}>
       <Route path='/' component={Home}/>
       <Route path='/assessment/list' component={AssessmentTable}/>
-      <Route path='/assessment/:id' component={AttributeList}/>
+      <Route path='/assessment/:assessmentId' component={AttributeList}/>
       <Route path='/team/list' component={TeamTable}/>
-      <Route path='/team/:id' component={Team}/>
+      <Route path='/team/:teamId' component={Team}/>
       <Route status={404} path='*' component={NotFoundPage}/>
     </Route>
   </Router>,
