@@ -28,19 +28,19 @@ running, with *virtualenv*, *setuptools* and *pip* installed.
 Run the follow commands to set up your npm dependencies and your python virtual
 env:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 npm install -g gulp
 npm install
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Be aware that as part of our `npm install` command, a gulp build will have been
 executed. This is done via the postinstall option in the `package.json` file.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ json
+```json
 "scripts": {
   "postinstall": "gulp build --production"
 },
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 `gulp build --production` and in particular the `--production` flag has the
 effect of
@@ -56,19 +56,19 @@ steps.
 Now go on and activate your python virtual environment and install the project's
 python dependencies using pip:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 virtualenv .venv
 source .venv/bin/activate
 pip install -r requirements/local.txt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 In order to install mock you may need to update your versions of pip, wheel and
 setuptools. After creating your virtual environment the following command will
 do the trick:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 pip install -U pip wheel setuptools
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 And you're all done setting up the basics. Follow through one of the sections
 below to complete your environments:
@@ -82,30 +82,30 @@ below to complete your environments:
 Testing
 -------
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 export DJANGO_SETTINGS_MODULE=measure_mate.settings.dev
 python manage.py collectstatic
 python manage.py test
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Coverage
 --------
 
 This assumes that the env settings from the Testing section are still in place.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 coverage run manage.py test
 coverage report -m
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Running (locally)
 -----------------
 
 Firstly set up some environment variables:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 export DJANGO_SETTINGS_MODULE=measure_mate.settings.dev
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 To develop you need to have both the python django development server running as
 well as gulp. Gulp will detect css/js changes and auto refresh the browser as
@@ -113,16 +113,16 @@ you make changes.
 
 Process One (aka. terminal window one)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 python manage.py migrate
 python manage.py runserver
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Process Two (aka. terminal window two)
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 gulp
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 If the gulp build passes, a browser window will automatically open directing you
 to the site.
@@ -144,7 +144,7 @@ Running (special heroku setup)
 Some custom build packs are needed in heroku to manage the collection of bower
 dependencies.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 $ heroku login
 ...
 $ heroku buildpacks:clear --app measuremate
@@ -158,7 +158,7 @@ Buildpack added. Next release on measuremate will use:
   2. heroku/python
 
 Run git push heroku master to create a new release using these buildpacks.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Running (production)
 --------------------
@@ -166,21 +166,21 @@ Running (production)
 Given that you've completed the steps in the *setup* section, you must firstly
 set up some environment variables:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 export DJANGO_SETTINGS_MODULE=measure_mate.settings.secure
 export DJANGO_SECRET_KEY=r@nd0m_$eT_0f_Ch@r@cter$
 export DATABASE_URL=sqlite:///location/database/hopefully/not/sql.lite
 export DJANGO_DEBUG=False
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 Then run the following commands to collect all the static assets, setup the
 database and kick off the webserver:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 python manage.py collectstatic
 python manage.py migrate
 python manage.py runserver
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 **Note:** It is not recommended to run the Django dev server (runserver) in
 production.
@@ -190,9 +190,9 @@ with the necessary pip dependencies have been added to the repository to help.
 
 Below is what is used for heroku:
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ bash
+```bash
 pip install -r requirements/heroku.txt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 There are many additional steps needed to get this setup running which is not in
 scope of this readme.
