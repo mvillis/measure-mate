@@ -141,5 +141,14 @@ module.exports = {
     lintOptions: {
       debug: true
     }
+  },
+
+  markdownlint: {
+    src: [
+      '*.md'
+    ],
+    lintOptions: {
+      default: true
+    }
   }
 }
