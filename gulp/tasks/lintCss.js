@@ -20,7 +20,7 @@ if (semver.gt(process.version, '1.0.0')) {
     return gulp
       .src(config.src)
       .pipe(gulpStylelint(options))
-  });
+  })
 }
 else {
   gulp.task('lintCss', function lintCssTask() {
