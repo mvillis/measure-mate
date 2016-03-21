@@ -13,14 +13,14 @@ Dev Central
 Demo
 ----
 
-[Live Site (hosted on Heroku)](<https://measuremate.herokuapp.com/>)
+[Live Site (hosted on Heroku)](https://measuremate.herokuapp.com/)
 
 Setup (common to both local and prod deployments)
 -------------------------------------------------
 
 These instructions assume that you already have *npm* installed on your
 workstation. The best way to do this is to just install
-[NodeJS](<https://nodejs.org/>).
+[NodeJS](https://nodejs.org/).
 
 These instructions also assume you have a working python 2.7.x environment
 running, with *virtualenv*, *setuptools* and *pip* installed.
@@ -201,5 +201,5 @@ Contributing
 ------------
 
 Please read
-[CONTRIBUTING.md](<https://github.com/mvillis/measure-mate/blob/master/CONTRIBUTING.md>)
+[CONTRIBUTING.md](https://github.com/mvillis/measure-mate/blob/master/CONTRIBUTING.md)
 if you wish to contribute.
