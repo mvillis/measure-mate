@@ -115,8 +115,11 @@ class Action(models.Model):
     measurement = models.ForeignKey(Measurement, null=True, related_name="actions")
     rank = models.IntegerField(default=1)
     description = models.TextField()
-    key_metric = models.TextField()
-    review_date = models.DateTimeField()
+    key_metric = models.TextField(null=True)
+    review_date = models.DateTimeField(null=True)
 
     def __unicode__(self):
-        return str(self.assessment) + " - " + str(self.measurement) + " - " + self.id
+        if (self.measurement):
+            return str(self.assessment) + ' - ' + str(self.measurement) + ' - ' + str(self.id)
+        else:
+            return str(self.assessment) + ' - ' + str(self.id)
