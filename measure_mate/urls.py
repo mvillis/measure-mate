@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^api/api-auth/', include(
         'rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
-    url(r'^$', home, name='home'),
-    url(r'^(?P<oldurl>.*)$', RedirectView.as_view(url='/#/%(oldurl)s', permanent=False)),
+    url(r'^(?:index.html)?$', home, name='home'),
+    url(r'^(?P<oldurl>(?:team|assessment)/.*)$', RedirectView.as_view(url='/#/%(oldurl)s', permanent=False)),
 
 ]
