@@ -28,7 +28,7 @@ var AssessmentList = React.createClass({
           {this.props.data.map(function (assessment, i) {
             var prettyCreated = Moment(assessment.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(assessment.created).fromNow()
-            var assessmentUrl = '/assessment/' + assessment.id + '/'
+            var assessmentUrl = '/assessment/' + assessment.id + '/' + 'summary'
             return (
               <LinkContainer key={assessment.id} to={{pathname: assessmentUrl}}>
                 <tr className='clickable-row' >
