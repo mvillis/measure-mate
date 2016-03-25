@@ -168,7 +168,7 @@ var AttributeList = React.createClass({
         var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' tabClassName='text-success'/> : <Glyphicon glyph='minus' />
         return (
           <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}}>
-            <NavItem activeClassName='active' eventKey={i + 1} id={i + 1}>{attribute.name}</NavItem>
+            <NavItem activeClassName='active' eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
           </LinkContainer>
         )
       }.bind(this))
@@ -177,7 +177,7 @@ var AttributeList = React.createClass({
         if (!this.state.template) return (undefined)
         return (
           <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
-            <NavItem activeClassName='active' eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}>Summary</NavItem>
+            <NavItem activeClassName='active' eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats'/> Summary</NavItem>
           </LinkContainer>
         )
       }.bind(this)()

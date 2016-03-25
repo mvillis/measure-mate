@@ -3,13 +3,14 @@
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
+var _ = require('lodash')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Jumbotron = ReactBootstrap.Jumbotron
 var Button = ReactBootstrap.Button
 
 var Intro = React.createClass({
   propTypes: {
-    attributes: React.PropTypes.array,
+    template: React.PropTypes.object,
     params: React.PropTypes.object
   },
   getInitialState: function () {
@@ -22,10 +23,12 @@ var Intro = React.createClass({
   render: function () {
     return (
       <Jumbotron>
-        <h1>Let's get started!</h1>
-        <p>Look to your right. There you will find a list of the areas we are going to measure. Start by selecting the top one.</p>
+        <h1>Welcome</h1>
+        <p>This assessment is made up of one or many areas of interest.</p>
+        <p>For each area we will ask you to rate your current level of capability. You can also select a target and write down some observations.</p>
+        <p>Let&#39;s get started!</p>
         <span>
-          <LinkContainer to={{pathname: '/assessment/' + this.props.params.assessmentId + '/' + ((this.props.attributes) ? this.props.attributes[0].id : '')}}>
+          <LinkContainer to={{pathname: '/assessment/' + this.props.params.assessmentId + '/' + this.props.template.attributes[0].id}}>
             <Button bsStyle='primary'>Begin</Button>
           </LinkContainer>
           &nbsp;
