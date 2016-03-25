@@ -13,18 +13,11 @@ var Rating = React.createClass({
   propTypes: {
     key: React.PropTypes.number,
     eventKey: React.PropTypes.number,
-    activeTab: React.PropTypes.number,
     measurement: React.PropTypes.object,
     assessId: React.PropTypes.string.isRequired,
     attribute: React.PropTypes.object,
     saveMeasurement: React.PropTypes.func.isRequired,
     rating: React.PropTypes.object
-  },
-  shouldComponentUpdate: function (nextProps, nextState) {
-    if (nextProps.activeTab === this.props.eventKey) {
-      return true
-    }
-    return false
   },
   render: function () {
     var ratingActive = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating === this.props.rating.id) : false

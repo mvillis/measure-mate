@@ -2,40 +2,42 @@
 
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
+var ReactRouterBootstrap = require('react-router-bootstrap')
 var _ = require('lodash')
 var PageHeader = ReactBootstrap.PageHeader
-var Tabs = ReactBootstrap.Tabs
-var Tab = ReactBootstrap.Tab
-var Panel = ReactBootstrap.Panel
-var Alert = ReactBootstrap.Alert
-var ListGroup = ReactBootstrap.ListGroup
+var Nav = ReactBootstrap.Nav
+var NavItem = ReactBootstrap.NavItem
+var Grid = ReactBootstrap.Grid
+var Row = ReactBootstrap.Row
+var Col = ReactBootstrap.Col
 var Pager = ReactBootstrap.Pager
 var PageItem = ReactBootstrap.PageItem
 var Glyphicon = ReactBootstrap.Glyphicon
+var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Loader = require('react-loader')
-var RatingList = require('./ratingList')
-var ObserveInput = require('./observeInput')
-var AssessmentReport = require('./assessmentReport')
 var $ = require('jquery')
 
 var AttributeList = React.createClass({
   propTypes: {
-    params: React.PropTypes.object
+    params: React.PropTypes.object,
+    location: React.PropTypes.object,
+    children: React.PropTypes.object
   },
   getInitialState: function () {
     return {
-      activeTab: 1,
+      activeTab: parseInt(this.props.location.query.tab, 10) || 1,
       activeAttribute: null,
       measurements: null,
       template: null,
       assessment: null,
-      nextHide: false,
-      previousHide: false,
       initialLoad: false,
       measureSyncActivity: false,
       observations: {},
       dirtyObservation: {}
     }
+  },
+  contextTypes: {
+    router: React.PropTypes.object
   },
   componentWillMount: function () {
     this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
@@ -45,7 +47,6 @@ var AttributeList = React.createClass({
       measurements: data,
       initialLoad: true
     })
-    this.handleSelect(1)
   },
   templateCallback: function (data) {
     this.setState({
@@ -75,35 +76,25 @@ var AttributeList = React.createClass({
     var existingMeasurementIndex = _.findIndex(this.state.measurements, function (measurement) {
       return measurement.id === data.id
     })
-    var updatedDirtyObservation = this.state.dirtyObservation
-    updatedDirtyObservation[this.state.activeTab] = false
     if (existingMeasurementIndex !== -1) {
       var updatedMeasurements = this.state.measurements.slice()
       updatedMeasurements[existingMeasurementIndex] = data
       this.setState({
         measurements: updatedMeasurements,
         measureSyncActivity: false,
-        dirtyObservation: updatedDirtyObservation
+        dirtyObservation: false
       })
     } else {
       var newMeasurements = this.state.measurements.concat([data])
       this.setState({
         measurements: newMeasurements,
         measureSyncActivity: false,
-        dirtyObservation: updatedDirtyObservation
+        dirtyObservation: false
       })
     }
   },
   syncMeasurement: function (postData) {
     var createNewMeasure = !postData.id
-    if (this.state.observations[this.state.activeTab]) {
-      postData['observations'] = this.state.observations[this.state.activeTab]
-    } else {
-      var matchMeasure = _.find(this.state.measurements, function (measurement) {
-        return measurement.id === postData.id
-      })
-      postData['observations'] = (matchMeasure ? matchMeasure.observations : '')
-    }
     this.setState({ measureSyncActivity: true })
     console.log('Should a new measurement be created? ' + createNewMeasure)
     $.ajax({
@@ -116,45 +107,26 @@ var AttributeList = React.createClass({
       error: this.handleSubmitFailure
     })
   },
-  onObservationChange: function (text, activeTab) {
-    var observations = this.state.observations
-    observations[activeTab] = text
-    var updatedDirtyObservation = this.state.dirtyObservation
-    updatedDirtyObservation[this.state.activeTab] = true
-    this.setState({observations: observations, dirtyObservation: updatedDirtyObservation})
-  },
   handleNext: function () {
-    if (this.state.activeTab < this.state.template.attributes.length + 1 && !this.state.nextHide) {
-      var newTab = this.state.activeTab + 1
-      this.scrollToTop('#att-list')
-      this.setState({activeTab: newTab})
-      this.handleTabChange(newTab)
-    }
+    this.scrollToTop('#att-list')
+    var currentAttribute = this.props.params.attribute
+    console.log(currentAttribute)
+    var index = _.findIndex(this.state.template.attributes, ['id', parseInt(currentAttribute, 10)])
+    console.log(index)
+    var nextId = (this.state.template.attributes[index + 1]) ? this.state.template.attributes[index + 1].id : 'summary'
+    var path = '/assessment/' + this.props.params.assessmentId + '/' + nextId
+    this.context.router.push(path)
   },
   handlePrevious: function () {
-    if (this.state.activeTab !== 1 && !this.state.previousHide) {
-      var newTab = this.state.activeTab - 1
-      this.scrollToTop('#att-list')
-      this.setState({activeTab: newTab})
-      this.handleTabChange(newTab)
-    }
-  },
-  handleSelect: function (key) {
     this.scrollToTop('#att-list')
-    this.setState({activeTab: key})
-    this.handleTabChange(key)
-  },
-  handleTabChange: function (currentTab) {
-    if (currentTab === 1) {
-      this.setState({previousHide: true})
-    } else {
-      this.setState({previousHide: false})
-    }
-    if (currentTab >= this.state.template.attributes.length + 1) {
-      this.setState({nextHide: true})
-    } else {
-      this.setState({nextHide: false})
-    }
+    var currentAttribute = this.props.params.attribute
+    console.log(currentAttribute)
+    var index = _.findIndex(this.state.template.attributes, ['id', parseInt(currentAttribute, 10)])
+    console.log(index)
+    console.log(this.state.template.attributes[-1])
+    var nextId = (this.state.template.attributes[index - 1]) ? this.state.template.attributes[index - 1].id : (index === 0) ? 'summary' : _.last(this.state.template.attributes).id
+    var path = '/assessment/' + this.props.params.assessmentId + '/' + nextId
+    this.context.router.push(path)
   },
   scrollToTop: function (attList) {
     var $target = $(attList)
@@ -195,41 +167,18 @@ var AttributeList = React.createClass({
         var completeMeasurement = measurement && measurement.rating && measurement.target_rating
         var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' tabClassName='text-success'/> : <Glyphicon glyph='minus' />
         return (
-          <Tab eventKey={i + 1} key={attribute.id} id={i + 1} title={<div>{tabIcon} <span>{attribute.name}</span></div>}>
-            <Panel header={attribute.name} bsStyle='primary'>
-              <Alert bsStyle='warning' className={attribute.desc_class}>
-                {attribute.desc}
-              </Alert>
-              <ObserveInput eventKey={i + 1} dirtyObservation={this.state.dirtyObservation} activeTab={this.state.activeTab} measurement={measurement} syncMeasurement={this.syncMeasurement} onObservationChange={this.onObservationChange}/>
-              <Loader loaded={!this.state.measureSyncActivity}/>
-              <ListGroup fill>
-                <RatingList eventKey={i + 1} activeTab={this.state.activeTab} dirtyObservation={this.state.dirtyObservation} key={attribute.id} measurement={measurement} attribute={attribute} assessId={this.props.params.assessmentId} syncMeasurement={this.syncMeasurement}/>
-              </ListGroup>
-            </Panel>
-          </Tab>
+          <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}}>
+            <NavItem activeClassName='active' eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
+          </LinkContainer>
         )
       }.bind(this))
 
-      var summaryTab = function () {
-        var key = this.state.template ? this.state.template.attributes.length + 1 : null
+      var summaryNode = function () {
+        if (!this.state.template) return (undefined)
         return (
-          <Tab eventKey={key} key={key} id={key} title={<div><Glyphicon glyph='stats'/> <span>Summary</span></div>}>
-            <Panel header='Summary' bsStyle='primary'>
-              <Alert bsStyle='warning'>
-                How did you go? Where are you strengths and weaknesses? What are some improvements you could make?
-              </Alert>
-              <AssessmentReport
-                eventKey={key}
-                key={key}
-                id={key}
-                activeTab={this.state.activeTab}
-                measurements={this.state.measurements}
-                attributes={this.state.template.attributes}
-                template={this.state.template}
-                assessId={this.props.params.assessmentId}
-              />
-            </Panel>
-          </Tab>
+          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
+            <NavItem activeClassName='active' eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats'/> Summary</NavItem>
+          </LinkContainer>
         )
       }.bind(this)()
     }
@@ -239,19 +188,33 @@ var AttributeList = React.createClass({
           <PageHeader>
             {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''}</small>
           </PageHeader>
-          <Tabs position='right' activeKey={this.state.activeTab} onSelect={this.handleSelect} tabWidth={3}>
-            {attributeNodes}
-            {summaryTab}
-            <Pager>
-              <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
-                <Glyphicon glyph='chevron-left' /> {' '} Previous
-              </PageItem>
-              {' '}
-              <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
-                Next {' '} <Glyphicon glyph='chevron-right' />
-              </PageItem>
-            </Pager>
-          </Tabs>
+          <Grid>
+            <Row>
+              <Col xs={12} md={8}>
+                {React.cloneElement(this.props.children, {
+                  template: this.state.template,
+                  measurements: this.state.measurements,
+                  syncMeasurement: this.syncMeasurement,
+                  measureSyncActivity: this.state.measureSyncActivity
+                })}
+                <Pager>
+                  <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
+                    <Glyphicon glyph='chevron-left' /> {' '} Previous
+                  </PageItem>
+                  {' '}
+                  <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
+                    Next {' '} <Glyphicon glyph='chevron-right' />
+                  </PageItem>
+                </Pager>
+              </Col>
+              <Col xs={6} md={4}>
+                <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
+                  {attributeNodes}
+                  {summaryNode}
+                </Nav>
+              </Col>
+            </Row>
+          </Grid>
         </Loader>
       </div>
     )

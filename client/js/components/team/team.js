@@ -42,7 +42,7 @@ var Team = React.createClass({
     this.loadTeamFromServer()
   },
   render: function () {
-    var teamId = parseInt(this.props.params.teamId)
+    var teamId = parseInt(this.props.params.teamId, 10)
     return (
       <div>
         <div className='row'>

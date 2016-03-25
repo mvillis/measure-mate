@@ -12,9 +12,7 @@ var ObserveInput = React.createClass({
     measurement: React.PropTypes.object,
     syncMeasurement: React.PropTypes.func.isRequired,
     onObservationChange: React.PropTypes.func.isRequired,
-    dirtyObservation: React.PropTypes.object,
-    activeTab: React.PropTypes.number,
-    eventKey: React.PropTypes.number
+    attributeId: React.PropTypes.number
   },
   getInitialState: function () {
     return {
@@ -22,10 +20,37 @@ var ObserveInput = React.createClass({
       observations: ''
     }
   },
+  isObserveDirty: function (props) {
+    if (props.measurement) {
+      if (props.measurement.observations === this.state.observations) {
+        return false
+      } else if (!props.measurement.observations && !this.state.observations) {
+        return false
+      } else {
+        return true
+      }
+    } else {
+      return !!this.state.observations
+    }
+  },
+  isSaveDisabled: function (props, dirty) {
+    return !(!!props.measurement === true && dirty === true)
+  },
   componentWillMount: function () {
     this.handleObserveDebounced = _.debounce(function () {
-      this.props.onObservationChange.apply(this, [this.state.observations, this.props.activeTab])
-    }, 1000)
+      this.props.onObservationChange.apply(this, [this.state.observations])
+    }, 750)
+    var saveDisabled = this.isSaveDisabled(this.props, false)
+    this.setState({observations: (this.props.measurement) ? this.props.measurement.observations : '', saveBtnDisabled: saveDisabled, dirtyObservation: false})
+  },
+  componentWillReceiveProps: function (nextProps) {
+    var dirty = this.isObserveDirty(nextProps)
+    var saveDisabled = this.isSaveDisabled(nextProps, dirty)
+    if (nextProps.attributeId && nextProps.attributeId !== this.props.attributeId) {
+      this.setState({observations: (nextProps.measurement) ? nextProps.measurement.observations : '', saveBtnDisabled: true, dirtyObservation: false})
+    } else {
+      this.setState({saveBtnDisabled: saveDisabled, dirtyObservation: dirty})
+    }
   },
   onChange: function (event) {
     this.setState({ observations: event.target.value })
@@ -37,29 +62,17 @@ var ObserveInput = React.createClass({
         id: this.props.measurement.id,
         assessment: this.props.measurement.assessment,
         rating: this.props.measurement.rating,
-        targetRating: this.props.measurement.targetRating
+        targetRating: this.props.measurement.targetRating,
+        observations: this.state.observations
       }
       this.props.syncMeasurement(postData)
     }
   },
-  componentWillReceiveProps: function (nextProps) {
-    if (nextProps.measurement && !this.state.observations) {
-      this.setState({observations: nextProps.measurement.observations})
-    }
-
-    if (nextProps.measurement) { this.setState({saveBtnDisabled: false}) }
-  },
-  shouldComponentUpdate: function (nextProps, nextState) {
-    if (nextProps.activeTab === this.props.eventKey) {
-      return true
-    }
-    return false
-  },
   render: function () {
     var syncStatus = function () {
-      if (this.props.dirtyObservation[this.props.activeTab] === false && this.props.measurement) {
+      if (this.state.dirtyObservation === false && this.props.measurement && this.props.measurement.observations) {
         return (<span><span>&nbsp;&nbsp;&nbsp;</span><Glyphicon glyph='saved' /></span>)
-      } else if (this.props.dirtyObservation[this.props.activeTab] === true && !this.props.measurement) {
+      } else if (this.state.dirtyObservation === true && !this.props.measurement) {
         return (<span className='text-info'><span>&nbsp;&nbsp;</span><Glyphicon glyph='info-sign' /> Select a rating below to save this comment and complete the form.</span>)
       } else {
         return (<span></span>)
