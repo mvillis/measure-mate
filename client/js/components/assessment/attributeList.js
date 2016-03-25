@@ -30,13 +30,14 @@ var AttributeList = React.createClass({
       measurements: null,
       template: null,
       assessment: null,
-      nextHide: false,
-      previousHide: false,
       initialLoad: false,
       measureSyncActivity: false,
       observations: {},
       dirtyObservation: {}
     }
+  },
+  contextTypes: {
+    router: React.PropTypes.object
   },
   componentWillMount: function () {
     this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
@@ -107,37 +108,25 @@ var AttributeList = React.createClass({
     })
   },
   handleNext: function () {
-    if (this.state.activeTab < this.state.template.attributes.length + 1 && !this.state.nextHide) {
-      var newTab = this.state.activeTab + 1
-      this.scrollToTop('#att-list')
-      this.setState({activeTab: newTab})
-      this.handleTabChange(newTab)
-    }
+    this.scrollToTop('#att-list')
+    var currentAttribute = this.props.params.attribute
+    console.log(currentAttribute)
+    var index = _.findIndex(this.state.template.attributes, ['id', parseInt(currentAttribute, 10)])
+    console.log(index)
+    var nextId = (this.state.template.attributes[index + 1]) ? this.state.template.attributes[index + 1].id : 'summary'
+    var path = '/assessment/' + this.props.params.assessmentId + '/' + nextId
+    this.context.router.push(path)
   },
   handlePrevious: function () {
-    if (this.state.activeTab !== 1 && !this.state.previousHide) {
-      var newTab = this.state.activeTab - 1
-      this.scrollToTop('#att-list')
-      this.setState({activeTab: newTab})
-      this.handleTabChange(newTab)
-    }
-  },
-  handleSelect: function (key) {
     this.scrollToTop('#att-list')
-    this.setState({activeTab: key})
-    this.handleTabChange(key)
-  },
-  handleTabChange: function (currentTab) {
-    if (currentTab === 1) {
-      this.setState({previousHide: true})
-    } else {
-      this.setState({previousHide: false})
-    }
-    if (currentTab >= this.state.template.attributes.length + 1) {
-      this.setState({nextHide: true})
-    } else {
-      this.setState({nextHide: false})
-    }
+    var currentAttribute = this.props.params.attribute
+    console.log(currentAttribute)
+    var index = _.findIndex(this.state.template.attributes, ['id', parseInt(currentAttribute, 10)])
+    console.log(index)
+    console.log(this.state.template.attributes[-1])
+    var nextId = (this.state.template.attributes[index - 1]) ? this.state.template.attributes[index - 1].id : (index === 0) ? 'summary' : _.last(this.state.template.attributes).id
+    var path = '/assessment/' + this.props.params.assessmentId + '/' + nextId
+    this.context.router.push(path)
   },
   scrollToTop: function (attList) {
     var $target = $(attList)
