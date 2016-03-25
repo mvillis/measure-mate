@@ -50,7 +50,7 @@ var AttributeList = React.createClass({
   templateCallback: function (data) {
     this.setState({
       template: data
-    }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.id, this.measurementCallback)
+    }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.assessmentId, this.measurementCallback)
     )
   },
   assessmentCallback: function (data) {

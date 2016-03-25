@@ -25,11 +25,11 @@ var Intro = React.createClass({
         <h1>Let's get started!</h1>
         <p>Look to your right. There you will find a list of the areas we are going to measure. Start by selecting the top one.</p>
         <span>
-          <LinkContainer to={{pathname: '/assessment/' + this.props.params.id + '/' + ((this.props.attributes) ? this.props.attributes[0].id : '')}}>
+          <LinkContainer to={{pathname: '/assessment/' + this.props.params.assessmentId + '/' + ((this.props.attributes) ? this.props.attributes[0].id : '')}}>
             <Button bsStyle='primary'>Begin</Button>
           </LinkContainer>
           &nbsp;
-          <LinkContainer to={{pathname: '/assessment/' + this.props.params.id + '/summary'}}>
+          <LinkContainer to={{pathname: '/assessment/' + this.props.params.assessmentId + '/summary'}}>
             <Button bsStyle='default'>See Results</Button>
           </LinkContainer>
         </span>

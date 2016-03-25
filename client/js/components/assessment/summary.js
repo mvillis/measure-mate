@@ -24,7 +24,7 @@ var Summary = React.createClass({
     }
   },
   componentWillMount: function () {
-    this.dataSource('/api/assessments/' + this.props.params.id + '/', this.assessmentCallback)
+    this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
   },
   measurementCallback: function (data) {
     this.setState({
@@ -35,7 +35,7 @@ var Summary = React.createClass({
   templateCallback: function (data) {
     this.setState({
       template: data
-    }, this.dataSource('/api/measurements/' + '?assessment__id=' + this.props.params.id, this.measurementCallback)
+    }, this.dataSource('/api/measurements/' + '?assessment__id=' + this.props.params.assessmentId, this.measurementCallback)
     )
   },
   assessmentCallback: function (data) {
@@ -71,7 +71,7 @@ var Summary = React.createClass({
             measurements={(this.state.measurements) ? this.state.measurements : []}
             attributes={(this.state.template) ? this.state.template.attributes : []}
             template={(this.state.template) ? this.state.template : {}}
-            assessId={this.props.params.id}
+            assessId={this.props.params.assessmentId}
           />
         </Loader>
       </Panel>

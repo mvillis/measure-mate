@@ -25,8 +25,8 @@ ReactDOM.render(
       <Route path='/assessment/list' component={AssessmentTable}/>
       <Route path='/assessment/:assessmentId' component={AttributeList}>
         <IndexRoute component={Intro}/>
-        <Route path='/assessment/:id/summary' component={Summary}/>
-        <Route path='/assessment/:id/:attribute' component={Attribute}/>
+        <Route path='/assessment/:assessmentId/summary' component={Summary}/>
+        <Route path='/assessment/:assessmentId/:attribute' component={Attribute}/>
       </Route>
       <Route path='/team/list' component={TeamTable}/>
       <Route path='/team/:teamId' component={Team}/>

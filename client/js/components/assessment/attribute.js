@@ -27,7 +27,6 @@ var Attribute = React.createClass({
       attribute: null,
       measurement: null,
       measureSyncActivity: false,
-      dirtyObservation: false,
       loaded: false,
       observations: ''
     }
@@ -39,7 +38,6 @@ var Attribute = React.createClass({
       {
         attribute: attribute,
         measurement: measurement,
-        dirtyObservation: false,
         observations: (measurement) ? measurement.observations : '',
         loaded: true
       }
@@ -52,8 +50,7 @@ var Attribute = React.createClass({
       {
         attribute: attribute,
         measurement: measurement,
-        dirtyObservation: (nextProps.params.attribute !== this.props.params.attribute) ? false : (this.state.observations !== measurement.observations),
-        observations: (measurement) ? (nextProps.params.attribute !== this.props.params.attribute) ? measurement.observations : this.state.observations : '',
+        observations: (measurement) ? measurement.observations : '',
         loaded: true
       }
     )
@@ -75,20 +72,20 @@ var Attribute = React.createClass({
     var postData = {
       observations: (this.state.observations) ? this.state.observations : '',
       id: (this.state.measurement) ? this.state.measurement.id : '',
-      assessment: this.props.params.id,
+      assessment: this.props.params.assessmentId,
       rating: (ratingType === 'rating') ? value : this.state.measurement.rating,
       target_rating: (ratingType === 'target') ? value : ((existingMeasurement && this.state.measurement.target_rating) ? this.state.measurement.target_rating : '') // eslint-disable-line camelcase
     }
     this.props.syncMeasurement(postData)
   },
   onObservationChange: function (text) {
-    this.setState({observations: text, dirtyObservation: true})
+    this.setState({observations: text})
   },
   render: function () {
     if (this.state.attribute !== null) {
       var ratingList = this.state.attribute.ratings.map(function (rating) {
         return (
-          <Rating measurement={this.state.measurement} key={rating.id} rating={rating} saveMeasurement={this.saveMeasurement} assessId={this.props.params.id}/>
+          <Rating measurement={this.state.measurement} key={rating.id} rating={rating} saveMeasurement={this.saveMeasurement} assessId={this.props.params.assessmentId}/>
         )
       }.bind(this))
     }
@@ -99,7 +96,7 @@ var Attribute = React.createClass({
           <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
             {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
           </Alert>
-          <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} dirtyObservation={this.state.dirtyObservation}/>
+          <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null}/>
           <Loader loaded={!this.props.measureSyncActivity}/>
           <ListGroup fill>
             {ratingList}
