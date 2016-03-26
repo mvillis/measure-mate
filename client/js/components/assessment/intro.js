@@ -3,7 +3,6 @@
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
-var _ = require('lodash')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Jumbotron = ReactBootstrap.Jumbotron
 var Button = ReactBootstrap.Button

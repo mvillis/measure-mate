@@ -17,7 +17,6 @@ var AssessmentTable = require('./components/assessment/assessmentTable')
 var Team = require('./components/team/team')
 var TeamTable = require('./components/team/teamTable')
 var NotFoundPage = require('./components/notFoundPage')
-window.$ = require('jquery')
 
 ReactDOM.render(
   <Router history={hashHistory}>
