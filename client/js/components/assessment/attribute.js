@@ -13,8 +13,6 @@ var ListGroup = ReactBootstrap.ListGroup
 var Attribute = React.createClass({
   propTypes: {
     key: React.PropTypes.number,
-    eventKey: React.PropTypes.number,
-    activeTab: React.PropTypes.number,
     attribute: React.PropTypes.object,
     params: React.PropTypes.object,
     template: React.PropTypes.object,
@@ -91,18 +89,16 @@ var Attribute = React.createClass({
     }
 
     return (
-      <Loader loaded={this.state.loaded}>
-        <Panel header={(this.state.attribute && this.state.attribute.name) ? this.state.attribute.name : ''} bsStyle='primary'>
-          <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
-            {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
-          </Alert>
-          <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null}/>
-          <Loader loaded={!this.props.measureSyncActivity}/>
-          <ListGroup fill>
-            {ratingList}
-          </ListGroup>
-        </Panel>
-      </Loader>
+      <Panel header={(this.state.attribute && this.state.attribute.name) ? this.state.attribute.name : ''} bsStyle='primary'>
+        <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
+          {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
+        </Alert>
+        <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null}/>
+        <Loader loaded={!this.props.measureSyncActivity}/>
+        <ListGroup fill>
+          {ratingList}
+        </ListGroup>
+      </Panel>
     )
   }
 })
