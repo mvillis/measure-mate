@@ -3,10 +3,8 @@
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var AssessmentReport = require('./assessmentReport')
-var Loader = require('react-loader')
 var Panel = ReactBootstrap.Panel
 var Alert = ReactBootstrap.Alert
-var $ = require('jquery')
 
 var Summary = React.createClass({
   propTypes: {
@@ -21,39 +19,8 @@ var Summary = React.createClass({
   getInitialState: function () {
     return {
       attribute: undefined,
-      loaded: false,
       dirtyObservation: false
     }
-  },
-  measurementCallback: function (data) {
-    this.setState({
-      measurements: data,
-      loaded: true
-    })
-  },
-  templateCallback: function (data) {
-    this.setState({
-      template: data
-    }, this.dataSource('/api/measurements/' + '?assessment__id=' + this.props.params.assessmentId, this.measurementCallback)
-    )
-  },
-  assessmentCallback: function (data) {
-    this.setState({
-      assessment: data
-    }, this.dataSource('/api/templates/' + data.template.id + '/', this.templateCallback)
-    )
-  },
-  handleSubmitFailure: function (xhr, ajaxOptions, thrownError) {
-    console.error('There was a failure')
-  },
-  dataSource: function (url, callback) {
-    $.ajax({
-      type: 'get',
-      dataType: 'json',
-      url: url,
-      success: callback,
-      error: this.handleSubmitFailure
-    })
   },
   render: function () {
     return (
