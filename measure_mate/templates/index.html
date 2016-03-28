@@ -13,7 +13,7 @@
     <script type="text/javascript">
       var target = document.getElementById('app'), spinner = new Spinner().spin(target);
     </script>
-    <script type="text/javascript">
+    <script type="text/javascript" defer>
       // http://www.giftofspeed.com/defer-loading-css/
       var cb=function(){var e=document.createElement("link");e.rel="stylesheet",e.href='{% static "css/bundle.css" %}';var t=document.getElementsByTagName("head")[0];t.parentNode.insertBefore(e,t)},raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;raf?raf(cb):window.addEventListener("load",cb);
     </script>
