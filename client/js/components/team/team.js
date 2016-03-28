@@ -18,7 +18,7 @@ var Team = React.createClass({
   },
 
   loadTeamFromServer: function () {
-    var teamId = parseInt(this.props.params.teamId)
+    var teamId = parseInt(this.props.params.teamId, 10)
     var url = '/api/teams/' + teamId + '/'
     $.ajax({
       url: url,
