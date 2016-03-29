@@ -17,6 +17,6 @@
       // http://www.giftofspeed.com/defer-loading-css/
       var cb=function(){var e=document.createElement("link");e.rel="stylesheet",e.href='{% static "css/bundle.css" %}';var t=document.getElementsByTagName("head")[0];t.parentNode.insertBefore(e,t)},raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame;raf?raf(cb):window.addEventListener("load",cb);
     </script>
-    <script src="{% static "js/bundle.js" %}" defer></script>
+    <script src="{% static "js/bundle.js" %}" defer async></script>
   </body>
 </html>

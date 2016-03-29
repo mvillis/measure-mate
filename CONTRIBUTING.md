@@ -1,6 +1,5 @@
-# Contributing to Measure Mate
-
-===
+Contributing to Measure Mate
+============================
 
 To contribute to measure-mate, please use pull requests on a branch of your own
 fork.
@@ -27,9 +26,8 @@ be accompanied by tests that fail prior to your change and succeed afterwards.
 Feel free to raise issues in the repo if you don't feel able to contribute a
 code fix.
 
-## Standards
-
-===
+Standards
+---------
 
 Although the code is not currently PEP8 compliant, that is an aspiration.
 Fixes that only adjust PEP8 (especially large scale ones) affect git blame in a

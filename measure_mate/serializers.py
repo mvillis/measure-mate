@@ -41,7 +41,7 @@ class TagSerializer(serializers.ModelSerializer):
 class MeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Measurement
-        fields = ('id', 'assessment', 'rating', 'target_rating', 'observations')
+        fields = ('id', 'assessment', 'rating', 'target_rating', 'observations', 'actions')
         depth = 1
 
 
@@ -57,13 +57,30 @@ class MeasurementCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Measurement
-        fields = ('id', 'assessment', 'rating', 'target_rating', 'observations')
+        fields = ('id', 'assessment', 'rating', 'target_rating', 'observations', 'actions')
+	depth = 1
+
+
+class ActionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Action
+        fields = ('id', 'assessment', 'measurement', 'description', 'key_metric', 'review_date')
+
+
+class ActionSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Action
+        fields = ('id', 'assessment', 'measurement', 'description', 'key_metric', 'review_date')
+	depth = 0
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
+    actions = ActionSimpleSerializer(many=True, read_only=True)
+
     class Meta:
         model = Assessment
         depth = 2
+        fields = ('id', 'created', 'updated', 'template', 'team', 'actions')
 
 
 class AssessmentCreateSerializer(serializers.ModelSerializer):
@@ -91,10 +108,12 @@ class TeamSerializer(serializers.ModelSerializer):
         fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags', 'assessments')
         depth = 2
 
+
 class TeamCreateSerializer(serializers.ModelSerializer):
     tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
 
     class Meta:
         model = Team
         fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags')
+
 

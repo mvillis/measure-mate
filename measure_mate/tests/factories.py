@@ -76,3 +76,13 @@ class MeasurementFactory(factory.django.DjangoModelFactory):
     observations = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
 
 
+class ActionFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Action
+
+    assessment = factory.SubFactory(AssessmentFactory)
+    rank = factory.Sequence(lambda n: n)
+    description = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
+    key_metric = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
+
+
