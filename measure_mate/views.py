@@ -91,3 +91,15 @@ class TeamViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class ActionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for the Action resource.
+    """
+    queryset = Action.objects.all()
+    serializer_class = ActionSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('assessment__id', 'measurement__id', 'review_date')
+
+

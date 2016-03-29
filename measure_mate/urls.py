@@ -15,6 +15,7 @@ router.register(r'measurements', MeasurementViewSet)
 router.register(r'assessments', AssessmentViewSet)
 router.register(r'ratings', RatingViewSet)
 router.register(r'teams', TeamViewSet)
+router.register(r'actions', ActionViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),

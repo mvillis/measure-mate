@@ -1,0 +1,26 @@
+[
+  {
+    "model": "measure_mate.action",
+    "pk": 1,
+    "fields": {
+      "assessment": 1,
+      "measurement": 101,
+      "rank": 1,
+      "description": "Run stand up every day",
+      "key_metric": "Number of days per iteration that we did a standup",
+      "review_date": "2016-04-30"
+    }
+  },
+  {
+    "model": "measure_mate.action",
+    "pk": 2,
+    "fields": {
+      "assessment": 1,
+      "measurement": null,
+      "rank": 1,
+      "description": "Do LAMAs every 3 months",
+      "key_metric": "",
+      "review_date": "2016-12-31"
+    }
+  }
+]

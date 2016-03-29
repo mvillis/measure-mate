@@ -112,14 +112,16 @@ class Action(models.Model):
         ordering = ['assessment', 'measurement', 'rank']
 
     assessment = models.ForeignKey(Assessment, related_name="actions")
-    measurement = models.ForeignKey(Measurement, null=True, related_name="actions")
+    measurement = models.ForeignKey(Measurement, blank=True, null=True, related_name="actions")
     rank = models.IntegerField(default=1)
     description = models.TextField()
-    key_metric = models.TextField(null=True)
-    review_date = models.DateTimeField(null=True)
+    key_metric = models.TextField(blank=True, null=True)
+    review_date = models.DateField(null=True)
 
     def __unicode__(self):
         if (self.measurement):
             return str(self.assessment) + ' - ' + str(self.measurement) + ' - ' + str(self.id)
         else:
             return str(self.assessment) + ' - ' + str(self.id)
+
+
