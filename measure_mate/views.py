@@ -2,14 +2,28 @@ from rest_framework import viewsets, generics, filters, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from serializers import *
 from models import *
 from headers import x_ua_compatible
+from datetime import datetime
+import django_excel as excel
+import pyexcel.ext.xls
+import pyexcel.ext.xlsx
 
 
 @x_ua_compatible('IE=edge')
 def home(request):
     return render(request, 'index.html')
+
+
+@login_required
+def export_data(request):
+    now = datetime.utcnow()
+    timestamp = now.strftime('%Y-%m-%d_%H-%M-%SZ')
+    return excel.make_response_from_tables(
+        [Team, Assessment, Measurement, Tag, Template, Attribute, Rating],
+        'xls', file_name=('measure_mate_export_%s' % timestamp))
 
 
 class TemplateViewSet(viewsets.ModelViewSet):
