@@ -5,11 +5,20 @@ from django.shortcuts import render
 from serializers import *
 from models import *
 from headers import x_ua_compatible
+import django_excel as excel
+import pyexcel.ext.xls
+import pyexcel.ext.xlsx
 
 
 @x_ua_compatible('IE=edge')
 def home(request):
     return render(request, 'index.html')
+
+
+def export_data(request):
+    return excel.make_response_from_tables(
+        [Team, Assessment, Measurement, Tag, Template, Attribute, Rating],
+	'xlsx', file_name='data_export')
 
 
 class TemplateViewSet(viewsets.ModelViewSet):
