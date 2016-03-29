@@ -14,7 +14,7 @@ class ActionTestCases(TestCase):
         rating = RatingFactory(attribute=attribute)
         target_rating = RatingFactory(attribute=attribute)
         measurement = MeasurementFactory(assessment=assessment, rating=rating, target_rating=target_rating)
-        action = ActionFactory(assessment=assessment, measurement=measurement, rank=1, description='Take Action #1', key_metric='Check metric #1', review_date='2016-12-31 12:00+10:00')
+        action = ActionFactory(assessment=assessment, measurement=measurement, rank=1, description='Take Action #1', key_metric='Check metric #1', review_date='2016-12-31')
         self.assertEqual(1, Action.objects.count())
         self.assertEqual("%s - %s - %d" % (str(assessment), str(measurement), action.id), str(action))
 
@@ -25,6 +25,6 @@ class ActionTestCases(TestCase):
         template = TemplateFactory()
         attribute = AttributeFactory(template=template)
         assessment = AssessmentFactory(template=template)
-        action = ActionFactory(assessment=assessment, rank=2, description='Take Action #2', key_metric='Check metric #2', review_date='2016-12-31 12:00+10:00')
+        action = ActionFactory(assessment=assessment, rank=2, description='Take Action #2', key_metric='Check metric #2', review_date='2016-12-31')
         self.assertEqual(1, Action.objects.count())
         self.assertEqual("%s - %d" % (str(assessment), action.id), str(action))

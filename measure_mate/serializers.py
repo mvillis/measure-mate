@@ -89,7 +89,7 @@ class AssessmentCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Assessment
-        fields = ('id', 'created', 'updated', 'template', 'team', 'actions')
+        fields = ('id', 'created', 'updated', 'template', 'team')
 
 
 class AssessmentSimpleSerializer(serializers.ModelSerializer):
