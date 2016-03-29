@@ -215,4 +215,4 @@ CSP_IMG_SRC = ("'self'","data:","blob:",)
 CSP_FONT_SRC = ("'self'",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin",)
 
-
+LOGIN_URL = "/admin/login/"
