@@ -9,3 +9,6 @@ django-secure==1.0.1
 django-csp==2.0.3
 whitenoise==3.0b1
 #brotlipy==0.2.0
+django-excel==0.0.4
+pyexcel-xls==0.1.0
+pyexcel-xlsx==0.1.0

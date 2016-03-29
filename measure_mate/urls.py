@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^(?:index.html)?$', home, name='home'),
     url(r'^(?P<oldurl>(?:team|assessment)/.*)$', RedirectView.as_view(url='/#/%(oldurl)s', permanent=False)),
+    url(r'^export/', export_data, name='export'),
 
 ]
