@@ -102,6 +102,8 @@ class Measurement(models.Model):
     target_rating = models.ForeignKey(Rating, blank=True, null=True, related_name="target_measurements")
     observations = models.TextField(null=True)
     action = models.TextField(null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return str(self.assessment) + " - " + str(self.rating)
