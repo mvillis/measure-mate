@@ -10,6 +10,7 @@ var startBrowserSync = require('../util/startBrowserSync')
 gulp.task('watch', ['build'], function () {
   startBrowserSync()
   gulp.watch(config.assets.src, ['assets'])
+  gulp.watch(config.css.src, ['lintCss', 'css'])
   gulp.watch(config.templates.src, ['templates'])
   gulp.watch(config.clientDir + '/js/**', ['lint', 'test'])
 })
