@@ -31,7 +31,7 @@ var AssessmentList = React.createClass({
             var assessmentUrl = '/assessment/' + assessment.id + '/' + 'summary'
             return (
               <LinkContainer key={assessment.id} to={{pathname: assessmentUrl}}>
-                <tr className='clickable-row' >
+                <tr className='clickable' >
                   <td><a href={'#' + assessmentUrl}>{assessment.id}</a></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
                   <td>{assessment.template.name}</td>

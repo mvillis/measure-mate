@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.utils.timezone import utc
 from rest_framework import status
 import datetime
 
@@ -12,10 +13,10 @@ class ExportViewTestCases(TestCase):
         cls.superuser = User.objects.create(
             id=100,
             password='sha1$995a3$6011485ea3834267d719b4c801409b8b1ddd0158',
-            last_login=datetime.datetime(2007, 5, 30, 13, 20, 10),
+            last_login=datetime.datetime(2007, 5, 30, 13, 20, 10, tzinfo=utc),
             is_superuser=True, username='super', first_name='Super',
             last_name='User', email='super@example.com', is_staff=True,
-            is_active=True, date_joined=datetime.datetime(2007, 5, 30, 13, 20, 10)
+            is_active=True, date_joined=datetime.datetime(2007, 5, 30, 13, 20, 10, tzinfo=utc)
         )
 
     def test_export_view(self):
