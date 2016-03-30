@@ -95,6 +95,7 @@ var AssessmentReport = React.createClass({
           currentStyle = {
             'backgroundColor': currentColour,
             'fontWeight': 'bold',
+            'verticalAlign': 'middle',
             'color': (currentColour === 'Yellow') ? 'Black' : 'White'
           }
         }
@@ -104,13 +105,14 @@ var AssessmentReport = React.createClass({
           targetStyle = {
             'backgroundColor': targetColour,
             'fontWeight': 'bold',
+            'verticalAlign': 'middle',
             'color': (targetColour === 'Yellow') ? 'Black' : 'White'
           }
         }
 
         summaryRows.push(
           <tr key={attribute.id}>
-            <td>{attribute.name}</td>
+            <td style={{verticalAlign: 'middle'}}>{attribute.name}</td>
             <td className='text-center' style={currentStyle}>{currentRating ? currentRating.name : '-'}</td>
             <td className='text-center' style={targetStyle}>{targetRating ? targetRating.name : '-'}</td>
             <td>{measurement ? measurement.action : '-'}</td>

@@ -189,7 +189,7 @@ var AttributeList = React.createClass({
           </PageHeader>
           <Grid fluid>
             <Row>
-              <Col className="attribute-content" xs={12} md={8}>
+              <Col className='attribute-content' xs={12} md={8}>
                 {React.cloneElement(this.props.children, {
                   template: this.state.template,
                   measurements: this.state.measurements,
@@ -206,7 +206,7 @@ var AttributeList = React.createClass({
                   </PageItem>
                 </Pager>
               </Col>
-              <Col className="attribute-tabs" xs={6} md={4}>
+              <Col className='attribute-tabs' xs={6} md={4}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
                   {summaryNode}
