@@ -32,7 +32,7 @@ var TeamList = React.createClass({
             console.log('teamUrl=' + teamUrl)
             return (
               <LinkContainer key={team.id} to={{pathname: teamUrl}}>
-                <tr className='clickable-row'>
+                <tr className='clickable'>
                   <td>
                     <a href={'#' + teamUrl}>{team.id}</a>
                   </td>

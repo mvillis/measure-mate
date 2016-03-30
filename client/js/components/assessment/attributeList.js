@@ -32,7 +32,6 @@ var AttributeList = React.createClass({
       assessment: null,
       initialLoad: false,
       measureSyncActivity: false,
-      observations: {},
       dirtyObservation: {}
     }
   },
@@ -108,7 +107,7 @@ var AttributeList = React.createClass({
     })
   },
   handleNext: function () {
-    this.scrollToTop('#att-list')
+    this.scrollToTop('#attribute-list')
     var currentAttribute = this.props.params.attribute
     console.log(currentAttribute)
     var index = _.findIndex(this.state.template.attributes, ['id', parseInt(currentAttribute, 10)])
@@ -118,7 +117,7 @@ var AttributeList = React.createClass({
     this.context.router.push(path)
   },
   handlePrevious: function () {
-    this.scrollToTop('#att-list')
+    this.scrollToTop('#attribute-list')
     var currentAttribute = this.props.params.attribute
     console.log(currentAttribute)
     var index = _.findIndex(this.state.template.attributes, ['id', parseInt(currentAttribute, 10)])
@@ -183,14 +182,14 @@ var AttributeList = React.createClass({
       }.bind(this)()
     }
     return (
-      <div id='att-list'>
+      <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
           <PageHeader>
             {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''}</small>
           </PageHeader>
-          <Grid>
+          <Grid fluid>
             <Row>
-              <Col xs={12} md={8}>
+              <Col className="attribute-content" xs={12} md={8}>
                 {React.cloneElement(this.props.children, {
                   template: this.state.template,
                   measurements: this.state.measurements,
@@ -207,7 +206,7 @@ var AttributeList = React.createClass({
                   </PageItem>
                 </Pager>
               </Col>
-              <Col xs={6} md={4}>
+              <Col className="attribute-tabs" xs={6} md={4}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
                   {summaryNode}

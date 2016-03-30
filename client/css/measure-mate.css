@@ -3,17 +3,8 @@
   color: #999;
 }
 
-.clickable-row {
-  cursor: pointer;
-}
-
 .like-pre {
   white-space: pre-wrap;
-}
-
-.v-cent {
-  padding-top: 6px;
-  padding-left: 6px;
 }
 
 .wrap {
@@ -37,7 +28,7 @@
   top: 13px;
 }
 
-#att-list {
+#attribute-list {
   padding-bottom: 50px;
 }
 
@@ -52,30 +43,9 @@
 .assessment-report {
   margin-left: auto;
   margin-right: auto;
-  width: 600px;
 }
 
-@media (max-width: 640px) {
-  div .col-xs-3 {
-    display: none;
-  }
-  div .col-xs-9 {
-    width: 100%;
-  }
-  .tab-content {
-    padding: 0 !important;
-  }
-  .assessment-report {
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px !important;
-  }
-}
-
-@media (max-width: 800px) {
-  .assessment-report {
-    margin-left: auto;
-    margin-right: auto;
-    width: 400px !important;
-  }
+.svg-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
