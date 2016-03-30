@@ -59,8 +59,9 @@ class TagViewSet(viewsets.ModelViewSet):
     """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
-    filter_backends = (filters.SearchFilter,)
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter,)
     search_fields = ('name',)
+    ordering_fields = ('id', 'name')
 
 
 class AssessmentViewSet(viewsets.ModelViewSet):
@@ -69,8 +70,9 @@ class AssessmentViewSet(viewsets.ModelViewSet):
     """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
     filter_fields = ('team__id', 'team__name', 'template__id', 'template__name')
+    ordering_fields = ('id', 'created', 'updated', 'template', 'team')
 
     def create(self, request, *args, **kwargs):
         serializer = AssessmentCreateSerializer(data=request.data)
@@ -96,8 +98,9 @@ class TeamViewSet(viewsets.ModelViewSet):
     """
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
     filter_fields = ('tags__id', 'tags__name')
+    ordering_fields = ('id', 'name', 'created', 'updated')
 
     def create(self, request, *args, **kwargs):
         serializer = TeamCreateSerializer(data=request.data)

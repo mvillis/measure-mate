@@ -41,7 +41,7 @@ class TagSerializer(serializers.ModelSerializer):
 class MeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Measurement
-        fields = ('id', 'assessment', 'rating', 'target_rating', 'observations', 'action')
+        fields = ('id', 'created', 'updated', 'assessment', 'rating', 'target_rating', 'observations', 'action')
         depth = 1
 
 
@@ -58,7 +58,7 @@ class MeasurementCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Measurement
-        fields = ('id', 'assessment', 'rating', 'target_rating', 'observations', 'action')
+        fields = ('id', 'created', 'updated', 'assessment', 'rating', 'target_rating', 'observations', 'action')
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
