@@ -91,8 +91,8 @@ var AssessmentReport = React.createClass({
 
         var currentStyle = {
           'fontWeight': 'bold',
-          'verticalAlign': 'middle',
-	}
+          'verticalAlign': 'middle'
+        }
         var currentColour = (currentRating ? currentRating.colour : '')
         if (currentColour) {
           currentStyle['backgroundColor'] = currentColour
@@ -100,8 +100,8 @@ var AssessmentReport = React.createClass({
         }
         var targetStyle = {
           'fontWeight': 'bold',
-          'verticalAlign': 'middle',
-	}
+          'verticalAlign': 'middle'
+        }
         var targetColour = (targetRating ? targetRating.colour : '')
         if (targetColour) {
           targetStyle['backgroundColor'] = targetColour
