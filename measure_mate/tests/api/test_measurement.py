@@ -75,7 +75,8 @@ class MeasurementAPITestCases(APITestCase):
         target_rating = RatingFactory()
         url = reverse('measurement-list')
         data = {"id": None, "assessment": assessment.id, "rating": rating.id,
-                "target_rating": target_rating.id, "observations": "123"}
+                "target_rating": target_rating.id, "observations": "123",
+                "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Measurement.objects.count(), 1)
@@ -88,7 +89,8 @@ class MeasurementAPITestCases(APITestCase):
         target_rating = RatingFactory()
         url = reverse('measurement-list')
         data = {"id": None, "assessment": assessment.id, "rating": None,
-                "target_rating": target_rating.id, "observations": "123"}
+                "target_rating": target_rating.id, "observations": "123",
+                "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Measurement.objects.count(), 0)
@@ -100,7 +102,8 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id, "observations": ""}
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+                "observations": "", "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Measurement.objects.count(), 1)
@@ -112,7 +115,8 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id, "observations": None}
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+                "observations": None, "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Measurement.objects.count(), 1)
@@ -124,7 +128,8 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id, "observations": None}
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+                "observations": None, "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Measurement.objects.count(), 1)
@@ -139,7 +144,8 @@ class MeasurementAPITestCases(APITestCase):
         measurement = MeasurementFactory(assessment=assessment, rating=rating)
 
         url = reverse('measurement-detail', args=(measurement.id,))
-        data = {"id": measurement.id, "assessment": assessment.id, "rating": rating2.id, "observations": "123"}
+        data = {"id": measurement.id, "assessment": assessment.id,
+                "rating": rating2.id, "observations": "123", "action": "456"}
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Measurement.objects.count(), 1)
@@ -158,9 +164,36 @@ class MeasurementAPITestCases(APITestCase):
         url = reverse('measurement-detail', args=(measurement.id,))
         data = {"id": measurement.id, "assessment": assessment.id,
                 "rating": rating.id, "target_rating": target_rating.id,
-                "observations": "123"}
+                "observations": "123", "action": "456"}
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Measurement.objects.count(), 1)
         self.assertEqual(response.data['id'], measurement.id)
         self.assertEqual(response.data['target_rating'], target_rating.id)
+
+    def test_create_measurement_blank_action(self):
+        """
+        Ensure we can create a new measurement object with a "" action.
+        """
+        assessment = AssessmentFactory()
+        rating = RatingFactory()
+        url = reverse('measurement-list')
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+                "observations": "123", "action": ""}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Measurement.objects.count(), 1)
+
+    def test_create_measurement_no_action(self):
+        """
+        Ensure we can create a new measurement object without an action.
+        """
+        assessment = AssessmentFactory()
+        rating = RatingFactory()
+        url = reverse('measurement-list')
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+                "observations": "123", "action": None}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Measurement.objects.count(), 1)
+

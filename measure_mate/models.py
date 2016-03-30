@@ -101,6 +101,7 @@ class Measurement(models.Model):
     rating = models.ForeignKey(Rating, related_name="measurements")
     target_rating = models.ForeignKey(Rating, blank=True, null=True, related_name="target_measurements")
     observations = models.TextField(null=True)
+    action = models.TextField(null=True)
 
     def __unicode__(self):
         return str(self.assessment) + " - " + str(self.rating)
