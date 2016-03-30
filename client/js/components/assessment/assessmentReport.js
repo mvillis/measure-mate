@@ -89,25 +89,23 @@ var AssessmentReport = React.createClass({
         ratingSeries.push(currentRating ? currentRating.rank : 0)
         targetSeries.push(targetRating ? targetRating.rank : 0)
 
-        var currentStyle = {}
+        var currentStyle = {
+          'fontWeight': 'bold',
+          'verticalAlign': 'middle',
+	}
         var currentColour = (currentRating ? currentRating.colour : '')
         if (currentColour) {
-          currentStyle = {
-            'backgroundColor': currentColour,
-            'fontWeight': 'bold',
-            'verticalAlign': 'middle',
-            'color': (currentColour === 'Yellow') ? 'Black' : 'White'
-          }
+          currentStyle['backgroundColor'] = currentColour
+          currentStyle['color'] = (currentColour === 'Yellow') ? 'Black' : 'White'
         }
-        var targetStyle = {}
+        var targetStyle = {
+          'fontWeight': 'bold',
+          'verticalAlign': 'middle',
+	}
         var targetColour = (targetRating ? targetRating.colour : '')
         if (targetColour) {
-          targetStyle = {
-            'backgroundColor': targetColour,
-            'fontWeight': 'bold',
-            'verticalAlign': 'middle',
-            'color': (targetColour === 'Yellow') ? 'Black' : 'White'
-          }
+          targetStyle['backgroundColor'] = targetColour
+          targetStyle['color'] = (targetColour === 'Yellow') ? 'Black' : 'White'
         }
 
         summaryRows.push(
