@@ -26,7 +26,8 @@ var Attribute = React.createClass({
       measurement: null,
       measureSyncActivity: false,
       loaded: false,
-      observations: ''
+      observations: '',
+      action: ''
     }
   },
   componentDidMount: function () {
@@ -37,6 +38,7 @@ var Attribute = React.createClass({
         attribute: attribute,
         measurement: measurement,
         observations: (measurement) ? measurement.observations : '',
+        action: (measurement) ? measurement.action : '',
         loaded: true
       }
     )
@@ -49,6 +51,7 @@ var Attribute = React.createClass({
         attribute: attribute,
         measurement: measurement,
         observations: (measurement) ? measurement.observations : '',
+        action: (measurement) ? measurement.action : '',
         loaded: true
       }
     )
@@ -69,6 +72,7 @@ var Attribute = React.createClass({
     var existingMeasurement = this.state.measurement
     var postData = {
       observations: (this.state.observations) ? this.state.observations : '',
+      action: (this.state.action) ? this.state.action : '',
       id: (this.state.measurement) ? this.state.measurement.id : '',
       assessment: this.props.params.assessmentId,
       rating: (ratingType === 'rating') ? value : this.state.measurement.rating,
@@ -78,6 +82,9 @@ var Attribute = React.createClass({
   },
   onObservationChange: function (text) {
     this.setState({observations: text})
+  },
+  onActionChange: function (text) {
+    this.setState({action: text})
   },
   render: function () {
     if (this.state.attribute !== null) {
@@ -93,7 +100,7 @@ var Attribute = React.createClass({
         <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
           {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
         </Alert>
-        <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null}/>
+        <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} onActionChange={this.onActionChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null}/>
         <Loader loaded={!this.props.measureSyncActivity}/>
         <ListGroup fill>
           {ratingList}

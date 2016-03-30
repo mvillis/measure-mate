@@ -113,18 +113,20 @@ var AssessmentReport = React.createClass({
             <td>{attribute.name}</td>
             <td className='text-center' style={currentStyle}>{currentRating ? currentRating.name : '-'}</td>
             <td className='text-center' style={targetStyle}>{targetRating ? targetRating.name : '-'}</td>
+            <td>{measurement ? measurement.action : '-'}</td>
           </tr>
         )
       }.bind(this)))
     }
 
     var summaryTable = (
-      <Table striped bordered condensed hover className='assessment-report'>
+      <Table striped bordered condensed hover>
         <thead>
           <tr>
             <th>Practice/Capability</th>
             <th className='text-center'>Current</th>
             <th className='text-center'>Target</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
