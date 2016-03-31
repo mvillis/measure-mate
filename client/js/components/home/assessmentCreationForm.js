@@ -53,7 +53,7 @@ var AssessmentCreationForm = React.createClass({
       type: 'POST',
       cache: true,
       success: function (output) {
-        window.location = '/#/assessment/' + output.id + '/'
+        window.location = '/assessment/' + output.id + '/'
       },
       error: function (xhr, status, err) {
         var message = 'Launch failed due to unknown reason. Try again later.'
