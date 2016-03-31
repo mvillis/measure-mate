@@ -34,12 +34,12 @@ var AssessmentReport = React.createClass({
     return matchingAttribute
   },
   getMeasurementForAttribute: function (attribute) {
-    if (this.props.measurements != null) {
+    if (this.props.measurements !== null) {
       for (var i = 0; i < this.props.measurements.length; i++) {
         if (attribute.id === this.getAttributeForRating(this.props.measurements[i].rating)) {
           return this.props.measurements[i]
         }
-      };
+      }
     } else {
       return null
     }
@@ -77,7 +77,7 @@ var AssessmentReport = React.createClass({
 
     var summaryRows = []
 
-    if (this.props.measurements != null) {
+    if (this.props.measurements !== null) {
       (this.props.attributes.map(function (attribute, i) {
         labels.push(attribute.name)
 
@@ -89,42 +89,44 @@ var AssessmentReport = React.createClass({
         ratingSeries.push(currentRating ? currentRating.rank : 0)
         targetSeries.push(targetRating ? targetRating.rank : 0)
 
-        var currentStyle = {}
+        var currentStyle = {
+          'fontWeight': 'bold',
+          'verticalAlign': 'middle'
+        }
         var currentColour = (currentRating ? currentRating.colour : '')
         if (currentColour) {
-          currentStyle = {
-            'backgroundColor': currentColour,
-            'fontWeight': 'bold',
-            'color': (currentColour == 'Yellow') ? 'Black' : 'White'
-          }
+          currentStyle['backgroundColor'] = currentColour
+          currentStyle['color'] = (currentColour === 'Yellow') ? 'Black' : 'White'
         }
-        var targetStyle = {}
+        var targetStyle = {
+          'fontWeight': 'bold',
+          'verticalAlign': 'middle'
+        }
         var targetColour = (targetRating ? targetRating.colour : '')
         if (targetColour) {
-          targetStyle = {
-            'backgroundColor': targetColour,
-            'fontWeight': 'bold',
-            'color': (targetColour == 'Yellow') ? 'Black' : 'White'
-          }
+          targetStyle['backgroundColor'] = targetColour
+          targetStyle['color'] = (targetColour === 'Yellow') ? 'Black' : 'White'
         }
 
         summaryRows.push(
           <tr key={attribute.id}>
-            <td>{attribute.name}</td>
+            <td style={{verticalAlign: 'middle'}}>{attribute.name}</td>
             <td className='text-center' style={currentStyle}>{currentRating ? currentRating.name : '-'}</td>
             <td className='text-center' style={targetStyle}>{targetRating ? targetRating.name : '-'}</td>
+            <td>{measurement ? measurement.action : '-'}</td>
           </tr>
         )
       }.bind(this)))
     }
 
     var summaryTable = (
-      <Table striped bordered condensed hover className='assessment-report'>
+      <Table striped bordered condensed hover>
         <thead>
           <tr>
             <th>Practice/Capability</th>
             <th className='text-center'>Current</th>
             <th className='text-center'>Target</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>

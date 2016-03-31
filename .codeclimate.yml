@@ -1,0 +1,30 @@
+---
+engines:
+  csslint:
+    enabled: true
+  duplication:
+    enabled: false
+    config:
+      languages:
+      - javascript
+      - python
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  radon:
+    enabled: true
+ratings:
+  paths:
+  - "**.css"
+  - "**.js"
+  - "**.jsx"
+  - "**.py"
+exclude_paths:
+- node_modules/
+- .venv/**/*
+- measure_mate/migrations/*.py
+- measure_mate/tests/*.py
+- client/test/*
+- build/**/*
+- .pylintrc

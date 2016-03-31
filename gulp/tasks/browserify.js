@@ -2,7 +2,6 @@ var browserSync = require('browser-sync')
 var browserify = require('browserify')
 var watchify = require('watchify')
 var uglify = require('gulp-uglify')
-var gzip = require('gulp-gzip')
 var bundleLogger = require('../util/bundleLogger')
 var gulp = require('gulp')
 var util = require('gulp-util')
@@ -32,6 +31,23 @@ gulp.task('browserify', function (callback) {
     // Specify the entry point of your app
     .require(bundleConfig.entries, {entry: true})
 
+    var reportFinished = function () {
+      // Log when bundling completes
+      bundleLogger.end(bundleConfig.outputName)
+
+      if (bundleQueue) {
+        // reload browserSync on changes
+        browserSync.reload()
+
+        bundleQueue--
+        if (bundleQueue === 0) {
+          // If queue is empty, tell gulp the task is complete.
+          // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
+          return callback()
+        }
+      }
+    }
+
     var bundle = function () {
       // Log when bundling starts
       bundleLogger.start(bundleConfig.outputName)
@@ -43,13 +59,13 @@ gulp.task('browserify', function (callback) {
         // stream gulp compatible. Specifiy the
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
-        // write un-uglified bundle
-        .pipe(gulp.dest(bundleConfig.dest))
         .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(config.production ? uglify() : util.noop())
-        .pipe(sourcemaps.write('./'))
-        .pipe(config.production ? gzip(config.gzipConfig) : util.noop())
+        .pipe(config.production ? sourcemaps.init({loadMaps: true}) : util.noop())
+          // transforms here
+          .pipe(config.production ? uglify() : util.noop())
+          // Report compile errors
+          .on('error', handleErrors)
+        .pipe(config.production ? sourcemaps.write('./') : util.noop())
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished)
@@ -61,25 +77,6 @@ gulp.task('browserify', function (callback) {
       bundler = watchify(bundler)
       // Rebundle on update
       bundler.on('update', bundle)
-    }
-
-    var reportFinished = function () {
-      // Log when bundling completes
-      bundleLogger.end(bundleConfig.outputName)
-
-      if (bundleQueue) {
-        bundleQueue--
-        if (bundleQueue === 0) {
-          // If queue is empty, tell gulp the task is complete.
-          // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
-          callback()
-          // reload browserSync on changes
-          browserSync.reload()
-        } else {
-          // reload browserSync on changes
-          browserSync.reload()
-        }
-      }
     }
 
     return bundle()

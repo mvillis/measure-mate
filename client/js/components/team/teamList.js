@@ -28,10 +28,14 @@ var TeamList = React.createClass({
           {this.props.data.map(function (team, i) {
             var prettyCreated = Moment(team.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(team.created).fromNow()
+            var teamUrl = '/team/' + team.id + '/'
+            console.log('teamUrl=' + teamUrl)
             return (
-              <LinkContainer key={team.id} to={{pathname: '/team/' + team.id}}>
-                <tr className='clickable-row'>
-                  <td><a href={'/team/' + team.id + '/'}>{team.id}</a></td>
+              <LinkContainer key={team.id} to={{pathname: teamUrl}}>
+                <tr className='clickable'>
+                  <td>
+                    <a href={'#' + teamUrl}>{team.id}</a>
+                  </td>
                   <td>{team.name}</td>
                   <td className='wrap'><TagList tags={team.tags}/></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>

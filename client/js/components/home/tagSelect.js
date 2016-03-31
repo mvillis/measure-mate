@@ -15,7 +15,7 @@ var TagSelect = React.createClass({
   loadOptions: function loadOptions (input, callback) {
     setTimeout(function () {
       $.ajax({
-        url: '/api/tags?search=' + input,
+        url: '/api/tags/?search=' + input,
         dataType: 'json',
         cache: false,
         success: function (data) {
@@ -41,8 +41,11 @@ var TagSelect = React.createClass({
       <div>
         <label className='control-label col-xs-2'>{this.props.label}</label>
         <div className='col-xs-10'>
-          <Select.Async {...this.props} delimeter=','
-            multi loadOptions={this.loadOptions}
+          <Select.Async {...this.props}
+            delimeter=','
+            multi
+            options={[]}
+            loadOptions={this.loadOptions}
             allowCreate
             name='tags'
             placeholder='Type to find existing tags or create new ones'

@@ -3,50 +3,32 @@
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
-var TagSelect = require('./tagSelect')
 var TemplateSelect = require('./templateSelect')
 var $ = require('jquery')
 
 var AssessmentCreationForm = React.createClass({
   propTypes: {
-    initialTags: React.PropTypes.array,
-    team: React.PropTypes.object
+    teamId: React.PropTypes.number.isRequired
   },
   getInitialState: function () {
     return {
       template: '',
-      tags: '',
       formError: ''
     }
-  },
-  componentWillMount: function () {
-    this.setState({
-      tags: this.props.initialTags
-    })
   },
   changeHandlerTemplate: function (val) {
     this.setState({
       template: val.value
     })
   },
-  changeHandlerTags: function (val) {
-    this.setState({
-      tags: val
-    })
-  },
   handleSubmit: function (e) {
     e.preventDefault()
-    if (this.state.template && this.state.tags) {
+    if (this.state.template) {
       var template = this.state.template
-      var tags = this.state.tags.map(function (value) {
-        return (
-          value.value
-        )
-      })
-      var teamId = this.props.team ? this.props.team.id : ''
-      this.createAssessment(template, tags, teamId)
+      var teamId = this.props.teamId
+      this.createAssessment(template, teamId)
     } else {
-      var message = 'Template & tag/s required.'
+      var message = 'Template required.'
       this.showError(message)
     }
   },
@@ -57,11 +39,10 @@ var AssessmentCreationForm = React.createClass({
     })
   },
 
-  createAssessment: function (template, tags, teamId) {
+  createAssessment: function (template, teamId) {
     var data = {
       team: teamId,
-      template: template,
-      tags: tags
+      template: template
     }
     $.ajax({
       context: this,
@@ -94,15 +75,6 @@ var AssessmentCreationForm = React.createClass({
             {...this.props}
             value={this.state.template}
             onChange={this.changeHandlerTemplate}
-          />
-        </div>
-        <div className='form-group'>
-          <TagSelect
-            label='Tags'
-            ref='tags'
-            {...this.props}
-            value={this.state.tags}
-            onChange={this.changeHandlerTags}
           />
         </div>
         <div className='form-group'>

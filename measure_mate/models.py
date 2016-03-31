@@ -87,7 +87,6 @@ class Assessment(models.Model):
     updated = models.DateTimeField(auto_now=True)
     template = models.ForeignKey(Template, related_name="assessments")
     team = models.ForeignKey(Team, related_name="assessments")
-    tags = models.ManyToManyField(Tag,)
 
     def __unicode__(self):
         return self.created.strftime('%Y-%m-%d %H:%M%Z') + " - " + self.template.name
@@ -102,6 +101,9 @@ class Measurement(models.Model):
     rating = models.ForeignKey(Rating, related_name="measurements")
     target_rating = models.ForeignKey(Rating, blank=True, null=True, related_name="target_measurements")
     observations = models.TextField(null=True)
+    action = models.TextField(null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return str(self.assessment) + " - " + str(self.rating)

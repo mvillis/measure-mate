@@ -1,0 +1,60 @@
+.help-block {
+  font-style: italic;
+  color: #999;
+}
+
+.like-pre {
+  white-space: pre-wrap;
+}
+
+.wrap {
+  word-wrap: break-word;
+  min-width: 160px;
+  max-width: 160px;
+}
+
+.list-group-item.rating-colour {
+  border-left-width: 15px !important;
+}
+
+.target-btn {
+  position: absolute;
+  right: 25px;
+}
+
+.target-help {
+  position: absolute;
+  right: 5px;
+  top: 13px;
+}
+
+#attribute-list {
+  padding-bottom: 50px;
+}
+
+.inline {
+  display: inline;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.assessment-report {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.svg-container {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.panel-heading {
+  font-size: medium;
+  font-weight: bold;
+}
+
+.active {
+  font-weight: bold;
+}

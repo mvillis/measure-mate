@@ -1,7 +1,14 @@
 language: python
 install:
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+  - npm install gulp
+  - npm install
+  - gulp build
   - pip install -r requirements/local.txt
   - pip install coveralls
+  - python manage.py collectstatic --no-input
 before_script:
   - "export DATABASE_URL=sqlite:///:memory"
 script:

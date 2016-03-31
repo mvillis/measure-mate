@@ -6,7 +6,8 @@ var src = "client"
 
 var cssSource = [
   'node_modules/bootstrap/dist/css/bootstrap.min.css',
-  'node_modules/react-select/dist/react-select.min.css'
+  'node_modules/react-select/dist/react-select.min.css',
+  'client/css/measure-mate.css'
 ]
 var cssDestination = dest + '/css'
 var assetsSource = src + '/assets/**'
@@ -56,7 +57,11 @@ module.exports = {
   css: {
     src: cssSource,
     dest: cssDestination,
-    production: production
+    production: production,
+    uglifyOptions: {
+      "maxLineLen": 80,
+      "uglyComments": true
+    }
   },
 
   fonts: {
@@ -101,18 +106,16 @@ module.exports = {
       dest: dest + '/js',
       outputName: 'bundle.js'
     }],
-    production: production,
-    gzipConfig: {
-      append: true
-    }
+    production: production
   },
+
   lint: {
     src: [
       'gulpfile.js',
       './client/js/main.js',
       './client/js/**/*.js'
     ],
-    configSrc: './gulp/eslint.config.json'
+    configSrc: '.eslintrc.json'
   },
 
   test: {
@@ -120,6 +123,32 @@ module.exports = {
     mochaOptions: {
       'ui': 'bdd',
       'reporter': 'spec'
+    }
+  },
+
+  gzip: {
+    src: './build/**/*.{js,css,map}',
+    dest: dest,
+    gzipConfig: {
+      append: true
+    }
+  },
+
+  lintCss: {
+    src: [
+      'client/css/*.css'
+    ],
+    lintOptions: {
+      debug: true
+    }
+  },
+
+  markdownlint: {
+    src: [
+      '*.md'
+    ],
+    lintOptions: {
+      default: true
     }
   }
 }
