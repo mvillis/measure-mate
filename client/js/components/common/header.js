@@ -19,7 +19,7 @@ var Header = React.createClass({
           <Navbar.Header>
             <Navbar.Brand>
               <LinkContainer to={{pathname: '/'}}>
-                <a>Measure Mate</a>
+                <a>LaundroMAT</a>
               </LinkContainer>
             </Navbar.Brand>
             <Navbar.Toggle />
