@@ -73,14 +73,12 @@ var TeamCreationForm = React.createClass({
       success: function (newTag) {
         console.log('tag "' + newTag.name + '" is id ' + newTag.id)
         var tags = this.state.tags
-        tags.push(newTag)
-        this.setState({tags: tags, creatingTag: false})
+        tags.push({value: newTag.id, label: newTag.name})
+        this.setState({tags: _.uniq(tags), creatingTag: false})
       },
       error: function (xhr, status, err) {
         var message = 'Tag creation failed due to unknown reason. Try again later.'
         this.showError(message)
-        console.log('status: ' + JSON.stringify(status))
-        console.log('err: ' + JSON.stringify(err))
       }
     })
   },
@@ -108,13 +106,11 @@ var TeamCreationForm = React.createClass({
   },
 
   changeTags: function (newTags) {
-    console.log('newTags = ' + JSON.stringify(newTags))
     let entered = _.last(newTags)
     if (entered && entered.create) {
       newTags.pop()
       this.createTag(entered.value)
     }
-    console.log('newTags = ' + JSON.stringify(newTags))
     this.setState({tags: newTags})
   },
   // /FIXME -----------------
@@ -125,6 +121,7 @@ var TeamCreationForm = React.createClass({
       short_desc: teamDesc, // eslint-disable-line camelcase
       tags: tags
     }
+    console.log('creating team ' + JSON.stringify(data))
     $.ajax({
       context: this,
       url: '/api/teams/',
@@ -133,8 +130,9 @@ var TeamCreationForm = React.createClass({
       data: JSON.stringify(data),
       type: 'POST',
       cache: true,
-      success: function (output) {
-        window.location = '/#/team/' + output.id + '/'
+      success: function (newTeam) {
+        console.log('created team ' + JSON.stringify(newTeam))
+        window.location = '/#/team/' + newTeam.id + '/'
       },
       error: function (xhr, status, err) {
         var message = 'Team creation failed due to unknown reason. Try again later.'
@@ -144,7 +142,6 @@ var TeamCreationForm = React.createClass({
   },
 
   render: function () {
-    console.log('this.state.tags = ' + JSON.stringify(this.state.tags))
     var creatingTag = this.state.creatingTag
     return (
       <form className='form-horizontal'>
