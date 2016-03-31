@@ -6,23 +6,17 @@ var Alert = ReactBootstrap.Alert
 var Input = ReactBootstrap.Input
 var TagSelect = require('./tagSelect')
 var $ = require('jquery')
+var _ = require('lodash')
 
 var TeamCreationForm = React.createClass({
-  propTypes: {
-    initialTags: React.PropTypes.array
-  },
   getInitialState: function () {
     return {
       teamName: '',
       teamDesc: '',
-      tags: '',
-      formError: ''
+      tags: [],
+      formError: '',
+      creatingTag: false
     }
-  },
-  componentWillMount: function () {
-    this.setState({
-      tags: this.props.initialTags
-    })
   },
   changeHandlerTags: function (val) {
     this.setState({
@@ -62,12 +56,72 @@ var TeamCreationForm = React.createClass({
     })
   },
 
+  createTag: function (tagName) {
+    var data = {
+      name: tagName
+    }
+    console.log('creating tag ' + JSON.stringify(data))
+    this.setState({creatingTag: true})
+    $.ajax({
+      context: this,
+      url: '/api/tags/',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data: JSON.stringify(data),
+      type: 'POST',
+      cache: true,
+      success: function (newTag) {
+        console.log('tag "' + newTag.name + '" is id ' + newTag.id)
+        var tags = this.state.tags
+        tags.push({value: newTag.id, label: newTag.name})
+        this.setState({tags: _.uniq(tags), creatingTag: false})
+      },
+      error: function (xhr, status, err) {
+        var message = 'Tag creation failed due to unknown reason. Try again later.'
+        this.showError(message)
+      }
+    })
+  },
+
+  // FIXME Temporary until react-select fixes allowCreate={true}
+  filterOptions: function (options, filter, currentValues) {
+    // ditch existing values
+    var filteredOptions = _(options)
+        .difference(currentValues)
+
+    if (filter) {
+      // only the values matching the typed string
+      filteredOptions = filteredOptions
+        .filter((o) => RegExp(filter, 'ig').test(o.label))
+
+      // if the typed string doesn't exactly match an existing tag...
+      if (!filteredOptions.find((o) => o.label === filter)) {
+        // ... add the option to create the tag
+        filteredOptions = filteredOptions
+          .concat(_.some(currentValues, {label: filter}) ? [] : [{label: `Add \"${filter}\"...`, value: filter, create: true}])
+      }
+    }
+
+    return filteredOptions.value()
+  },
+
+  changeTags: function (newTags) {
+    let entered = _.last(newTags)
+    if (entered && entered.create) {
+      newTags.pop()
+      this.createTag(entered.value)
+    }
+    this.setState({tags: newTags})
+  },
+  // /FIXME -----------------
+
   createTeam: function (teamName, teamDesc, tags) {
     var data = {
       name: teamName,
       short_desc: teamDesc, // eslint-disable-line camelcase
       tags: tags
     }
+    console.log('creating team ' + JSON.stringify(data))
     $.ajax({
       context: this,
       url: '/api/teams/',
@@ -76,8 +130,9 @@ var TeamCreationForm = React.createClass({
       data: JSON.stringify(data),
       type: 'POST',
       cache: true,
-      success: function (output) {
-        window.location = '/#/team/' + output.id + '/'
+      success: function (newTeam) {
+        console.log('created team ' + JSON.stringify(newTeam))
+        window.location = '/#/team/' + newTeam.id + '/'
       },
       error: function (xhr, status, err) {
         var message = 'Team creation failed due to unknown reason. Try again later.'
@@ -87,6 +142,7 @@ var TeamCreationForm = React.createClass({
   },
 
   render: function () {
+    var creatingTag = this.state.creatingTag
     return (
       <form className='form-horizontal'>
         <Alert bsStyle='danger' className={this.state.formError ? '' : 'hidden'}>
@@ -118,14 +174,16 @@ var TeamCreationForm = React.createClass({
             ref='tags'
             {...this.props}
             value={this.state.tags}
-            onChange={this.changeHandlerTags}
+            onChange={this.changeTags}
+            filterOptions={this.filterOptions}
             labelClassName='col-xs-2'
             wrapperClassName='col-xs-10'
           />
         </div>
         <div className='form-group'>
           <div className='col-xs-2 col-xs-offset-2'>
-            <input className='btn btn-default btn-primary' type='submit' value='Create' onClick={this.handleSubmit}/>
+            <input className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
+              type='submit' value='Create' onClick={!creatingTag ? this.handleSubmit : null}/>
           </div>
         </div>
       </form>
