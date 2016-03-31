@@ -6,23 +6,17 @@ var Alert = ReactBootstrap.Alert
 var Input = ReactBootstrap.Input
 var TagSelect = require('./tagSelect')
 var $ = require('jquery')
+var _ = require('lodash')
 
 var TeamCreationForm = React.createClass({
-  propTypes: {
-    initialTags: React.PropTypes.array
-  },
   getInitialState: function () {
     return {
       teamName: '',
       teamDesc: '',
-      tags: '',
-      formError: ''
+      tags: [],
+      formError: '',
+      creatingTag: false
     }
-  },
-  componentWillMount: function () {
-    this.setState({
-      tags: this.props.initialTags
-    })
   },
   changeHandlerTags: function (val) {
     this.setState({
@@ -62,6 +56,69 @@ var TeamCreationForm = React.createClass({
     })
   },
 
+  createTag: function (tagName) {
+    var data = {
+      name: tagName
+    }
+    console.log('creating tag ' + JSON.stringify(data))
+    this.setState({creatingTag: true})
+    $.ajax({
+      context: this,
+      url: '/api/tags/',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data: JSON.stringify(data),
+      type: 'POST',
+      cache: true,
+      success: function (newTag) {
+        console.log('tag "' + newTag.name + '" is id ' + newTag.id)
+        var tags = this.state.tags
+        tags.push(newTag)
+        this.setState({tags: tags, creatingTag: false})
+      },
+      error: function (xhr, status, err) {
+        var message = 'Tag creation failed due to unknown reason. Try again later.'
+        this.showError(message)
+        console.log('status: ' + JSON.stringify(status))
+        console.log('err: ' + JSON.stringify(err))
+      }
+    })
+  },
+
+  // FIXME Temporary until react-select fixes allowCreate={true}
+  filterOptions: function (options, filter, currentValues) {
+    // ditch existing values
+    var filteredOptions = _(options)
+        .difference(currentValues)
+
+    if (filter) {
+      // only the values matching the typed string
+      filteredOptions = filteredOptions
+        .filter((o) => RegExp(filter, 'ig').test(o.label))
+
+      // if the typed string doesn't exactly match an existing tag...
+      if (!filteredOptions.find((o) => o.label === filter)) {
+        // ... add the option to create the tag
+        filteredOptions = filteredOptions
+          .concat(_.some(currentValues, {label: filter}) ? [] : [{label: `Add \"${filter}\"...`, value: filter, create: true}])
+      }
+    }
+
+    return filteredOptions.value()
+  },
+
+  changeTags: function (newTags) {
+    console.log('newTags = ' + JSON.stringify(newTags))
+    let entered = _.last(newTags)
+    if (entered && entered.create) {
+      newTags.pop()
+      this.createTag(entered.value)
+    }
+    console.log('newTags = ' + JSON.stringify(newTags))
+    this.setState({tags: newTags})
+  },
+  // /FIXME -----------------
+
   createTeam: function (teamName, teamDesc, tags) {
     var data = {
       name: teamName,
@@ -87,6 +144,8 @@ var TeamCreationForm = React.createClass({
   },
 
   render: function () {
+    console.log('this.state.tags = ' + JSON.stringify(this.state.tags))
+    var creatingTag = this.state.creatingTag
     return (
       <form className='form-horizontal'>
         <Alert bsStyle='danger' className={this.state.formError ? '' : 'hidden'}>
@@ -118,14 +177,16 @@ var TeamCreationForm = React.createClass({
             ref='tags'
             {...this.props}
             value={this.state.tags}
-            onChange={this.changeHandlerTags}
+            onChange={this.changeTags}
+            filterOptions={this.filterOptions}
             labelClassName='col-xs-2'
             wrapperClassName='col-xs-10'
           />
         </div>
         <div className='form-group'>
           <div className='col-xs-2 col-xs-offset-2'>
-            <input className='btn btn-default btn-primary' type='submit' value='Create' onClick={this.handleSubmit}/>
+            <input className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
+              type='submit' value='Create' onClick={!creatingTag ? this.handleSubmit : null}/>
           </div>
         </div>
       </form>
