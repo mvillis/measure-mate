@@ -49,3 +49,12 @@
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+.panel-heading {
+  font-size: medium;
+  font-weight: bold;
+}
+
+.active {
+  font-weight: bold;
+}
