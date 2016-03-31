@@ -34,7 +34,7 @@ var TeamList = React.createClass({
               <LinkContainer key={team.id} to={{pathname: teamUrl}}>
                 <tr className='clickable'>
                   <td>
-                    <a href={'#' + teamUrl}>{team.id}</a>
+                    <a href={teamUrl}>{team.id}</a>
                   </td>
                   <td>{team.name}</td>
                   <td className='wrap'><TagList tags={team.tags}/></td>
