@@ -12,3 +12,4 @@ whitenoise==3.0
 django-excel==0.0.4
 pyexcel-xls==0.1.0
 pyexcel-xlsx==0.1.0
+django-htmlmin==0.9.1

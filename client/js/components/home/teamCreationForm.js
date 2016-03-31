@@ -132,7 +132,7 @@ var TeamCreationForm = React.createClass({
       cache: true,
       success: function (newTeam) {
         console.log('created team ' + JSON.stringify(newTeam))
-        window.location = '/#/team/' + newTeam.id + '/'
+        window.location = '/team/' + newTeam.id + '/'
       },
       error: function (xhr, status, err) {
         var message = 'Team creation failed due to unknown reason. Try again later.'
