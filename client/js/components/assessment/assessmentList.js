@@ -32,11 +32,11 @@ var AssessmentList = React.createClass({
             return (
               <LinkContainer key={assessment.id} to={{pathname: assessmentUrl}}>
                 <tr className='clickable' >
-                  <td><a href={'#' + assessmentUrl}>{assessment.id}</a></td>
+                  <td><a href={assessmentUrl}>{assessment.id}</a></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
                   <td>{assessment.template.name}</td>
                   <td className={this.props.showTeams ? '' : 'hidden'}>
-                    <a href={'#/team/' + assessment.team.id + '/'}>{assessment.team.name}</a>
+                    <a href={'/team/' + assessment.team.id + '/'}>{assessment.team.name}</a>
                   </td>
                 </tr>
               </LinkContainer>

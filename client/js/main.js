@@ -3,7 +3,7 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactRouter = require('react-router')
-var hashHistory = ReactRouter.hashHistory
+var browserHistory = ReactRouter.browserHistory
 var Router = ReactRouter.Router
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute
@@ -19,7 +19,7 @@ var TeamTable = require('./components/team/teamTable')
 var NotFoundPage = require('./components/notFoundPage')
 
 ReactDOM.render(
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route component={Header}>
       <Route path='/' component={Home}/>
       <Route path='/assessment/list' component={AssessmentTable}/>
