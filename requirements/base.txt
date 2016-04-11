@@ -1,9 +1,9 @@
-Django==1.9.4
+Django==1.9.5
 djangorestframework==3.3.3
 django-filter==0.13.0
 django-crispy-forms==1.6.0
 pyver==1.0.38
-dj-database-url==0.4.0
+dj-database-url==0.4.1
 wsgiref==0.1.2
 django-rest-swagger==0.3.5
 django-secure==1.0.1
