@@ -81,6 +81,12 @@ class AssessmentViewSet(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+    def update(self, request, *args, **kwargs):
+        old_assessment = Assessment.objects.get(pk=request.data.get('id'))
+        if old_assessment.status == "DONE" and not request.user.is_superuser:
+            raise PermissionDenied('Assessment is Read Only')
+        return super(AssessmentViewSet, self).update(request, *args, **kwargs)
+
 
 class MeasurementViewSet(viewsets.ModelViewSet):
     """
