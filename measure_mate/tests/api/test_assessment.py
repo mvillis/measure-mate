@@ -134,3 +134,32 @@ class AssessmentAPITestCases(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Assessment.objects.count(), 1)
         self.assertEqual(Assessment.objects.get(pk=assessment.id).status, "DONE")
+
+    def test_halt_deletes_if_read_only_non_super_user(self):
+        """
+        Ensure you can't delete the assessment if you're not a superadmin and status is done.
+        """
+        assessment = AssessmentFactory(status="DONE")
+
+        url = reverse('assessment-detail', args=(assessment.id,))
+        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO"}
+        response = self.client.delete(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Assessment.objects.count(), 1)
+
+    def test_do_not_halt_deletes_if_read_only_super_user(self):
+        """
+        Ensure you can delete the assessment if you are a superadmin and status is done.
+        """
+        assessment = AssessmentFactory(status="DONE")
+
+        password = 'mypassword'
+        my_admin = User.objects.create_superuser('myuser', 'myemail@test.com', password)
+
+        self.client.login(username=my_admin.username, password=password)
+
+        url = reverse('assessment-detail', args=(assessment.id,))
+        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO"}
+        response = self.client.delete(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Assessment.objects.count(), 0)
