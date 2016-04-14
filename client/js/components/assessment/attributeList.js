@@ -4,6 +4,7 @@ var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var _ = require('lodash')
+var FinaliseAssessment = require('./finaliseAssessment')
 var PageHeader = ReactBootstrap.PageHeader
 var Nav = ReactBootstrap.Nav
 var NavItem = ReactBootstrap.NavItem
@@ -210,6 +211,8 @@ var AttributeList = React.createClass({
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
                   {summaryNode}
+                  <br></br>
+                  <FinaliseAssessment/>
                 </Nav>
               </Col>
             </Row>
