@@ -18,7 +18,8 @@ var Attribute = React.createClass({
     template: React.PropTypes.object,
     measurements: React.PropTypes.array,
     syncMeasurement: React.PropTypes.func,
-    measureSyncActivity: React.PropTypes.bool
+    measureSyncActivity: React.PropTypes.bool,
+    disabled: React.PropTypes.bool
   },
   getInitialState: function () {
     return {
@@ -100,7 +101,7 @@ var Attribute = React.createClass({
         <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
           {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
         </Alert>
-        <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} onActionChange={this.onActionChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null}/>
+        <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} onActionChange={this.onActionChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null} disabled={this.props.disabled}/>
         <Loader loaded={!this.props.measureSyncActivity}/>
         <ListGroup fill>
           {ratingList}

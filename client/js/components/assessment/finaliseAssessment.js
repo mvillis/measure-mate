@@ -5,11 +5,13 @@ var ReactBootstrap = require('react-bootstrap')
 var Panel = ReactBootstrap.Panel
 var Button = ReactBootstrap.Button
 var Modal = ReactBootstrap.Modal
+var $ = require('jquery')
 
 var FinaliseAssessment = React.createClass({
   propTypes: {
     assessment: React.PropTypes.object,
-    params: React.PropTypes.object
+    params: React.PropTypes.object,
+    markAssessmentDone: React.PropTypes.func.isRequired
   },
   getInitialState () {
     return { showModal: false }
@@ -19,6 +21,11 @@ var FinaliseAssessment = React.createClass({
   },
   open () {
     this.setState({ showModal: true })
+  },
+  handleLock: function () {
+    console.log('im here')
+    this.props.markAssessmentDone()
+    this.close()
   },
   render: function () {
     return (
@@ -32,7 +39,7 @@ var FinaliseAssessment = React.createClass({
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close}>Close</Button>
-            <Button bsStyle='primary' onClick={this.close}>Lock It In</Button>
+            <Button bsStyle='primary' onClick={this.handleLock}>Lock It In</Button>
           </Modal.Footer>
         </Modal>
         <Panel bsStyle="danger">
