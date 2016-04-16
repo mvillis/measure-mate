@@ -1,5 +1,6 @@
 from rest_framework import viewsets, generics, filters, status
 from rest_framework.response import Response
+import rest_framework.exceptions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -77,7 +78,7 @@ class AssessmentViewSet(viewsets.ModelViewSet):
     def is_read_only(self, request):
         old_assessment = Assessment.objects.get(pk=request.data.get('id'))
         if old_assessment.status == "DONE" and not request.user.is_superuser:
-            raise PermissionDenied('Assessment is Read Only')
+            raise rest_framework.exceptions.PermissionDenied(detail="Assessment is Read Only")
 
     def update(self, request, *args, **kwargs):
         self.is_read_only(request)
@@ -107,7 +108,7 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     def is_read_only(self, request):
         old_assessment = Assessment.objects.get(pk=request.data.get('assessment'))
         if old_assessment.status == "DONE" and not request.user.is_superuser:
-            raise PermissionDenied('Assessment is Read Only')
+            raise rest_framework.exceptions.PermissionDenied(detail="Assessment is Read Only")
 
     def update(self, request, *args, **kwargs):
         self.is_read_only(request)
