@@ -6,6 +6,7 @@ var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Moment = require('moment')
 var Table = ReactBootstrap.Table
+var Label = ReactBootstrap.Label
 
 var AssessmentList = React.createClass({
   propTypes: {
@@ -21,6 +22,7 @@ var AssessmentList = React.createClass({
             <th>#</th>
             <th>Created Date</th>
             <th>Template</th>
+            <th>Status</th>
             <th className={this.props.showTeams ? '' : 'hidden'}>Team</th>
           </tr>
         </thead>
@@ -35,6 +37,7 @@ var AssessmentList = React.createClass({
                   <td><a href={assessmentUrl}>{assessment.id}</a></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
                   <td>{assessment.template.name}</td>
+                  <td><Label bsStyle='primary'>{assessment.status}</Label></td>
                   <td className={this.props.showTeams ? '' : 'hidden'}>
                     <a href={'/team/' + assessment.team.id + '/'}>{assessment.team.name}</a>
                   </td>

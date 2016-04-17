@@ -12,8 +12,6 @@ var NavItem = ReactBootstrap.NavItem
 var Grid = ReactBootstrap.Grid
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
-var Modal = ReactBootstrap.Modal
-var Button = ReactBootstrap.Button
 var Pager = ReactBootstrap.Pager
 var PageItem = ReactBootstrap.PageItem
 var Glyphicon = ReactBootstrap.Glyphicon
@@ -221,9 +219,9 @@ var AttributeList = React.createClass({
     return (
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
-            <PageHeader>
-              {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''} <Label>{this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}</Label></small>
-            </PageHeader>
+          <PageHeader>
+            {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''} <Label>{this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}</Label></small>
+          </PageHeader>
           <Grid fluid>
             <Row>
               <Col className='attribute-content' xs={12} md={10} lg={9}>
