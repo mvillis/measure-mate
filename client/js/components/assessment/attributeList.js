@@ -249,7 +249,7 @@ var AttributeList = React.createClass({
                   {attributeNodes}
                   {summaryNode}
                   <br></br>
-                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone}/>
+                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location}/>
                 </Nav>
               </Col>
             </Row>
