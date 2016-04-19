@@ -4,6 +4,8 @@ var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var _ = require('lodash')
+var FinaliseAssessment = require('./finaliseAssessment')
+var AppAlert = require('../common/appAlert')
 var PageHeader = ReactBootstrap.PageHeader
 var Nav = ReactBootstrap.Nav
 var NavItem = ReactBootstrap.NavItem
@@ -13,6 +15,7 @@ var Col = ReactBootstrap.Col
 var Pager = ReactBootstrap.Pager
 var PageItem = ReactBootstrap.PageItem
 var Glyphicon = ReactBootstrap.Glyphicon
+var Label = ReactBootstrap.Label
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Loader = require('react-loader')
 var $ = require('jquery')
@@ -32,7 +35,10 @@ var AttributeList = React.createClass({
       assessment: null,
       initialLoad: false,
       measureSyncActivity: false,
-      dirtyObservation: {}
+      dirtyObservation: {},
+      showAlert: false,
+      alertDetail: '',
+      alertType: ''
     }
   },
   contextTypes: {
@@ -59,8 +65,19 @@ var AttributeList = React.createClass({
     }, this.dataSource('/api/templates/' + data.template.id + '/', this.templateCallback)
     )
   },
+  handleAlertHide () {
+    this.setState({ showAlert: false })
+  },
   handleSubmitFailure: function (xhr, ajaxOptions, thrownError) {
-    console.error('There was a failure')
+    console.log(thrownError)
+    console.log(xhr.responseJSON.detail)
+    console.log(ajaxOptions)
+    this.setState({
+      measureSyncActivity: false,
+      showAlert: true,
+      alertType: thrownError,
+      alertDetail: xhr.responseJSON.detail
+    })
   },
   dataSource: function (url, callback) {
     $.ajax({
@@ -103,6 +120,24 @@ var AttributeList = React.createClass({
       data: JSON.stringify(postData),
       dataType: 'json',
       success: this.measurementUpdateCallback,
+      error: this.handleSubmitFailure
+    })
+  },
+  markAssessmentDone: function () {
+    var data = this.state.assessment
+    data.status = 'DONE'
+    $.ajax({
+      context: this,
+      url: '/api/assessments/' + this.state.assessment.id + '/',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data: JSON.stringify(data),
+      type: 'PUT',
+      cache: true,
+      success: function (output) {
+        console.log('This was successful')
+        this.setState({assessment: data})
+      }.bind(this),
       error: this.handleSubmitFailure
     })
   },
@@ -185,7 +220,7 @@ var AttributeList = React.createClass({
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
           <PageHeader>
-            {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''}</small>
+            {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''} <Label>{this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}</Label></small>
           </PageHeader>
           <Grid fluid>
             <Row>
@@ -194,7 +229,8 @@ var AttributeList = React.createClass({
                   template: this.state.template,
                   measurements: this.state.measurements,
                   syncMeasurement: this.syncMeasurement,
-                  measureSyncActivity: this.state.measureSyncActivity
+                  measureSyncActivity: this.state.measureSyncActivity,
+                  disabled: (this.state.assessment && this.state.assessment.status === 'DONE')
                 })}
                 <Pager>
                   <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
@@ -210,11 +246,14 @@ var AttributeList = React.createClass({
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
                   {summaryNode}
+                  <br></br>
+                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location}/>
                 </Nav>
               </Col>
             </Row>
           </Grid>
         </Loader>
+        <AppAlert showAlert={this.state.showAlert} alertType={this.state.alertType} alertDetail={this.state.alertDetail} handleHide={this.handleAlertHide}/>
       </div>
     )
   }

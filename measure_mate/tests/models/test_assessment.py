@@ -1,7 +1,9 @@
+from django.core.exceptions import PermissionDenied
 from django.test import TestCase
 
 from measure_mate.tests.factories import AssessmentFactory, TagFactory
 from measure_mate.models import Assessment
+
 
 class AssessmentTestCases(TestCase):
 
@@ -9,4 +11,3 @@ class AssessmentTestCases(TestCase):
         assessment1 = AssessmentFactory()
         assessment2 = AssessmentFactory()
         self.assertEqual(assessment2, Assessment.objects.first())
-        
