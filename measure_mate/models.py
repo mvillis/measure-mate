@@ -1,4 +1,7 @@
+from django.core.exceptions import PermissionDenied
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
 class Template(models.Model):
@@ -77,14 +80,26 @@ class Team(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Assessment(models.Model):
     class Meta:
         verbose_name_plural = "Assessments"
         ordering = ['-pk']
 
+    STATUS_CHOICES = (
+        ('TODO', 'To Do'),
+        ('DONE', 'Done'),
+    )
+
     id = models.AutoField(primary_key=True, verbose_name="Assessment ID")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    status = models.CharField(
+        max_length=128,
+        choices=STATUS_CHOICES,
+        default='TODO',
+        blank=False,
+    )
     template = models.ForeignKey(Template, related_name="assessments")
     team = models.ForeignKey(Team, related_name="assessments")
 

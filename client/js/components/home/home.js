@@ -16,8 +16,8 @@ var Home = React.createClass({
         <Row>
           <Col md={6}>
             <Jumbotron>
-              <h1>Welcome to LaundroMAT</h1>
-              <p>A tool to track maturity assessments for your team.</p>
+              <h1 className='logo-text'>LaundroMAT</h1>
+              <p className='logo-slogan-text'>A tool to track maturity assessments for your team.</p>
             </Jumbotron>
           </Col>
           <Col md={6}>

@@ -13,7 +13,8 @@ var ObserveInput = React.createClass({
     syncMeasurement: React.PropTypes.func.isRequired,
     onObservationChange: React.PropTypes.func.isRequired,
     onActionChange: React.PropTypes.func.isRequired,
-    attributeId: React.PropTypes.number
+    attributeId: React.PropTypes.number,
+    disabled: React.PropTypes.bool
   },
   getInitialState: function () {
     return {
@@ -134,11 +135,13 @@ var ObserveInput = React.createClass({
           ref='observeInput'
           value={this.state.observations}
           onChange={this.onObservationChange}
+          disabled={this.props.disabled}
         />
         <Input type='textarea' rows='3' label='Action' placeholder='Record actions you can take to improve your current practices.'
           ref='actionInput'
           value={this.state.action}
           onChange={this.onActionChange}
+          disabled={this.props.disabled}
         />
         <Button ref='obsSaveBtn'
           disabled={this.state.saveBtnDisabled}

@@ -19,6 +19,7 @@ var Rating = React.createClass({
     saveMeasurement: React.PropTypes.func.isRequired,
     rating: React.PropTypes.object
   },
+
   render: function () {
     var ratingActive = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating === this.props.rating.id) : false
     var targetActive = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating === this.props.rating.id) : false

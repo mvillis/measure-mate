@@ -1,5 +1,6 @@
 from rest_framework import viewsets, generics, filters, status
 from rest_framework.response import Response
+import rest_framework.exceptions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -74,12 +75,25 @@ class AssessmentViewSet(viewsets.ModelViewSet):
     filter_fields = ('team__id', 'team__name', 'template__id', 'template__name')
     ordering_fields = ('id', 'created', 'updated', 'template', 'team')
 
+    def is_read_only(self, request):
+        old_assessment = Assessment.objects.get(pk=request.data.get('id'))
+        if old_assessment.status == "DONE" and not request.user.is_superuser:
+            raise rest_framework.exceptions.PermissionDenied(detail="Assessment is Read Only")
+
+    def update(self, request, *args, **kwargs):
+        self.is_read_only(request)
+        return super(AssessmentViewSet, self).update(request, *args, **kwargs)
+
     def create(self, request, *args, **kwargs):
         serializer = AssessmentCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def destroy(self, request, *args, **kwargs):
+        self.is_read_only(request)
+        return super(AssessmentViewSet, self).destroy(request, *args, **kwargs)
 
 
 class MeasurementViewSet(viewsets.ModelViewSet):
@@ -90,6 +104,23 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     serializer_class = MeasurementCreateSerializer
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
+
+    def is_read_only(self, request):
+        old_assessment = Assessment.objects.get(pk=request.data.get('assessment'))
+        if old_assessment.status == "DONE" and not request.user.is_superuser:
+            raise rest_framework.exceptions.PermissionDenied(detail="Assessment is Read Only")
+
+    def update(self, request, *args, **kwargs):
+        self.is_read_only(request)
+        return super(MeasurementViewSet, self).update(request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        self.is_read_only(request)
+        return super(MeasurementViewSet, self).create(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        self.is_read_only(request)
+        return super(MeasurementViewSet, self).destroy(request, *args, **kwargs)
 
 
 class TeamViewSet(viewsets.ModelViewSet):

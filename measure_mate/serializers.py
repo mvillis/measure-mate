@@ -73,7 +73,7 @@ class AssessmentCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Assessment
-        fields = ('id', 'created', 'updated', 'template', 'team')
+        fields = ('id', 'created', 'updated', 'template', 'team', 'status')
 
 
 class AssessmentSimpleSerializer(serializers.ModelSerializer):
@@ -98,4 +98,3 @@ class TeamCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags')
-

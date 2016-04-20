@@ -13,7 +13,8 @@ var cssDestination = dest + '/css'
 var assetsSource = src + '/assets/**'
 var assetsDestination = dest + '/assets'
 var fontsSource = [
-  'node_modules/bootstrap/dist/fonts/**'
+  'node_modules/bootstrap/dist/fonts/**',
+  'client/fonts/**'
 ]
 var fontsDestination = dest + '/fonts'
 var imagesSource = src + '/assets/img/**/*.{gif,jpg,jpeg,tiff,png,svg}'
