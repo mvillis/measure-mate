@@ -199,7 +199,7 @@ var AssessmentReport = React.createClass({
 
     return (
       <div className='assessment-report'>
-        <PlotlyComponent data={data} layout={layout} config={config}/>
+        <PlotlyComponent data={data} layout={layout} config={config} />
         {summaryTable}
       </div>
     )
