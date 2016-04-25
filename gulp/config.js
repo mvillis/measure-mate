@@ -89,6 +89,12 @@ module.exports = {
     production: production
   },
 
+  build: {
+    production: production,
+    prod_tasks: ['browserify', 'css', 'fonts', 'assets', 'templates'],
+    test_tasks: ['browserify', 'css', 'fonts', 'assets', 'templates', 'lint', 'lintCss', 'markdownlint', 'test']
+  },
+
   templates: {
     // *Note* templates don't use the common src
     src: templatesSource,
@@ -120,10 +126,14 @@ module.exports = {
   },
 
   test: {
-    src: './client/**/*test.js',
+    src: './client/js/**/*.js',
+    testSrc: './client/**/*test.js',
     mochaOptions: {
       'ui': 'bdd',
       'reporter': 'spec'
+    },
+    istanbulReportOptions: {
+      reporters: [ 'lcov' ]
     }
   },
 
