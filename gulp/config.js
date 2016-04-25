@@ -1,8 +1,8 @@
 var util = require('gulp-util')
 var production = !!util.env.production
 
-var dest = "build"
-var src = "client"
+var dest = 'build'
+var src = 'client'
 
 var cssSource = [
   'node_modules/bootstrap/dist/css/bootstrap.min.css',
@@ -60,8 +60,8 @@ module.exports = {
     dest: cssDestination,
     production: production,
     uglifyOptions: {
-      "maxLineLen": 80,
-      "uglyComments": true
+      'maxLineLen': 80,
+      'uglyComments': true
     }
   },
 
@@ -97,7 +97,7 @@ module.exports = {
 
   browserify: {
     // Additional file extentions to make optional
-    //extensions: ['.coffee', '.hbs'],
+    // extensions: ['.coffee', '.hbs'],
     extensions: [' ', 'js', 'jsx'],
 
     // A separate bundle will be generated for each

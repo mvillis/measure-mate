@@ -86,5 +86,14 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^3.4.0"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-register": "^6.4.3",
+    "chai": "^3.5.0",
+    "enzyme": "^2.0.0",
+    "jsdom": "^8.0.1",
+    "mocha": "^2.4.5",
+    "react-addons-test-utils": "^0.14.7"
   }
 }
