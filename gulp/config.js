@@ -133,7 +133,7 @@ module.exports = {
       'reporter': 'spec'
     },
     istanbulReportOptions: {
-      reporters: [ 'lcov' ]
+      reporters: [ 'lcov', 'json' ]
     }
   },
 

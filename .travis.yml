@@ -9,9 +9,11 @@ install:
   - pip install -r requirements/local.txt
   - pip install coveralls
   - python manage.py collectstatic --no-input
+  - gem install coveralls-lcov
 before_script:
   - "export DATABASE_URL=sqlite:///:memory"
 script:
-  coverage run manage.py test
+  - coverage run manage.py test
 after_success:
-  coveralls
+  - coveralls-lcov -v -n ./coverage/lcov.info > coverage.json
+  - "coveralls --merge=coverage.json"
