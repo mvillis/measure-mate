@@ -83,9 +83,14 @@ Testing
 -------
 
 ```bash
+# python
 export DJANGO_SETTINGS_MODULE=measure_mate.settings.dev
 python manage.py collectstatic
 python manage.py test
+
+# javascript
+gulp test
+
 ```
 
 Coverage
@@ -94,8 +99,12 @@ Coverage
 This assumes that the env settings from the Testing section are still in place.
 
 ```bash
+# python
 coverage run manage.py test
 coverage report -m
+
+# javascript
+gulp test #look for report in ./coverage/lcov-report/index.html
 ```
 
 Running (locally)
