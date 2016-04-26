@@ -23,6 +23,7 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route component={Header}>
       <Route path='/' component={Home}/>
+      <Route path='/about' component={About}/>
       <Route path='/assessment/list' component={AssessmentTable}/>
       <Route path='/' component={Home} />
       <Route path='/assessment/:assessmentId' component={AttributeList}>
