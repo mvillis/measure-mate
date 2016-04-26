@@ -2,7 +2,6 @@
 
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
-var Panel = ReactBootstrap.Panel
 var Grid = ReactBootstrap.Grid
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
