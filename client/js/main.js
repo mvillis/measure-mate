@@ -17,12 +17,14 @@ var AssessmentTable = require('./components/assessment/assessmentTable')
 var Team = require('./components/team/team')
 var TeamTable = require('./components/team/teamTable')
 var NotFoundPage = require('./components/notFoundPage')
+var About = require('./components/common/about')
 
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route component={Header}>
       <Route path='/' component={Home}/>
       <Route path='/assessment/list' component={AssessmentTable}/>
+      <Route path='/' component={Home} />
       <Route path='/assessment/:assessmentId' component={AttributeList}>
         <IndexRoute component={Intro}/>
         <Route path='/assessment/:assessmentId/summary' component={Summary}/>
