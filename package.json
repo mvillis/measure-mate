@@ -12,7 +12,8 @@
     "url": "https://github.com/mvillis/measure-mate/issues"
   },
   "scripts": {
-    "postinstall": "gulp build --production"
+    "postinstall": "gulp build --production",
+    "test": "gulp test"
   },
   "browserify": {
     "transform": [

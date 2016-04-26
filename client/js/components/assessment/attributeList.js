@@ -199,7 +199,7 @@ var AttributeList = React.createClass({
       var attributeNodes = this.state.template.attributes.map(function (attribute, i) {
         var measurement = this.getMeasurementForAttribute(attribute)
         var completeMeasurement = measurement && measurement.rating && measurement.target_rating
-        var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' tabClassName='text-success'/> : <Glyphicon glyph='minus' />
+        var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' tabClassName='text-success' /> : <Glyphicon glyph='minus' />
         return (
           <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}}>
             <NavItem activeClassName='active' eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
@@ -211,7 +211,7 @@ var AttributeList = React.createClass({
         if (!this.state.template) return (undefined)
         return (
           <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
-            <NavItem activeClassName='active' eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats'/> Summary</NavItem>
+            <NavItem activeClassName='active' eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
           </LinkContainer>
         )
       }.bind(this)()
@@ -247,13 +247,13 @@ var AttributeList = React.createClass({
                   {attributeNodes}
                   {summaryNode}
                   <br></br>
-                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location}/>
+                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location} />
                 </Nav>
               </Col>
             </Row>
           </Grid>
         </Loader>
-        <AppAlert showAlert={this.state.showAlert} alertType={this.state.alertType} alertDetail={this.state.alertDetail} handleHide={this.handleAlertHide}/>
+        <AppAlert showAlert={this.state.showAlert} alertType={this.state.alertType} alertDetail={this.state.alertDetail} handleHide={this.handleAlertHide} />
       </div>
     )
   }
