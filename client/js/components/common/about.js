@@ -16,9 +16,9 @@ var About = React.createClass({
           <Col md={3} />
           <Col md={6}>
             <Jumbotron>
-              <Panel bsStyle='success'>
-                <p className='text-center'>This site is based on the <a href='https://github.com/mvillis/measure-mate'>Measure Mate project.</a></p>
-              </Panel>
+              <p className='logo-slogan-text'>This site is based on the <a href='https://github.com/mvillis/measure-mate'>Measure Mate project.</a></p>
+            </Jumbotron>
+            <Jumbotron>
               <img src='/static/assets/img/measure_mate_plain_optim.svg' className='logo'></img>
               <h1 className='logo-text'>Measure Mate!</h1>
               <p className='logo-slogan-text'>A tool to track maturity assessments for your team.</p>
