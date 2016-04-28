@@ -1,9 +1,9 @@
-Django==1.9.4
+Django==1.9.5
 djangorestframework==3.3.3
 django-filter==0.13.0
 django-crispy-forms==1.6.0
 pyver==1.0.38
-dj-database-url==0.4.0
+dj-database-url==0.4.1
 wsgiref==0.1.2
 opbeat==3.2
 django-rest-swagger==0.3.5
@@ -13,4 +13,3 @@ whitenoise==3.0
 django-excel==0.0.4
 pyexcel-xls==0.1.0
 pyexcel-xlsx==0.1.0
-django-htmlmin==0.9.1

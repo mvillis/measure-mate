@@ -1,3 +1,22 @@
+.logo-slogan-text {
+  font-family: newscycle;
+  text-align: center;
+}
+
+.logo-text {
+  font-family: autour;
+  text-align: center;
+}
+
+.navbar-brand {
+  font-family: autour;
+}
+
+.logo {
+  height:100%;
+  width:100%;
+}
+
 .help-block {
   font-style: italic;
   color: #999;
@@ -57,4 +76,14 @@
 
 .active {
   font-weight: bold;
+}
+
+@font-face {
+  font-family: autour;
+  src: url("/static/fonts/AutourOne-Regular.ttf");
+}
+
+@font-face {
+  font-family: newscycle;
+  src: url("/static/fonts/NewsCycle-Regular.ttf");
 }

@@ -26,7 +26,7 @@ var Summary = React.createClass({
     return (
       <Panel header='Summary' bsStyle='primary'>
         <Alert bsStyle='warning'>
-          How did you go? Where are you strengths and weaknesses? What are some improvements you could make?
+          How did you go? What improvements can your team make?
         </Alert>
         <AssessmentReport
           eventKey={this.props.template ? this.props.template.attributes.length + 1 : null}

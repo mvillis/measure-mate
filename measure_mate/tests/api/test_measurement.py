@@ -1,6 +1,7 @@
 import datetime
 from time import timezone
 
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -134,6 +135,38 @@ class MeasurementAPITestCases(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Measurement.objects.count(), 1)
 
+    def test_create_measurement_fail_assessment_read_only(self):
+        """
+        Ensure we cannot create a new measurement when the assessment is read only
+        """
+        assessment = AssessmentFactory(status="DONE")
+        rating = RatingFactory()
+        url = reverse('measurement-list')
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+                "observations": None, "action": "456"}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Measurement.objects.count(), 0)
+
+    def test_create_measurement_success_assessment_read_only_super_user(self):
+        """
+        Ensure we can create a new measurement when the assessment is read only and superuser
+        """
+
+        password = 'mypassword'
+        my_admin = User.objects.create_superuser('myuser', 'myemail@test.com', password)
+
+        self.client.login(username=my_admin.username, password=password)
+
+        assessment = AssessmentFactory(status="DONE")
+        rating = RatingFactory()
+        url = reverse('measurement-list')
+        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+                "observations": None, "action": "456"}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Measurement.objects.count(), 1)
+
     def test_update_measurement(self):
         """
         Ensure we can update an existing measurement object.
@@ -171,6 +204,43 @@ class MeasurementAPITestCases(APITestCase):
         self.assertEqual(response.data['id'], measurement.id)
         self.assertEqual(response.data['target_rating'], target_rating.id)
 
+    def test_cannot_update_measurement_when_assessment_is_read_only(self):
+        """
+        Ensure we cannot update an existing measurement object when assessment is read only
+        """
+        assessment = AssessmentFactory(status="DONE")
+        rating = RatingFactory()
+        target_rating = RatingFactory()
+        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+
+        url = reverse('measurement-detail', args=(measurement.id,))
+        data = {"id": measurement.id, "assessment": assessment.id,
+                "rating": rating.id, "target_rating": target_rating.id,
+                "observations": "123", "action": "456"}
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_can_update_measurement_when_assessment_is_read_only_and_super_user(self):
+        """
+        Ensure we can update an existing measurement object when assessment is read only and you are superuser
+        """
+        assessment = AssessmentFactory(status="DONE")
+        rating = RatingFactory()
+        target_rating = RatingFactory()
+        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+
+        password = 'mypassword'
+        my_admin = User.objects.create_superuser('myuser', 'myemail@test.com', password)
+
+        self.client.login(username=my_admin.username, password=password)
+
+        url = reverse('measurement-detail', args=(measurement.id,))
+        data = {"id": measurement.id, "assessment": assessment.id,
+                "rating": rating.id, "target_rating": target_rating.id,
+                "observations": "123", "action": "456"}
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_create_measurement_blank_action(self):
         """
         Ensure we can create a new measurement object with a "" action.
@@ -197,3 +267,41 @@ class MeasurementAPITestCases(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Measurement.objects.count(), 1)
 
+    def test_cannot_delete_measurement_when_assessment_is_read_only(self):
+        """
+        Ensure we cannot delete an existing measurement object when assessment is read only
+        """
+        assessment = AssessmentFactory(status="DONE")
+        rating = RatingFactory()
+        target_rating = RatingFactory()
+        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+
+        url = reverse('measurement-detail', args=(measurement.id,))
+        data = {"id": measurement.id, "assessment": assessment.id,
+                "rating": rating.id, "target_rating": target_rating.id,
+                "observations": "123", "action": "456"}
+        response = self.client.delete(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(Measurement.objects.count(), 1)
+
+    def test_can_delete_measurement_when_assessment_is_read_only_and_super_user(self):
+        """
+        Ensure we can delete an existing measurement object when assessment is read only and you are superuser
+        """
+        assessment = AssessmentFactory(status="DONE")
+        rating = RatingFactory()
+        target_rating = RatingFactory()
+        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+
+        password = 'mypassword'
+        my_admin = User.objects.create_superuser('myuser', 'myemail@test.com', password)
+
+        self.client.login(username=my_admin.username, password=password)
+
+        url = reverse('measurement-detail', args=(measurement.id,))
+        data = {"id": measurement.id, "assessment": assessment.id,
+                "rating": rating.id, "target_rating": target_rating.id,
+                "observations": "123", "action": "456"}
+        response = self.client.delete(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Measurement.objects.count(), 0)
