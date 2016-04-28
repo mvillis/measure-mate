@@ -49,14 +49,14 @@ var Team = React.createClass({
           <div className='col-sm-6'>
             <Panel header='Team' bsStyle='primary'>
               <Loader scale={0.25} top='10' loaded={this.state.loaded}>
-                <TeamDetails team={this.state.team}/>
+                <TeamDetails team={this.state.team} />
               </Loader>
             </Panel>
           </div>
           <div className='col-sm-6 push-right'>
             <Panel header='Create Assessment' bsStyle='info'>
               <div className='container-fluid'>
-                <AssessmentCreationForm teamId={teamId}/>
+                <AssessmentCreationForm teamId={teamId} />
               </div>
             </Panel>
           </div>
@@ -64,7 +64,7 @@ var Team = React.createClass({
         <div className='row'>
           <div className='container-fluid'>
             <Panel header='Assessments' bsStyle='info'>
-              <AssessmentTable teamId={teamId}/>
+              <AssessmentTable teamId={teamId} />
             </Panel>
           </div>
         </div>

@@ -1,4 +1,4 @@
-p.logo-slogan-text {
+.logo-slogan-text {
   font-family: newscycle;
   text-align: center;
 }
@@ -13,7 +13,7 @@ p.logo-slogan-text {
 }
 
 .logo {
-  heght:100%;
+  height:100%;
   width:100%;
 }
 

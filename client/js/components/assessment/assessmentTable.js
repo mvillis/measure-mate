@@ -39,7 +39,7 @@ var AssessmentTable = React.createClass({
     return (
       <div>
         <Loader loaded={this.state.loaded}>
-          <AssessmentList data={this.state.data} showTeams={!this.props.teamId}/>
+          <AssessmentList data={this.state.data} showTeams={!this.props.teamId} />
         </Loader>
       </div>
     )

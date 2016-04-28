@@ -91,7 +91,7 @@ var Attribute = React.createClass({
     if (this.state.attribute !== null) {
       var ratingList = this.state.attribute.ratings.map(function (rating) {
         return (
-          <Rating measurement={this.state.measurement} key={rating.id} rating={rating} saveMeasurement={this.saveMeasurement} assessId={this.props.params.assessmentId}/>
+          <Rating measurement={this.state.measurement} key={rating.id} rating={rating} saveMeasurement={this.saveMeasurement} assessId={this.props.params.assessmentId} />
         )
       }.bind(this))
     }
@@ -101,8 +101,8 @@ var Attribute = React.createClass({
         <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
           {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
         </Alert>
-        <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} onActionChange={this.onActionChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null} disabled={this.props.disabled}/>
-        <Loader loaded={!this.props.measureSyncActivity}/>
+        <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} onActionChange={this.onActionChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null} disabled={this.props.disabled} />
+        <Loader loaded={!this.props.measureSyncActivity} />
         <ListGroup fill>
           {ratingList}
         </ListGroup>

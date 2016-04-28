@@ -37,7 +37,7 @@ var TeamList = React.createClass({
                     <a href={teamUrl}>{team.id}</a>
                   </td>
                   <td>{team.name}</td>
-                  <td className='wrap'><TagList tags={team.tags}/></td>
+                  <td className='wrap'><TagList tags={team.tags} /></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
                 </tr>
               </LinkContainer>

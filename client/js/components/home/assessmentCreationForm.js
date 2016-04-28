@@ -79,7 +79,7 @@ var AssessmentCreationForm = React.createClass({
         </div>
         <div className='form-group'>
           <div className='col-xs-2 col-xs-offset-2'>
-            <input className='btn btn-default btn-primary' type='submit' value='Launch' onClick={this.handleSubmit}/>
+            <input className='btn btn-default btn-primary' type='submit' value='Launch' onClick={this.handleSubmit} />
           </div>
         </div>
       </form>
