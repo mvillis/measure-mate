@@ -29,16 +29,19 @@ var Header = React.createClass({
               <LinkContainer to={{pathname: '/team/list'}}>
                 <NavItem eventKey={1}>Teams</NavItem>
               </LinkContainer>
+              <LinkContainer to={{pathname: '/assessment/list'}}>
+                <NavItem eventKey={2}>Assessments</NavItem>
+              </LinkContainer>
             </Nav>
             <Nav pullRight>
               <LinkContainer to={{pathname: '/admin'}}>
-                <NavItem eventKey={2}>Admin</NavItem>
+                <NavItem eventKey={3}>Admin</NavItem>
               </LinkContainer>
               <LinkContainer to={{pathname: '/export'}}>
-                <NavItem eventKey={3}>Export</NavItem>
+                <NavItem eventKey={4}>Export</NavItem>
               </LinkContainer>
               <LinkContainer to={{pathname: '/about'}}>
-                <NavItem eventKey={4}>About</NavItem>
+                <NavItem eventKey={5}>About</NavItem>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>
