@@ -34,8 +34,14 @@ var Header = React.createClass({
               </LinkContainer>
             </Nav>
             <Nav pullRight>
+              <LinkContainer to={{pathname: '/admin'}}>
+                <NavItem eventKey={3}>Admin</NavItem>
+              </LinkContainer>
+              <LinkContainer to={{pathname: '/export'}}>
+                <NavItem eventKey={4}>Export</NavItem>
+              </LinkContainer>
               <LinkContainer to={{pathname: '/about'}}>
-                <NavItem eventKey={3}>About</NavItem>
+                <NavItem eventKey={5}>About</NavItem>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>

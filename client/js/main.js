@@ -19,6 +19,24 @@ var TeamTable = require('./components/team/teamTable')
 var NotFoundPage = require('./components/notFoundPage')
 var About = require('./components/common/about')
 
+var ReactRedirect = require('react-redirect')
+
+var Admin = React.createClass({
+  render: function () {
+    return (
+      <ReactRedirect location='/admin/' />
+    )
+  }
+})
+
+var Export = React.createClass({
+  render: function () {
+    return (
+      <ReactRedirect location='/export/' />
+    )
+  }
+})
+
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route component={Header}>
@@ -32,6 +50,8 @@ ReactDOM.render(
       </Route>
       <Route path='/team/list' component={TeamTable} />
       <Route path='/team/:teamId' component={Team} />
+      <Route path='/admin' component={Admin} />
+      <Route path='/export' component={Export} />
       <Route status={404} path='*' component={NotFoundPage} />
     </Route>
   </Router>,
