@@ -91,6 +91,7 @@
     "fields": {
       "attribute": 201,
       "name": "Poor",
+      "colour": "Red",
       "rank": 1,
       "desc": "Changes are made by multiple team members simultaneously without any effort to maintain versions or track who made what change and when.\r\nIf version control exists, it usually performed by individuals who need the structure to organize the activities they are responsible for.\r\nThere is no means for a team to roll back to a previous working version.\r\n"
     },
@@ -101,6 +102,7 @@
     "fields": {
       "attribute": 201,
       "name": "Basic",
+      "colour": "#FF4400",
       "rank": 2,
       "desc": "Version control is recognised as required to maintain stability of the product and is used to manage main development artifacts as source code, build scripts and unit tests.\r\nSimultaneous updates to artifacts is difficult and results in conflicts.\r\nMaintenance and tracking of changes is not enforced.\r\nUncontrolled branching and versioning is common.\r\nThe repository usually sits on an unmanaged machine.\r\n"
     },
@@ -111,6 +113,7 @@
     "fields": {
       "attribute": 201,
       "name": "Alright",
+      "colour": "Orange",
       "rank": 3,
       "desc": "The version control system is used consistently for managing some artifacts.\r\nVersioning of items requires the knowledge of key individuals who understand how the VCS works.\r\nMore items are identified as requiring version control, but heavy reliance on manual processes prevents this from happening.\r\nFrequency of check-ins varies and may be lengthy.\r\nThere are systematic ways to resolve conflicts when they occur.\r\nThere are standards for creating branches, which may be based on releases or some other time based factor.\r\nThere are standards the team should follow for using the version control system, but these are not enforced.\r\nDistributed teams maintain separate repositories.\r\nThe repository is on managed server and may be backed up."
     },
@@ -121,6 +124,7 @@
     "fields": {
       "attribute": 201,
       "name": "Good",
+      "colour": "#FFBB11",
       "rank": 4,
       "desc": "All items required for configuring all environments are identified.\r\nA single tool set for product configuration management has been determined and there is an effort to move all delivery artifacts into version control.\r\nTest scripts, libraries and dependencies are managed.\r\nAll team members are checking in on a regular, frequent basis.\r\nThe entire team respects the integrity of the repository.\r\nBranches are created only to support releases.\r\nRepository can be reproduced if it crashes."
     },
@@ -131,6 +135,7 @@
     "fields": {
       "attribute": 201,
       "name": "Very Good",
+      "colour": "Yellow",
       "rank": 5,
       "desc": "All configuration artifacts are identified, managed and versioned together.\r\nChanges to dependant systems are pull based.\r\nAny team member can create new and retrieve previous versions successfully as required to deploy to any environment.\r\nThe standard is to develop code on the main trunk.\r\nBranches are created rarely and are short lived.\r\nCheck-ins occur multiple times each day.\r\nDistributed teams work against a single repository.\r\nEnvironment specifications are managed and versioned along with all other artifacts."
     },
@@ -141,6 +146,7 @@
     "fields": {
       "attribute": 201,
       "name": "Excellent",
+      "colour": "Green",
       "rank": 6,
       "desc": "The change management policy is frequently validated as supporting rapid and reliable release.\r\nThe team changes practice and items as the product continues to evolve.\r\nNew versioning tools are assessed and implemented to meet the evolving need of the product release practices.\r\nTrunk based development is the standard practice and the team manages releases and features without resorting to branches.\r\nThe repository is virtual and easily accessed by all team members, regardless of their location."
     },
@@ -151,6 +157,7 @@
     "fields": {
       "attribute": 202,
       "name": "Poor",
+      "colour": "Red",
       "rank": 1,
       "desc": "Discovery of errors made due to incompatibility of the changes happens in production.\r\nNo standards or practice in place to check for compatibility."
     },
@@ -161,6 +168,7 @@
     "fields": {
       "attribute": 202,
       "name": "Basic",
+      "colour": "#FF4400",
       "rank": 2,
       "desc": "Manual builds are lengthy and  often broken at the core functioning level.\r\nIntegration tests are run manually and infrequently and are usually dependent on the knowledge and skill of individuals.\r\nDevelopers continue to work while errors are occurring in the build.\r\nIntegration to other systems is ignored.\r\nFunctional integration within the application occurs late in the release cycle, if at all."
     },
@@ -171,6 +179,7 @@
     "fields": {
       "attribute": 202,
       "name": "Alright",
+      "colour": "Orange",
       "rank": 3,
       "desc": "Infrequent builds on a central server may happen regularly (nightly).\r\nInfrequent commits are made.\r\nBuilds can be recreated from source control but requires the knowledge and skill of key individuals.\r\n"
     },
@@ -181,6 +190,7 @@
     "fields": {
       "attribute": 202,
       "name": "Good",
+      "colour": "#FFBB11",
       "rank": 4,
       "desc": "There is a CI server that runs the build and tests automatically  with each check-in.\r\nThere is use of scripts and other artefacts from a common tool set.\r\nThe build environment is more complex, with efforts to mimic integration with other systems.\r\nThe build status is visible to all.\r\nWhen the build breaks, no further check-ins are allowed until the build is fixed.\r\n"
     },
@@ -191,6 +201,7 @@
     "fields": {
       "attribute": 202,
       "name": "Very Good",
+      "colour": "Yellow",
       "rank": 5,
       "desc": "Build times tracked, made visible and managed.\r\nThe automatic build employs multiple stages of testing with deployment into additional environments for different types of testing.\r\nDifferent types of build are running at varying frequencies and times (E.g.\r\nFast vs.\r\nSlow).\r\nThe team actively manages the build time and their own build environment and is capable of maintaining the build, taking responsibility for this.\r\nCode is maintained to impersonate other systems to enable integration testing.\r\nThe build status is highly visible, along with other metrics.\r\n"
     },
@@ -201,6 +212,7 @@
     "fields": {
       "attribute": 202,
       "name": "Excellent",
+      "colour": "Green",
       "rank": 6,
       "desc": "Each successful build is a release candidate.\r\nFocus is on committing more frequently with increasing confidence in the quality of the product.\r\nThe CI build creates and provisions environments to allow scalability for testing.\r\nTests are run in parallel across multiple machines.\r\nThe build pipeline extends directly into production.\r\n"
     },
@@ -211,6 +223,7 @@
     "fields": {
       "attribute": 203,
       "name": "Poor",
+      "colour": "Red",
       "rank": 1,
       "desc": "Poor"
     },
@@ -221,6 +234,7 @@
     "fields": {
       "attribute": 203,
       "name": "Basic",
+      "colour": "#FF4400",
       "rank": 2,
       "desc": "Basic"
     },
@@ -231,6 +245,7 @@
     "fields": {
       "attribute": 203,
       "name": "Alright",
+      "colour": "Orange",
       "rank": 3,
       "desc": "Alright"
     },
@@ -241,6 +256,7 @@
     "fields": {
       "attribute": 203,
       "name": "Good",
+      "colour": "#FFBB11",
       "rank": 4,
       "desc": "Good"
     },
@@ -251,6 +267,7 @@
     "fields": {
       "attribute": 203,
       "name": "Very Good",
+      "colour": "Yellow",
       "rank": 5,
       "desc": "Very Good"
     },
@@ -261,6 +278,7 @@
     "fields": {
       "attribute": 203,
       "name": "Excellent",
+      "colour": "Green",
       "rank": 6,
       "desc": "Excellent"
     },
@@ -271,6 +289,7 @@
     "fields": {
       "attribute": 204,
       "name": "Poor",
+      "colour": "Red",
       "rank": 1,
       "desc": "Poor"
     },
@@ -281,6 +300,7 @@
     "fields": {
       "attribute": 204,
       "name": "Basic",
+      "colour": "#FF4400",
       "rank": 2,
       "desc": "Basic"
     },
@@ -291,6 +311,7 @@
     "fields": {
       "attribute": 204,
       "name": "Alright",
+      "colour": "Orange",
       "rank": 3,
       "desc": "Alright"
     },
@@ -301,6 +322,7 @@
     "fields": {
       "attribute": 204,
       "name": "Good",
+      "colour": "#FFBB11",
       "rank": 4,
       "desc": "Good"
     },
@@ -311,6 +333,7 @@
     "fields": {
       "attribute": 204,
       "name": "Very Good",
+      "colour": "Yellow",
       "rank": 5,
       "desc": "Very Good"
     },
@@ -321,6 +344,7 @@
     "fields": {
       "attribute": 204,
       "name": "Excellent",
+      "colour": "Green",
       "rank": 6,
       "desc": "Excellent"
     },
@@ -331,6 +355,7 @@
     "fields": {
       "attribute": 205,
       "name": "Poor",
+      "colour": "Red",
       "rank": 1,
       "desc": "Poor"
     },
@@ -341,6 +366,7 @@
     "fields": {
       "attribute": 205,
       "name": "Basic",
+      "colour": "#FF4400",
       "rank": 2,
       "desc": "Basic"
     },
@@ -351,6 +377,7 @@
     "fields": {
       "attribute": 205,
       "name": "Alright",
+      "colour": "Orange",
       "rank": 3,
       "desc": "Alright"
     },
@@ -361,6 +388,7 @@
     "fields": {
       "attribute": 205,
       "name": "Good",
+      "colour": "#FFBB11",
       "rank": 4,
       "desc": "Good"
     },
@@ -371,6 +399,7 @@
     "fields": {
       "attribute": 205,
       "name": "Very Good",
+      "colour": "Yellow",
       "rank": 5,
       "desc": "Very Good"
     },
@@ -381,6 +410,7 @@
     "fields": {
       "attribute": 205,
       "name": "Excellent",
+      "colour": "Green",
       "rank": 6,
       "desc": "Excellent"
     },
@@ -391,6 +421,7 @@
     "fields": {
       "attribute": 206,
       "name": "Poor",
+      "colour": "Red",
       "rank": 1,
       "desc": "Poor"
     },
@@ -401,6 +432,7 @@
     "fields": {
       "attribute": 206,
       "name": "Basic",
+      "colour": "#FF4400",
       "rank": 2,
       "desc": "Basic"
     },
@@ -411,6 +443,7 @@
     "fields": {
       "attribute": 206,
       "name": "Alright",
+      "colour": "Orange",
       "rank": 3,
       "desc": "Alright"
     },
@@ -421,6 +454,7 @@
     "fields": {
       "attribute": 206,
       "name": "Good",
+      "colour": "#FFBB11",
       "rank": 4,
       "desc": "Good"
     },
@@ -431,6 +465,7 @@
     "fields": {
       "attribute": 206,
       "name": "Very Good",
+      "colour": "Yellow",
       "rank": 5,
       "desc": "Very Good"
     },
@@ -441,6 +476,7 @@
     "fields": {
       "attribute": 206,
       "name": "Excellent",
+      "colour": "Green",
       "rank": 6,
       "desc": "Excellent"
     },
@@ -451,6 +487,7 @@
     "fields": {
       "attribute": 207,
       "name": "Poor",
+      "colour": "Red",
       "rank": 1,
       "desc": "Poor"
     },
@@ -461,6 +498,7 @@
     "fields": {
       "attribute": 207,
       "name": "Basic",
+      "colour": "#FF4400",
       "rank": 2,
       "desc": "Basic"
     },
@@ -471,6 +509,7 @@
     "fields": {
       "attribute": 207,
       "name": "Alright",
+      "colour": "Orange",
       "rank": 3,
       "desc": "Alright"
     },
@@ -481,6 +520,7 @@
     "fields": {
       "attribute": 207,
       "name": "Good",
+      "colour": "#FFBB11",
       "rank": 4,
       "desc": "Good"
     },
@@ -491,6 +531,7 @@
     "fields": {
       "attribute": 207,
       "name": "Very Good",
+      "colour": "Yellow",
       "rank": 5,
       "desc": "Very Good"
     },
@@ -501,6 +542,7 @@
     "fields": {
       "attribute": 207,
       "name": "Excellent",
+      "colour": "Green",
       "rank": 6,
       "desc": "Excellent"
     },
@@ -511,6 +553,7 @@
     "fields": {
       "attribute": 208,
       "name": "Poor",
+      "colour": "Red",
       "rank": 1,
       "desc": "Poor"
     },
@@ -521,6 +564,7 @@
     "fields": {
       "attribute": 208,
       "name": "Basic",
+      "colour": "#FF4400",
       "rank": 2,
       "desc": "Basic"
     },
@@ -531,6 +575,7 @@
     "fields": {
       "attribute": 208,
       "name": "Alright",
+      "colour": "Orange",
       "rank": 3,
       "desc": "Alright"
     },
@@ -541,6 +586,7 @@
     "fields": {
       "attribute": 208,
       "name": "Good",
+      "colour": "#FFBB11",
       "rank": 4,
       "desc": "Good"
     },
@@ -551,6 +597,7 @@
     "fields": {
       "attribute": 208,
       "name": "Very Good",
+      "colour": "Yellow",
       "rank": 5,
       "desc": "Very Good"
     },
@@ -561,6 +608,7 @@
     "fields": {
       "attribute": 208,
       "name": "Excellent",
+      "colour": "Green",
       "rank": 6,
       "desc": "Excellent"
     },
