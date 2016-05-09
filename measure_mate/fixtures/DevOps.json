@@ -225,7 +225,7 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Poor"
+      "desc": "Database is a black box to the development team.\r\nComplete control of data and database is performed by an external team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 253
@@ -236,7 +236,7 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Basic"
+      "desc": "Data schema and changes are manual, painful and time consuming.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 254
@@ -247,7 +247,7 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Alright"
+      "desc": "Database changes are scripted and versioned along with the application in production but managed by a different team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 255
@@ -258,7 +258,7 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Good"
+      "desc": "Database changes are performed automatically as part of the deployment and are owned by the team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 256
@@ -269,7 +269,7 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Very Good"
+      "desc": "Database upgrades and rollbacks are automatically tested against production like data.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 257
@@ -280,7 +280,7 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Excellent"
+      "desc": "Automatic feedback loop for DB performance and deployment is in place and used to initiate improvements.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 258
@@ -291,7 +291,7 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Poor"
+      "desc": "There are no separate environments for development and testing.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 259
@@ -302,7 +302,7 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Basic"
+      "desc": "Manually created and configured environments.\r\nDeployment is still mostly manual and requires long working days and overtime by team members to meet deadlines.\r\nThere is high level of coordination required between functional groups on day of release.\r\nLead time to get the test environment may be weeks to months.\r\nAn external group maintains the environments.\r\nEnvironments are shared across teams and products, with no control to prevent conflicts.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 260
@@ -313,7 +313,7 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Alright"
+      "desc": "Repeatable creation and configuration, manual deployment.\r\nStandard artefacts are defined and are created by a combination of manual and automated means.\r\nDev and test environments are available for the exclusive use of the team.\r\nThe environments are not easily replicated and delays occur whenever changes to them are required.\r\nThere may be a production like environment for non functional testing and system level integration tests, but this is still shared with other teams and delays in feedback occur as a result.\r\nRebuilding the environments is dependant on the knowledge and skills of key individuals.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 261
@@ -324,7 +324,7 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Good"
+      "desc": "Automated provisioning with scripted deployments.\r\nThere is still reliance on individual skills to ensure the deployment will work in production.\r\nTest environments are readily available and can be reproduced with manual work and coordination between operational teams.\r\nAccess to a production like environment is restricted to a small group of closely related application teams and delays at this level are unusual.\r\nEveryone has access to a suitable environment to complete their work without delay.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 262
@@ -335,7 +335,7 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Very Good"
+      "desc": "Deployments are automated.\r\nA single artefact per system is deployed to all environments.\r\nFully automated self service use of development and test environments.\r\nRelease plans are automatically produced.\r\nRoot cause analysis performed on all failures.\r\nRollback process is automated.\r\nEnvironment and system health indicators are monitored and reported.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 263
@@ -346,7 +346,7 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Excellent"
+      "desc": "Continuous deployment pipeline capability exists.\r\nEnvironments are easily replicated on demand as required, using a self service model to facilitate the optimal feedback cycle time.\r\nEnvironment provisioning and configuration is fully automated.\r\nEnvironments are reviewed on a regular basis to simplify and optimize the effective use of the technology stack.\r\nProvisioning of environments is scalable to meet fluctuating demands.\r\nMonitoring is used to proactively identify events and correct before degradation or problems occur.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 264
@@ -357,7 +357,7 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Poor"
+      "desc": "Unstructured manual testing follows development.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 265
@@ -368,7 +368,7 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Basic"
+      "desc": "Structured, manual testing follows development.\r\nTesting is a lengthy, bureaucratic process with uncertain outcomes.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 266
@@ -379,7 +379,7 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Alright"
+      "desc": "Some automated tests are developed with stories.\r\nSome level of automated regression test suit is present but may be difficult to maintain.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 267
@@ -390,7 +390,7 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Good"
+      "desc": "Fully automated unit and acceptance tests.\r\nThe latter written with testers.\r\nTesting is part of the development process.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 268
@@ -401,7 +401,7 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Very Good"
+      "desc": "Quality metrics and trends tracked.\r\nNon-functional requirements defined and automatically tested.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 269
@@ -412,7 +412,7 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Excellent"
+      "desc": "New features and defects all go through the same pipeline, with no need to fast track any kind of change.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 270
@@ -423,7 +423,7 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Poor"
+      "desc": "Unable to discern what was done by whom and why other than by oral history.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 271
@@ -434,7 +434,7 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Basic"
+      "desc": "Some effort by individuals is put into tracking changes they have made in an effort to manage their own work.\r\nTool sets vary and there is no centralised source of this information.\r\nKnowledge of change is lost with departure of individuals.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 272
@@ -445,7 +445,7 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Alright"
+      "desc": "Limited traceability from requirements to release exists and usually involves referencing multiple sources of information, some of which are manual.\r\nA lengthy time is required to trace errors to root cause.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 273
@@ -456,7 +456,7 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Good"
+      "desc": "All changes to the product can be traced through a common tool set between teams that includes tracking of approval and test results.\r\nErrors can be easily related to individual changes early in the lifecycle.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 274
@@ -467,7 +467,7 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Very Good"
+      "desc": "All changes and control on any element can be traced end to end.\r\nProduct owner can specify when specific functionality can be released.\r\nRelease notes are generated automatically and can be pulled for any release.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 275
@@ -478,7 +478,7 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Excellent"
+      "desc": "There is complete transparency of what is in each release.\r\nThe product owner is able to determine when release goes into production and it is no longer dependant on the team's capability to deliver.\r\nEvidence of control and decisions made can be generated through automated tool sets used by the product team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 276
@@ -489,7 +489,7 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Poor"
+      "desc": "Siloed teams, requiring heavyweight process and documentation to coordinate between teams.\r\nThis results in little collaboration and local optimisation.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 277
@@ -500,7 +500,7 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Basic"
+      "desc": "Initial, basic Agile adoption, i.e. the business and delivery have started to work together in smaller increments, but the team has handed over the entire responsibility to prioritise to the business.\r\nIncreasing technical debt as the team is tracked by velocity to the detriment of quality.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 278
@@ -511,7 +511,7 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Alright"
+      "desc": "Testers are being engaged earlier in the process to define acceptance criteria as a part of analysis.\r\nTeam velocity now covers analysis, development and testing.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 279
@@ -522,7 +522,7 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Good"
+      "desc": "Early involvement with ops teams, and greater collaboration across the entire delivery lifecycle.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 280
@@ -533,7 +533,7 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Very Good"
+      "desc": "Entire product team has an understanding of the various aspects of the system, i.e. business need, code quality, system quality and operational requirements.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 281
@@ -544,7 +544,7 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Excellent"
+      "desc": "The business capability to submit changes is the limiting factor on what the product team works on.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 282
@@ -555,7 +555,7 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Poor"
+      "desc": "Technical decisions are made ad hoc and there is no vision or long term technical planning.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 283
@@ -566,7 +566,7 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Basic"
+      "desc": "Architects/designers write documents, hand them over and do not consult with project teams.\r\nThey do not worry about implementation details.\r\nProduct selection is made without consideration of how the product will be implemented.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 284
@@ -577,7 +577,7 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Alright"
+      "desc": "Random pockets of collaboration exists with architects/designers with development teams.\r\nOccasional solution prototypes are reviewed with development teams.\r\nTransactional interactions are common - review meetings to ensure the design documents are being followed.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 285
@@ -588,7 +588,7 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Good"
+      "desc": "Open lines of communication exist between architects/designers and delivery teams.\r\nDelivery teams are consulted prior to decisions made on the design.\r\nCommunication is ad hoc and frequent.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 286
@@ -599,7 +599,7 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Very Good"
+      "desc": "Architects/designers spend a portion of their time physically located within the product delivery team.\r\nThere is seamless collaboration and architects/designers are considered part of the team, understanding all aspects required for delivery of the product.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 287
@@ -610,7 +610,7 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Excellent"
+      "desc": "Mechanisms are in place for empowering the product team to make architectural and technology decisions because the technical vision is clear and transparent.\r\nThe Architects/designers are fully engaged with the business to enable business innovation.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 288
