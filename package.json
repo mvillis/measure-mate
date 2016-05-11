@@ -37,7 +37,6 @@
     "gulp-babel-istanbul": "^1.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^2.0.0",
-    "gulp-gzip": "^1.2.0",
     "gulp-imagemin": "^2.3.0",
     "gulp-inject-modules": "^0.1.1",
     "gulp-jshint": "^2.0.0",
