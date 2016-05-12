@@ -137,14 +137,6 @@ module.exports = {
     }
   },
 
-  gzip: {
-    src: './build/**/*.{js,css,map}',
-    dest: dest,
-    gzipConfig: {
-      append: true
-    }
-  },
-
   lintCss: {
     src: [
       'client/css/*.css'

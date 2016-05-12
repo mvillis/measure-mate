@@ -1,6 +1,8 @@
 'use strict'
 
 var React = require('react')
+var ReactRouter = require('react-router')
+var browserHistory = ReactRouter.browserHistory
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
 var Input = ReactBootstrap.Input
@@ -132,7 +134,7 @@ var TeamCreationForm = React.createClass({
       cache: true,
       success: function (newTeam) {
         console.log('created team ' + JSON.stringify(newTeam))
-        window.location = '/team/' + newTeam.id + '/'
+        browserHistory.push('/team/' + newTeam.id)
       },
       error: function (xhr, status, err) {
         var message = 'Team creation failed due to unknown reason. Try again later.'
