@@ -10,7 +10,7 @@ var IndexRoute = ReactRouter.IndexRoute
 var IndexRedirect = ReactRouter.IndexRedirect
 var Header = require('./components/common/header')
 var Home = require('./components/home/home')
-var AttributeList = require('./components/assessment/attributeList')
+var Assessment = require('./components/assessment/assessment')
 var Attribute = require('./components/assessment/attribute')
 var Summary = require('./components/assessment/summary')
 var Intro = require('./components/assessment/intro')
@@ -22,13 +22,13 @@ var About = require('./components/common/about')
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route component={Header}>
-      <Route path='/' component={Home} />
+    <Route path='/' component={Header}>
+      <IndexRoute component={Home} />
       <Route path='about' component={About} />
       <Route path='assessment'>
         <IndexRedirect to='list' />
         <Route path='list' component={AssessmentTable} />
-        <Route path=':assessmentId' component={AttributeList}>
+        <Route path=':assessmentId' component={Assessment}>
           <IndexRedirect to='intro' />
           <Route path='intro' component={Intro} />
           <Route path='summary' component={Summary} />

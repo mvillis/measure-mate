@@ -20,7 +20,7 @@ var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Loader = require('react-loader')
 var $ = require('jquery')
 
-var AttributeList = React.createClass({
+var Assessment = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     location: React.PropTypes.object,
@@ -259,4 +259,4 @@ var AttributeList = React.createClass({
   }
 })
 
-module.exports = AttributeList
+module.exports = Assessment
