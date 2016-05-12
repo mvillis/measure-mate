@@ -7,6 +7,7 @@ var browserHistory = ReactRouter.browserHistory
 var Router = ReactRouter.Router
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute
+var IndexRedirect = ReactRouter.IndexRedirect
 var Header = require('./components/common/header')
 var Home = require('./components/home/home')
 var AttributeList = require('./components/assessment/attributeList')
@@ -23,15 +24,22 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route component={Header}>
       <Route path='/' component={Home} />
-      <Route path='/about' component={About} />
-      <Route path='/assessment/list' component={AssessmentTable} />
-      <Route path='/assessment/:assessmentId' component={AttributeList}>
-        <IndexRoute component={Intro} />
-        <Route path='/assessment/:assessmentId/summary' component={Summary} />
-        <Route path='/assessment/:assessmentId/:attribute' component={Attribute} />
+      <Route path='about' component={About} />
+      <Route path='assessment'>
+        <IndexRedirect to='list' />
+        <Route path='list' component={AssessmentTable} />
+        <Route path=':assessmentId' component={AttributeList}>
+          <IndexRedirect to='intro' />
+          <Route path='intro' component={Intro} />
+          <Route path='summary' component={Summary} />
+          <Route path=':attribute' component={Attribute} />
+        </Route>
       </Route>
-      <Route path='/team/list' component={TeamTable} />
-      <Route path='/team/:teamId' component={Team} />
+      <Route path='team'>
+        <IndexRedirect to='list' />
+        <Route path='list' component={TeamTable} />
+        <Route path=':teamId' component={Team} />
+      </Route>
       <Route status={404} path='*' component={NotFoundPage} />
     </Route>
   </Router>,

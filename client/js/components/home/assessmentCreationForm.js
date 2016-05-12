@@ -1,6 +1,7 @@
 'use strict'
 
 var React = require('react')
+var browserHistory = require('react-router').browserHistory
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
 var TemplateSelect = require('./templateSelect')
@@ -52,8 +53,8 @@ var AssessmentCreationForm = React.createClass({
       data: JSON.stringify(data),
       type: 'POST',
       cache: true,
-      success: function (output) {
-        window.location = '/assessment/' + output.id + '/'
+      success: function (newAssessment) {
+        browserHistory.push('/assessment/' + newAssessment.id)
       },
       error: function (xhr, status, err) {
         var message = 'Launch failed due to unknown reason. Try again later.'
