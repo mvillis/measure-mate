@@ -2,8 +2,7 @@
 
 var React = require('react')
 var expect = require('chai').expect
-var enzyme = require('enzyme')
-var render = enzyme.render
+var render = require('enzyme').render
 var Home = require('../../../../js/components/home/home')
 
 describe('Home Page Component', function () {

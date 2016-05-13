@@ -120,7 +120,8 @@ module.exports = {
     src: [
       'gulpfile.js',
       './client/js/main.js',
-      './client/js/**/*.js'
+      './client/js/**/*.js',
+      './client/test/js/**/*.js'
     ],
     configSrc: '.eslintrc.json'
   },
