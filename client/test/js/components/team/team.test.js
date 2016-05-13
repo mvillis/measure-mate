@@ -7,11 +7,11 @@ var expect = require('chai').expect
 var shallow = require('enzyme').shallow
 var Team = require('../../../../js/components/team/team')
 
-var mocked_params = {'teamId': 1}
+var mockedParams = {'teamId': 1}
 
 describe('Team Page Component', function () {
   it('contains team details', function () {
-    const wrapper = shallow(<Team params={mocked_params} />)
+    const wrapper = shallow(<Team params={mockedParams} />)
 
     expect(wrapper.find(Panel))
     .to
