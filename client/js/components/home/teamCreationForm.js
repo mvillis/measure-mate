@@ -9,6 +9,7 @@ var Input = ReactBootstrap.Input
 var TagSelect = require('./tagSelect')
 var $ = require('jquery')
 var _ = require('lodash')
+var HttpStatus = require('http-status-codes')
 
 var TeamCreationForm = React.createClass({
   getInitialState: function () {
@@ -80,7 +81,16 @@ var TeamCreationForm = React.createClass({
         this.setState({tags: _.uniq(tags), creatingTag: false})
       },
       error: function (xhr, status, err) {
+        console.log(xhr.status + ' ' + xhr.statusText)
+        console.log(xhr.responseText)
         var message = 'Tag creation failed due to unknown reason. Try again later.'
+        if (xhr.status === HttpStatus.BAD_REQUEST) {
+          if (xhr.responseJSON && xhr.responseJSON.name) {
+            message = 'Invalid tag name: ' + xhr.responseJSON.name
+          } else {
+            message = 'Tag creation failed: ' + xhr.responseText
+          }
+        }
         this.showError(message)
       }
     })
