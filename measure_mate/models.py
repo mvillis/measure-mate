@@ -59,7 +59,7 @@ class Tag(models.Model):
         ordering = ['name']
 
     id = models.AutoField(primary_key=True, verbose_name="Tag ID")
-    name = models.CharField(max_length=256, unique=True, verbose_name="Tag Name")
+    name = models.SlugField(unique=True, verbose_name="Tag Name")
 
     def __unicode__(self):
         return self.name
