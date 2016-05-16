@@ -64,6 +64,7 @@ var TeamCreationForm = React.createClass({
     }
     console.log('creating tag ' + JSON.stringify(data))
     this.setState({creatingTag: true})
+    this.showError('')
     $.ajax({
       context: this,
       url: '/api/tags/',
