@@ -97,21 +97,32 @@ var TeamCreationForm = React.createClass({
   },
 
   // FIXME Temporary until react-select fixes allowCreate={true}
-  filterOptions: function (options, filter, currentValues) {
+  filterOptions: function (options, filterValue, currentValues) {
     // ditch existing values
     var filteredOptions = _(options)
         .difference(currentValues)
 
-    if (filter) {
+    if (filterValue) {
+      var potentialTag = filterValue.toLowerCase()
+        .replace(/[^\w-]/g, '_')
+        .replace(/__+/g, '_')
+
       // only the values matching the typed string
       filteredOptions = filteredOptions
-        .filter((o) => RegExp(filter, 'ig').test(o.label))
+        .filter((o) => RegExp(potentialTag, 'ig').test(o.label))
 
       // if the typed string doesn't exactly match an existing tag...
-      if (!filteredOptions.find((o) => o.label === filter)) {
+      if (!filteredOptions.find((o) => o.label.toLowerCase() === potentialTag)) {
         // ... add the option to create the tag
         filteredOptions = filteredOptions
-          .concat(_.some(currentValues, {label: filter}) ? [] : [{label: `Add \"${filter}\"...`, value: filter, create: true}])
+          .concat(
+              _.some(currentValues, {label: potentialTag})
+              ? []
+              : [{
+                label: `Add \"${potentialTag}\"...`,
+                value: potentialTag,
+                create: true
+              }])
       }
     }
 
