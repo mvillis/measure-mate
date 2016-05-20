@@ -2,6 +2,10 @@ from django.core.exceptions import PermissionDenied
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.core.validators import RegexValidator
+from django.utils.translation import ugettext_lazy as _, ungettext_lazy
+
+import re
 
 
 class Template(models.Model):
@@ -52,6 +56,8 @@ class Rating(models.Model):
         return (self.attribute.name + " - " +
                 self.name)
 
+uppercase_re = re.compile(r'[A-Z]')
+validate_lowercase = RegexValidator(uppercase_re, _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens."), 'invalid', True)
 
 class Tag(models.Model):
     class Meta:
@@ -59,7 +65,7 @@ class Tag(models.Model):
         ordering = ['name']
 
     id = models.AutoField(primary_key=True, verbose_name="Tag ID")
-    name = models.CharField(max_length=256, unique=True, verbose_name="Tag Name")
+    name = models.SlugField(unique=True, verbose_name="Tag Name", validators=[validate_lowercase])
 
     def __unicode__(self):
         return self.name
