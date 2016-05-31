@@ -1,4 +1,4 @@
-from measure_mate.settings.base import *
+from measure_mate.settings.secure import *
 
 INSTALLED_APPS += (
     'djsupervisor',

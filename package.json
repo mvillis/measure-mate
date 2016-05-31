@@ -101,6 +101,7 @@
     "jshint": "^2.9.2",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.8",
+    "sinon": "^1.17.4",
     "stylelint-config-standard": "^4.0.1",
     "xmldom": "^0.1.22"
   }
