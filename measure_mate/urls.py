@@ -17,6 +17,7 @@ router.register(r'ratings', RatingViewSet)
 router.register(r'teams', TeamViewSet)
 
 urlpatterns = [
+    url(r'^healthcheck/?$', healthcheck, name='healthcheck'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api/api-auth/', include(

@@ -4,6 +4,7 @@ import rest_framework.exceptions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from serializers import *
 from models import *
 from headers import x_ua_compatible
@@ -25,6 +26,10 @@ def export_data(request):
     return excel.make_response_from_tables(
         [Team, Assessment, Measurement, Tag, Template, Attribute, Rating],
         'xls', file_name=('measure_mate_export_%s' % timestamp))
+
+
+def healthcheck(request):
+    return HttpResponse('ok', content_type='text/plain')
 
 
 class TemplateViewSet(viewsets.ModelViewSet):
