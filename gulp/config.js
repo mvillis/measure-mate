@@ -135,6 +135,9 @@ module.exports = {
     },
     istanbulReportOptions: {
       reporters: [ 'lcov', 'json' ]
+    },
+    istanbulThresholds: {
+      global: 0,
     }
   },
 
