@@ -3,15 +3,14 @@ var util = require('gulp-util')
 var semver = require('semver')
 
 if (semver.gt(process.version, '1.0.0')) {
-  var gulpStylelint = require('gulp-stylelint').default
-  var consoleReporter = require('gulp-stylelint-console-reporter').default
+  var gulpStylelint = require('gulp-stylelint')
   var config = require('../config').lintCss
 
   gulp.task('lintCss', function lintCssTask() {
     var options = Object.assign(
       {
         reporters: [
-          consoleReporter()
+          {formatter: 'verbose', console: true},
         ]
       },
       config.lintOptions

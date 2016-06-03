@@ -10,8 +10,6 @@ from models import *
 from headers import x_ua_compatible
 from datetime import datetime
 import django_excel as excel
-import pyexcel.ext.xls
-import pyexcel.ext.xlsx
 
 
 @x_ua_compatible('IE=edge')
@@ -30,6 +28,10 @@ def export_data(request):
 
 def healthcheck(request):
     return HttpResponse('ok', content_type='text/plain')
+
+
+def robots_txt(request):
+    return HttpResponse('', content_type='text/plain')
 
 
 class TemplateViewSet(viewsets.ModelViewSet):

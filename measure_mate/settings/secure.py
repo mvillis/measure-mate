@@ -5,6 +5,7 @@ from measure_mate.settings.base import *
 SECURE_SSL_REDIRECT = True
 SECURE_REDIRECT_EXEMPT = (
     r'^healthcheck\/?$',
+    r'^robots\.txt$',
 )
 
 SECURE_HSTS_SECONDS = 31536000
