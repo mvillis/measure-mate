@@ -10,8 +10,6 @@ from models import *
 from headers import x_ua_compatible
 from datetime import datetime
 import django_excel as excel
-import pyexcel.ext.xls
-import pyexcel.ext.xlsx
 
 
 @x_ua_compatible('IE=edge')
