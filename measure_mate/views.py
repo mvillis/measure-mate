@@ -32,7 +32,7 @@ def healthcheck(request):
     return HttpResponse('ok', content_type='text/plain')
 
 
-def robots_text(request):
+def robots_txt(request):
     return HttpResponse('', content_type='text/plain')
 
 
