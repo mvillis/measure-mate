@@ -24,6 +24,7 @@ urlpatterns = [
         'rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^export/', export_data, name='export'),
-    url(r'^favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/favicon.ico')), name='favicon'),
+    url(r'^favicon\.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/favicon.ico')), name='favicon'),
+    url(r'^robots\.txt', robots_txt, name='robots'),
     url(r'^.*$', home, name='home'),
 ]

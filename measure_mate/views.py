@@ -32,6 +32,10 @@ def healthcheck(request):
     return HttpResponse('ok', content_type='text/plain')
 
 
+def robots_text(request):
+    return HttpResponse('', content_type='text/plain')
+
+
 class TemplateViewSet(viewsets.ModelViewSet):
     """
     API endpoint for the Template resource.
