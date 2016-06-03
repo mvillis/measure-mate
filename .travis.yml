@@ -8,7 +8,6 @@ install:
   - gulp build
   - pip install -U pip setuptools wheel
   - pip install -r requirements/local.txt
-  - pip install --pre django
   - pip install coveralls
   - python manage.py collectstatic --no-input
   - gem install coveralls-lcov
