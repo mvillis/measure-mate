@@ -9,7 +9,7 @@ var FormGroup = ReactBootstrap.FormGroup
 var ControlLabel = ReactBootstrap.ControlLabel
 var Button = ReactBootstrap.Button
 
-var ObserveInput = React.createClass({
+var ObserveFormControl = React.createClass({
   propTypes: {
     measurement: React.PropTypes.object,
     syncMeasurement: React.PropTypes.func.isRequired,
@@ -168,4 +168,4 @@ var ObserveInput = React.createClass({
   }
 })
 
-module.exports = ObserveInput
+module.exports = ObserveFormControl
