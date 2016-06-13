@@ -7,6 +7,7 @@ var Alert = ReactBootstrap.Alert
 var Form = ReactBootstrap.Form
 var FormControl = ReactBootstrap.FormControl
 var FormGroup = ReactBootstrap.FormGroup
+var ControlLabel = ReactBootstrap.ControlLabel
 var Col = ReactBootstrap.Col
 var TemplateSelect = require('./templateSelect')
 var $ = require('jquery')
@@ -73,14 +74,19 @@ var AssessmentCreationForm = React.createClass({
         <Alert bsStyle='danger' className={this.state.formError ? '' : 'hidden'}>
           {this.state.formError}
         </Alert>
-        <TemplateSelect
-          label='Template'
-          ref='template'
-          {...this.props}
-          value={this.state.template}
-          onChange={this.changeHandlerTemplate}
-        />
         <FormGroup>
+          <Col xs={2} className='text-right'>
+            <ControlLabel>Template</ControlLabel>
+          </Col>
+          <Col xs={8}>
+            <TemplateSelect
+              label='Template'
+              ref='template'
+              {...this.props}
+              value={this.state.template}
+              onChange={this.changeHandlerTemplate}
+            />
+          </Col>
           <Col xs={2}>
             <FormControl className='btn btn-default btn-primary' type='submit' value='Launch' onClick={this.handleSubmit} />
           </Col>
