@@ -1,7 +1,7 @@
 #! /bin/sh
 
 python manage.py migrate
-python manage.py loaddata LAMA DevOps HealthCheck tags
+python manage.py loaddata LAMA DevOps tags
 
 # won't work if there are already assessments, so ignore failures
 python manage.py loaddata team assessment || true
