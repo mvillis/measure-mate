@@ -2,6 +2,11 @@
 
 var React = require('react')
 var Select = require('react-select')
+var ReactBootstrap = require('react-bootstrap')
+var FormGroup = ReactBootstrap.FormGroup
+var HelpBlock = ReactBootstrap.HelpBlock
+var Col = ReactBootstrap.Col
+var ControlLabel = ReactBootstrap.ControlLabel
 var $ = require('jquery')
 
 var TagSelect = React.createClass({
@@ -38,9 +43,11 @@ var TagSelect = React.createClass({
 
   render: function render () {
     return (
-      <div>
-        <label className='control-label col-xs-2'>{this.props.label}</label>
-        <div className='col-xs-10'>
+      <FormGroup>
+        <Col xs={2}>
+          <ControlLabel>{this.props.label}</ControlLabel>
+        </Col>
+        <Col xs={10}>
           <Select.Async {...this.props}
             delimeter=','
             multi
@@ -50,11 +57,11 @@ var TagSelect = React.createClass({
             name='tags'
             placeholder='Type to find existing tags or create new ones'
           />
-        </div>
-        <div className='col-xs-10 col-xs-offset-2 help-block'>
-          Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.
-        </div>
-      </div>
+          <HelpBlock>
+            Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.
+          </HelpBlock>
+        </Col>
+      </FormGroup>
     )
   }
 })

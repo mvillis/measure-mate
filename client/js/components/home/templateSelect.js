@@ -2,6 +2,11 @@
 
 var React = require('react')
 var Select = require('react-select')
+var ReactBootstrap = require('react-bootstrap')
+var FormGroup = ReactBootstrap.FormGroup
+var HelpBlock = ReactBootstrap.HelpBlock
+var Col = ReactBootstrap.Col
+var ControlLabel = ReactBootstrap.ControlLabel
 var $ = require('jquery')
 
 var TemplateSelect = React.createClass({
@@ -38,9 +43,11 @@ var TemplateSelect = React.createClass({
 
   render: function render () {
     return (
-      <div>
-        <label className='control-label col-xs-2'>{this.props.label}</label>
-        <div className='col-xs-10'>
+      <FormGroup>
+        <Col xs={2}>
+          <ControlLabel>{this.props.label}</ControlLabel>
+        </Col>
+        <Col xs={10}>
           <Select.Async delimeter=','
             multi={false}
             loadOptions={this.loadOptions}
@@ -49,11 +56,9 @@ var TemplateSelect = React.createClass({
             name='tags'
             placeholder='Type to filter templates'
             />
-        </div>
-        <div className='col-xs-10 col-xs-offset-2 help-block'>
-          Each template includes a unique set of attributes to measure.
-        </div>
-      </div>
+          <HelpBlock>Each template includes a unique set of attributes to measure.</HelpBlock>
+        </Col>
+      </FormGroup>
     )
   }
 })
