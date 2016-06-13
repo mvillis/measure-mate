@@ -87,7 +87,7 @@ var AssessmentCreationForm = React.createClass({
               onChange={this.changeHandlerTemplate}
             />
           </Col>
-          <Col md={2} xs={2}>
+          <Col md={2} xs={4}>
             <FormControl className='btn btn-default btn-primary' type='submit' value='Launch' onClick={this.handleSubmit} />
           </Col>
         </FormGroup>
