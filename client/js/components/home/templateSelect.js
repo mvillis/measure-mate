@@ -2,11 +2,12 @@
 
 var React = require('react')
 var Select = require('react-select')
+var ReactBootstrap = require('react-bootstrap')
+var HelpBlock = ReactBootstrap.HelpBlock
 var $ = require('jquery')
 
 var TemplateSelect = React.createClass({
   propTypes: {
-    label: React.PropTypes.string.isRequired,
     value: React.PropTypes.any,
     onChange: React.PropTypes.func.isRequired
   },
@@ -39,20 +40,15 @@ var TemplateSelect = React.createClass({
   render: function render () {
     return (
       <div>
-        <label className='control-label col-xs-2'>{this.props.label}</label>
-        <div className='col-xs-10'>
-          <Select.Async delimeter=','
-            multi={false}
-            loadOptions={this.loadOptions}
-            {...this.props}
-            allowCreate={false}
-            name='tags'
-            placeholder='Type to filter templates'
-            />
-        </div>
-        <div className='col-xs-10 col-xs-offset-2 help-block'>
-          Each template includes a unique set of attributes to measure.
-        </div>
+        <Select.Async delimeter=','
+          multi={false}
+          loadOptions={this.loadOptions}
+          {...this.props}
+          allowCreate={false}
+          name='tags'
+          placeholder='Type to filter templates'
+          />
+        <HelpBlock>Each template includes a unique set of attributes to measure.</HelpBlock>
       </div>
     )
   }

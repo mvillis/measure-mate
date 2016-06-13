@@ -3,7 +3,7 @@
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var Rating = require('./rating')
-var ObserveInput = require('./observeInput')
+var ObserveFormControl = require('./observeFormControl')
 var Loader = require('react-loader')
 var _ = require('lodash')
 var Panel = ReactBootstrap.Panel
@@ -77,7 +77,11 @@ var Attribute = React.createClass({
       id: (this.state.measurement) ? this.state.measurement.id : '',
       assessment: this.props.params.assessmentId,
       rating: (ratingType === 'rating') ? value : this.state.measurement.rating,
-      target_rating: (ratingType === 'target') ? value : ((existingMeasurement && this.state.measurement.target_rating) ? this.state.measurement.target_rating : '') // eslint-disable-line camelcase
+      target_rating: (ratingType === 'target')
+        ? value
+        : ((existingMeasurement && this.state.measurement.target_rating)
+          ? this.state.measurement.target_rating
+          : '') // eslint-disable-line camelcase
     }
     this.props.syncMeasurement(postData)
   },
@@ -91,17 +95,34 @@ var Attribute = React.createClass({
     if (this.state.attribute !== null) {
       var ratingList = this.state.attribute.ratings.map(function (rating) {
         return (
-          <Rating measurement={this.state.measurement} key={rating.id} rating={rating} saveMeasurement={this.saveMeasurement} assessId={this.props.params.assessmentId} />
+          <Rating
+            measurement={this.state.measurement}
+            key={rating.id}
+            rating={rating}
+            saveMeasurement={this.saveMeasurement}
+            assessId={this.props.params.assessmentId}
+          />
         )
       }.bind(this))
     }
 
     return (
-      <Panel header={(this.state.attribute && this.state.attribute.name) ? this.state.attribute.name : ''} bsStyle='primary'>
-        <Alert bsStyle='warning' className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
+      <Panel
+        header={(this.state.attribute && this.state.attribute.name) ? this.state.attribute.name : ''}
+        bsStyle='primary'>
+        <Alert
+          bsStyle='warning'
+          className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
           {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
         </Alert>
-        <ObserveInput measurement={this.state.measurement} syncMeasurement={this.props.syncMeasurement} onObservationChange={this.onObservationChange} onActionChange={this.onActionChange} attributeId={(this.state.attribute) ? this.state.attribute.id : null} disabled={this.props.disabled} />
+        <ObserveFormControl
+          measurement={this.state.measurement}
+          syncMeasurement={this.props.syncMeasurement}
+          onObservationChange={this.onObservationChange}
+          onActionChange={this.onActionChange}
+          attributeId={(this.state.attribute) ? this.state.attribute.id : null}
+          disabled={this.props.disabled}
+          />
         <Loader loaded={!this.props.measureSyncActivity} />
         <ListGroup fill>
           {ratingList}

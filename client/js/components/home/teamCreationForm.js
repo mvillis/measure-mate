@@ -5,7 +5,12 @@ var ReactRouter = require('react-router')
 var browserHistory = ReactRouter.browserHistory
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
-var Input = ReactBootstrap.Input
+var Col = ReactBootstrap.Col
+var ControlLabel = ReactBootstrap.ControlLabel
+var Form = ReactBootstrap.Form
+var FormControl = ReactBootstrap.FormControl
+var FormGroup = ReactBootstrap.FormGroup
+var HelpBlock = ReactBootstrap.HelpBlock
 var TagSelect = require('./tagSelect')
 var $ = require('jquery')
 var _ = require('lodash')
@@ -168,49 +173,62 @@ var TeamCreationForm = React.createClass({
   render: function () {
     var creatingTag = this.state.creatingTag
     return (
-      <form className='form-horizontal'>
+      <Form horizontal>
         <Alert bsStyle='danger' className={this.state.formError ? '' : 'hidden'}>
           {this.state.formError}
         </Alert>
-        <Input
-          type='text'
-          label='Name'
-          ref='teamName'
-          value={this.state.teamName}
-          onChange={this.handleChange}
-          labelClassName='col-xs-2'
-          wrapperClassName='col-xs-10'
-          help='The team name must be unique'
-        />
-        <Input
-          type='text'
-          label='Description'
-          ref='teamDesc'
-          value={this.state.teamDesc}
-          onChange={this.handleChange}
-          labelClassName='col-xs-2'
-          wrapperClassName='col-xs-10'
-          help="The team's description"
-        />
-        <div className='form-group'>
-          <TagSelect
-            label='Tags'
-            ref='tags'
-            {...this.props}
-            value={this.state.tags}
-            onChange={this.changeTags}
-            filterOptions={this.filterOptions}
-            labelClassName='col-xs-2'
-            wrapperClassName='col-xs-10'
-          />
-        </div>
-        <div className='form-group'>
-          <div className='col-xs-2 col-xs-offset-2'>
-            <input className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
+        <FormGroup>
+          <Col xs={2} className='text-right'>
+            <ControlLabel>Name</ControlLabel>
+          </Col>
+          <Col xs={8}>
+            <FormControl
+              type='text'
+              placeholder='Team Name'
+              ref='teamName'
+              value={this.state.teamName}
+              onChange={this.handleChange}
+            />
+            <HelpBlock>The team name must be unique</HelpBlock>
+          </Col>
+        </FormGroup>
+        <FormGroup>
+          <Col xs={2} className='text-right'>
+            <ControlLabel>Description</ControlLabel>
+          </Col>
+          <Col xs={8}>
+            <FormControl
+              type='text'
+              placeholder='Team Description'
+              ref='teamDesc'
+              value={this.state.teamDesc}
+              onChange={this.handleChange}
+            />
+            <HelpBlock>The team's description</HelpBlock>
+          </Col>
+        </FormGroup>
+        <FormGroup>
+          <Col xs={2} className='text-right'>
+            <ControlLabel>Tags</ControlLabel>
+          </Col>
+          <Col xs={8}>
+            <TagSelect
+              ref='tags'
+              label='Tags'
+              {...this.props}
+              value={this.state.tags}
+              onChange={this.changeTags}
+              filterOptions={this.filterOptions}
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup>
+          <Col xs={2} xsOffset={10}>
+            <FormControl className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
               type='submit' value='Create' onClick={!creatingTag ? this.handleSubmit : null} />
-          </div>
-        </div>
-      </form>
+          </Col>
+        </FormGroup>
+      </Form>
     )
   }
 })

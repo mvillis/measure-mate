@@ -2,11 +2,12 @@
 
 var React = require('react')
 var Select = require('react-select')
+var ReactBootstrap = require('react-bootstrap')
+var HelpBlock = ReactBootstrap.HelpBlock
 var $ = require('jquery')
 
 var TagSelect = React.createClass({
   propTypes: {
-    label: React.PropTypes.string.isRequired,
     value: React.PropTypes.any,
     onChange: React.PropTypes.func.isRequired
   },
@@ -39,21 +40,18 @@ var TagSelect = React.createClass({
   render: function render () {
     return (
       <div>
-        <label className='control-label col-xs-2'>{this.props.label}</label>
-        <div className='col-xs-10'>
-          <Select.Async {...this.props}
-            delimeter=','
-            multi
-            options={[]}
-            loadOptions={this.loadOptions}
-            allowCreate
-            name='tags'
-            placeholder='Type to find existing tags or create new ones'
-          />
-        </div>
-        <div className='col-xs-10 col-xs-offset-2 help-block'>
+        <Select.Async {...this.props}
+          delimeter=','
+          multi
+          options={[]}
+          loadOptions={this.loadOptions}
+          allowCreate
+          name='tags'
+          placeholder='Type to find existing tags or create new ones'
+        />
+        <HelpBlock>
           Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.
-        </div>
+        </HelpBlock>
       </div>
     )
   }
