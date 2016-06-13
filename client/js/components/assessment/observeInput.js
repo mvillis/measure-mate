@@ -4,7 +4,9 @@ var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var _ = require('lodash')
 var Glyphicon = ReactBootstrap.Glyphicon
-var Input = ReactBootstrap.Input
+var FormControl = ReactBootstrap.FormControl
+var FormGroup = ReactBootstrap.FormGroup
+var ControlLabel = ReactBootstrap.ControlLabel
 var Button = ReactBootstrap.Button
 
 var ObserveInput = React.createClass({
@@ -131,26 +133,36 @@ var ObserveInput = React.createClass({
 
     return (
       <div>
-        <Input type='textarea' rows='3' label='Observations' placeholder='Discuss your current practices and capture some notes.'
-          ref='observeInput'
-          value={this.state.observations}
-          onChange={this.onObservationChange}
-          disabled={this.props.disabled}
-        />
-        <Input type='textarea' rows='3' label='Action' placeholder='Record actions you can take to improve your current practices.'
-          ref='actionInput'
-          value={this.state.action}
-          onChange={this.onActionChange}
-          disabled={this.props.disabled}
-        />
-        <Button ref='obsSaveBtn'
-          disabled={this.state.saveBtnDisabled}
-          bsStyle='primary'
-          bsSize='xsmall'
-          onClick={this.handleSave}>
-          Save
-        </Button>
-        {syncStatus()}
+        <FormGroup>
+          <ControlLabel>Observations</ControlLabel>
+          <FormControl componentClass='textarea' rows='3'
+            placeholder='Discuss your current practices and capture some notes.'
+            ref='observeInput'
+            value={this.state.observations}
+            onChange={this.onObservationChange}
+            disabled={this.props.disabled}
+          />
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>Action</ControlLabel>
+          <FormControl componentClass='textarea' rows='3'
+            placeholder='Record actions you can take to improve your current practices.'
+            ref='actionInput'
+            value={this.state.action}
+            onChange={this.onActionChange}
+            disabled={this.props.disabled}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Button ref='obsSaveBtn'
+            disabled={this.state.saveBtnDisabled}
+            bsStyle='primary'
+            bsSize='xsmall'
+            onClick={this.handleSave}>
+            Save
+          </Button>
+          {syncStatus()}
+        </FormGroup>
       </div>
     )
   }
