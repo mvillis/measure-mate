@@ -78,7 +78,7 @@ var AssessmentCreationForm = React.createClass({
           <Col md={2} xs={2} className='text-right'>
             <ControlLabel>Template</ControlLabel>
           </Col>
-          <Col md={8} xs={7}>
+          <Col md={8} xs={10}>
             <TemplateSelect
               label='Template'
               ref='template'
