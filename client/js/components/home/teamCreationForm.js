@@ -68,7 +68,6 @@ var TeamCreationForm = React.createClass({
     var data = {
       name: tagName
     }
-    console.log('creating tag ' + JSON.stringify(data))
     this.setState({creatingTag: true})
     this.showError('')
     $.ajax({
@@ -80,7 +79,6 @@ var TeamCreationForm = React.createClass({
       type: 'POST',
       cache: true,
       success: function (newTag) {
-        console.log('tag "' + newTag.name + '" is id ' + newTag.id)
         var tags = this.state.tags
         tags.push({value: newTag.id, label: newTag.name})
         this.setState({tags: _.uniq(tags), creatingTag: false})
@@ -88,6 +86,7 @@ var TeamCreationForm = React.createClass({
       error: function (xhr, status, err) {
         console.log(xhr.status + ' ' + xhr.statusText)
         console.log(xhr.responseText)
+        console.log(err)
         var message = 'Tag creation failed due to unknown reason. Try again later.'
         if (xhr.status === HttpStatus.BAD_REQUEST) {
           if (xhr.responseJSON && xhr.responseJSON.name) {
@@ -150,7 +149,6 @@ var TeamCreationForm = React.createClass({
       short_desc: teamDesc, // eslint-disable-line camelcase
       tags: tags
     }
-    console.log('creating team ' + JSON.stringify(data))
     $.ajax({
       context: this,
       url: '/api/teams/',
@@ -160,10 +158,12 @@ var TeamCreationForm = React.createClass({
       type: 'POST',
       cache: true,
       success: function (newTeam) {
-        console.log('created team ' + JSON.stringify(newTeam))
         browserHistory.push('/team/' + newTeam.id)
       },
       error: function (xhr, status, err) {
+        console.log(err)
+        console.log(xhr.responseJSON.detail)
+        console.log(status)
         var message = 'Team creation failed due to unknown reason. Try again later.'
         this.showError(message)
       }

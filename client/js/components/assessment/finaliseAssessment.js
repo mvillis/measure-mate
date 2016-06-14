@@ -33,7 +33,6 @@ var FinaliseAssessment = React.createClass({
     this.setState({ showModal: true })
   },
   handleLock: function () {
-    console.log('im here')
     this.props.markAssessmentDone()
     this.close()
   },
