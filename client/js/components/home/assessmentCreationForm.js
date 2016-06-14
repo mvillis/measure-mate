@@ -4,6 +4,11 @@ var React = require('react')
 var browserHistory = require('react-router').browserHistory
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
+var Form = ReactBootstrap.Form
+var FormControl = ReactBootstrap.FormControl
+var FormGroup = ReactBootstrap.FormGroup
+var ControlLabel = ReactBootstrap.ControlLabel
+var Col = ReactBootstrap.Col
 var TemplateSelect = require('./templateSelect')
 var $ = require('jquery')
 
@@ -65,25 +70,28 @@ var AssessmentCreationForm = React.createClass({
 
   render: function () {
     return (
-      <form className='form-horizontal'>
+      <Form horizontal>
         <Alert bsStyle='danger' className={this.state.formError ? '' : 'hidden'}>
           {this.state.formError}
         </Alert>
-        <div className='form-group'>
-          <TemplateSelect
-            label='Template'
-            ref='template'
-            {...this.props}
-            value={this.state.template}
-            onChange={this.changeHandlerTemplate}
-          />
-        </div>
-        <div className='form-group'>
-          <div className='col-xs-2 col-xs-offset-2'>
-            <input className='btn btn-default btn-primary' type='submit' value='Launch' onClick={this.handleSubmit} />
-          </div>
-        </div>
-      </form>
+        <FormGroup>
+          <Col lg={2} xs={2} className='text-right'>
+            <ControlLabel>Template</ControlLabel>
+          </Col>
+          <Col lg={8} xs={10}>
+            <TemplateSelect
+              label='Template'
+              ref='template'
+              {...this.props}
+              value={this.state.template}
+              onChange={this.changeHandlerTemplate}
+            />
+          </Col>
+          <Col lg={2} xs={4}>
+            <FormControl className='btn btn-default btn-primary' type='submit' value='Launch' onClick={this.handleSubmit} />
+          </Col>
+        </FormGroup>
+      </Form>
     )
   }
 })

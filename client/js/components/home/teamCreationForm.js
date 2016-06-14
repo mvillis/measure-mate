@@ -5,7 +5,12 @@ var ReactRouter = require('react-router')
 var browserHistory = ReactRouter.browserHistory
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
-var Input = ReactBootstrap.Input
+var Col = ReactBootstrap.Col
+var ControlLabel = ReactBootstrap.ControlLabel
+var Form = ReactBootstrap.Form
+var FormControl = ReactBootstrap.FormControl
+var FormGroup = ReactBootstrap.FormGroup
+var HelpBlock = ReactBootstrap.HelpBlock
 var TagSelect = require('./tagSelect')
 var $ = require('jquery')
 var _ = require('lodash')
@@ -63,7 +68,6 @@ var TeamCreationForm = React.createClass({
     var data = {
       name: tagName
     }
-    console.log('creating tag ' + JSON.stringify(data))
     this.setState({creatingTag: true})
     this.showError('')
     $.ajax({
@@ -75,7 +79,6 @@ var TeamCreationForm = React.createClass({
       type: 'POST',
       cache: true,
       success: function (newTag) {
-        console.log('tag "' + newTag.name + '" is id ' + newTag.id)
         var tags = this.state.tags
         tags.push({value: newTag.id, label: newTag.name})
         this.setState({tags: _.uniq(tags), creatingTag: false})
@@ -83,6 +86,7 @@ var TeamCreationForm = React.createClass({
       error: function (xhr, status, err) {
         console.log(xhr.status + ' ' + xhr.statusText)
         console.log(xhr.responseText)
+        console.log(err)
         var message = 'Tag creation failed due to unknown reason. Try again later.'
         if (xhr.status === HttpStatus.BAD_REQUEST) {
           if (xhr.responseJSON && xhr.responseJSON.name) {
@@ -145,7 +149,6 @@ var TeamCreationForm = React.createClass({
       short_desc: teamDesc, // eslint-disable-line camelcase
       tags: tags
     }
-    console.log('creating team ' + JSON.stringify(data))
     $.ajax({
       context: this,
       url: '/api/teams/',
@@ -155,10 +158,12 @@ var TeamCreationForm = React.createClass({
       type: 'POST',
       cache: true,
       success: function (newTeam) {
-        console.log('created team ' + JSON.stringify(newTeam))
         browserHistory.push('/team/' + newTeam.id)
       },
       error: function (xhr, status, err) {
+        console.log(err)
+        console.log(xhr.responseJSON.detail)
+        console.log(status)
         var message = 'Team creation failed due to unknown reason. Try again later.'
         this.showError(message)
       }
@@ -168,49 +173,62 @@ var TeamCreationForm = React.createClass({
   render: function () {
     var creatingTag = this.state.creatingTag
     return (
-      <form className='form-horizontal'>
+      <Form horizontal>
         <Alert bsStyle='danger' className={this.state.formError ? '' : 'hidden'}>
           {this.state.formError}
         </Alert>
-        <Input
-          type='text'
-          label='Name'
-          ref='teamName'
-          value={this.state.teamName}
-          onChange={this.handleChange}
-          labelClassName='col-xs-2'
-          wrapperClassName='col-xs-10'
-          help='The team name must be unique'
-        />
-        <Input
-          type='text'
-          label='Description'
-          ref='teamDesc'
-          value={this.state.teamDesc}
-          onChange={this.handleChange}
-          labelClassName='col-xs-2'
-          wrapperClassName='col-xs-10'
-          help="The team's description"
-        />
-        <div className='form-group'>
-          <TagSelect
-            label='Tags'
-            ref='tags'
-            {...this.props}
-            value={this.state.tags}
-            onChange={this.changeTags}
-            filterOptions={this.filterOptions}
-            labelClassName='col-xs-2'
-            wrapperClassName='col-xs-10'
-          />
-        </div>
-        <div className='form-group'>
-          <div className='col-xs-2 col-xs-offset-2'>
-            <input className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
+        <FormGroup>
+          <Col xs={2} className='text-right'>
+            <ControlLabel>Name</ControlLabel>
+          </Col>
+          <Col xs={8}>
+            <FormControl
+              type='text'
+              placeholder='Team Name'
+              ref='teamName'
+              value={this.state.teamName}
+              onChange={this.handleChange}
+            />
+            <HelpBlock>The team name must be unique</HelpBlock>
+          </Col>
+        </FormGroup>
+        <FormGroup>
+          <Col xs={2} className='text-right'>
+            <ControlLabel>Description</ControlLabel>
+          </Col>
+          <Col xs={8}>
+            <FormControl
+              type='text'
+              placeholder='Team Description'
+              ref='teamDesc'
+              value={this.state.teamDesc}
+              onChange={this.handleChange}
+            />
+            <HelpBlock>The team's description</HelpBlock>
+          </Col>
+        </FormGroup>
+        <FormGroup>
+          <Col xs={2} className='text-right'>
+            <ControlLabel>Tags</ControlLabel>
+          </Col>
+          <Col xs={8}>
+            <TagSelect
+              ref='tags'
+              label='Tags'
+              {...this.props}
+              value={this.state.tags}
+              onChange={this.changeTags}
+              filterOptions={this.filterOptions}
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup>
+          <Col xs={2} xsOffset={10}>
+            <FormControl className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
               type='submit' value='Create' onClick={!creatingTag ? this.handleSubmit : null} />
-          </div>
-        </div>
-      </form>
+          </Col>
+        </FormGroup>
+      </Form>
     )
   }
 })
