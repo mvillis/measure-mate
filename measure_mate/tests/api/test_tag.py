@@ -39,7 +39,34 @@ class TagAPITestCases(APITestCase):
         Ensure we can create a new tag object.
         """
         url = reverse('tag-list')
-        data = {"name": "test-tag-alpha", }
+        data = {"name": "test-tag-alpha_1", }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Tag.objects.count(), 1)
+
+    def test_create_invalid_tag_with_spaces(self):
+        """
+        Ensure we can't create an invalid tag object.
+        """
+        url = reverse('tag-list')
+        data = {"name": "test tag alpha", }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_invalid_tag_with_punctuation(self):
+        """
+        Ensure we can't create an invalid tag object.
+        """
+        url = reverse('tag-list')
+        data = {"name": "test_tag_alpha_!!()", }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_invalid_tag_with_uppercase(self):
+        """
+        Ensure we can't create an invalid tag object.
+        """
+        url = reverse('tag-list')
+        data = {"name": "Test_Tag_Alpha", }
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

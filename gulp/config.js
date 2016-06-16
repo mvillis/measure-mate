@@ -120,7 +120,8 @@ module.exports = {
     src: [
       'gulpfile.js',
       './client/js/main.js',
-      './client/js/**/*.js'
+      './client/js/**/*.js',
+      './client/test/js/**/*.js'
     ],
     configSrc: '.eslintrc.json'
   },
@@ -134,14 +135,9 @@ module.exports = {
     },
     istanbulReportOptions: {
       reporters: [ 'lcov', 'json' ]
-    }
-  },
-
-  gzip: {
-    src: './build/**/*.{js,css,map}',
-    dest: dest,
-    gzipConfig: {
-      append: true
+    },
+    istanbulThresholds: {
+      global: 0,
     }
   },
 

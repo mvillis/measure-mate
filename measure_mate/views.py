@@ -4,13 +4,12 @@ import rest_framework.exceptions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from serializers import *
 from models import *
 from headers import x_ua_compatible
 from datetime import datetime
 import django_excel as excel
-import pyexcel.ext.xls
-import pyexcel.ext.xlsx
 
 
 @x_ua_compatible('IE=edge')
@@ -25,6 +24,14 @@ def export_data(request):
     return excel.make_response_from_tables(
         [Team, Assessment, Measurement, Tag, Template, Attribute, Rating],
         'xls', file_name=('measure_mate_export_%s' % timestamp))
+
+
+def healthcheck(request):
+    return HttpResponse('ok', content_type='text/plain')
+
+
+def robots_txt(request):
+    return HttpResponse('', content_type='text/plain')
 
 
 class TemplateViewSet(viewsets.ModelViewSet):

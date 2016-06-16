@@ -20,7 +20,7 @@ var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Loader = require('react-loader')
 var $ = require('jquery')
 
-var AttributeList = React.createClass({
+var Assessment = React.createClass({
   propTypes: {
     params: React.PropTypes.object,
     location: React.PropTypes.object,
@@ -112,7 +112,6 @@ var AttributeList = React.createClass({
   syncMeasurement: function (postData) {
     var createNewMeasure = !postData.id
     this.setState({ measureSyncActivity: true })
-    console.log('Should a new measurement be created? ' + createNewMeasure)
     $.ajax({
       type: ((createNewMeasure) ? 'POST' : 'PUT'),
       contentType: 'application/json; charset=utf-8',
@@ -135,7 +134,6 @@ var AttributeList = React.createClass({
       type: 'PUT',
       cache: true,
       success: function (output) {
-        console.log('This was successful')
         this.setState({assessment: data})
       }.bind(this),
       error: this.handleSubmitFailure
@@ -144,9 +142,7 @@ var AttributeList = React.createClass({
   handleNext: function () {
     this.scrollToTop('#attribute-list')
     var currentAttribute = this.props.params.attribute
-    console.log(currentAttribute)
     var index = _.findIndex(this.state.template.attributes, ['id', parseInt(currentAttribute, 10)])
-    console.log(index)
     var nextId = (this.state.template.attributes[index + 1]) ? this.state.template.attributes[index + 1].id : 'summary'
     var path = '/assessment/' + this.props.params.assessmentId + '/' + nextId
     this.context.router.push(path)
@@ -154,10 +150,7 @@ var AttributeList = React.createClass({
   handlePrevious: function () {
     this.scrollToTop('#attribute-list')
     var currentAttribute = this.props.params.attribute
-    console.log(currentAttribute)
     var index = _.findIndex(this.state.template.attributes, ['id', parseInt(currentAttribute, 10)])
-    console.log(index)
-    console.log(this.state.template.attributes[-1])
     var nextId = (this.state.template.attributes[index - 1]) ? this.state.template.attributes[index - 1].id : (index === 0) ? 'summary' : _.last(this.state.template.attributes).id
     var path = '/assessment/' + this.props.params.assessmentId + '/' + nextId
     this.context.router.push(path)
@@ -259,4 +252,4 @@ var AttributeList = React.createClass({
   }
 })
 
-module.exports = AttributeList
+module.exports = Assessment

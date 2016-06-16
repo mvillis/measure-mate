@@ -5,7 +5,8 @@
     "browser": true,
     "node": true,
     "jquery": true,
-    "es6": true
+    "es6": true,
+    "mocha": true
   },
   "rules": {
     "no-alert": 0,

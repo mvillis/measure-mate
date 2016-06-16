@@ -6,6 +6,7 @@ install:
   - npm install gulp
   - npm install
   - gulp build
+  - pip install -U pip setuptools wheel
   - pip install -r requirements/local.txt
   - pip install coveralls
   - python manage.py collectstatic --no-input

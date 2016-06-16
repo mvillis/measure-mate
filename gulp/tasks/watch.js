@@ -12,5 +12,10 @@ gulp.task('watch', ['build'], function () {
   gulp.watch(config.assets.src, ['assets'])
   gulp.watch(config.css.src, ['lintCss', 'css'])
   gulp.watch(config.templates.src, ['templates'])
-  gulp.watch(config.clientDir + '/js/**', ['lint', 'test'])
+  gulp.watch([
+      config.clientDir + '/js/**',
+      config.clientDir + '/test/js/**'
+    ], [
+      'lint', 'test'
+  ])
 })
