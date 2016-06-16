@@ -178,10 +178,10 @@ var TeamCreationForm = React.createClass({
           {this.state.formError}
         </Alert>
         <FormGroup>
-          <Col xs={2} className='text-right'>
+          <Col xs={3} lg={2} className='text-right'>
             <ControlLabel>Name</ControlLabel>
           </Col>
-          <Col xs={8}>
+          <Col xs={9} lg={8}>
             <FormControl
               type='text'
               placeholder='Team Name'
@@ -193,10 +193,10 @@ var TeamCreationForm = React.createClass({
           </Col>
         </FormGroup>
         <FormGroup>
-          <Col xs={2} className='text-right'>
+          <Col xs={3} lg={2} className='text-right'>
             <ControlLabel>Description</ControlLabel>
           </Col>
-          <Col xs={8}>
+          <Col xs={9} lg={8}>
             <FormControl
               type='text'
               placeholder='Team Description'
@@ -208,10 +208,10 @@ var TeamCreationForm = React.createClass({
           </Col>
         </FormGroup>
         <FormGroup>
-          <Col xs={2} className='text-right'>
+          <Col xs={3} lg={2} className='text-right'>
             <ControlLabel>Tags</ControlLabel>
           </Col>
-          <Col xs={8}>
+          <Col xs={9} lg={8}>
             <TagSelect
               ref='tags'
               label='Tags'
@@ -223,7 +223,7 @@ var TeamCreationForm = React.createClass({
           </Col>
         </FormGroup>
         <FormGroup>
-          <Col xs={2} xsOffset={10}>
+          <Col xs={3} lg={2} lgOffset={10} style={{width: 'auto'}}>
             <FormControl className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
               type='submit' value='Create' onClick={!creatingTag ? this.handleSubmit : null} />
           </Col>
