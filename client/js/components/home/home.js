@@ -16,7 +16,7 @@ var Home = React.createClass({
         <Row>
           <Col md={6}>
             <Jumbotron>
-              <img src='/static/assets/img/measure_mate_plain_optim.svg' className='logo'></img>
+              <span className='logo'></span>
               <h1 className='logo-text'>Measure Mate!</h1>
               <p className='logo-slogan-text'>A tool to track maturity assessments for your team.</p>
             </Jumbotron>
