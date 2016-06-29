@@ -1,15 +1,15 @@
 .logo-slogan-text {
-  font-family: newscycle;
+  font-family: 'News Cycle';
   text-align: center;
 }
 
 .logo-text {
-  font-family: autour;
+  font-family: 'Autour One';
   text-align: center;
 }
 
 .navbar-brand {
-  font-family: autour;
+  font-family: 'Autour One';
 }
 
 .logo {
@@ -78,12 +78,31 @@
   font-weight: bold;
 }
 
+/* autour-one-regular - latin */
 @font-face {
-  font-family: autour;
-  src: url("/static/fonts/AutourOne-Regular.ttf");
+  font-family: 'Autour One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/static/fonts/autour-one-v5-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Autour One'), local('AutourOne-Regular'),
+       url('/static/fonts/autour-one-v5-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/static/fonts/autour-one-v5-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/static/fonts/autour-one-v5-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('/static/fonts/autour-one-v5-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/static/fonts/autour-one-v5-latin-regular.svg#AutourOne') format('svg'); /* Legacy iOS */
 }
 
+/* news-cycle-regular - latin */
 @font-face {
-  font-family: newscycle;
-  src: url("/static/fonts/NewsCycle-Regular.ttf");
+  font-family: 'News Cycle';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/static/fonts/news-cycle-v13-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('News Cycle'), local('NewsCycle'),
+       url('/static/fonts/news-cycle-v13-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/static/fonts/news-cycle-v13-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/static/fonts/news-cycle-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('/static/fonts/news-cycle-v13-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/static/fonts/news-cycle-v13-latin-regular.svg#NewsCycle') format('svg'); /* Legacy iOS */
 }
+
