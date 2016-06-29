@@ -5,8 +5,9 @@ var dest = 'build'
 var src = 'client'
 
 var cssSource = [
-  'node_modules/bootstrap/dist/css/bootstrap.min.css',
-  'node_modules/react-select/dist/react-select.min.css',
+  'node_modules/bootstrap/dist/css/bootstrap.css',
+  'node_modules/bootstrap/dist/css/bootstrap-theme.css',
+  'node_modules/react-select/dist/react-select.css',
   'client/css/measure-mate.css'
 ]
 var cssDestination = dest + '/css'
