@@ -75,10 +75,10 @@ var AssessmentCreationForm = React.createClass({
           {this.state.formError}
         </Alert>
         <FormGroup>
-          <Col lg={2} xs={3} className='text-right'>
+          <Col lg={2} xs={12} sm={3}>
             <ControlLabel>Template</ControlLabel>
           </Col>
-          <Col lg={8} xs={9}>
+          <Col lg={8} xs={12} sm={9}>
             <TemplateSelect
               label='Template'
               ref='template'
@@ -87,7 +87,7 @@ var AssessmentCreationForm = React.createClass({
               onChange={this.changeHandlerTemplate}
             />
           </Col>
-          <Col lg={2} xs={3} style={{width: 'auto'}}>
+          <Col lg={2} xs={12} sm={3} style={{width: 'auto'}}>
             <FormControl className='btn btn-default btn-primary' type='submit' value='Launch' onClick={this.handleSubmit} />
           </Col>
         </FormGroup>
