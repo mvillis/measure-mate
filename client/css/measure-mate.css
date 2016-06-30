@@ -13,8 +13,13 @@
 }
 
 .logo {
-  height: 100%;
+  min-height: 200px;
   width: 100%;
+  background-image: url('/static/assets/img/measure_mate_plain_optim.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: block;
 }
 
 .help-block {
@@ -27,6 +32,7 @@
 }
 
 .wrap {
+  overflow-wrap: break-word;
   word-wrap: break-word;
   min-width: 160px;
   max-width: 160px;
