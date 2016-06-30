@@ -5,7 +5,7 @@ engines:
     exclude_fingerprints:
     - 8510e97a8be01a21cd4f4a8ba13df69f
   duplication:
-    enabled: false
+    enabled: true
     config:
       languages:
       - javascript
