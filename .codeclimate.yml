@@ -7,7 +7,7 @@ engines:
     - 2c296b4630dd3bedb811f314bc1aeb01
     - 314efdc0bb752931ccdc3b81af0d4f6e
   duplication:
-    enabled: true
+    enabled: false
     exclude_paths:
     - measure_mate/tests/**.py
     - client/test/**/*.js
