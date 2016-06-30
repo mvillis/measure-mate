@@ -37,11 +37,9 @@ var AssessmentTable = React.createClass({
   },
   render: function () {
     return (
-      <div>
-        <Loader loaded={this.state.loaded}>
-          <AssessmentList data={this.state.data} showTeams={!this.props.teamId} />
-        </Loader>
-      </div>
+      <Loader loaded={this.state.loaded}>
+        <AssessmentList data={this.state.data} showTeams={!this.props.teamId} />
+      </Loader>
     )
   }
 })

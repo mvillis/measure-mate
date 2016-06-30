@@ -6,6 +6,8 @@
 .logo-text {
   font-family: 'Autour One';
   text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .navbar-brand {

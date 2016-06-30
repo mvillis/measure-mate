@@ -5,6 +5,8 @@ var React = require('react')
 var Loader = require('react-loader')
 var ReactBootstrap = require('react-bootstrap')
 var Panel = ReactBootstrap.Panel
+var Row = ReactBootstrap.Row
+var Col = ReactBootstrap.Col
 
 var $ = require('jquery')
 
@@ -45,29 +47,27 @@ var Team = React.createClass({
     var teamId = parseInt(this.props.params.teamId, 10)
     return (
       <div>
-        <div className='row'>
-          <div className='col-sm-6'>
-            <Panel header='Team' bsStyle='primary'>
-              <Loader scale={0.25} top='10' loaded={this.state.loaded}>
+        <Row>
+          <Col xs={12} sm={6}>
+            <Loader scale={0.25} top='10' loaded={this.state.loaded}>
+              <Panel header='Team' bsStyle='primary'>
                 <TeamDetails team={this.state.team} />
-              </Loader>
-            </Panel>
-          </div>
-          <div className='col-sm-6 push-right'>
+              </Panel>
+            </Loader>
+          </Col>
+          <Col xs={12} sm={6}>
             <Panel header='Create Assessment' bsStyle='info'>
-              <div className='container-fluid'>
-                <AssessmentCreationForm teamId={teamId} />
-              </div>
+              <AssessmentCreationForm teamId={teamId} />
             </Panel>
-          </div>
-        </div>
-        <div className='row'>
-          <div className='container-fluid'>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
             <Panel header='Assessments' bsStyle='info'>
               <AssessmentTable teamId={teamId} />
             </Panel>
-          </div>
-        </div>
+          </Col>
+        </Row>
       </div>
     )
   }
