@@ -48,12 +48,12 @@ var Team = React.createClass({
     return (
       <div>
         <Row>
-          <Col xs={12} sm={6}>
-            <Loader scale={0.25} top='10' loaded={this.state.loaded}>
-              <Panel header='Team' bsStyle='primary'>
+          <Col xs={12} sm={6}>          
+            <Panel header='Team' bsStyle='primary'>
+              <Loader scale={0.25} top='10' loaded={this.state.loaded}>
                 <TeamDetails team={this.state.team} />
-              </Panel>
-            </Loader>
+              </Loader>
+            </Panel>
           </Col>
           <Col xs={12} sm={6}>
             <Panel header='Create Assessment' bsStyle='info'>
