@@ -120,6 +120,8 @@ module.exports = {
   lint: {
     src: [
       'gulpfile.js',
+      './gulp/*.js',
+      './gulp/**/*.js',
       './client/js/main.js',
       './client/js/**/*.js',
       './client/test/js/**/*.js'
@@ -138,7 +140,7 @@ module.exports = {
       reporters: [ 'lcov', 'json' ]
     },
     istanbulThresholds: {
-      global: 0,
+      global: 0
     }
   },
 
