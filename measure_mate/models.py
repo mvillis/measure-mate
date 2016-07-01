@@ -13,7 +13,8 @@ class Template(models.Model):
         verbose_name_plural = "Templates"
 
     id = models.AutoField(primary_key=True, verbose_name="Template ID")
-    name = models.CharField(max_length=256, unique=True, verbose_name="Template Name")
+    name = models.CharField(max_length=256, unique=True,
+                            verbose_name="Template Name")
     short_desc = models.CharField(max_length=256)
 
     def __unicode__(self):
@@ -56,8 +57,15 @@ class Rating(models.Model):
         return (self.attribute.name + " - " +
                 self.name)
 
+
 uppercase_re = re.compile(r'[A-Z]')
-validate_lowercase = RegexValidator(uppercase_re, _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens."), 'invalid', True)
+validate_lowercase = RegexValidator(
+    uppercase_re,
+    _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens."),
+    'invalid',
+    True
+)
+
 
 class Tag(models.Model):
     class Meta:

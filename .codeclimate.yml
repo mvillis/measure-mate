@@ -35,6 +35,14 @@ engines:
     - 5f084b7ed0c86a6f4e055213c34bd3b6
   radon:
     enabled: true
+  markdownlint:
+    enabled: true
+  nodesecurity:
+    enabled: true
+  pep8:
+    enabled: true
+  requiresafe:
+    enabled: true
 ratings:
   paths:
   - "**.css"

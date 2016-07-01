@@ -211,10 +211,10 @@ SECURE_FRAME_DENY = True
 X_FRAME_OPTIONS = 'DENY'
 
 CSP_DEFAULT_SRC = ("'none'",)
-CSP_SCRIPT_SRC = ("'unsafe-eval'","'unsafe-inline'","'self'",)
+CSP_SCRIPT_SRC = ("'unsafe-eval'", "'unsafe-inline'", "'self'",)
 CSP_CONNECT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'unsafe-inline'","'self'",)
-CSP_IMG_SRC = ("'self'","data:","blob:",)
+CSP_STYLE_SRC = ("'unsafe-inline'", "'self'",)
+CSP_IMG_SRC = ("'self'", "data:", "blob:",)
 CSP_FONT_SRC = ("'self'",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin",)
 

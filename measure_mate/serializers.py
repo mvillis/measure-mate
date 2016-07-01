@@ -92,6 +92,7 @@ class TeamSerializer(serializers.ModelSerializer):
         fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags', 'assessments')
         depth = 2
 
+
 class TeamCreateSerializer(serializers.ModelSerializer):
     tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
 
