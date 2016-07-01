@@ -38,11 +38,11 @@ engines:
   markdownlint:
     enabled: true
   nodesecurity:
-    enabled: true
+    enabled: false
   pep8:
     enabled: true
   requiresafe:
-    enabled: true
+    enabled: false
 ratings:
   paths:
   - "**.css"
