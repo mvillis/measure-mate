@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "autoprefixer": "^6.3.6",
+    "babel-plugin-transform-react-jsx-self": "^6.11.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
     "babelify": "^7.3.0",
