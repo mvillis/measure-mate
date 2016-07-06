@@ -19,7 +19,7 @@ var About = React.createClass({
             </Jumbotron>
             <Jumbotron>
               <span className='logo'></span>
-              <h1 className='logo-text'>Measure Mate!</h1>
+              <h1 className='logo-text wrap'>Measure Mate!</h1>
               <p className='logo-slogan-text'>A tool to track maturity assessments for your team.</p>
             </Jumbotron>
           </Col>
