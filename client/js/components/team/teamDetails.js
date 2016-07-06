@@ -7,7 +7,7 @@ var FormGroup = ReactBootstrap.FormGroup
 var ControlLabel = ReactBootstrap.ControlLabel
 var Col = ReactBootstrap.Col
 
-var TagList = require('../assessment/tagList')
+var TagList = require('../common/tagList')
 
 var TeamDetails = React.createClass({
   propTypes: {

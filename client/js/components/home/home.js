@@ -7,7 +7,7 @@ var Grid = ReactBootstrap.Grid
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
 var Jumbotron = ReactBootstrap.Jumbotron
-var TeamCreationForm = require('./teamCreationForm')
+var TeamCreationForm = require('../team/teamCreationForm')
 
 var Home = React.createClass({
   render: function () {

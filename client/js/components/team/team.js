@@ -12,7 +12,7 @@ var $ = require('jquery')
 
 var TeamDetails = require('./teamDetails')
 var AssessmentTable = require('../assessment/assessmentTable')
-var AssessmentCreationForm = require('../home/assessmentCreationForm')
+var AssessmentCreationForm = require('../assessment/assessmentCreationForm')
 
 var Team = React.createClass({
   propTypes: {
