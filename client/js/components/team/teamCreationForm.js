@@ -17,13 +17,39 @@ var _ = require('lodash')
 var HttpStatus = require('http-status-codes')
 
 var TeamCreationForm = React.createClass({
+  propTypes: {
+    initialTeam: React.PropTypes.object,
+    initialTags: React.PropTypes.array
+  },
   getInitialState: function () {
-    return {
-      teamName: '',
-      teamDesc: '',
-      tags: [],
-      formError: '',
-      creatingTag: false
+    console.log('initialTeam: ' + JSON.stringify(this.props.initialTeam))
+    console.log('initialTags: ' + JSON.stringify(this.props.initialTags))
+    if (this.props.initialTeam) {
+      console.log('initialTeam set!')
+      var team = this.props.initialTeam
+      var tags = this.props.initialTags || []
+      return {
+        teamId: team.id,
+        teamName: team.name,
+        teamDesc: team.short_desc,
+        tags: tags.map(function (tag) {
+          return ({
+            label: tag.name,
+            value: tag.id
+          })
+        }),
+        formError: '',
+        creatingTag: false
+      }
+    } else {
+      return {
+        teamId: '',
+        teamName: '',
+        teamDesc: '',
+        tags: [],
+        formError: '',
+        creatingTag: false
+      }
     }
   },
   changeHandlerTags: function (val) {
@@ -51,7 +77,12 @@ var TeamCreationForm = React.createClass({
         )
       })
       this.showError('')
-      this.createTeam(teamName, teamDesc, tags)
+
+      if (this.state.teamId) {
+        this.updateTeam(this.state.teamId, teamName, teamDesc, tags)
+      } else {
+        this.createTeam(teamName, teamDesc, tags)
+      }
     } else {
       var message = 'Name, description & tag/s required.'
       this.showError(message)
@@ -170,6 +201,34 @@ var TeamCreationForm = React.createClass({
     })
   },
 
+  updateTeam: function (teamId, teamName, teamDesc, tags) {
+    var data = {
+      id: teamId,
+      name: teamName,
+      short_desc: teamDesc, // eslint-disable-line camelcase
+      tags: tags
+    }
+    $.ajax({
+      context: this,
+      url: '/api/teams/' + teamId + '/',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data: JSON.stringify(data),
+      type: 'PUT',
+      cache: true,
+      success: function (newTeam) {
+        browserHistory.push('/team/' + newTeam.id)
+      },
+      error: function (xhr, status, err) {
+        console.log(err)
+        console.log(xhr.responseJSON.detail)
+        console.log(status)
+        var message = 'Team update failed due to unknown reason. Try again later.'
+        this.showError(message)
+      }
+    })
+  },
+
   render: function () {
     var creatingTag = this.state.creatingTag
     return (
@@ -225,7 +284,7 @@ var TeamCreationForm = React.createClass({
         <FormGroup>
           <Col xs={12} sm={3} lg={2} lgOffset={10} style={{width: 'auto'}}>
             <FormControl className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
-              type='submit' value='Create' onClick={!creatingTag ? this.handleSubmit : null} />
+              type='submit' value={this.state.teamId ? 'Save' : 'Create'} onClick={!creatingTag ? this.handleSubmit : null} />
           </Col>
         </FormGroup>
       </Form>

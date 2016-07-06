@@ -10,7 +10,7 @@ var Col = ReactBootstrap.Col
 
 var $ = require('jquery')
 
-var TeamDetails = require('./teamDetails')
+var TeamCreationForm = require('./teamCreationForm')
 var AssessmentTable = require('../assessment/assessmentTable')
 var AssessmentCreationForm = require('../assessment/assessmentCreationForm')
 
@@ -19,6 +19,21 @@ var Team = React.createClass({
     params: React.PropTypes.object
   },
 
+  loadTagsFromServer: function () {
+    var teamId = parseInt(this.props.params.teamId, 10)
+    var url = '/api/tags/?team__id=' + teamId
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      cache: false,
+      success: function (data) {
+        this.setState({tags: data, loadedTags: true, loaded: this.state.loadedTeam})
+      }.bind(this),
+      error: function (xhr, status, err) {
+        console.error(url, status, err.toString())
+      }
+    })
+  },
   loadTeamFromServer: function () {
     var teamId = parseInt(this.props.params.teamId, 10)
     var url = '/api/teams/' + teamId + '/'
@@ -27,7 +42,7 @@ var Team = React.createClass({
       dataType: 'json',
       cache: false,
       success: function (data) {
-        this.setState({team: data, loaded: true})
+        this.setState({team: data, loadedTeam: true, loaded: this.state.loadedTags})
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(url, status, err.toString())
@@ -37,21 +52,25 @@ var Team = React.createClass({
   getInitialState: function () {
     return {
       team: {},
+      tags: [],
+      loadedTags: false,
+      loadedTeam: false,
       loaded: false
     }
   },
   componentDidMount: function () {
     this.loadTeamFromServer()
+    this.loadTagsFromServer()
   },
   render: function () {
     var teamId = parseInt(this.props.params.teamId, 10)
     return (
       <div>
         <Row>
-          <Col xs={12} sm={6}>          
+          <Col xs={12} sm={6}>
             <Panel header='Team' bsStyle='primary'>
               <Loader loaded={this.state.loaded}>
-                <TeamDetails team={this.state.team} />
+                <TeamCreationForm initialTeam={this.state.team} initialTags={this.state.tags} />
               </Loader>
             </Panel>
           </Col>
