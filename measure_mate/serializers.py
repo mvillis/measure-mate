@@ -86,6 +86,7 @@ class AssessmentSimpleSerializer(serializers.ModelSerializer):
 
 class TeamSerializer(serializers.ModelSerializer):
     assessments = AssessmentSimpleSerializer(many=True, read_only=True)
+    tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
 
     class Meta:
         model = Team

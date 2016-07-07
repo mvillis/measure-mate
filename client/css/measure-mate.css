@@ -6,8 +6,6 @@
 .logo-text {
   font-family: 'Autour One';
   text-align: center;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
 }
 
 .navbar-brand {
@@ -36,8 +34,6 @@
 .wrap {
   overflow-wrap: break-word;
   word-wrap: break-word;
-  min-width: 160px;
-  max-width: 160px;
 }
 
 .list-group-item.rating-colour {
