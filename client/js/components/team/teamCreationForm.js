@@ -11,6 +11,7 @@ var Form = ReactBootstrap.Form
 var FormControl = ReactBootstrap.FormControl
 var FormGroup = ReactBootstrap.FormGroup
 var HelpBlock = ReactBootstrap.HelpBlock
+var Button = ReactBootstrap.Button
 var TagSelect = require('../common/tagSelect')
 var $ = require('jquery')
 var _ = require('lodash')
@@ -22,10 +23,7 @@ var TeamCreationForm = React.createClass({
     initialTags: React.PropTypes.array
   },
   getInitialState: function () {
-    console.log('initialTeam: ' + JSON.stringify(this.props.initialTeam))
-    console.log('initialTags: ' + JSON.stringify(this.props.initialTags))
     if (this.props.initialTeam) {
-      console.log('initialTeam set!')
       var team = this.props.initialTeam
       var tags = this.props.initialTags || []
       return {
@@ -39,7 +37,8 @@ var TeamCreationForm = React.createClass({
           })
         }),
         formError: '',
-        creatingTag: false
+        creatingTag: false,
+        changed: false
       }
     } else {
       return {
@@ -48,21 +47,27 @@ var TeamCreationForm = React.createClass({
         teamDesc: '',
         tags: [],
         formError: '',
-        creatingTag: false
+        creatingTag: false,
+        changed: false
       }
     }
   },
-  changeHandlerTags: function (val) {
-    this.setState({
-      tags: val
-    })
-  },
-  handleChange: function () {
+  handleNameChange: function (e) {
     // This could also be done using ReactLink:
     // http://facebook.github.io/react/docs/two-way-binding-helpers.html
+    var value = e.target.value
+    console.log('teamName: ' + value)
     this.setState({
-      teamName: this.refs.teamName.getValue(),
-      teamDesc: this.refs.teamDesc.getValue()
+      teamName: value,
+      changed: true
+    })
+  },
+  handleDescChange: function (e) {
+    var value = e.target.value
+    console.log('teamDesc: ' + value)
+    this.setState({
+      teamDesc: value,
+      changed: true
     })
   },
   handleSubmit: function (e) {
@@ -164,13 +169,16 @@ var TeamCreationForm = React.createClass({
     return filteredOptions.value()
   },
 
-  changeTags: function (newTags) {
+  handleTagsChange: function (newTags) {
     let entered = _.last(newTags)
     if (entered && entered.create) {
       newTags.pop()
       this.createTag(entered.value)
     }
-    this.setState({tags: newTags})
+    this.setState({
+      tags: newTags,
+      changed: true
+    })
   },
   // /FIXME -----------------
 
@@ -180,6 +188,7 @@ var TeamCreationForm = React.createClass({
       short_desc: teamDesc, // eslint-disable-line camelcase
       tags: tags
     }
+    console.log('new team: ' + JSON.stringify(data))
     $.ajax({
       context: this,
       url: '/api/teams/',
@@ -192,10 +201,17 @@ var TeamCreationForm = React.createClass({
         browserHistory.push('/team/' + newTeam.id)
       },
       error: function (xhr, status, err) {
+        console.log(xhr.status + ' ' + xhr.statusText)
+        console.log(xhr.responseText)
         console.log(err)
-        console.log(xhr.responseJSON.detail)
-        console.log(status)
         var message = 'Team creation failed due to unknown reason. Try again later.'
+        if (xhr.status === HttpStatus.BAD_REQUEST) {
+          if (xhr.responseJSON && xhr.responseJSON.name) {
+            message = 'Invalid team name: ' + xhr.responseJSON.name
+          } else {
+            message = 'Team creation failed: ' + xhr.responseText
+          }
+        }
         this.showError(message)
       }
     })
@@ -217,13 +233,21 @@ var TeamCreationForm = React.createClass({
       type: 'PUT',
       cache: true,
       success: function (newTeam) {
+        this.setState({ changed: false })
         browserHistory.push('/team/' + newTeam.id)
       },
       error: function (xhr, status, err) {
+        console.log(xhr.status + ' ' + xhr.statusText)
+        console.log(xhr.responseText)
         console.log(err)
-        console.log(xhr.responseJSON.detail)
-        console.log(status)
         var message = 'Team update failed due to unknown reason. Try again later.'
+        if (xhr.status === HttpStatus.BAD_REQUEST) {
+          if (xhr.responseJSON && xhr.responseJSON.name) {
+            message = 'Invalid team name: ' + xhr.responseJSON.name
+          } else {
+            message = 'Team update failed: ' + xhr.responseText
+          }
+        }
         this.showError(message)
       }
     })
@@ -236,7 +260,7 @@ var TeamCreationForm = React.createClass({
         <Alert bsStyle='danger' className={this.state.formError ? '' : 'hidden'}>
           {this.state.formError}
         </Alert>
-        <FormGroup>
+        <FormGroup controlId='teamName'>
           <Col xs={12} sm={3} lg={2}>
             <ControlLabel>Name</ControlLabel>
           </Col>
@@ -244,14 +268,13 @@ var TeamCreationForm = React.createClass({
             <FormControl
               type='text'
               placeholder='Team Name'
-              ref='teamName'
               value={this.state.teamName}
-              onChange={this.handleChange}
+              onChange={this.handleNameChange}
             />
             <HelpBlock>The team name must be unique</HelpBlock>
           </Col>
         </FormGroup>
-        <FormGroup>
+        <FormGroup controlId='teamDesc'>
           <Col xs={12} sm={3} lg={2}>
             <ControlLabel>Description</ControlLabel>
           </Col>
@@ -261,12 +284,12 @@ var TeamCreationForm = React.createClass({
               placeholder='Team Description'
               ref='teamDesc'
               value={this.state.teamDesc}
-              onChange={this.handleChange}
+              onChange={this.handleDescChange}
             />
             <HelpBlock>The team's description</HelpBlock>
           </Col>
         </FormGroup>
-        <FormGroup>
+        <FormGroup controlId='tags'>
           <Col xs={12} sm={3} lg={2}>
             <ControlLabel>Tags</ControlLabel>
           </Col>
@@ -276,15 +299,20 @@ var TeamCreationForm = React.createClass({
               label='Tags'
               {...this.props}
               value={this.state.tags}
-              onChange={this.changeTags}
+              onChange={this.handleTagsChange}
               filterOptions={this.filterOptions}
             />
           </Col>
         </FormGroup>
         <FormGroup>
           <Col xs={12} sm={3} lg={2} lgOffset={10} style={{width: 'auto'}}>
-            <FormControl className={'btn btn-default btn-primary' + (creatingTag ? ' btn-disabled' : '')}
-              type='submit' value={this.state.teamId ? 'Save' : 'Create'} onClick={!creatingTag ? this.handleSubmit : null} />
+            <Button
+              bsStyle='primary'
+              disabled={creatingTag || !this.state.changed}
+              type='submit'
+              onClick={this.handleSubmit}>
+              {this.state.teamId ? 'Save' : 'Create'}
+            </Button>
           </Col>
         </FormGroup>
       </Form>
