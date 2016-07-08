@@ -11,7 +11,7 @@ var TagList = React.createClass({
   render: function () {
     var tagNodes = this.props.tags.map(function (tag, i) {
       return (
-        <span key={tag.id || tag}><Label bsStyle='default' className='label label-primary'>{tag.name || tag.id || tag}</Label> </span>
+        <span key={tag.id}><Label bsStyle='default' className='label label-primary'>{tag.name}</Label> </span>
       )
     })
     return (
