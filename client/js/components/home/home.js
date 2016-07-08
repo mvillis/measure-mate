@@ -7,7 +7,7 @@ var Grid = ReactBootstrap.Grid
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
 var Jumbotron = ReactBootstrap.Jumbotron
-var TeamCreationForm = require('./teamCreationForm')
+var TeamCreationForm = require('../team/teamCreationForm')
 
 var Home = React.createClass({
   render: function () {
@@ -16,8 +16,8 @@ var Home = React.createClass({
         <Row>
           <Col md={6}>
             <Jumbotron>
-              <img src='/static/assets/img/measure_mate_plain_optim.svg' className='logo'></img>
-              <h1 className='logo-text'>Measure Mate!</h1>
+              <span className='logo'></span>
+              <h1 className='logo-text wrap'>Measure Mate!</h1>
               <p className='logo-slogan-text'>A tool to track maturity assessments for your team.</p>
             </Jumbotron>
           </Col>

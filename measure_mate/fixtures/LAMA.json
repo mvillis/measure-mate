@@ -330,7 +330,7 @@
       "colour": "Orange",
       "rank": 1,
       "desc_class": "like-pre",
-      "desc": "• Iteration Manager is a full time role (-)\r\n• Iteration Manager drives the basic agile fundamentals (-)\r\n• No Standardised Reporting or metrics in place (-)\r\n"
+      "desc": "• Iteration Manager drives the basic agile fundamentals (-)\r\n• No Standardised Reporting or metrics in place (-)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 118

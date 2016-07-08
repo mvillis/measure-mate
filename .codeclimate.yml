@@ -2,18 +2,47 @@
 engines:
   csslint:
     enabled: true
+    exclude_fingerprints:
+    - 8510e97a8be01a21cd4f4a8ba13df69f
+    - 2c296b4630dd3bedb811f314bc1aeb01
+    - 314efdc0bb752931ccdc3b81af0d4f6e
   duplication:
     enabled: false
+    exclude_paths:
+    - measure_mate/tests/**.py
+    - client/test/**/*.js
+    - gulp/**/*.js
     config:
       languages:
-      - javascript
-      - python
+        javascript:
+          mass_threshold: 60
+        python:
+          mass_threshold: 45
   eslint:
     enabled: true
+    channel: "eslint-2"
+    config:
+      config: .eslintrc.json
+      extensions:
+      - .js
+      - .jsx
   fixme:
     enabled: true
+    exclude_fingerprints:
+    - 2a1b6aa45595d8003a88632cd5ee268b
+    - 57f229fafe27b8410d624e0d8a6d162d
+    - 1b7e022efe49c1dd4bc0c3ab8ef830c1
+    - 5f084b7ed0c86a6f4e055213c34bd3b6
   radon:
     enabled: true
+  markdownlint:
+    enabled: true
+  nodesecurity:
+    enabled: false
+  pep8:
+    enabled: true
+  requiresafe:
+    enabled: false
 ratings:
   paths:
   - "**.css"
@@ -23,8 +52,6 @@ ratings:
 exclude_paths:
 - node_modules/
 - .venv/**/*
-- measure_mate/migrations/*.py
-- measure_mate/tests/*.py
-- client/test/*
+- measure_mate/migrations/**.py
 - build/**/*
 - .pylintrc

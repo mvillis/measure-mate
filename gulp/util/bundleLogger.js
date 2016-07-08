@@ -18,4 +18,4 @@ module.exports = {
     var prettyTime = prettyHrtime(taskTime)
     gutil.log('Bundled', gutil.colors.green(filepath), 'in', gutil.colors.magenta(prettyTime))
   }
-};
+}

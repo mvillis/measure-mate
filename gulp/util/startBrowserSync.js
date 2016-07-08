@@ -1,6 +1,6 @@
+var _ = require('lodash')
 var assign = require('lodash.assign')
 var browserSync = require('browser-sync')
-var gulp = require('gulp')
 var gutil = require('gulp-util')
 var config = require('../config')
 

@@ -6,7 +6,7 @@ var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Moment = require('moment')
 var Table = ReactBootstrap.Table
-var TagList = require('../assessment/tagList')
+var TagList = require('../common/tagList')
 
 var TeamList = React.createClass({
   propTypes: {
