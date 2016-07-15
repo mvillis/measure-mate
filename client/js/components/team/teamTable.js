@@ -42,7 +42,7 @@ var TeamTable = React.createClass({
   getInitialState: function () {
     return {
       teams: [],
-      teamTags: {},
+      teamTags: [],
       loaded: false
     }
   },
