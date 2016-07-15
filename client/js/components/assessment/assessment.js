@@ -215,7 +215,7 @@ var Assessment = React.createClass({
           <PageHeader>
             {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''} <Label>{this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}</Label></small>
           </PageHeader>
-          <Grid fluid>
+          <div>
             <Row>
               <Col className='attribute-content' xs={12} md={9} lg={9}>
                 {React.cloneElement(this.props.children, {
@@ -244,7 +244,7 @@ var Assessment = React.createClass({
                 </Nav>
               </Col>
             </Row>
-          </Grid>
+          </div>
         </Loader>
         <AppAlert showAlert={this.state.showAlert} alertType={this.state.alertType} alertDetail={this.state.alertDetail} handleHide={this.handleAlertHide} />
       </div>
