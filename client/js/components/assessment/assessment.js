@@ -217,7 +217,7 @@ var Assessment = React.createClass({
           </PageHeader>
           <Grid fluid>
             <Row>
-              <Col className='attribute-content' xs={12} md={10} lg={9}>
+              <Col className='attribute-content' xs={12} md={9} lg={9}>
                 {React.cloneElement(this.props.children, {
                   template: this.state.template,
                   measurements: this.state.measurements,
@@ -235,7 +235,7 @@ var Assessment = React.createClass({
                   </PageItem>
                 </Pager>
               </Col>
-              <Col className='attribute-tabs' xs={12} md={2} lg={3}>
+              <Col className='attribute-tabs' xs={12} md={3} lg={3}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
                   {summaryNode}
