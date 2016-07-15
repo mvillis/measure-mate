@@ -67,7 +67,7 @@
     "postcss-cli": "^2.5.2",
     "pretty-hrtime": "^1.0.2",
     "react": "^15.2.0",
-    "react-bootstrap": "https://github.com/react-bootstrap/react-bootstrap/tarball/next",
+    "react-bootstrap": "https://github.com/react-bootstrap/react-bootstrap.git#next",
     "react-dom": "^15.2.0",
     "react-input-autosize": "^1.0.0",
     "react-loader": "^2.4.0",
