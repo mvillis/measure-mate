@@ -235,7 +235,7 @@ var Assessment = React.createClass({
                   </PageItem>
                 </Pager>
               </Col>
-              <Col className='attribute-tabs' xs={6} md={2} lg={3}>
+              <Col className='attribute-tabs' xs={12} md={2} lg={3}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
                   {summaryNode}
