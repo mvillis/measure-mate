@@ -13,7 +13,6 @@ var Grid = ReactBootstrap.Grid
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
 var Pager = ReactBootstrap.Pager
-var PageItem = ReactBootstrap.PageItem
 var Glyphicon = ReactBootstrap.Glyphicon
 var Label = ReactBootstrap.Label
 var LinkContainer = ReactRouterBootstrap.LinkContainer
@@ -192,10 +191,10 @@ var Assessment = React.createClass({
       var attributeNodes = this.state.template.attributes.map(function (attribute, i) {
         var measurement = this.getMeasurementForAttribute(attribute)
         var completeMeasurement = measurement && measurement.rating && measurement.target_rating
-        var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' tabClassName='text-success' /> : <Glyphicon glyph='minus' />
+        var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' className='text-success' /> : <Glyphicon glyph='minus' />
         return (
           <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}} onClick={this.scrollToTop('#attribute-list')}>
-            <NavItem activeClassName='active' eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
+            <NavItem eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
           </LinkContainer>
         )
       }.bind(this))
@@ -204,7 +203,7 @@ var Assessment = React.createClass({
         if (!this.state.template) return (undefined)
         return (
           <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}} onClick={this.scrollToTop('#attribute-list')}>
-            <NavItem activeClassName='active' eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
+            <NavItem eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
           </LinkContainer>
         )
       }.bind(this)()
@@ -226,13 +225,13 @@ var Assessment = React.createClass({
                   disabled: (this.state.assessment && this.state.assessment.status === 'DONE')
                 })}
                 <Pager>
-                  <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
+                  <Pager.Item disabled={this.state.previous_hide} onClick={this.handlePrevious}>
                     <Glyphicon glyph='chevron-left' /> {' '} Previous
-                  </PageItem>
+                  </Pager.Item>
                   {' '}
-                  <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
+                  <Pager.Item disabled={this.state.next_hide} onClick={this.handleNext}>
                     Next {' '} <Glyphicon glyph='chevron-right' />
-                  </PageItem>
+                  </Pager.Item>
                 </Pager>
               </Col>
               <Col className='attribute-tabs' xs={12} md={3} lg={3}>
