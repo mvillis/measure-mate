@@ -38,52 +38,44 @@ var FinaliseAssessment = React.createClass({
   },
   render: function () {
     var summaryPath = '/assessment/' + this.props.assessment.id + '/summary'
-    var content = function () {
-      if (this.props.assessment.status === 'DONE') {
-        return (
-          <Panel header='All Locked In!'>
-            <p>This assessment is now <Label bsStyle='primary'>Read Only</Label>.</p>
-            <p>No changes can be made to any of the fields.</p>
+    if (this.props.assessment.status === 'DONE') {
+      return (
+        <Panel header='All Locked In!'>
+          <p>This assessment is now <Label bsStyle='primary'>Read Only</Label>.</p>
+          <p>No changes can be made to any of the fields.</p>
+        </Panel>
+      )
+    } else if (this.props.location.pathname === summaryPath) {
+      return (
+        <div>
+          <Modal show={this.state.showModal} onHide={this.close}>
+            <Modal.Header closeButton>
+              <Modal.Title>Are you sure?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>Once you commit you will not be able to make futher changes.</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={this.close}>Close</Button>
+              <Button bsStyle='primary' onClick={this.handleLock}>Lock It In</Button>
+            </Modal.Footer>
+          </Modal>
+          <Panel bsStyle='danger'>
+            <p>Happy how everything looks?</p>
+            <Button onClick={this.open} bsStyle='primary'>Lock It In</Button>
           </Panel>
-        )
-      }
-      if (this.props.location.pathname === summaryPath) {
-        return (
-          <div>
-            <Modal show={this.state.showModal} onHide={this.close}>
-              <Modal.Header closeButton>
-                <Modal.Title>Are you sure?</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <p>Once you commit you will not be able to make futher changes.</p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button onClick={this.close}>Close</Button>
-                <Button bsStyle='primary' onClick={this.handleLock}>Lock It In</Button>
-              </Modal.Footer>
-            </Modal>
-            <Panel bsStyle='danger'>
-              <p>Happy how everything looks?</p>
-              <Button onClick={this.open} bsStyle='primary'>Lock It In</Button>
-            </Panel>
-          </div>
-        )
-      } else {
-        return (
-          <Panel>
-            <p>When you're finished lock in your results on the Summary screen</p>
-            <LinkContainer key='summary' to={{pathname: '/assessment/' + this.props.assessment.id + '/summary'}}>
-              <Button bsStyle='primary'>Summary</Button>
-            </LinkContainer>
-          </Panel>
-        )
-      }
-    }.bind(this)()
-    return (
-      <div>
-        {content}
-      </div>
-    )
+        </div>
+      )
+    } else {
+      return (
+        <Panel>
+          <p>When you're finished lock in your results on the Summary screen</p>
+          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.props.assessment.id + '/summary'}}>
+            <Button bsStyle='primary'>Summary</Button>
+          </LinkContainer>
+        </Panel>
+      )
+    }
   }
 })
 

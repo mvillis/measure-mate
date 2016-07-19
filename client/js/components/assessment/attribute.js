@@ -12,7 +12,6 @@ var ListGroup = ReactBootstrap.ListGroup
 
 var Attribute = React.createClass({
   propTypes: {
-    key: React.PropTypes.number,
     attribute: React.PropTypes.object,
     params: React.PropTypes.object,
     template: React.PropTypes.object,
