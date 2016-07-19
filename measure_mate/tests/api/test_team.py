@@ -10,6 +10,27 @@ from measure_mate.tests.factories import TeamFactory, TagFactory
 
 
 class TeamAPITestCases(APITestCase):
+    def test_team(self):
+        """
+        Fetch a team and check that all fields are returned
+        """
+        tag1 = TagFactory()
+        tag2 = TagFactory()
+        team = TeamFactory(tags=[tag1, tag2])
+
+        url = reverse('team-detail', args=[team.id])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['id'], team.id)
+        self.assertEqual(response.data['name'], team.name)
+        self.assertEqual(response.data['short_desc'], team.short_desc)
+        self.assertEqual(datetime.datetime.strptime(response.data['created'], '%Y-%m-%dT%H:%M:%S.%fZ'),
+                         team.created.replace(tzinfo=None))
+        self.assertEqual(datetime.datetime.strptime(response.data['updated'], '%Y-%m-%dT%H:%M:%S.%fZ'),
+                         team.updated.replace(tzinfo=None))
+        self.assertEqual(len(response.data['tags']), 2)
+        self.assertItemsEqual(response.data['tags'], [tag1.id, tag2.id])
+
     def test_list_team(self):
         """
         List all teams and check that all fields are returned
@@ -65,4 +86,24 @@ class TeamAPITestCases(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Team.objects.count(), 0)
 
+    def test_update_team(self):
+        """
+        Update an existing team's name and description
+        """
+        tag1 = TagFactory()
+        tag2 = TagFactory()
+        team = TeamFactory(tags=[tag1, tag2])
 
+        tag3 = TagFactory()
+
+        newtags = [tag1.id, tag3.id]
+
+        url = reverse('team-detail', args=[team.id])
+        data = { "id": team.id, "name": team.name + " updated", "short_desc": team.name + " updated", "tags": newtags }
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['id'], data['id'])
+        self.assertEqual(response.data['name'], data['name'])
+        self.assertEqual(response.data['short_desc'], data['short_desc'])
+        self.assertEqual(len(response.data['tags']), 2)
+        self.assertItemsEqual(response.data['tags'], [tag1.id, tag3.id])

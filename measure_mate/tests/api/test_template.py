@@ -20,4 +20,3 @@ class TemplateAPITestCases(APITestCase):
         self.assertEqual(response.data[0]['id'], template.id)
         self.assertEqual(response.data[0]['name'], template.name)
         self.assertEqual(len(response.data), Template.objects.count())
-

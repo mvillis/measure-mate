@@ -9,7 +9,6 @@ var AppAlert = require('../common/appAlert')
 var PageHeader = ReactBootstrap.PageHeader
 var Nav = ReactBootstrap.Nav
 var NavItem = ReactBootstrap.NavItem
-var Grid = ReactBootstrap.Grid
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
 var Pager = ReactBootstrap.Pager
@@ -38,7 +37,9 @@ var Assessment = React.createClass({
       dirtyObservation: {},
       showAlert: false,
       alertDetail: '',
-      alertType: ''
+      alertType: '',
+      previous_hide: false,
+      next_hide: false
     }
   },
   contextTypes: {
@@ -192,10 +193,10 @@ var Assessment = React.createClass({
       var attributeNodes = this.state.template.attributes.map(function (attribute, i) {
         var measurement = this.getMeasurementForAttribute(attribute)
         var completeMeasurement = measurement && measurement.rating && measurement.target_rating
-        var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' tabClassName='text-success' /> : <Glyphicon glyph='minus' />
+        var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' className='text-success' /> : <Glyphicon glyph='minus' />
         return (
-          <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}}>
-            <NavItem activeClassName='active' eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
+          <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}} onClick={this.scrollToTop('#attribute-list')}>
+            <NavItem eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
           </LinkContainer>
         )
       }.bind(this))
@@ -203,8 +204,8 @@ var Assessment = React.createClass({
       var summaryNode = function () {
         if (!this.state.template) return (undefined)
         return (
-          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
-            <NavItem activeClassName='active' eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
+          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}} onClick={this.scrollToTop('#attribute-list')}>
+            <NavItem eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
           </LinkContainer>
         )
       }.bind(this)()
@@ -215,9 +216,9 @@ var Assessment = React.createClass({
           <PageHeader>
             {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''} <Label>{this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}</Label></small>
           </PageHeader>
-          <Grid fluid>
+          <div>
             <Row>
-              <Col className='attribute-content' xs={12} md={10} lg={9}>
+              <Col className='attribute-content' xs={12} md={9} lg={9}>
                 {React.cloneElement(this.props.children, {
                   template: this.state.template,
                   measurements: this.state.measurements,
@@ -235,7 +236,7 @@ var Assessment = React.createClass({
                   </PageItem>
                 </Pager>
               </Col>
-              <Col className='attribute-tabs' xs={6} md={2} lg={3}>
+              <Col className='attribute-tabs' xs={12} md={3} lg={3}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
                   {summaryNode}
@@ -244,7 +245,7 @@ var Assessment = React.createClass({
                 </Nav>
               </Col>
             </Row>
-          </Grid>
+          </div>
         </Loader>
         <AppAlert showAlert={this.state.showAlert} alertType={this.state.alertType} alertDetail={this.state.alertDetail} handleHide={this.handleAlertHide} />
       </div>

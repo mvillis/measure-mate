@@ -2,7 +2,6 @@ var gulp = require('gulp')
 var concat = require('gulp-concat')
 var uglifycss = require('gulp-uglifycss')
 var sourcemaps = require('gulp-sourcemaps')
-var util = require('gulp-util')
 var browserSync = require('browser-sync')
 var handleErrors = require('../util/handleErrors')
 var config = require('../config').css

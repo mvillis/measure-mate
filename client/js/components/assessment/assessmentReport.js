@@ -172,6 +172,7 @@ var AssessmentReport = React.createClass({
       height: 450,
       width: 600,
       barmode: 'overlay',
+      autosizable: true,
       margin: {
         t: 30,
         b: 150

@@ -74,5 +74,3 @@ class MeasurementFactory(factory.django.DjangoModelFactory):
     assessment = factory.SubFactory(AssessmentFactory)
     rating = factory.SubFactory(RatingFactory)
     observations = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
-
-

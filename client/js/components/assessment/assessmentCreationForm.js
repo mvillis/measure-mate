@@ -5,7 +5,7 @@ var browserHistory = require('react-router').browserHistory
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
 var Form = ReactBootstrap.Form
-var FormControl = ReactBootstrap.FormControl
+var Button = ReactBootstrap.Button
 var FormGroup = ReactBootstrap.FormGroup
 var ControlLabel = ReactBootstrap.ControlLabel
 var Col = ReactBootstrap.Col
@@ -75,10 +75,10 @@ var AssessmentCreationForm = React.createClass({
           {this.state.formError}
         </Alert>
         <FormGroup>
-          <Col lg={2} xs={2} className='text-right'>
+          <Col lg={2} xs={12} sm={3}>
             <ControlLabel>Template</ControlLabel>
           </Col>
-          <Col lg={8} xs={10}>
+          <Col lg={8} xs={12} sm={9}>
             <TemplateSelect
               label='Template'
               ref='template'
@@ -87,8 +87,8 @@ var AssessmentCreationForm = React.createClass({
               onChange={this.changeHandlerTemplate}
             />
           </Col>
-          <Col lg={2} xs={4}>
-            <FormControl className='btn btn-default btn-primary' type='submit' value='Launch' onClick={this.handleSubmit} />
+          <Col lg={2} xs={12} sm={3} style={{width: 'auto'}}>
+            <Button bsStyle='primary' type='submit' onClick={this.handleSubmit} disabled={!this.state.template}>Launch</Button>
           </Col>
         </FormGroup>
       </Form>

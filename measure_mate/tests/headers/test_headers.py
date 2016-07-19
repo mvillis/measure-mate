@@ -22,4 +22,3 @@ class HeadersTestCases(TestCase):
         self.assertEqual(response['X-Test-Header2'], 'two')
         self.assertEqual(response['X-UA-Compatible'], 'IE=edge')
         self.assertEqual(response['Access-Control-Allow-Origin'], '*')
-
