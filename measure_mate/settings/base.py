@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crispy_forms',
     'rest_framework',
+    'rest_framework_swagger',
     'measure_mate',
 )
 
