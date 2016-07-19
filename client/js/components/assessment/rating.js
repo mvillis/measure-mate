@@ -11,7 +11,6 @@ var Popover = ReactBootstrap.Popover
 
 var Rating = React.createClass({
   propTypes: {
-    key: React.PropTypes.number,
     eventKey: React.PropTypes.number,
     measurement: React.PropTypes.object,
     assessId: React.PropTypes.string.isRequired,
