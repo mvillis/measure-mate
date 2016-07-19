@@ -9,7 +9,6 @@ var AppAlert = require('../common/appAlert')
 var PageHeader = ReactBootstrap.PageHeader
 var Nav = ReactBootstrap.Nav
 var NavItem = ReactBootstrap.NavItem
-var Grid = ReactBootstrap.Grid
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
 var Pager = ReactBootstrap.Pager
