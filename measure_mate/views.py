@@ -1,4 +1,4 @@
-from rest_framework import viewsets, generics, filters, status
+from rest_framework import viewsets, generics, filters, status, schemas
 from rest_framework.response import Response
 import rest_framework.exceptions
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -9,7 +9,16 @@ from serializers import *
 from models import *
 from headers import x_ua_compatible
 from datetime import datetime
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 import django_excel as excel
+
+
+@api_view()
+@renderer_classes([OpenAPIRenderer, SwaggerUIRenderer])
+def schema_view(request):
+    generator = schemas.SchemaGenerator(title='Measure Mate API')
+    return Response(generator.get_schema(request=request))
 
 
 @x_ua_compatible('IE=edge')
