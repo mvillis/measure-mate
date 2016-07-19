@@ -104,7 +104,7 @@
     "mocha": "^2.5.3",
     "react-addons-test-utils": "^15.2.0",
     "sinon": "^1.17.4",
-    "stylelint": "^6.9.0",
+    "stylelint": "^7.0.1",
     "stylelint-config-standard": "^11.0.0",
     "xmldom": "^0.1.22"
   }
