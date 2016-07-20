@@ -116,8 +116,8 @@ class Assessment(models.Model):
         blank=False,
     )
     template = models.ForeignKey(Template, related_name="assessments")
-    team = models.ForeignKey(Team, related_name="assessments")
     tags = models.ManyToManyField(Tag,)
+    team = models.ForeignKey(Team, related_name="assessments")
 
     def __unicode__(self):
         return self.created.strftime('%Y-%m-%d %H:%M%Z') + " - " + self.template.name
