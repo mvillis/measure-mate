@@ -41,7 +41,7 @@ var Assessment = React.createClass({
       alertType: '',
       previous_hide: false,
       next_hide: false,
-      assessmentTags: []
+      assessmentTags: null
     }
   },
   contextTypes: {
@@ -52,13 +52,13 @@ var Assessment = React.createClass({
   },
   tagsCallback: function (data) {
     this.setState({
-      assessmentTags: data,
-      initialLoad: true
+      assessmentTags: data
     })
   },
   measurementCallback: function (data) {
     this.setState({
       measurements: data,
+      initialLoad: true
     }, this.dataSource('/api/tags/?assessment__id=' + this.props.params.assessmentId, this.tagsCallback)
     )
   },
@@ -89,6 +89,7 @@ var Assessment = React.createClass({
     })
   },
   dataSource: function (url, callback) {
+    console.log('fetching ' + url)
     $.ajax({
       type: 'get',
       dataType: 'json',
@@ -218,13 +219,13 @@ var Assessment = React.createClass({
         )
       }.bind(this)()
     }
-    var tags = this.state.assessmentTags || assessment.tags
+    var tags = this.state.assessmentTags || []
     return (
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
           <PageHeader>
             {!!this.state.assessment === true ? this.state.assessment.template.name : ''}
-	    <small>
+            <small>
               &nbsp;
               {this.state.assessment ? this.state.assessment.template.short_desc : ''}
               &nbsp;
@@ -232,7 +233,7 @@ var Assessment = React.createClass({
               <Label>
                 {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}
               </Label>
-	    </small>
+            </small>
           </PageHeader>
           <div>
             <Row>

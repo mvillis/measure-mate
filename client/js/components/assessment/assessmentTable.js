@@ -19,7 +19,7 @@ var AssessmentTable = React.createClass({
         this.setState(function (previousState, currentProps) {
           var assessmentTags = previousState.assessmentTags
           assessmentTags[assessmentId] = data
-          return { assessmentTags: assessmentTags}
+          return {assessmentTags: assessmentTags}
         })
       }.bind(this),
       error: function (xhr, status, err) {
@@ -40,7 +40,7 @@ var AssessmentTable = React.createClass({
         this.setState({assessments: data, loaded: true})
 
         data.forEach(function (assessemnt) {
-          this.loadTeamTagsFromServer(assessemnt.id)
+          this.loadAssessmentTagsFromServer(assessemnt.id)
         }, this)
       }.bind(this),
       error: function (xhr, status, err) {
