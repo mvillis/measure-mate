@@ -16,6 +16,7 @@ class Template(models.Model):
     name = models.CharField(max_length=256, unique=True,
                             verbose_name="Template Name")
     short_desc = models.CharField(max_length=256)
+    taggable = models.BooleanField(default=0)
 
     def __unicode__(self):
         return self.name
@@ -116,6 +117,7 @@ class Assessment(models.Model):
     )
     template = models.ForeignKey(Template, related_name="assessments")
     team = models.ForeignKey(Team, related_name="assessments")
+    tags = models.ManyToManyField(Tag,)
 
     def __unicode__(self):
         return self.created.strftime('%Y-%m-%d %H:%M%Z') + " - " + self.template.name

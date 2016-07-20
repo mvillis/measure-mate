@@ -9,6 +9,24 @@ var AssessmentTable = React.createClass({
   propTypes: {
     teamId: React.PropTypes.number
   },
+  loadAssessmentTagsFromServer: function (assessmentId) {
+    var url = '/api/tags/?assessment__id=' + assessmentId
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      cache: false,
+      success: function (data) {
+        this.setState(function (previousState, currentProps) {
+          var assessmentTags = previousState.assessmentTags
+          assessmentTags[assessmentId] = data
+          return { assessmentTags: assessmentTags}
+        })
+      }.bind(this),
+      error: function (xhr, status, err) {
+        console.error(url, status, err.toString())
+      }
+    })
+  },
   loadAssessmentsFromServer: function () {
     var url = '/api/assessments/'
     if (this.props.teamId) {
@@ -19,7 +37,11 @@ var AssessmentTable = React.createClass({
       dataType: 'json',
       cache: false,
       success: function (data) {
-        this.setState({data: data, loaded: true})
+        this.setState({assessments: data, loaded: true})
+
+        data.forEach(function (assessemnt) {
+          this.loadTeamTagsFromServer(assessemnt.id)
+        }, this)
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(window.location, status, err.toString())
@@ -28,7 +50,8 @@ var AssessmentTable = React.createClass({
   },
   getInitialState: function () {
     return {
-      data: [],
+      assessments: [],
+      assessmentTags: [],
       loaded: false
     }
   },
@@ -38,7 +61,7 @@ var AssessmentTable = React.createClass({
   render: function () {
     return (
       <Loader loaded={this.state.loaded}>
-        <AssessmentList data={this.state.data} showTeams={!this.props.teamId} />
+        <AssessmentList assessments={this.state.assessments} assessmentTags={this.state.assessmentTags} showTeams={!this.props.teamId} />
       </Loader>
     )
   }
