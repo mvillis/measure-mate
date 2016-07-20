@@ -50,7 +50,7 @@ class AssessmentAPITestCases(APITestCase):
         template = TemplateFactory()
 
         url = reverse('assessment-list')
-        data = {"template": template.id}
+        data = {"template": template.id, "tags": []}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
@@ -62,7 +62,7 @@ class AssessmentAPITestCases(APITestCase):
         team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"template": "foo", "team": team.id}
+        data = {"template": "foo", "team": team.id, "tags": []}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
@@ -74,7 +74,7 @@ class AssessmentAPITestCases(APITestCase):
         team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"team": team.id}
+        data = {"team": team.id, "tags": []}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Assessment.objects.count(), 0)
@@ -87,7 +87,7 @@ class AssessmentAPITestCases(APITestCase):
         team = TeamFactory()
 
         url = reverse('assessment-list')
-        data = {"template": template.id, "team": team.id}
+        data = {"template": template.id, "team": team.id, "tags": []}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data.get('status'), 'TODO')
@@ -100,7 +100,7 @@ class AssessmentAPITestCases(APITestCase):
         assessment = AssessmentFactory(status="DONE")
 
         url = reverse('assessment-detail', args=(assessment.id,))
-        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO"}
+        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO", "tags": []}
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Assessment.objects.count(), 1)
@@ -117,7 +117,7 @@ class AssessmentAPITestCases(APITestCase):
         self.client.login(username=my_admin.username, password=password)
 
         url = reverse('assessment-detail', args=(assessment.id,))
-        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO"}
+        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO", "tags": []}
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Assessment.objects.count(), 1)
@@ -129,7 +129,7 @@ class AssessmentAPITestCases(APITestCase):
         assessment = AssessmentFactory()
 
         url = reverse('assessment-detail', args=(assessment.id,))
-        data = {"id": assessment.id, "template": assessment.template.id, "status": "DONE"}
+        data = {"id": assessment.id, "template": assessment.template.id, "status": "DONE", "tags": []}
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Assessment.objects.count(), 1)
@@ -142,7 +142,7 @@ class AssessmentAPITestCases(APITestCase):
         assessment = AssessmentFactory(status="DONE")
 
         url = reverse('assessment-detail', args=(assessment.id,))
-        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO"}
+        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO", "tags": []}
         response = self.client.delete(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
         self.assertEqual(Assessment.objects.count(), 1)
@@ -159,7 +159,7 @@ class AssessmentAPITestCases(APITestCase):
         self.client.login(username=my_admin.username, password=password)
 
         url = reverse('assessment-detail', args=(assessment.id,))
-        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO"}
+        data = {"id": assessment.id, "template": assessment.template.id, "status": "TODO", "tags": []}
         response = self.client.delete(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Assessment.objects.count(), 0)

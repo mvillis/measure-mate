@@ -2,7 +2,8 @@
   {
     "fields": {
       "short_desc": "A template to assess the maturity of DevOps practices",
-      "name": "DevOps"
+      "name": "DevOps",
+      "taggable": true
     },
     "model": "measure_mate.template",
     "pk": 2

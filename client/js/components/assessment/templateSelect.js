@@ -22,7 +22,7 @@ var TemplateSelect = React.createClass({
         success: function (output) {
           var options = output.map(function (item) {
             return (
-              { value: item.id, label: item.name }
+              { value: item.id, label: item.name, taggable: item.taggable }
             )
           })
           callback(null, {

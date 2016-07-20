@@ -78,7 +78,7 @@ class TagViewSet(viewsets.ModelViewSet):
     serializer_class = TagSerializer
     filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     search_fields = ('name',)
-    filter_fields = ('id', 'name', 'team__id')
+    filter_fields = ('id', 'name', 'team__id', 'assessment__id')
     ordering_fields = ('id', 'name')
 
 
