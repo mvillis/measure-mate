@@ -227,11 +227,11 @@ var Assessment = React.createClass({
 	    <small>
               &nbsp;
               {this.state.assessment ? this.state.assessment.template.short_desc : ''}
-              <Label>{this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}</Label>
-	    </small>
-	    <small>
               &nbsp;
-              <span className='wrap'><TagList tags={tags} /></span>
+              <span className='wrap'> <TagList tags={tags} /> </span>
+              <Label>
+                {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}
+              </Label>
 	    </small>
           </PageHeader>
           <div>
