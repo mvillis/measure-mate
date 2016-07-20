@@ -89,7 +89,6 @@ var Assessment = React.createClass({
     })
   },
   dataSource: function (url, callback) {
-    console.log('fetching ' + url)
     $.ajax({
       type: 'get',
       dataType: 'json',
