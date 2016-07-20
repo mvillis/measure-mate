@@ -61,5 +61,19 @@
     },
     "model": "measure_mate.tag",
     "pk": 9
+  },
+  {
+    "fields": {
+      "name": "jira"
+    },
+    "model": "measure_mate.tag",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "name": "atlassian"
+    },
+    "model": "measure_mate.tag",
+    "pk": 11
   }
 ]
