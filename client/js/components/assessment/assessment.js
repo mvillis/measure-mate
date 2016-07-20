@@ -17,6 +17,7 @@ var Glyphicon = ReactBootstrap.Glyphicon
 var Label = ReactBootstrap.Label
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Loader = require('react-loader')
+var TagList = require('../common/tagList')
 var $ = require('jquery')
 
 var Assessment = React.createClass({
@@ -39,7 +40,8 @@ var Assessment = React.createClass({
       alertDetail: '',
       alertType: '',
       previous_hide: false,
-      next_hide: false
+      next_hide: false,
+      assessmentTags: null
     }
   },
   contextTypes: {
@@ -48,11 +50,17 @@ var Assessment = React.createClass({
   componentWillMount: function () {
     this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
   },
+  tagsCallback: function (data) {
+    this.setState({
+      assessmentTags: data
+    })
+  },
   measurementCallback: function (data) {
     this.setState({
       measurements: data,
       initialLoad: true
-    })
+    }, this.dataSource('/api/tags/?assessment__id=' + this.props.params.assessmentId, this.tagsCallback)
+    )
   },
   templateCallback: function (data) {
     this.setState({
@@ -210,11 +218,21 @@ var Assessment = React.createClass({
         )
       }.bind(this)()
     }
+    var tags = this.state.assessmentTags || []
     return (
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
           <PageHeader>
-            {!!this.state.assessment === true ? this.state.assessment.template.name : ''} <small> {this.state.assessment ? this.state.assessment.template.short_desc : ''} <Label>{this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}</Label></small>
+            {!!this.state.assessment === true ? this.state.assessment.template.name : ''}
+            <small>
+              &nbsp;
+              {this.state.assessment ? this.state.assessment.template.short_desc : ''}
+              &nbsp;
+              <span className='wrap'> <TagList tags={tags} /> </span>
+              <Label>
+                {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}
+              </Label>
+            </small>
           </PageHeader>
           <div>
             <Row>

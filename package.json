@@ -4,6 +4,9 @@
   "description": "Simple tool to track maturity assessments.",
   "license": "MIT",
   "main": "./client/index.js",
+  "engines": {
+    "node": "6.3.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mvillis/measure-mate.git"
