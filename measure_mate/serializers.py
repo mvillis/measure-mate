@@ -62,6 +62,8 @@ class MeasurementCreateSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
+    tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
+
     class Meta:
         model = Assessment
         depth = 2
