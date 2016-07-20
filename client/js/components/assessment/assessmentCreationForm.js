@@ -62,7 +62,19 @@ var AssessmentCreationForm = React.createClass({
         browserHistory.push('/assessment/' + newAssessment.id)
       },
       error: function (xhr, status, err) {
+        console.log(xhr.status + ' ' + xhr.statusText)
+        console.log(xhr.responseText)
+        console.log(err)
         var message = 'Launch failed due to unknown reason. Try again later.'
+        if (xhr.status === HttpStatus.BAD_REQUEST) {
+          if (xhr.responseJSON && xhr.responseJSON.template) {
+            message = 'Invalid template: ' + xhr.responseJSON.template
+          } else if (xhr.responseJSON && xhr.responseJSON.teamId) {
+            message = 'Invalid teamId: ' + xhr.responseJSON.teamId
+          } else {
+            message = 'Assessment creation failed: ' + xhr.responseText
+          }
+        }
         this.showError(message)
       }
     })
