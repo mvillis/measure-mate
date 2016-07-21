@@ -34,7 +34,7 @@ var AssessmentList = React.createClass({
             var prettyCreated = Moment(assessment.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(assessment.created).fromNow()
             var assessmentUrl = '/assessment/' + assessment.id + '/' + 'summary'
-            var tags = this.props.assessmentTags[assessment.id] || assessment.tags
+            var tags = this.props.assessmentTags[assessment.id] || []
             return (
               <LinkContainer key={assessment.id} to={{pathname: assessmentUrl}}>
                 <tr className='clickable' >
