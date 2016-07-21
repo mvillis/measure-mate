@@ -91,6 +91,17 @@
   {
     "fields": {
       "attribute": 201,
+      "name": "N/A",
+      "colour": "Gray",
+      "rank": 0,
+      "desc": "Not Applicable.\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 211
+  },
+  {
+    "fields": {
+      "attribute": 201,
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
@@ -153,6 +164,17 @@
     },
     "model": "measure_mate.rating",
     "pk": 246
+  },
+  {
+    "fields": {
+      "attribute": 202,
+      "name": "N/A",
+      "colour": "Gray",
+      "rank": 0,
+      "desc": "Not Applicable.\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 212
   },
   {
     "fields": {
@@ -223,6 +245,17 @@
   {
     "fields": {
       "attribute": 203,
+      "name": "N/A",
+      "colour": "Gray",
+      "rank": 0,
+      "desc": "Not Applicable.\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 213
+  },
+  {
+    "fields": {
+      "attribute": 203,
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
@@ -285,6 +318,17 @@
     },
     "model": "measure_mate.rating",
     "pk": 258
+  },
+  {
+    "fields": {
+      "attribute": 204,
+      "name": "N/A",
+      "colour": "Gray",
+      "rank": 0,
+      "desc": "Not Applicable.\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 214
   },
   {
     "fields": {
@@ -355,6 +399,17 @@
   {
     "fields": {
       "attribute": 205,
+      "name": "N/A",
+      "colour": "Gray",
+      "rank": 0,
+      "desc": "Not Applicable.\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 215
+  },
+  {
+    "fields": {
+      "attribute": 205,
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
@@ -417,6 +472,17 @@
     },
     "model": "measure_mate.rating",
     "pk": 270
+  },
+  {
+    "fields": {
+      "attribute": 206,
+      "name": "N/A",
+      "colour": "Gray",
+      "rank": 0,
+      "desc": "Not Applicable.\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 216
   },
   {
     "fields": {
@@ -487,6 +553,17 @@
   {
     "fields": {
       "attribute": 207,
+      "name": "N/A",
+      "colour": "Gray",
+      "rank": 0,
+      "desc": "Not Applicable.\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 217
+  },
+  {
+    "fields": {
+      "attribute": 207,
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
@@ -549,6 +626,17 @@
     },
     "model": "measure_mate.rating",
     "pk": 282
+  },
+  {
+    "fields": {
+      "attribute": 208,
+      "name": "N/A",
+      "colour": "Gray",
+      "rank": 0,
+      "desc": "Not Applicable.\r\n"
+    },
+    "model": "measure_mate.rating",
+    "pk": 218
   },
   {
     "fields": {
