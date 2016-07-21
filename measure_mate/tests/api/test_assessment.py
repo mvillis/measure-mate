@@ -163,3 +163,22 @@ class AssessmentAPITestCases(APITestCase):
         response = self.client.delete(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Assessment.objects.count(), 0)
+
+    def test_update_tags(self):
+        """
+        Ensure you can update the tags
+        """
+        tag1 = TagFactory()
+        tag2 = TagFactory()
+        assessment = AssessmentFactory(tags=[tag1, tag2])
+
+        tag3 = TagFactory()
+
+        url = reverse('assessment-detail', args=(assessment.id,))
+        data = {"id": assessment.id, "template": assessment.template.id, "status": assessment.status, "tags": [tag1.id, tag3.id]}
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['id'], data['id'])
+        self.assertEqual(len(response.data['tags']), 2)
+        self.assertItemsEqual(response.data['tags'], [tag1.id, tag3.id])
+

@@ -67,6 +67,7 @@ class AssessmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assessment
         depth = 2
+        fields = ('id', 'created', 'updated', 'template', 'tags', 'status', 'team')
 
 
 class AssessmentCreateSerializer(serializers.ModelSerializer):
