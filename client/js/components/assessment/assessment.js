@@ -204,7 +204,7 @@ var Assessment = React.createClass({
         var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' className='text-success' /> : <Glyphicon glyph='minus' />
         return (
           <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}} onClick={this.scrollToTop('#attribute-list')}>
-            <NavItem eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
+            <NavItem eventKey={i + 1}>{tabIcon} {attribute.name}</NavItem>
           </LinkContainer>
         )
       }.bind(this))
@@ -213,7 +213,7 @@ var Assessment = React.createClass({
         if (!this.state.template) return (undefined)
         return (
           <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}} onClick={this.scrollToTop('#attribute-list')}>
-            <NavItem eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
+            <NavItem eventKey={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
           </LinkContainer>
         )
       }.bind(this)()
