@@ -68,7 +68,7 @@ var FinaliseAssessment = React.createClass({
       )
     } else {
       return (
-        <Panel>
+        <Panel bsStyle='default'>
           <p>When you're finished lock in your results on the Summary screen</p>
           <LinkContainer key='summary' to={{pathname: '/assessment/' + this.props.assessment.id + '/summary'}}>
             <Button bsStyle='primary'>Summary</Button>
