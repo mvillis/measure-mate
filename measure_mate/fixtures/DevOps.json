@@ -13,7 +13,8 @@
       "name": "Configuration Management",
       "template": 2,
       "rank": 1,
-      "desc": "Ability to track changes made to the artefacts that affect the behaviour of a system and manage multiple contributions to a single artefact.\r\nThis includes source code, libraries, configuration files, tests, environment descriptions, dependant libraries, database schema, support documentation and anything else required to deliver the product."
+      "desc_class": "like-pre",
+      "desc": "Ability to track changes made to the artefacts that affect the behaviour of a system and manage multiple contributions to a single artefact.\r\n\r\nThis includes source code, libraries, configuration files, tests, environment descriptions, dependant libraries, database schema, support documentation and anything else required to deliver the product.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 201
@@ -23,7 +24,8 @@
       "name": "Continuous Integration",
       "template": 2,
       "rank": 2,
-      "desc": "Ability to continuously build and test a product release base to ensure individual changes are compatible with other changes made synchronously.\r\nThis allows the team to manage the rhythm of their work and repeatably release a high quality product on demand."
+      "desc_class": "like-pre",
+      "desc": "Ability to continuously build and test a product release base to ensure individual changes are compatible with other changes made synchronously.\r\n\r\nThis allows the team to manage the rhythm of their work and repeatably release a high quality product on demand.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 202
@@ -33,7 +35,8 @@
       "name": "Data Management",
       "template": 2,
       "rank": 3,
-      "desc": "Ability to effectively manage changes to the database schema and application data through the development pipeline to production."
+      "desc_class": "like-pre",
+      "desc": "Ability to effectively manage changes to the database schema and application data through the development pipeline to production.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 203
@@ -43,7 +46,8 @@
       "name": "Environments and Deployments",
       "template": 2,
       "rank": 4,
-      "desc": "Availability of appropriate environments for development and testing to ensure the product will work as expected in production. The capability to release into production with minimal work and no disruption to operations and end users."
+      "desc_class": "like-pre",
+      "desc": "Availability of appropriate environments for development and testing to ensure the product will work as expected in production.\r\n\r\nThe capability to release into production with minimal work and no disruption to operations and end users.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 204
@@ -53,7 +57,8 @@
       "name": "Quality Assurance",
       "template": 2,
       "rank": 5,
-      "desc": "Concept of systematically discovering issues in the delivery of the product quickly with more frequent and shorter feedback cycles to ensure quality. Discovering defects earlier in the development cycle is less costly and easier to fix. Issues are not exposed to the customer as they are identified and resolved prior to that point."
+      "desc_class": "like-pre",
+      "desc": "Concept of systematically discovering issues in the delivery of the product quickly with more frequent and shorter feedback cycles to ensure quality.\r\n\r\nDiscovering defects earlier in the development cycle is less costly and easier to fix.\r\n\r\nIssues are not exposed to the customer as they are identified and resolved prior to that point.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 205
@@ -63,7 +68,8 @@
       "name": "Visibility and Traceability",
       "template": 2,
       "rank": 6,
-      "desc": "The ability to plan and respond to the product owner's requests for change in a manner that allows a consistent and predictable pace of work that is completely transparent to all."
+      "desc_class": "like-pre",
+      "desc": "The ability to plan and respond to the product owner's requests for change in a manner that allows a consistent and predictable pace of work that is completely transparent to all.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 206
@@ -73,7 +79,8 @@
       "name": "Organisational Alignment",
       "template": 2,
       "rank": 7,
-      "desc": "The team's ability to share ideas and work together to improve processes and the product, delivering working software in a faster and safer manner. Ability of team to share knowledge and skills and determine the course for improvement."
+      "desc_class": "like-pre",
+      "desc": "The team's ability to share ideas and work together to improve processes and the product, delivering working software in a faster and safer manner.\r\n\r\nAbility of team to share knowledge and skills and determine the course for improvement.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 207
@@ -83,7 +90,8 @@
       "name": "Technical Architecture",
       "template": 2,
       "rank": 8,
-      "desc": "Bigger picture thinking about technical decisions and their net effect on the business ability to change. This is expensive and difficult to change once the technology is in use. This refers to the mechanism that is in place to make the architectural decisions, not as much about the architecture itself."
+      "desc_class": "like-pre",
+      "desc": "Bigger picture thinking about technical decisions and their net effect on the business ability to change. This is expensive and difficult to change once the technology is in use.\r\n\r\nThis refers to the mechanism that is in place to make the architectural decisions, not as much about the architecture itself.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 208
@@ -94,7 +102,8 @@
       "name": "N/A",
       "colour": "Gray",
       "rank": 0,
-      "desc": "Not Applicable.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Not Applicable.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 211
@@ -105,7 +114,8 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Changes are made by multiple team members simultaneously without any effort to maintain versions or track who made what change and when.\r\nIf version control exists, it usually performed by individuals who need the structure to organize the activities they are responsible for.\r\nThere is no means for a team to roll back to a previous working version.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Changes are made by multiple team members simultaneously without any effort to maintain versions or track who made what change and when.\r\n• If version control exists, it usually performed by individuals who need the structure to organize the activities they are responsible for.\r\n• There is no means for a team to roll back to a previous working version.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 241
@@ -116,7 +126,8 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Version control is recognised as required to maintain stability of the product and is used to manage main development artifacts as source code, build scripts and unit tests.\r\nSimultaneous updates to artifacts is difficult and results in conflicts.\r\nMaintenance and tracking of changes is not enforced.\r\nUncontrolled branching and versioning is common.\r\nThe repository usually sits on an unmanaged machine.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Version control is recognised as required to maintain stability of the product and is used to manage main development artifacts as source code, build scripts and unit tests.\r\n• Simultaneous updates to artifacts is difficult and results in conflicts.\r\n• Maintenance and tracking of changes is not enforced.\r\n• Uncontrolled branching and versioning is common.\r\n• The repository usually sits on an unmanaged machine.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 242
@@ -127,7 +138,8 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "The version control system is used consistently for managing some artifacts.\r\nVersioning of items requires the knowledge of key individuals who understand how the VCS works.\r\nMore items are identified as requiring version control, but heavy reliance on manual processes prevents this from happening.\r\nFrequency of check-ins varies and may be lengthy.\r\nThere are systematic ways to resolve conflicts when they occur.\r\nThere are standards for creating branches, which may be based on releases or some other time based factor.\r\nThere are standards the team should follow for using the version control system, but these are not enforced.\r\nDistributed teams maintain separate repositories.\r\nThe repository is on managed server and may be backed up."
+      "desc_class": "like-pre",
+      "desc": "• The version control system is used consistently for managing some artifacts.\r\n• Versioning of items requires the knowledge of key individuals who understand how the VCS works.\r\n• More items are identified as requiring version control, but heavy reliance on manual processes prevents this from happening.\r\n• Frequency of check-ins varies and may be lengthy.\r\n• There are systematic ways to resolve conflicts when they occur.\r\n• There are standards for creating branches, which may be based on releases or some other time based factor.\r\n• There are standards the team should follow for using the version control system, but these are not enforced.\r\n• Distributed teams maintain separate repositories.\r\n• The repository is on managed server and may be backed up."
     },
     "model": "measure_mate.rating",
     "pk": 243
@@ -138,7 +150,8 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "All items required for configuring all environments are identified.\r\nA single tool set for product configuration management has been determined and there is an effort to move all delivery artifacts into version control.\r\nTest scripts, libraries and dependencies are managed.\r\nAll team members are checking in on a regular, frequent basis.\r\nThe entire team respects the integrity of the repository.\r\nBranches are created only to support releases.\r\nRepository can be reproduced if it crashes."
+      "desc_class": "like-pre",
+      "desc": "• All items required for configuring all environments are identified.\r\n• A single tool set for product configuration management has been determined and there is an effort to move all delivery artifacts into version control.\r\n• Test scripts, libraries and dependencies are managed.\r\n• All team members are checking in on a regular, frequent basis.\r\n• The entire team respects the integrity of the repository.\r\n• Branches are created only to support releases.\r\n• Repository can be reproduced if it crashes."
     },
     "model": "measure_mate.rating",
     "pk": 244
@@ -149,7 +162,8 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "All configuration artifacts are identified, managed and versioned together.\r\nChanges to dependant systems are pull based.\r\nAny team member can create new and retrieve previous versions successfully as required to deploy to any environment.\r\nThe standard is to develop code on the main trunk.\r\nBranches are created rarely and are short lived.\r\nCheck-ins occur multiple times each day.\r\nDistributed teams work against a single repository.\r\nEnvironment specifications are managed and versioned along with all other artifacts."
+      "desc_class": "like-pre",
+      "desc": "• All configuration artifacts are identified, managed and versioned together.\r\n• Changes to dependant systems are pull based.\r\n• Any team member can create new and retrieve previous versions successfully as required to deploy to any environment.\r\n• The standard is to develop code on the main trunk.\r\n• Branches are created rarely and are short lived.\r\n• Check-ins occur multiple times each day.\r\n• Distributed teams work against a single repository.\r\n• Environment specifications are managed and versioned along with all other artifacts."
     },
     "model": "measure_mate.rating",
     "pk": 245
@@ -160,7 +174,8 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "The change management policy is frequently validated as supporting rapid and reliable release.\r\nThe team changes practice and items as the product continues to evolve.\r\nNew versioning tools are assessed and implemented to meet the evolving need of the product release practices.\r\nTrunk based development is the standard practice and the team manages releases and features without resorting to branches.\r\nThe repository is virtual and easily accessed by all team members, regardless of their location."
+      "desc_class": "like-pre",
+      "desc": "• The change management policy is frequently validated as supporting rapid and reliable release.\r\n• The team changes practice and items as the product continues to evolve.\r\n• New versioning tools are assessed and implemented to meet the evolving need of the product release practices.\r\n• Trunk based development is the standard practice and the team manages releases and features without resorting to branches.\r\n• The repository is virtual and easily accessed by all team members, regardless of their location."
     },
     "model": "measure_mate.rating",
     "pk": 246
@@ -171,7 +186,8 @@
       "name": "N/A",
       "colour": "Gray",
       "rank": 0,
-      "desc": "Not Applicable.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Not Applicable.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 212
@@ -182,7 +198,8 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Discovery of errors made due to incompatibility of the changes happens in production.\r\nNo standards or practice in place to check for compatibility."
+      "desc_class": "like-pre",
+      "desc": "• Discovery of errors made due to incompatibility of the changes happens in production.\r\n• No standards or practice in place to check for compatibility."
     },
     "model": "measure_mate.rating",
     "pk": 247
@@ -193,7 +210,8 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Manual builds are lengthy and  often broken at the core functioning level.\r\nIntegration tests are run manually and infrequently and are usually dependent on the knowledge and skill of individuals.\r\nDevelopers continue to work while errors are occurring in the build.\r\nIntegration to other systems is ignored.\r\nFunctional integration within the application occurs late in the release cycle, if at all."
+      "desc_class": "like-pre",
+      "desc": "• Manual builds are lengthy and  often broken at the core functioning level.\r\n• Integration tests are run manually and infrequently and are usually dependent on the knowledge and skill of individuals.\r\n• Developers continue to work while errors are occurring in the build.\r\n• Integration to other systems is ignored.\r\n• Functional integration within the application occurs late in the release cycle, if at all."
     },
     "model": "measure_mate.rating",
     "pk": 248
@@ -204,7 +222,8 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Infrequent builds on a central server may happen regularly (nightly).\r\nInfrequent commits are made.\r\nBuilds can be recreated from source control but requires the knowledge and skill of key individuals.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Infrequent builds on a central server may happen regularly (nightly).\r\n• Infrequent commits are made.\r\n• Builds can be recreated from source control but requires the knowledge and skill of key individuals.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 249
@@ -215,7 +234,8 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "There is a CI server that runs the build and tests automatically  with each check-in.\r\nThere is use of scripts and other artefacts from a common tool set.\r\nThe build environment is more complex, with efforts to mimic integration with other systems.\r\nThe build status is visible to all.\r\nWhen the build breaks, no further check-ins are allowed until the build is fixed.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• There is a CI server that runs the build and tests automatically  with each check-in.\r\n• There is use of scripts and other artefacts from a common tool set.\r\n• The build environment is more complex, with efforts to mimic integration with other systems.\r\n• The build status is visible to all.\r\n• When the build breaks, no further check-ins are allowed until the build is fixed.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 250
@@ -226,7 +246,8 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Build times tracked, made visible and managed.\r\nThe automatic build employs multiple stages of testing with deployment into additional environments for different types of testing.\r\nDifferent types of build are running at varying frequencies and times (E.g.\r\nFast vs.\r\nSlow).\r\nThe team actively manages the build time and their own build environment and is capable of maintaining the build, taking responsibility for this.\r\nCode is maintained to impersonate other systems to enable integration testing.\r\nThe build status is highly visible, along with other metrics.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Build times tracked, made visible and managed.\r\n• The automatic build employs multiple stages of testing with deployment into additional environments for different types of testing.\r\n• Different types of build are running at varying frequencies and times (E.g. Fast vs. Slow).\r\n• The team actively manages the build time and their own build environment and is capable of maintaining the build, taking responsibility for this.\r\n• Code is maintained to impersonate other systems to enable integration testing.\r\n• The build status is highly visible, along with other metrics.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 251
@@ -237,7 +258,8 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Each successful build is a release candidate.\r\nFocus is on committing more frequently with increasing confidence in the quality of the product.\r\nThe CI build creates and provisions environments to allow scalability for testing.\r\nTests are run in parallel across multiple machines.\r\nThe build pipeline extends directly into production.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Each successful build is a release candidate.\r\n• Focus is on committing more frequently with increasing confidence in the quality of the product.\r\n• The CI build creates and provisions environments to allow scalability for testing.\r\n• Tests are run in parallel across multiple machines.\r\n• The build pipeline extends directly into production.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 252
@@ -248,7 +270,8 @@
       "name": "N/A",
       "colour": "Gray",
       "rank": 0,
-      "desc": "Not Applicable.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Not Applicable.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 213
@@ -259,7 +282,8 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Database is a black box to the development team.\r\nComplete control of data and database is performed by an external team.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Database is a black box to the development team.\r\n• Complete control of data and database is performed by an external team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 253
@@ -270,7 +294,8 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Data schema and changes are manual, painful and time consuming.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Data schema and changes are manual, painful and time consuming.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 254
@@ -281,7 +306,8 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Database changes are scripted and versioned along with the application in production but managed by a different team.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Database changes are scripted and versioned along with the application in production but managed by a different team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 255
@@ -292,7 +318,8 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Database changes are performed automatically as part of the deployment and are owned by the team.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Database changes are performed automatically as part of the deployment and are owned by the team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 256
@@ -303,7 +330,8 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Database upgrades and rollbacks are automatically tested against production like data.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Database upgrades and rollbacks are automatically tested against production like data.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 257
@@ -314,7 +342,8 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Automatic feedback loop for DB performance and deployment is in place and used to initiate improvements.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Automatic feedback loop for DB performance and deployment is in place and used to initiate improvements.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 258
@@ -325,7 +354,8 @@
       "name": "N/A",
       "colour": "Gray",
       "rank": 0,
-      "desc": "Not Applicable.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Not Applicable.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 214
@@ -336,7 +366,8 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "There are no separate environments for development and testing.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• There are no separate environments for development and testing.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 259
@@ -347,7 +378,8 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Manually created and configured environments.\r\nDeployment is still mostly manual and requires long working days and overtime by team members to meet deadlines.\r\nThere is high level of coordination required between functional groups on day of release.\r\nLead time to get the test environment may be weeks to months.\r\nAn external group maintains the environments.\r\nEnvironments are shared across teams and products, with no control to prevent conflicts.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Manually created and configured environments.\r\n• Deployment is still mostly manual and requires long working days and overtime by team members to meet deadlines.\r\n• There is high level of coordination required between functional groups on day of release.\r\n• Lead time to get the test environment may be weeks to months.\r\n• An external group maintains the environments.\r\n• Environments are shared across teams and products, with no control to prevent conflicts.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 260
@@ -358,7 +390,8 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Repeatable creation and configuration, manual deployment.\r\nStandard artefacts are defined and are created by a combination of manual and automated means.\r\nDev and test environments are available for the exclusive use of the team.\r\nThe environments are not easily replicated and delays occur whenever changes to them are required.\r\nThere may be a production like environment for non functional testing and system level integration tests, but this is still shared with other teams and delays in feedback occur as a result.\r\nRebuilding the environments is dependant on the knowledge and skills of key individuals.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Repeatable creation and configuration, manual deployment.\r\n• Standard artefacts are defined and are created by a combination of manual and automated means.\r\n• Dev and test environments are available for the exclusive use of the team.\r\n• The environments are not easily replicated and delays occur whenever changes to them are required.\r\n• There may be a production like environment for non functional testing and system level integration tests, but this is still shared with other teams and delays in feedback occur as a result.\r\n• Rebuilding the environments is dependant on the knowledge and skills of key individuals.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 261
@@ -369,7 +402,8 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Automated provisioning with scripted deployments.\r\nThere is still reliance on individual skills to ensure the deployment will work in production.\r\nTest environments are readily available and can be reproduced with manual work and coordination between operational teams.\r\nAccess to a production like environment is restricted to a small group of closely related application teams and delays at this level are unusual.\r\nEveryone has access to a suitable environment to complete their work without delay.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Automated provisioning with scripted deployments.\r\n• There is still reliance on individual skills to ensure the deployment will work in production.\r\n• Test environments are readily available and can be reproduced with manual work and coordination between operational teams.\r\n• Access to a production like environment is restricted to a small group of closely related application teams and delays at this level are unusual.\r\n• Everyone has access to a suitable environment to complete their work without delay.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 262
@@ -380,7 +414,8 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Deployments are automated.\r\nA single artefact per system is deployed to all environments.\r\nFully automated self service use of development and test environments.\r\nRelease plans are automatically produced.\r\nRoot cause analysis performed on all failures.\r\nRollback process is automated.\r\nEnvironment and system health indicators are monitored and reported.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Deployments are automated.\r\n• A single artefact per system is deployed to all environments.\r\n• Fully automated self service use of development and test environments.\r\n• Release plans are automatically produced.\r\n• Root cause analysis performed on all failures.\r\n• Rollback process is automated.\r\n• Environment and system health indicators are monitored and reported.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 263
@@ -391,7 +426,8 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Continuous deployment pipeline capability exists.\r\nEnvironments are easily replicated on demand as required, using a self service model to facilitate the optimal feedback cycle time.\r\nEnvironment provisioning and configuration is fully automated.\r\nEnvironments are reviewed on a regular basis to simplify and optimize the effective use of the technology stack.\r\nProvisioning of environments is scalable to meet fluctuating demands.\r\nMonitoring is used to proactively identify events and correct before degradation or problems occur.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Continuous deployment pipeline capability exists.\r\n• Environments are easily replicated on demand as required, using a self service model to facilitate the optimal feedback cycle time.\r\n• Environment provisioning and configuration is fully automated.\r\n• Environments are reviewed on a regular basis to simplify and optimize the effective use of the technology stack.\r\n• Provisioning of environments is scalable to meet fluctuating demands.\r\n• Monitoring is used to proactively identify events and correct before degradation or problems occur.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 264
@@ -402,7 +438,8 @@
       "name": "N/A",
       "colour": "Gray",
       "rank": 0,
-      "desc": "Not Applicable.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Not Applicable.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 215
@@ -413,7 +450,8 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Unstructured manual testing follows development.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Unstructured manual testing follows development.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 265
@@ -424,7 +462,8 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Structured, manual testing follows development.\r\nTesting is a lengthy, bureaucratic process with uncertain outcomes.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Structured, manual testing follows development.\r\n• Testing is a lengthy, bureaucratic process with uncertain outcomes.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 266
@@ -435,7 +474,8 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Some automated tests are developed with stories.\r\nSome level of automated regression test suit is present but may be difficult to maintain.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Some automated tests are developed with stories.\r\n• Some level of automated regression test suit is present but may be difficult to maintain.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 267
@@ -446,7 +486,8 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Fully automated unit and acceptance tests.\r\nThe latter written with testers.\r\nTesting is part of the development process.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Fully automated unit and acceptance tests.\r\n• The latter written with testers.\r\n• Testing is part of the development process.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 268
@@ -457,7 +498,8 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Quality metrics and trends tracked.\r\nNon-functional requirements defined and automatically tested.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Quality metrics and trends tracked.\r\n• Non-functional requirements defined and automatically tested.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 269
@@ -468,7 +510,8 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "New features and defects all go through the same pipeline, with no need to fast track any kind of change.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• New features and defects all go through the same pipeline, with no need to fast track any kind of change.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 270
@@ -479,7 +522,8 @@
       "name": "N/A",
       "colour": "Gray",
       "rank": 0,
-      "desc": "Not Applicable.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Not Applicable.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 216
@@ -490,7 +534,8 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Unable to discern what was done by whom and why other than by oral history.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Unable to discern what was done by whom and why other than by oral history.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 271
@@ -501,7 +546,8 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Some effort by individuals is put into tracking changes they have made in an effort to manage their own work.\r\nTool sets vary and there is no centralised source of this information.\r\nKnowledge of change is lost with departure of individuals.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Some effort by individuals is put into tracking changes they have made in an effort to manage their own work.\r\n• Tool sets vary and there is no centralised source of this information.\r\n• Knowledge of change is lost with departure of individuals.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 272
@@ -512,7 +558,8 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Limited traceability from requirements to release exists and usually involves referencing multiple sources of information, some of which are manual.\r\nA lengthy time is required to trace errors to root cause.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Limited traceability from requirements to release exists and usually involves referencing multiple sources of information, some of which are manual.\r\n• A lengthy time is required to trace errors to root cause.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 273
@@ -523,7 +570,8 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "All changes to the product can be traced through a common tool set between teams that includes tracking of approval and test results.\r\nErrors can be easily related to individual changes early in the lifecycle.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• All changes to the product can be traced through a common tool set between teams that includes tracking of approval and test results.\r\n• Errors can be easily related to individual changes early in the lifecycle.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 274
@@ -534,7 +582,8 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "All changes and control on any element can be traced end to end.\r\nProduct owner can specify when specific functionality can be released.\r\nRelease notes are generated automatically and can be pulled for any release.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• All changes and control on any element can be traced end to end.\r\n• Product owner can specify when specific functionality can be released.\r\n• Release notes are generated automatically and can be pulled for any release.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 275
@@ -545,7 +594,8 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "There is complete transparency of what is in each release.\r\nThe product owner is able to determine when release goes into production and it is no longer dependant on the team's capability to deliver.\r\nEvidence of control and decisions made can be generated through automated tool sets used by the product team.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• There is complete transparency of what is in each release.\r\n• The product owner is able to determine when release goes into production and it is no longer dependant on the team's capability to deliver.\r\n• Evidence of control and decisions made can be generated through automated tool sets used by the product team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 276
@@ -556,7 +606,8 @@
       "name": "N/A",
       "colour": "Gray",
       "rank": 0,
-      "desc": "Not Applicable.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Not Applicable.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 217
@@ -567,7 +618,8 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Siloed teams, requiring heavyweight process and documentation to coordinate between teams.\r\nThis results in little collaboration and local optimisation.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Siloed teams, requiring heavyweight process and documentation to coordinate between teams.\r\n• This results in little collaboration and local optimisation.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 277
@@ -578,7 +630,8 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Initial, basic Agile adoption, i.e. the business and delivery have started to work together in smaller increments, but the team has handed over the entire responsibility to prioritise to the business.\r\nIncreasing technical debt as the team is tracked by velocity to the detriment of quality.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Initial, basic Agile adoption, i.e. the business and delivery have started to work together in smaller increments, but the team has handed over the entire responsibility to prioritise to the business.\r\n• Increasing technical debt as the team is tracked by velocity to the detriment of quality.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 278
@@ -589,7 +642,8 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Testers are being engaged earlier in the process to define acceptance criteria as a part of analysis.\r\nTeam velocity now covers analysis, development and testing.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Testers are being engaged earlier in the process to define acceptance criteria as a part of analysis.\r\n• Team velocity now covers analysis, development and testing.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 279
@@ -600,7 +654,8 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Early involvement with ops teams, and greater collaboration across the entire delivery lifecycle.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Early involvement with ops teams, and greater collaboration across the entire delivery lifecycle.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 280
@@ -611,7 +666,8 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Entire product team has an understanding of the various aspects of the system, i.e. business need, code quality, system quality and operational requirements.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Entire product team has an understanding of the various aspects of the system, i.e. business need, code quality, system quality and operational requirements.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 281
@@ -622,7 +678,8 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "The business capability to submit changes is the limiting factor on what the product team works on.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• The business capability to submit changes is the limiting factor on what the product team works on.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 282
@@ -633,7 +690,8 @@
       "name": "N/A",
       "colour": "Gray",
       "rank": 0,
-      "desc": "Not Applicable.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Not Applicable.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 218
@@ -644,7 +702,8 @@
       "name": "Poor",
       "colour": "Red",
       "rank": 1,
-      "desc": "Technical decisions are made ad hoc and there is no vision or long term technical planning.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Technical decisions are made ad hoc and there is no vision or long term technical planning.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 283
@@ -655,7 +714,8 @@
       "name": "Basic",
       "colour": "#FF4400",
       "rank": 2,
-      "desc": "Architects/designers write documents, hand them over and do not consult with project teams.\r\nThey do not worry about implementation details.\r\nProduct selection is made without consideration of how the product will be implemented.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Architects/designers write documents, hand them over and do not consult with project teams.\r\n• They do not worry about implementation details.\r\n• Product selection is made without consideration of how the product will be implemented.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 284
@@ -666,7 +726,8 @@
       "name": "Alright",
       "colour": "Orange",
       "rank": 3,
-      "desc": "Random pockets of collaboration exists with architects/designers with development teams.\r\nOccasional solution prototypes are reviewed with development teams.\r\nTransactional interactions are common - review meetings to ensure the design documents are being followed.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Random pockets of collaboration exists with architects/designers with development teams.\r\n• Occasional solution prototypes are reviewed with development teams.\r\n• Transactional interactions are common - review meetings to ensure the design documents are being followed.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 285
@@ -677,7 +738,8 @@
       "name": "Good",
       "colour": "#FFBB11",
       "rank": 4,
-      "desc": "Open lines of communication exist between architects/designers and delivery teams.\r\nDelivery teams are consulted prior to decisions made on the design.\r\nCommunication is ad hoc and frequent.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Open lines of communication exist between architects/designers and delivery teams.\r\n• Delivery teams are consulted prior to decisions made on the design.\r\n• Communication is ad hoc and frequent.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 286
@@ -688,7 +750,8 @@
       "name": "Very Good",
       "colour": "Yellow",
       "rank": 5,
-      "desc": "Architects/designers spend a portion of their time physically located within the product delivery team.\r\nThere is seamless collaboration and architects/designers are considered part of the team, understanding all aspects required for delivery of the product.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Architects/designers spend a portion of their time physically located within the product delivery team.\r\n• There is seamless collaboration and architects/designers are considered part of the team, understanding all aspects required for delivery of the product.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 287
@@ -699,7 +762,8 @@
       "name": "Excellent",
       "colour": "Green",
       "rank": 6,
-      "desc": "Mechanisms are in place for empowering the product team to make architectural and technology decisions because the technical vision is clear and transparent.\r\nThe Architects/designers are fully engaged with the business to enable business innovation.\r\n"
+      "desc_class": "like-pre",
+      "desc": "• Mechanisms are in place for empowering the product team to make architectural and technology decisions because the technical vision is clear and transparent.\r\n• The Architects/designers are fully engaged with the business to enable business innovation.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 288
