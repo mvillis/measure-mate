@@ -116,7 +116,7 @@ var AssessmentReport = React.createClass({
             <td>{measurement ? measurement.action : '-'}</td>
           </tr>
         )
-      }.bind(this)))
+      }, this))
     }
 
     var summaryTable = (

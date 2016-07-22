@@ -82,6 +82,10 @@
   font-weight: bold;
 }
 
+.rating-desc {
+  min-height: 3em;
+}
+
 /* autour-one-regular - latin */
 @font-face {
   font-family: 'Autour One';

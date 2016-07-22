@@ -102,7 +102,7 @@ var Attribute = React.createClass({
             assessId={this.props.params.assessmentId}
           />
         )
-      }.bind(this))
+      }, this)
     }
 
     return (
