@@ -106,30 +106,28 @@ var ObserveFormControl = React.createClass({
     }
   },
   render: function () {
-    var syncStatus = function () {
-      if (this.state.dirtyObservation === false &&
-          this.props.measurement &&
-          (this.props.measurement.observations || this.props.measurement.action)) {
-        return (
-          <span>
-            <span>&nbsp;&nbsp;&nbsp;</span>
-            <Glyphicon glyph='saved' />
-          </span>
-        )
-      } else if (this.state.dirtyObservation === true && !this.props.measurement) {
-        return (
+    var syncStatus = <span></span>
+    if (this.state.dirtyObservation === true) {
+      if (!this.props.measurement) {
+        syncStatus = (
           <span className='text-info'>
             <span>&nbsp;&nbsp;</span>
             <Glyphicon glyph='info-sign' />
             Select a rating below to save this comment and complete the form.
           </span>
         )
-      } else {
-        return (
-          <span></span>
+      }
+    } else {
+      if (this.props.measurement &&
+        (this.props.measurement.observations || this.props.measurement.action)) {
+        syncStatus = (
+          <span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <Glyphicon glyph='saved' />
+          </span>
         )
       }
-    }.bind(this)
+    }
 
     return (
       <div>
@@ -161,7 +159,7 @@ var ObserveFormControl = React.createClass({
             onClick={this.handleSave}>
             Save
           </Button>
-          {syncStatus()}
+          {syncStatus}
         </FormGroup>
       </div>
     )

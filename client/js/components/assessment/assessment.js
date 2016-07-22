@@ -207,16 +207,7 @@ var Assessment = React.createClass({
             <NavItem eventKey={i + 1}>{tabIcon} {attribute.name}</NavItem>
           </LinkContainer>
         )
-      }.bind(this))
-
-      var summaryNode = function () {
-        if (!this.state.template) return (undefined)
-        return (
-          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}} onClick={this.scrollToTop('#attribute-list')}>
-            <NavItem eventKey={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
-          </LinkContainer>
-        )
-      }.bind(this)()
+      }, this)
     }
     var tags = this.state.assessmentTags || []
     return (
@@ -257,7 +248,16 @@ var Assessment = React.createClass({
               <Col className='attribute-tabs' xs={12} md={3} lg={3}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
-                  {summaryNode}
+                  {this.state.template
+                    ? <LinkContainer
+                      key='summary'
+                      to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}
+                      onClick={this.scrollToTop('#attribute-list')}>
+                      <NavItem eventKey={this.state.template.attributes.length + 1}>
+                        <Glyphicon glyph='stats' /> Summary
+                      </NavItem>
+                    </LinkContainer>
+                    : undefined}
                   <br></br>
                   <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location} />
                 </Nav>
