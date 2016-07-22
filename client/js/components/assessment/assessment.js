@@ -203,13 +203,14 @@ var Assessment = React.createClass({
         var completeMeasurement = measurement && measurement.rating && measurement.target_rating
         var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' className='text-success' /> : <Glyphicon glyph='minus' />
         return (
-          <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}} onClick={this.scrollToTop('#attribute-list')}>
+          <LinkContainer
+            key={attribute.id}
+            to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}}>
             <NavItem eventKey={i + 1}>{tabIcon} {attribute.name}</NavItem>
           </LinkContainer>
         )
       }, this)
     }
-    var tags = this.state.assessmentTags || []
     return (
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
@@ -219,9 +220,9 @@ var Assessment = React.createClass({
               &nbsp;
               {this.state.assessment ? this.state.assessment.template.short_desc : ''}
               &nbsp;
-              <span className='wrap'> <TagList tags={tags} /> </span>
+              <span className='wrap'> <TagList tags={this.state.assessmentTags || []} /> </span>
               <Label>
-                {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}
+                {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read Only' : ''}
               </Label>
             </small>
           </PageHeader>
@@ -251,8 +252,7 @@ var Assessment = React.createClass({
                   {this.state.template
                     ? <LinkContainer
                       key='summary'
-                      to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}
-                      onClick={this.scrollToTop('#attribute-list')}>
+                      to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
                       <NavItem eventKey={this.state.template.attributes.length + 1}>
                         <Glyphicon glyph='stats' /> Summary
                       </NavItem>
