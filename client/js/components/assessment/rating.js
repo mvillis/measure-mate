@@ -19,20 +19,24 @@ var Rating = React.createClass({
     rating: React.PropTypes.object
   },
 
+  ratingClick: function () {
+    this.props.saveMeasurement('rating', this.props.rating.id)
+  },
+  targetClick: function () {
+    this.props.saveMeasurement('target', this.props.rating.id)
+  },
   render: function () {
     var ratingActive = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating === this.props.rating.id) : false
     var targetActive = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating === this.props.rating.id) : false
     var targetBsStyle = targetActive ? 'success' : 'default'
     var descClass = (this.props.rating.desc_class ? ' ' + this.props.rating.desc_class : '') + (this.props.rating.colour ? ' rating-colour' : '')
-    var ratingClick = this.props.saveMeasurement.bind(null, 'rating', this.props.rating.id)
-    var targetClick = this.props.saveMeasurement.bind(null, 'target', this.props.rating.id)
 
     var header = (
       <div>
-        <h4 className='inline clickable' onClick={ratingClick}>{this.props.rating.name}</h4>
+        <h4 className='inline clickable' onClick={this.ratingClick}>{this.props.rating.name}</h4>
         {(this.props.measurement && this.props.measurement.rating)
           ? <span>
-            <Button ref='currentBtn' onClick={targetClick} bsStyle={targetBsStyle} className='target-btn' active={targetActive} bsSize='xsmall'>
+            <Button onClick={this.targetClick} bsStyle={targetBsStyle} className='target-btn' active={targetActive} bsSize='xsmall'>
               Target
             </Button>
             <OverlayTrigger trigger='click' placement='left' rootClose
@@ -46,7 +50,7 @@ var Rating = React.createClass({
 
     return (
       <ListGroupItem active={ratingActive} key={this.props.rating.id} header={header} className={descClass} style={{'borderLeftColor': this.props.rating.colour}}>
-        <div className='rating-desc clickable' onClick={ratingClick}>
+        <div className='rating-desc clickable' onClick={this.ratingClick}>
           {this.props.rating.desc}
         </div>
       </ListGroupItem>
