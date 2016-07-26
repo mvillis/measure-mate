@@ -12,7 +12,6 @@ var ListGroup = ReactBootstrap.ListGroup
 
 var Attribute = React.createClass({
   propTypes: {
-    key: React.PropTypes.number,
     attribute: React.PropTypes.object,
     params: React.PropTypes.object,
     template: React.PropTypes.object,
@@ -103,7 +102,7 @@ var Attribute = React.createClass({
             assessId={this.props.params.assessmentId}
           />
         )
-      }.bind(this))
+      }, this)
     }
 
     return (

@@ -8,6 +8,7 @@ var FormControl = ReactBootstrap.FormControl
 var FormGroup = ReactBootstrap.FormGroup
 var ControlLabel = ReactBootstrap.ControlLabel
 var Button = ReactBootstrap.Button
+var Panel = ReactBootstrap.Panel
 
 var ObserveFormControl = React.createClass({
   propTypes: {
@@ -106,63 +107,66 @@ var ObserveFormControl = React.createClass({
     }
   },
   render: function () {
-    var syncStatus = function () {
-      if (this.state.dirtyObservation === false &&
-          this.props.measurement &&
-          (this.props.measurement.observations || this.props.measurement.action)) {
-        return (
-          <span>
-            <span>&nbsp;&nbsp;&nbsp;</span>
-            <Glyphicon glyph='saved' />
-          </span>
-        )
-      } else if (this.state.dirtyObservation === true && !this.props.measurement) {
-        return (
+    var syncStatus = <span></span>
+    if (this.state.dirtyObservation === true) {
+      if (!this.props.measurement) {
+        syncStatus = (
           <span className='text-info'>
             <span>&nbsp;&nbsp;</span>
             <Glyphicon glyph='info-sign' />
             Select a rating below to save this comment and complete the form.
           </span>
         )
-      } else {
-        return (
-          <span></span>
+      }
+    } else {
+      if (this.props.measurement &&
+        (this.props.measurement.observations || this.props.measurement.action)) {
+        syncStatus = (
+          <span>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <Glyphicon glyph='saved' />
+          </span>
         )
       }
-    }.bind(this)
+    }
 
     return (
       <div>
         <FormGroup>
           <ControlLabel>Observations</ControlLabel>
-          <FormControl componentClass='textarea' rows='3'
-            placeholder='Discuss your current practices and capture some notes.'
-            ref='observeInput'
-            value={this.state.observations}
-            onChange={this.onObservationChange}
-            disabled={this.props.disabled}
-          />
+          {this.props.disabled
+            ? <Panel bsStyle='default'><FormControl.Static className='like-pre'>{this.state.observations}</FormControl.Static></Panel>
+            : <FormControl componentClass='textarea' rows='3'
+              placeholder='Discuss your current practices and capture some notes.'
+              ref='observeInput'
+              value={this.state.observations}
+              onChange={this.onObservationChange}
+            />}
         </FormGroup>
         <FormGroup>
-          <ControlLabel>Action</ControlLabel>
-          <FormControl componentClass='textarea' rows='3'
-            placeholder='Record actions you can take to improve your current practices.'
-            ref='actionInput'
-            value={this.state.action}
-            onChange={this.onActionChange}
-            disabled={this.props.disabled}
-          />
+          <ControlLabel>Actions</ControlLabel>
+          {this.props.disabled
+            ? <Panel bsStyle='default'><FormControl.Static className='like-pre'>{this.state.action}</FormControl.Static></Panel>
+            : <FormControl componentClass='textarea' rows='3'
+              placeholder='Record actions you can take to improve your current practices.'
+              ref='actionInput'
+              value={this.state.action}
+              onChange={this.onActionChange}
+            />}
         </FormGroup>
-        <FormGroup>
-          <Button ref='obsSaveBtn'
-            disabled={this.state.saveBtnDisabled}
-            bsStyle='primary'
-            bsSize='xsmall'
-            onClick={this.handleSave}>
-            Save
-          </Button>
-          {syncStatus()}
-        </FormGroup>
+        {this.props.disabled
+          ? undefined
+          : <FormGroup>
+            <Button ref='obsSaveBtn'
+              disabled={this.state.saveBtnDisabled}
+              bsStyle='primary'
+              bsSize='xsmall'
+              onClick={this.handleSave}>
+              Save
+            </Button>
+            {syncStatus}
+          </FormGroup>
+        }
       </div>
     )
   }

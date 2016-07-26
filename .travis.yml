@@ -3,6 +3,8 @@ install:
   - . $HOME/.nvm/nvm.sh
   - nvm install stable
   - nvm use stable
+  - npm --version
+  - node --version
   - npm install gulp
   - npm install
   - gulp build

@@ -116,7 +116,7 @@ var AssessmentReport = React.createClass({
             <td>{measurement ? measurement.action : '-'}</td>
           </tr>
         )
-      }.bind(this)))
+      }, this))
     }
 
     var summaryTable = (
@@ -172,7 +172,10 @@ var AssessmentReport = React.createClass({
       height: 450,
       width: 600,
       barmode: 'overlay',
+      autosizable: true,
       margin: {
+        l: 90,
+        r: 30,
         t: 30,
         b: 150
       },

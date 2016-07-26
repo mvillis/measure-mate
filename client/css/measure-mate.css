@@ -1,20 +1,25 @@
 .logo-slogan-text {
-  font-family: newscycle;
+  font-family: 'News Cycle';
   text-align: center;
 }
 
 .logo-text {
-  font-family: autour;
+  font-family: 'Autour One';
   text-align: center;
 }
 
 .navbar-brand {
-  font-family: autour;
+  font-family: 'Autour One';
 }
 
 .logo {
-  height: 100%;
+  min-height: 200px;
   width: 100%;
+  background-image: url('/static/assets/img/measure_mate_plain_optim.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: block;
 }
 
 .help-block {
@@ -27,9 +32,8 @@
 }
 
 .wrap {
+  overflow-wrap: break-word;
   word-wrap: break-word;
-  min-width: 160px;
-  max-width: 160px;
 }
 
 .list-group-item.rating-colour {
@@ -48,7 +52,7 @@
 }
 
 #attribute-list {
-  padding-bottom: 50px;
+  padding-bottom: 200px;
 }
 
 .inline {
@@ -78,12 +82,49 @@
   font-weight: bold;
 }
 
-@font-face {
-  font-family: autour;
-  src: url("/static/fonts/AutourOne-Regular.ttf");
+.rating-desc {
+  min-height: 3em;
 }
 
+/* autour-one-regular - latin */
 @font-face {
-  font-family: newscycle;
-  src: url("/static/fonts/NewsCycle-Regular.ttf");
+  font-family: 'Autour One';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/static/fonts/autour-one-v5-latin-regular.eot'); /* IE9 Compat Modes */
+  src:
+    local('Autour One'),
+    local('AutourOne-Regular'),
+    /* IE6-IE8 */
+    url('/static/fonts/autour-one-v5-latin-regular.eot?#iefix') format('embedded-opentype'),
+    /* Super Modern Browsers */
+    url('/static/fonts/autour-one-v5-latin-regular.woff2') format('woff2'),
+    /* Modern Browsers */
+    url('/static/fonts/autour-one-v5-latin-regular.woff') format('woff'),
+    /* Safari, Android, iOS */
+    url('/static/fonts/autour-one-v5-latin-regular.ttf') format('truetype'),
+    /* Legacy iOS */
+    url('/static/fonts/autour-one-v5-latin-regular.svg#AutourOne') format('svg');
 }
+
+/* news-cycle-regular - latin */
+@font-face {
+  font-family: 'News Cycle';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/static/fonts/news-cycle-v13-latin-regular.eot'); /* IE9 Compat Modes */
+  src:
+    local('News Cycle'),
+    local('NewsCycle'),
+    /* IE6-IE8 */
+    url('/static/fonts/news-cycle-v13-latin-regular.eot?#iefix') format('embedded-opentype'),
+    /* Super Modern Browsers */
+    url('/static/fonts/news-cycle-v13-latin-regular.woff2') format('woff2'),
+    /* Modern Browsers */
+    url('/static/fonts/news-cycle-v13-latin-regular.woff') format('woff'),
+    /* Safari, Android, iOS */
+    url('/static/fonts/news-cycle-v13-latin-regular.ttf') format('truetype'),
+    /* Legacy iOS */
+    url('/static/fonts/news-cycle-v13-latin-regular.svg#NewsCycle') format('svg');
+}
+

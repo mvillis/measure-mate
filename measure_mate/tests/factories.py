@@ -56,6 +56,16 @@ class AssessmentFactory(factory.django.DjangoModelFactory):
     template = factory.SubFactory(TemplateFactory)
     team = factory.SubFactory(TeamFactory)
 
+    @factory.post_generation
+    def tags(self, create, extracted, **kwargs):
+        if not create:
+            return
+
+        if extracted:
+            # A list of groups were passed in, use them
+            for tag in extracted:
+                self.tags.add(tag)
+
 
 class RatingFactory(factory.django.DjangoModelFactory):
     class Meta:
@@ -74,5 +84,3 @@ class MeasurementFactory(factory.django.DjangoModelFactory):
     assessment = factory.SubFactory(AssessmentFactory)
     rating = factory.SubFactory(RatingFactory)
     observations = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
-
-

@@ -13,4 +13,3 @@ class TeamTestCases(TestCase):
         tag2 = TagFactory()
         team = TeamFactory(tags=(tag1, tag2))
         self.assertEqual(2, len(team.tags.all()))
-

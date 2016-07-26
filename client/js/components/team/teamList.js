@@ -6,11 +6,12 @@ var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Moment = require('moment')
 var Table = ReactBootstrap.Table
-var TagList = require('../assessment/tagList')
+var TagList = require('../common/tagList')
 
 var TeamList = React.createClass({
   propTypes: {
-    data: React.PropTypes.array.isRequired
+    teams: React.PropTypes.array.isRequired,
+    teamTags: React.PropTypes.array
   },
 
   render: function () {
@@ -25,10 +26,11 @@ var TeamList = React.createClass({
           </tr>
         </thead>
         <tbody>
-          {this.props.data.map(function (team, i) {
+          {this.props.teams.map(function (team, i) {
             var prettyCreated = Moment(team.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(team.created).fromNow()
             var teamUrl = '/team/' + team.id + '/'
+            var tags = this.props.teamTags[team.id] || []
             return (
               <LinkContainer key={team.id} to={{pathname: teamUrl}}>
                 <tr className='clickable'>
@@ -36,7 +38,7 @@ var TeamList = React.createClass({
                     <a href={teamUrl}>{team.id}</a>
                   </td>
                   <td>{team.name}</td>
-                  <td className='wrap'><TagList tags={team.tags} /></td>
+                  <td className='wrap'><TagList tags={tags} /></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
                 </tr>
               </LinkContainer>

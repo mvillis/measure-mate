@@ -21,7 +21,7 @@ class TemplateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Template
-        fields = ('id', 'name', 'short_desc', 'attributes')
+        fields = ('id', 'name', 'short_desc', 'taggable', 'attributes')
 
 
 class TemplateSimpleSerializer(serializers.ModelSerializer):
@@ -62,35 +62,41 @@ class MeasurementCreateSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
+    tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
+
     class Meta:
         model = Assessment
         depth = 2
+        fields = ('id', 'created', 'updated', 'template', 'tags', 'status', 'team')
 
 
 class AssessmentCreateSerializer(serializers.ModelSerializer):
     template = serializers.PrimaryKeyRelatedField(queryset=Template.objects.all())
     team = serializers.PrimaryKeyRelatedField(queryset=Team.objects.all())
+    tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
 
     class Meta:
         model = Assessment
-        fields = ('id', 'created', 'updated', 'template', 'team', 'status')
+        fields = ('id', 'created', 'updated', 'template', 'tags', 'status', 'team')
 
 
 class AssessmentSimpleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Assessment
-        fields = ('id', 'template', 'created', 'updated')
+        fields = ('id', 'template', 'tags', 'created', 'updated', 'status')
         depth = 2
 
 
 class TeamSerializer(serializers.ModelSerializer):
     assessments = AssessmentSimpleSerializer(many=True, read_only=True)
+    tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())
 
     class Meta:
         model = Team
         fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags', 'assessments')
         depth = 2
+
 
 class TeamCreateSerializer(serializers.ModelSerializer):
     tags = serializers.PrimaryKeyRelatedField(many=True, allow_null=True, queryset=Tag.objects.all())

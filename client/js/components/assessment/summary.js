@@ -8,7 +8,6 @@ var Alert = ReactBootstrap.Alert
 
 var Summary = React.createClass({
   propTypes: {
-    key: React.PropTypes.number,
     eventKey: React.PropTypes.number,
     activeTab: React.PropTypes.number,
     params: React.PropTypes.object,
@@ -30,7 +29,6 @@ var Summary = React.createClass({
         </Alert>
         <AssessmentReport
           eventKey={this.props.template ? this.props.template.attributes.length + 1 : null}
-          key={this.props.template ? this.props.template.attributes.length + 1 : null}
           id={this.props.template ? this.props.template.attributes.length + 1 : null}
           activeTab={this.props.activeTab}
           measurements={(this.props.measurements) ? this.props.measurements : []}

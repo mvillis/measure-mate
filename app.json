@@ -6,7 +6,7 @@
   "license": "MIT",
   "env": {
     "DJANGO_DEBUG": {
-      "required": true
+      "required": false
     },
     "DJANGO_SETTINGS_MODULE": {
       "required": true
