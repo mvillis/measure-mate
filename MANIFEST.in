@@ -25,4 +25,3 @@ include .eslintrc.json
 include .pylintrc
 include .stylelintrc
 include .travis.yml
-
