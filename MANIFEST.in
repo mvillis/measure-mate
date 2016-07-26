@@ -1,0 +1,28 @@
+recursive-include measure_mate/ *.html *.json
+recursive-include requirements/ *.txt
+recursive-include gulp/ *.js
+recursive-include client/ *.js *.css *.eot *.svg *.ttf *.woff *.woff2 *.ico
+
+include requirements.txt
+include gulpfile.js
+include package.json
+include README.md
+include app.json
+include CONTRIBUTING.md
+include LICENSE.txt
+include manage.py
+include Procfile
+include supervisord.conf
+include versioneer.py
+include measure_mate/_version.py
+include .babelrc
+include .buildpacks
+include .codeclimate.yml
+include .coveragerc
+include .csslintrc
+include .eslintignore
+include .eslintrc.json
+include .pylintrc
+include .stylelintrc
+include .travis.yml
+

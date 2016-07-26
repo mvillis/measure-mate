@@ -11,3 +11,4 @@ pylint-django>=0.7.1
 db-sqlite3>=0.0.1
 django-extensions>=1.6.7
 pydot>=1.2.2
+versioneer>=0.16
