@@ -30,7 +30,7 @@ var TeamList = React.createClass({
             var prettyCreated = Moment(team.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(team.created).fromNow()
             var teamUrl = '/team/' + team.id + '/'
-            var tags = this.props.teamTags[team.id] || team.tags
+            var tags = this.props.teamTags[team.id] || []
             return (
               <LinkContainer key={team.id} to={{pathname: teamUrl}}>
                 <tr className='clickable'>

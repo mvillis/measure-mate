@@ -203,22 +203,14 @@ var Assessment = React.createClass({
         var completeMeasurement = measurement && measurement.rating && measurement.target_rating
         var tabIcon = (completeMeasurement) ? <Glyphicon glyph='ok' className='text-success' /> : <Glyphicon glyph='minus' />
         return (
-          <LinkContainer key={attribute.id} to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}} onClick={this.scrollToTop('#attribute-list')}>
-            <NavItem eventKey={i + 1} id={i + 1}>{tabIcon} {attribute.name}</NavItem>
+          <LinkContainer
+            key={attribute.id}
+            to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}}>
+            <NavItem eventKey={i + 1}>{tabIcon} {attribute.name}</NavItem>
           </LinkContainer>
         )
-      }.bind(this))
-
-      var summaryNode = function () {
-        if (!this.state.template) return (undefined)
-        return (
-          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}} onClick={this.scrollToTop('#attribute-list')}>
-            <NavItem eventKey={this.state.template.attributes.length + 1} id={this.state.template.attributes.length + 1}><Glyphicon glyph='stats' /> Summary</NavItem>
-          </LinkContainer>
-        )
-      }.bind(this)()
+      }, this)
     }
-    var tags = this.state.assessmentTags || []
     return (
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
@@ -228,9 +220,9 @@ var Assessment = React.createClass({
               &nbsp;
               {this.state.assessment ? this.state.assessment.template.short_desc : ''}
               &nbsp;
-              <span className='wrap'> <TagList tags={tags} /> </span>
+              <span className='wrap'> <TagList tags={this.state.assessmentTags || []} /> </span>
               <Label>
-                {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read-Only' : ''}
+                {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read Only' : ''}
               </Label>
             </small>
           </PageHeader>
@@ -257,7 +249,15 @@ var Assessment = React.createClass({
               <Col className='attribute-tabs' xs={12} md={3} lg={3}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
-                  {summaryNode}
+                  {this.state.template
+                    ? <LinkContainer
+                      key='summary'
+                      to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
+                      <NavItem eventKey={this.state.template.attributes.length + 1}>
+                        <Glyphicon glyph='stats' /> Summary
+                      </NavItem>
+                    </LinkContainer>
+                    : undefined}
                   <br></br>
                   <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location} />
                 </Nav>

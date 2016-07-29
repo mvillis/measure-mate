@@ -40,7 +40,7 @@ var FinaliseAssessment = React.createClass({
     var summaryPath = '/assessment/' + this.props.assessment.id + '/summary'
     if (this.props.assessment.status === 'DONE') {
       return (
-        <Panel header='All Locked In!'>
+        <Panel header='All Locked In!' bsStyle='default'>
           <p>This assessment is now <Label bsStyle='primary'>Read Only</Label>.</p>
           <p>No changes can be made to any of the fields.</p>
         </Panel>
@@ -68,7 +68,7 @@ var FinaliseAssessment = React.createClass({
       )
     } else {
       return (
-        <Panel>
+        <Panel bsStyle='default'>
           <p>When you're finished lock in your results on the Summary screen</p>
           <LinkContainer key='summary' to={{pathname: '/assessment/' + this.props.assessment.id + '/summary'}}>
             <Button bsStyle='primary'>Summary</Button>
