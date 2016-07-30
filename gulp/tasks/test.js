@@ -17,7 +17,7 @@ gulp.task('pre-test', function () {
 gulp.task('test', ['pre-test'], function () {
   return gulp.src(config.testSrc)
     .pipe(babel())
-		.pipe(injectModules())
+    .pipe(injectModules())
     .pipe(mocha(config.mochaOptions))
     // Creating the reports after tests ran
     .pipe(istanbul.writeReports(config.istanbulReportOptions))

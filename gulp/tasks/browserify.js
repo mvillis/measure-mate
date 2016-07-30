@@ -28,8 +28,8 @@ gulp.task('browserify', function (callback) {
       // Enable source maps
       debug: true
     })
-    // Specify the entry point of your app
-    .require(bundleConfig.entries, {entry: true})
+      // Specify the entry point of your app
+      .require(bundleConfig.entries, {entry: true})
 
     var reportFinished = function () {
       // Log when bundling completes
@@ -61,10 +61,10 @@ gulp.task('browserify', function (callback) {
         .pipe(source(bundleConfig.outputName))
         .pipe(buffer())
         .pipe(config.production ? sourcemaps.init({loadMaps: true}) : util.noop())
-          // transforms here
-          .pipe(config.production ? uglify() : util.noop())
-          // Report compile errors
-          .on('error', handleErrors)
+        // transforms here
+        .pipe(config.production ? uglify() : util.noop())
+        // Report compile errors
+        .on('error', handleErrors)
         .pipe(config.production ? sourcemaps.write('./') : util.noop())
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))

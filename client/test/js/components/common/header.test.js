@@ -12,9 +12,9 @@ describe('Header Component', function () {
 
   it('contains a Navbar', function () {
     expect(wrapper.find(Navbar))
-    .to
-    .have
-    .length(1)
+      .to
+      .have
+      .length(1)
   })
 })
 
