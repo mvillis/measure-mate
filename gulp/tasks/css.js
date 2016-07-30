@@ -9,13 +9,13 @@ var config = require('../config').css
 gulp.task('css', function () {
   gulp.src(config.src)
     .pipe(sourcemaps.init({loadMaps: true}))
-      // transforms here
-      .pipe(concat('bundle.css'))
-      // Report compile errors
-      .on('error', handleErrors)
-      .pipe(uglifycss(config.uglifyOptions))
-      // Report compile errors
-      .on('error', handleErrors)
+    // transforms here
+    .pipe(concat('bundle.css'))
+    // Report compile errors
+    .on('error', handleErrors)
+    .pipe(uglifycss(config.uglifyOptions))
+    // Report compile errors
+    .on('error', handleErrors)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.dest))
     .pipe(browserSync.reload({stream: true}))

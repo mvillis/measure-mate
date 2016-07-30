@@ -10,7 +10,7 @@ describe('Home Page Component', function () {
     const wrapper = render(<Home />)
 
     expect(wrapper.find('.logo-slogan-text').text())
-    .to
-    .contain('A tool to track maturity assessments for your team')
+      .to
+      .contain('A tool to track maturity assessments for your team')
   })
 })
