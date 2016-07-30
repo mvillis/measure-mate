@@ -24,7 +24,7 @@ var Header = React.createClass({
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
-          <Navbar.Collapse>
+          <Navbar.Collapse autoCollapse>
             <Nav>
               <LinkContainer to={{pathname: '/assessment/'}}>
                 <NavItem eventKey={1}>Assessments</NavItem>
