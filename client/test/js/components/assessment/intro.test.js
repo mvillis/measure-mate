@@ -11,8 +11,8 @@ var mockedTemplate = {'attributes': [{'id': 1}]}
 describe('Intro Component', function () {
   it('contains welcome text', function () {
     expect(shallow(<Intro params={mockedParams} template={mockedTemplate} />)
-    .contains(<h1>Welcome</h1>))
-    .to
-    .equal(true)
+      .contains(<h1>Welcome</h1>))
+      .to
+      .equal(true)
   })
 })

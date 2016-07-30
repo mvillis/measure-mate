@@ -31,8 +31,8 @@ describe('AppAlert Component', function () {
 
   it('contains alert detail text', function () {
     expect(wrapper.find(Modal.Body).render().text())
-    .to
-    .contain('alert detail alpha beta gamma')
+      .to
+      .contain('alert detail alpha beta gamma')
   })
 })
 

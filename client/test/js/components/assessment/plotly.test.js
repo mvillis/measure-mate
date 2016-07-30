@@ -42,9 +42,9 @@ describe('Plotly component', function () {
     const wrapper = render(<PlotlyComponent data={mockedData} layout={mockedLayout} config={mockedConfig} />)
 
     expect(wrapper.find('div'))
-    .to
-    .have
-    .length(1)
+      .to
+      .have
+      .length(1)
   })
 
   it.skip('plotly mount', function () {
@@ -54,8 +54,8 @@ describe('Plotly component', function () {
     const wrapper = mount(<PlotlyComponent data={mockedData} layout={mockedLayout} config={mockedConfig} />)
 
     expect(wrapper.find('.plotly'))
-    .to
-    .have
-    .length(1)
+      .to
+      .have
+      .length(1)
   })
 })

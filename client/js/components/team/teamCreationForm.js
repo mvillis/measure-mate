@@ -140,7 +140,7 @@ var TeamCreationForm = React.createClass({
   filterOptions: function (options, filterValue, currentValues) {
     // ditch existing values
     var filteredOptions = _(options)
-        .difference(currentValues)
+      .difference(currentValues)
 
     if (filterValue) {
       var potentialTag = filterValue.toLowerCase()
