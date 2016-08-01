@@ -14,23 +14,23 @@ describe('Team Page Component', function () {
     const wrapper = shallow(<Team params={mockedParams} />)
 
     expect(wrapper.find(Panel))
-    .to
-    .have
-    .length(3)
+      .to
+      .have
+      .length(3)
 
     expect(wrapper.find({header: 'Team'}))
-    .to
-    .have
-    .length(1)
+      .to
+      .have
+      .length(1)
 
     expect(wrapper.find({header: 'Create Assessment'}))
-    .to
-    .have
-    .length(1)
+      .to
+      .have
+      .length(1)
 
     expect(wrapper.find({header: 'Assessments'}))
-    .to
-    .have
-    .length(1)
+      .to
+      .have
+      .length(1)
   })
 })
