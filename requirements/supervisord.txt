@@ -2,4 +2,3 @@
 
 django-supervisor==0.3.4
 supervisor==3.3.0
-Django==1.9.8
