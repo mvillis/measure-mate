@@ -23,12 +23,15 @@ var TeamList = React.createClass({
             <th>Team Name</th>
             <th>Tags</th>
             <th>Created Date</th>
+            <th>Updated Date</th>
           </tr>
         </thead>
         <tbody>
           {this.props.teams.map(function (team, i) {
             var prettyCreated = Moment(team.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(team.created).fromNow()
+            var prettyUpdated = Moment(team.updated).format('DD/MM/YYYY')
+            var relativeUpdated = Moment(team.updated).fromNow()
             var teamUrl = '/team/' + team.id + '/'
             var tags = this.props.teamTags[team.id] || []
             return (
@@ -40,6 +43,7 @@ var TeamList = React.createClass({
                   <td>{team.name}</td>
                   <td className='wrap'><TagList tags={tags} /></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
+                  <td>{prettyUpdated} <small>({relativeUpdated})</small></td>
                 </tr>
               </LinkContainer>
             )
