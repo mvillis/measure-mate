@@ -23,9 +23,9 @@ var AssessmentList = React.createClass({
           <tr>
             <th>#</th>
             <th>Created Date</th>
+            <th>Updated Date</th>
             <th>Template</th>
             <th>Tags</th>
-            <th>Status</th>
             <th className={this.props.showTeams ? '' : 'hidden'}>Team</th>
           </tr>
         </thead>
@@ -33,6 +33,8 @@ var AssessmentList = React.createClass({
           {this.props.assessments.map(function (assessment, i) {
             var prettyCreated = Moment(assessment.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(assessment.created).fromNow()
+            var prettyUpdated = Moment(assessment.updated).format('DD/MM/YYYY')
+            var relativeUpdated = Moment(assessment.updated).fromNow()
             var assessmentUrl = '/assessment/' + assessment.id + '/' + 'summary'
             var tags = this.props.assessmentTags[assessment.id] || []
             return (
@@ -40,9 +42,11 @@ var AssessmentList = React.createClass({
                 <tr className='clickable' >
                   <td><a href={assessmentUrl}>{assessment.id}</a></td>
                   <td>{prettyCreated} <small>({relativeCreated})</small></td>
+                  <td>{prettyUpdated} <small>({relativeUpdated})</small></td>
                   <td>{assessment.template.name}</td>
-                  <td className='wrap'><TagList tags={tags} /></td>
-                  <td><Label bsStyle='primary'>{assessment.status}</Label></td>
+                  <td className='wrap'><TagList tags={tags} />
+                    {assessment.status == 'DONE' && <Label bsStyle='default'>Read Only</Label>}
+                  </td>
                   <td className={this.props.showTeams ? '' : 'hidden'}>
                     <a href={'/team/' + assessment.team.id + '/'}>{assessment.team.name}</a>
                   </td>
