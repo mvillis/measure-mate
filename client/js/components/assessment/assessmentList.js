@@ -9,7 +9,7 @@ var Moment = require('moment')
 var Table = ReactBootstrap.Table
 var Label = ReactBootstrap.Label
 var TagList = require('../common/tagList')
-var tablesort = require('tablesort')
+var TablesortCore = require('../common/tablesortCore')
 
 var AssessmentList = React.createClass({
   propTypes: {
@@ -19,7 +19,7 @@ var AssessmentList = React.createClass({
   },
   componentDidMount: function () {
     var assessmentList = ReactDOM.findDOMNode(this.refs.assessmentList)
-    tablesort(assessmentList)
+    TablesortCore(assessmentList)
   },
 
   render: function () {
@@ -28,7 +28,7 @@ var AssessmentList = React.createClass({
         <thead>
           <tr>
             <th>#</th>
-            <th>Created Date</th>
+            <th data-sort-method='date'>Created Date</th>
             <th>Template</th>
             <th className='no-sort'>Tags</th>
             <th>Status</th>
@@ -47,7 +47,7 @@ var AssessmentList = React.createClass({
                   <td data-sort={assessment.id} data-sort-method='number'>
                     <a href={assessmentUrl}>{assessment.id}</a>
                   </td>
-                  <td data-sort={assessment.created} data-sort-method='date'>
+                  <td>
                     {prettyCreated} <small>({relativeCreated})</small>
                   </td>
                   <td>{assessment.template.name}</td>

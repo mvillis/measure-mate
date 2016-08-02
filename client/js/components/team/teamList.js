@@ -8,7 +8,7 @@ var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Moment = require('moment')
 var Table = ReactBootstrap.Table
 var TagList = require('../common/tagList')
-var tablesort = require('tablesort')
+var TablesortCore = require('../common/tablesortCore')
 
 var TeamList = React.createClass({
   propTypes: {
@@ -17,7 +17,7 @@ var TeamList = React.createClass({
   },
   componentDidMount: function () {
     var teamList = ReactDOM.findDOMNode(this.refs.teamList)
-    tablesort(teamList)
+    TablesortCore(teamList)
   },
 
   render: function () {
@@ -28,7 +28,7 @@ var TeamList = React.createClass({
             <th>#</th>
             <th>Team Name</th>
             <th className='no-sort'>Tags</th>
-            <th>Created Date</th>
+            <th data-sort-method='date'>Created Date</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@ var TeamList = React.createClass({
                   </td>
                   <td>{team.name}</td>
                   <td className='wrap'><TagList tags={tags} /></td>
-                  <td data-sort={team.created} data-sort-method='date'>
+                  <td>
                     {prettyCreated} <small>({relativeCreated})</small>
                   </td>
                 </tr>
