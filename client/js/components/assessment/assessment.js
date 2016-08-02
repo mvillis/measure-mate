@@ -258,7 +258,7 @@ var Assessment = React.createClass({
                       </NavItem>
                     </LinkContainer>
                     : undefined}
-                  <br></br>
+                  <br />
                   <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location} />
                 </Nav>
               </Col>

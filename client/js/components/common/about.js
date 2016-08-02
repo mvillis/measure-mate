@@ -18,7 +18,7 @@ var About = React.createClass({
               <p className='logo-slogan-text'>This site is based on the <a className='logo-text' href='https://github.com/mvillis/measure-mate'>Measure Mate</a> project.</p>
             </Jumbotron>
             <Jumbotron>
-              <span className='logo'></span>
+              <span className='logo' />
               <h1 className='logo-text wrap'>Measure Mate!</h1>
               <p className='logo-slogan-text'>A tool to track maturity assessments for your team.</p>
             </Jumbotron>
