@@ -107,7 +107,7 @@ var ObserveFormControl = React.createClass({
     }
   },
   render: function () {
-    var syncStatus = <span></span>
+    var syncStatus = <span />
     if (this.state.dirtyObservation === true) {
       if (!this.props.measurement) {
         syncStatus = (

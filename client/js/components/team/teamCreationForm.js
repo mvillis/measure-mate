@@ -56,7 +56,6 @@ var TeamCreationForm = React.createClass({
     // This could also be done using ReactLink:
     // http://facebook.github.io/react/docs/two-way-binding-helpers.html
     var value = e.target.value
-    console.log('teamName: ' + value)
     this.setState({
       teamName: value,
       changed: true
@@ -64,7 +63,6 @@ var TeamCreationForm = React.createClass({
   },
   handleDescChange: function (e) {
     var value = e.target.value
-    console.log('teamDesc: ' + value)
     this.setState({
       teamDesc: value,
       changed: true
