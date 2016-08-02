@@ -13,7 +13,7 @@ var TablesortCore = require('../common/tablesortCore')
 var TeamList = React.createClass({
   propTypes: {
     teams: React.PropTypes.array.isRequired,
-    teamTags: React.PropTypes.array
+    teamTags: React.PropTypes.object.isRequired
   },
   componentDidMount: function () {
     var teamList = ReactDOM.findDOMNode(this.refs.teamList)

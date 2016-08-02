@@ -15,7 +15,7 @@ var AssessmentList = React.createClass({
   propTypes: {
     showTeams: React.PropTypes.bool,
     assessments: React.PropTypes.array.isRequired,
-    assessmentTags: React.PropTypes.array.isRequired
+    assessmentTags: React.PropTypes.object.isRequired
   },
   componentDidMount: function () {
     var assessmentList = ReactDOM.findDOMNode(this.refs.assessmentList)
