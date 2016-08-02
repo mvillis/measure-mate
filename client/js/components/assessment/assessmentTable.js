@@ -51,7 +51,7 @@ var AssessmentTable = React.createClass({
   getInitialState: function () {
     return {
       assessments: [],
-      assessmentTags: [],
+      assessmentTags: {},
       loaded: false
     }
   },

@@ -8,7 +8,7 @@ var cssSource = [
   'node_modules/bootstrap/dist/css/bootstrap.css',
   'node_modules/bootstrap/dist/css/bootstrap-theme.css',
   'node_modules/react-select/dist/react-select.css',
-  'client/css/measure-mate.css'
+  'client/css/*.css'
 ]
 var cssDestination = dest + '/css'
 var assetsSource = src + '/assets/**'
