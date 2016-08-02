@@ -28,7 +28,7 @@ var AssessmentList = React.createClass({
         <thead>
           <tr>
             <th>#</th>
-            <th data-sort-method='date'>Created Date</th>
+            <th data-sort-method='string'>Created Date</th>
             <th>Template</th>
             <th className='no-sort'>Tags</th>
             <th>Status</th>
@@ -47,7 +47,7 @@ var AssessmentList = React.createClass({
                   <td data-sort={assessment.id} data-sort-method='number'>
                     <a href={assessmentUrl}>{assessment.id}</a>
                   </td>
-                  <td>
+                  <td data-sort={assessment.created}>
                     {prettyCreated} <small>({relativeCreated})</small>
                   </td>
                   <td>{assessment.template.name}</td>

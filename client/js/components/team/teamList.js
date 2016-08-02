@@ -28,7 +28,7 @@ var TeamList = React.createClass({
             <th>#</th>
             <th>Team Name</th>
             <th className='no-sort'>Tags</th>
-            <th data-sort-method='date'>Created Date</th>
+            <th data-sort-method='string'>Created Date</th>
           </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@ var TeamList = React.createClass({
                   </td>
                   <td>{team.name}</td>
                   <td className='wrap'><TagList tags={tags} /></td>
-                  <td>
+                  <td data-sort={team.created}>
                     {prettyCreated} <small>({relativeCreated})</small>
                   </td>
                 </tr>
