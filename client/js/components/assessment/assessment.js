@@ -211,6 +211,7 @@ var Assessment = React.createClass({
         )
       }, this)
     }
+    var isSummaryTab = this.props.location.pathname.indexOf('/summary') > -1
     return (
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
@@ -259,7 +260,7 @@ var Assessment = React.createClass({
                     </LinkContainer>
                     : undefined}
                   <br />
-                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location} />
+                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} isSummaryTab={isSummaryTab} />
                 </Nav>
               </Col>
             </Row>
