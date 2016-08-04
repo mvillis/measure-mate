@@ -36,7 +36,7 @@ var TeamList = React.createClass({
             var prettyCreated = Moment(team.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(team.created).fromNow()
             var teamUrl = '/team/' + team.id + '/'
-            var tags = this.props.teamTags[team.id] || []
+
             return (
               <LinkContainer key={team.id} to={{pathname: teamUrl}}>
                 <tr className='clickable'>
@@ -44,7 +44,11 @@ var TeamList = React.createClass({
                     <a href={teamUrl}>{team.id}</a>
                   </td>
                   <td>{team.name}</td>
-                  <td className='wrap'><TagList tags={tags} /></td>
+                  <td className='wrap'>
+                    {this.props.teamTags.hasOwnProperty(team.id)
+                      ? <TagList tags={this.props.teamTags[team.id] || []} />
+                      : <span>•••</span>}
+                  </td>
                   <td data-sort={team.created}>
                     {prettyCreated} <small>({relativeCreated})</small>
                   </td>
