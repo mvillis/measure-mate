@@ -12,7 +12,6 @@ var NavItem = ReactBootstrap.NavItem
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
 var Pager = ReactBootstrap.Pager
-var PageItem = ReactBootstrap.PageItem
 var Glyphicon = ReactBootstrap.Glyphicon
 var Label = ReactBootstrap.Label
 var LinkContainer = ReactRouterBootstrap.LinkContainer
@@ -238,13 +237,13 @@ var Assessment = React.createClass({
                   disabled: (this.state.assessment && this.state.assessment.status === 'DONE')
                 })}
                 <Pager>
-                  <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
+                  <Pager.Item disabled={this.state.previous_hide} onClick={this.handlePrevious}>
                     <Glyphicon glyph='chevron-left' /> {' '} Previous
-                  </PageItem>
+                  </Pager.Item>
                   {' '}
-                  <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
+                  <Pager.Item disabled={this.state.next_hide} onClick={this.handleNext}>
                     Next {' '} <Glyphicon glyph='chevron-right' />
-                  </PageItem>
+                  </Pager.Item>
                 </Pager>
               </Col>
               <Col className='attribute-tabs' xs={12} md={3} lg={3}>

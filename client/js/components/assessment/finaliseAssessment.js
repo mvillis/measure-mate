@@ -36,9 +36,6 @@ var FinaliseAssessment = React.createClass({
     this.close()
   },
   render: function () {
-    console.log('props: ' + JSON.stringify(this.props))
-    console.log('assessment: ' + JSON.stringify(this.props.assessment))
-    console.log("this.props.assessment.status === 'DONE':" + this.props.assessment.status === 'DONE')
     if (this.props.assessment.status === 'DONE') {
       return (
         <Panel header='All Locked In!' bsStyle='default'>
