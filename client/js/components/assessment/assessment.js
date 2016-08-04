@@ -224,7 +224,7 @@ var Assessment = React.createClass({
                 <span className='wrap'>
                   <TagList tags={this.state.assessmentTags} />
                 </span>}
-              {this.state.assessment.status === 'DONE' && <Label>'Read Only'</Label>}
+              {this.state.assessment.status === 'DONE' && <Label>Read Only</Label>}
             </small>
           </PageHeader>}
           <div>
