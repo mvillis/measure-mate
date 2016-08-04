@@ -214,18 +214,19 @@ var Assessment = React.createClass({
     return (
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
-          <PageHeader>
-            {!!this.state.assessment === true ? this.state.assessment.template.name : ''}
+          {this.state.assessment && <PageHeader>
+            {this.state.assessment.template.name}
             <small>
               &nbsp;
-              {this.state.assessment ? this.state.assessment.template.short_desc : ''}
+              {this.state.assessment.template.short_desc}
               &nbsp;
-              <span className='wrap'> <TagList tags={this.state.assessmentTags || []} /> </span>
-              <Label>
-                {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read Only' : ''}
-              </Label>
+              {this.state.assessmentTags &&
+                <span className='wrap'>
+                  <TagList tags={this.state.assessmentTags} />
+                </span>}
+              {this.state.assessment.status === 'DONE' && <Label>'Read Only'</Label>}
             </small>
-          </PageHeader>
+          </PageHeader>}
           <div>
             <Row>
               <Col className='attribute-content' xs={12} md={9} lg={9}>
@@ -249,18 +250,21 @@ var Assessment = React.createClass({
               <Col className='attribute-tabs' xs={12} md={3} lg={3}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
-                  {this.state.template
-                    ? <LinkContainer
+                  {this.state.template &&
+                    <LinkContainer
                       key='summary'
                       to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
                       <NavItem eventKey={this.state.template.attributes.length + 1}>
                         <Glyphicon glyph='stats' /> Summary
                       </NavItem>
-                    </LinkContainer>
-                    : undefined}
-                  <br />
-                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} isSummaryTab={isSummaryTab} />
+                    </LinkContainer>}
                 </Nav>
+                <br />
+                <FinaliseAssessment
+                  assessment={this.state.assessment}
+                  markAssessmentDone={this.markAssessmentDone}
+                  isSummaryTab={isSummaryTab}
+                />
               </Col>
             </Row>
           </div>
