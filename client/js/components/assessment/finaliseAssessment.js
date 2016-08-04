@@ -45,7 +45,7 @@ var FinaliseAssessment = React.createClass({
       )
     } else if (this.props.isSummaryTab) {
       return (
-        <div>
+        <Panel bsStyle='primary' header='Happy how everything looks?'>
           <Modal show={this.state.showModal} onHide={this.close}>
             <Modal.Header closeButton>
               <Modal.Title>Are you sure?</Modal.Title>
@@ -58,17 +58,15 @@ var FinaliseAssessment = React.createClass({
               <Button bsStyle='primary' onClick={this.handleLock}>Lock It In</Button>
             </Modal.Footer>
           </Modal>
-          <Panel bsStyle='danger'>
-            <p>Happy how everything looks?</p>
-            <Button onClick={this.open} bsStyle='primary'>Lock It In</Button>
-          </Panel>
-        </div>
+          <p>When you're finished, lock in your results here.</p>
+          <Button onClick={this.open} bsStyle='primary'>Lock It In</Button>
+        </Panel>
       )
     } else {
       return (
-        <Panel bsStyle='default'>
-          <p>When you're finished lock in your results on the Summary screen</p>
-          <LinkContainer key='summary' to={{pathname: 'summary'}}>
+        <Panel bsStyle='default' header='Happy how everything looks?'>
+          <p>When you're finished, lock in your results on the Summary screen.</p>
+          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.props.assessment.id + '/summary'}}>
             <Button bsStyle='primary'>Summary</Button>
           </LinkContainer>
         </Panel>
