@@ -122,7 +122,7 @@ var ObserveFormControl = React.createClass({
       if (this.props.measurement &&
         (this.props.measurement.observations || this.props.measurement.action)) {
         syncStatus = (
-          <span>
+          <span className='text-success'>
             <span>&nbsp;&nbsp;&nbsp;</span>
             <Glyphicon glyph='saved' />
           </span>
@@ -154,12 +154,11 @@ var ObserveFormControl = React.createClass({
               onChange={this.onActionChange}
             />}
         </FormGroup>
-        {this.props.disabled
-          ? undefined
-          : <FormGroup>
+        {this.props.disabled ||
+          <FormGroup>
             <Button ref='obsSaveBtn'
               disabled={this.state.saveBtnDisabled}
-              bsStyle='primary'
+              bsStyle={this.state.saveBtnDisabled ? 'default' : 'primary'}
               bsSize='xsmall'
               onClick={this.handleSave}>
               Save
