@@ -29,9 +29,9 @@ var AssessmentList = React.createClass({
           <tr>
             <th>#</th>
             <th data-sort-method='string'>Created Date</th>
+            <th data-sort-method='string'>Updated Date</th>
             <th>Template</th>
             <th className='no-sort'>Tags</th>
-            <th>Status</th>
             {this.props.showTeams && <th>Team</th>}
           </tr>
         </thead>
@@ -39,6 +39,8 @@ var AssessmentList = React.createClass({
           {this.props.assessments.map(function (assessment, i) {
             var prettyCreated = Moment(assessment.created).format('DD/MM/YYYY')
             var relativeCreated = Moment(assessment.created).fromNow()
+            var prettyUpdated = Moment(assessment.updated).format('DD/MM/YYYY')
+            var relativeUpdated = Moment(assessment.updated).fromNow()
             var assessmentUrl = '/assessment/' + assessment.id + '/' + 'summary'
 
             return (
@@ -50,13 +52,16 @@ var AssessmentList = React.createClass({
                   <td data-sort={assessment.created}>
                     {prettyCreated} <small>({relativeCreated})</small>
                   </td>
+                  <td data-sort={assessment.updated}>
+                    {prettyUpdated} <small>({relativeUpdated})</small>
+                  </td>
                   <td>{assessment.template.name}</td>
                   <td className='wrap'>
                     {this.props.assessmentTags.hasOwnProperty(assessment.id)
                       ? <TagList tags={this.props.assessmentTags[assessment.id] || []} />
-                      : <span>•••</span>}
+                      : <span>•••&nbsp;</span>}
+                    {assessment.status == 'DONE' && <Label bsStyle='default'>Read Only</Label>}
                   </td>
-                  <td><Label bsStyle='primary'>{assessment.status}</Label></td>
                   {this.props.showTeams && <td>
                     <a href={'/team/' + assessment.team.id + '/'}>{assessment.team.name}</a>
                   </td>}
