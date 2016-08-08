@@ -175,8 +175,8 @@ var AssessmentReport = React.createClass({
       autosizable: true,
       margin: {
         l: 90,
-        r: 30,
-        t: 30,
+        r: 10,
+        t: 60,
         b: 150
       },
       yaxis: {
@@ -192,7 +192,12 @@ var AssessmentReport = React.createClass({
       },
       bargap: 0.50,
       showlegend: true,
-      autosize: true
+      autosize: true,
+      legend: {
+        orientation: 'h',
+        x: 0.65,
+        y: 1.15
+      }
     }
 
     var config = {
