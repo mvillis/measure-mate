@@ -12,7 +12,6 @@ var NavItem = ReactBootstrap.NavItem
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
 var Pager = ReactBootstrap.Pager
-var PageItem = ReactBootstrap.PageItem
 var Glyphicon = ReactBootstrap.Glyphicon
 var Label = ReactBootstrap.Label
 var LinkContainer = ReactRouterBootstrap.LinkContainer
@@ -211,21 +210,23 @@ var Assessment = React.createClass({
         )
       }, this)
     }
+    var isSummaryTab = this.props.location.pathname.indexOf('/summary') > -1
     return (
       <div id='attribute-list'>
         <Loader loaded={this.state.initialLoad}>
-          <PageHeader>
-            {!!this.state.assessment === true ? this.state.assessment.template.name : ''}
+          {this.state.assessment && <PageHeader>
+            {this.state.assessment.template.name}
             <small>
               &nbsp;
-              {this.state.assessment ? this.state.assessment.template.short_desc : ''}
+              {this.state.assessment.template.short_desc}
               &nbsp;
-              <span className='wrap'> <TagList tags={this.state.assessmentTags || []} /> </span>
-              <Label>
-                {this.state.assessment && this.state.assessment.status === 'DONE' ? 'Read Only' : ''}
-              </Label>
+              {this.state.assessmentTags &&
+                <span className='wrap'>
+                  <TagList tags={this.state.assessmentTags} />
+                </span>}
+              {this.state.assessment.status === 'DONE' && <Label>Read Only</Label>}
             </small>
-          </PageHeader>
+          </PageHeader>}
           <div>
             <Row>
               <Col className='attribute-content' xs={12} md={9} lg={9}>
@@ -234,33 +235,37 @@ var Assessment = React.createClass({
                   measurements: this.state.measurements,
                   syncMeasurement: this.syncMeasurement,
                   measureSyncActivity: this.state.measureSyncActivity,
+                  assessment: this.state.assessment,
                   disabled: (this.state.assessment && this.state.assessment.status === 'DONE')
                 })}
                 <Pager>
-                  <PageItem disabled={this.state.previous_hide} onClick={this.handlePrevious}>
+                  <Pager.Item disabled={this.state.previous_hide} onClick={this.handlePrevious}>
                     <Glyphicon glyph='chevron-left' /> {' '} Previous
-                  </PageItem>
+                  </Pager.Item>
                   {' '}
-                  <PageItem disabled={this.state.next_hide} onClick={this.handleNext}>
+                  <Pager.Item disabled={this.state.next_hide} onClick={this.handleNext}>
                     Next {' '} <Glyphicon glyph='chevron-right' />
-                  </PageItem>
+                  </Pager.Item>
                 </Pager>
               </Col>
               <Col className='attribute-tabs' xs={12} md={3} lg={3}>
                 <Nav bsStyle='pills' stacked activeKey={1} onSelect={this.handleSelect}>
                   {attributeNodes}
-                  {this.state.template
-                    ? <LinkContainer
+                  {this.state.template &&
+                    <LinkContainer
                       key='summary'
                       to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
                       <NavItem eventKey={this.state.template.attributes.length + 1}>
                         <Glyphicon glyph='stats' /> Summary
                       </NavItem>
-                    </LinkContainer>
-                    : undefined}
-                  <br />
-                  <FinaliseAssessment assessment={this.state.assessment} markAssessmentDone={this.markAssessmentDone} location={this.props.location} />
+                    </LinkContainer>}
                 </Nav>
+                <br />
+                <FinaliseAssessment
+                  assessment={this.state.assessment}
+                  markAssessmentDone={this.markAssessmentDone}
+                  isSummaryTab={isSummaryTab}
+                />
               </Col>
             </Row>
           </div>

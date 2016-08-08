@@ -42,7 +42,7 @@ var AssessmentList = React.createClass({
             var prettyUpdated = Moment(assessment.updated).format('DD/MM/YYYY')
             var relativeUpdated = Moment(assessment.updated).fromNow()
             var assessmentUrl = '/assessment/' + assessment.id + '/' + 'summary'
-            var tags = this.props.assessmentTags[assessment.id] || []
+
             return (
               <LinkContainer key={assessment.id} to={{pathname: assessmentUrl}}>
                 <tr className='clickable' >
@@ -57,7 +57,9 @@ var AssessmentList = React.createClass({
                   </td>
                   <td>{assessment.template.name}</td>
                   <td className='wrap'>
-                    <TagList tags={tags} />
+                    {this.props.assessmentTags.hasOwnProperty(assessment.id)
+                      ? <TagList tags={this.props.assessmentTags[assessment.id] || []} />
+                      : <span>•••</span>}
                     {assessment.status == 'DONE' && <Label bsStyle='default'>Read Only</Label>}
                   </td>
                   {this.props.showTeams && <td>

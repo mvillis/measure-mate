@@ -12,9 +12,8 @@ var LinkContainer = ReactRouterBootstrap.LinkContainer
 var FinaliseAssessment = React.createClass({
   propTypes: {
     assessment: React.PropTypes.object,
-    params: React.PropTypes.object,
     markAssessmentDone: React.PropTypes.func.isRequired,
-    location: React.PropTypes.object.isRequired
+    isSummaryTab: React.PropTypes.bool.isRequired
   },
   getInitialState () {
     return { showModal: false }
@@ -22,8 +21,8 @@ var FinaliseAssessment = React.createClass({
   shouldComponentUpdate: function (nextProps, nextState) {
     return (
       nextProps.assessment.status !== this.props.assessment.status ||
-      nextProps.location.pathname.indexOf('summary') > -1 ||
-      this.props.location.pathname.indexOf('summary') > -1 && nextProps.location.pathname.indexOf('summary') === -1
+      nextProps.isSummaryTab ||
+      this.props.isSummaryTab && !nextProps.isSummaryTab
     )
   },
   close () {
@@ -37,7 +36,6 @@ var FinaliseAssessment = React.createClass({
     this.close()
   },
   render: function () {
-    var summaryPath = '/assessment/' + this.props.assessment.id + '/summary'
     if (this.props.assessment.status === 'DONE') {
       return (
         <Panel header='All Locked In!' bsStyle='default'>
@@ -45,9 +43,9 @@ var FinaliseAssessment = React.createClass({
           <p>No changes can be made to any of the fields.</p>
         </Panel>
       )
-    } else if (this.props.location.pathname === summaryPath) {
+    } else if (this.props.isSummaryTab) {
       return (
-        <div>
+        <Panel bsStyle='primary' header='Happy how everything looks?'>
           <Modal show={this.state.showModal} onHide={this.close}>
             <Modal.Header closeButton>
               <Modal.Title>Are you sure?</Modal.Title>
@@ -60,16 +58,14 @@ var FinaliseAssessment = React.createClass({
               <Button bsStyle='primary' onClick={this.handleLock}>Lock It In</Button>
             </Modal.Footer>
           </Modal>
-          <Panel bsStyle='danger'>
-            <p>Happy how everything looks?</p>
-            <Button onClick={this.open} bsStyle='primary'>Lock It In</Button>
-          </Panel>
-        </div>
+          <p>When you're finished, lock in your results here.</p>
+          <Button onClick={this.open} bsStyle='primary'>Lock It In</Button>
+        </Panel>
       )
     } else {
       return (
-        <Panel bsStyle='default'>
-          <p>When you're finished lock in your results on the Summary screen</p>
+        <Panel bsStyle='default' header='Happy how everything looks?'>
+          <p>When you're finished, lock in your results on the Summary screen.</p>
           <LinkContainer key='summary' to={{pathname: '/assessment/' + this.props.assessment.id + '/summary'}}>
             <Button bsStyle='primary'>Summary</Button>
           </LinkContainer>
