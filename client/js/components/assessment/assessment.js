@@ -235,6 +235,7 @@ var Assessment = React.createClass({
                   measurements: this.state.measurements,
                   syncMeasurement: this.syncMeasurement,
                   measureSyncActivity: this.state.measureSyncActivity,
+                  assessment: this.state.assessment,
                   disabled: (this.state.assessment && this.state.assessment.status === 'DONE')
                 })}
                 <Pager>

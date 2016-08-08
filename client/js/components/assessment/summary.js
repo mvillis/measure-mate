@@ -13,7 +13,8 @@ var Summary = React.createClass({
     params: React.PropTypes.object,
     template: React.PropTypes.object,
     measurements: React.PropTypes.array,
-    attribute: React.PropTypes.object
+    attribute: React.PropTypes.object,
+    assessment: React.PropTypes.object
   },
   getInitialState: function () {
     return {
@@ -34,6 +35,7 @@ var Summary = React.createClass({
           measurements={(this.props.measurements) ? this.props.measurements : []}
           attributes={(this.props.template) ? this.props.template.attributes : []}
           template={(this.props.template) ? this.props.template : {}}
+          assessment={(this.props.assessment) ? this.props.assessment : {}}
           assessId={this.props.params.assessmentId}
         />
       </Panel>
