@@ -1,6 +1,6 @@
 -r base.txt
 
-Django==1.9.8
+Django<1.10 # Pending PR merge: https://github.com/rfk/django-supervisor/pull/51
 psycopg2==2.6.2
 gunicorn==19.6.0
 gevent==1.1.2
