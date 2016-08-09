@@ -173,14 +173,14 @@ var AssessmentReport = React.createClass({
 
     var layout = {
       title: this.props.assessment.team.name + ' — ' + this.props.assessment.template.name,
-      height: 450,
+      height: 480,
       width: 600,
       barmode: 'overlay',
       autosizable: true,
       margin: {
         l: 90,
         r: 10,
-        t: 60,
+        t: 85,
         b: 150
       },
       yaxis: {
