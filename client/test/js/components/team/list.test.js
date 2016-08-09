@@ -1,7 +1,7 @@
 'use strict'
 
 var React = require('react')
-var Table = require('react').Table
+var Table = React.Table
 var expect = require('chai').expect
 var shallow = require('enzyme').shallow
 var TeamList = require('../../../../js/components/team/teamList')
