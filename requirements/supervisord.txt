@@ -1,4 +1,7 @@
 -r prod.txt
 
-django-supervisor==0.3.4
-supervisor==3.3.0
+supervisor==3.3.1
+
+# Pending PR merge: https://github.com/rfk/django-supervisor/pull/51
+# django-supervisor==0.3.4
+https://github.com/rloomans/django-supervisor/archive/django-1.10.tar.gz

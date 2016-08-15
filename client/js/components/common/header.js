@@ -1,12 +1,12 @@
 'use strict'
 
 var React = require('react')
-var ReactBootrap = require('react-bootstrap')
+var ReactBootstrap = require('react-bootstrap')
+var Navbar = ReactBootstrap.Navbar
+var Nav = ReactBootstrap.Nav
+var NavItem = ReactBootstrap.NavItem
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
-var Navbar = ReactBootrap.Navbar
-var Nav = ReactBootrap.Nav
-var NavItem = ReactBootrap.NavItem
 
 var Header = React.createClass({
   propTypes: {
@@ -18,26 +18,26 @@ var Header = React.createClass({
         <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
-              <LinkContainer to={{pathname: '/'}}>
-                <a>Measure Mate</a>
+              <LinkContainer to='/'>
+                <a title='Home'>Measure Mate</a>
               </LinkContainer>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <LinkContainer to={{pathname: '/assessment/'}}>
-                <NavItem eventKey={1}>Assessments</NavItem>
+              <LinkContainer to='/assessment/'>
+                <NavItem eventKey={1} title='Assessments'>Assessments</NavItem>
               </LinkContainer>
-              <LinkContainer to={{pathname: '/team/'}}>
-                <NavItem eventKey={2}>Teams</NavItem>
+              <LinkContainer to='/team/'>
+                <NavItem eventKey={2} title='Teams'>Teams</NavItem>
               </LinkContainer>
             </Nav>
             <Nav pullRight>
-              <NavItem eventKey={3} href='/admin/' target='_blank'>Admin</NavItem>
-              <NavItem eventKey={4} href='/export/' target='_blank'>Export</NavItem>
-              <LinkContainer to={{pathname: '/about'}}>
-                <NavItem eventKey={5}>About</NavItem>
+              <NavItem eventKey={3} title='Admin' href='/admin/' target='_blank'>Admin</NavItem>
+              <NavItem eventKey={4} title='Export' href='/export/' target='_blank'>Export</NavItem>
+              <LinkContainer to='/about'>
+                <NavItem eventKey={5} title='About'>About</NavItem>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>

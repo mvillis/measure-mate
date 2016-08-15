@@ -18,7 +18,6 @@ describe('Finalise Assessment Component', function () {
     const wrapper = shallow(
       <FinaliseAssessment isSummaryTab={false} assessment={mockedAssessment} markAssessmentDone={noop} />
     )
-    console.log(wrapper.html())
     expect(wrapper.find(Button).html())
       .to.contain('Summary')
   })

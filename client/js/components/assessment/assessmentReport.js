@@ -75,6 +75,9 @@ var AssessmentReport = React.createClass({
       rankMax = Math.max(rankMax, rating.rank)
     })
 
+    rankMin -= 0.1
+    rankMax += 0.1
+
     var summaryRows = []
 
     if (this.props.measurements !== null) {
@@ -169,14 +172,15 @@ var AssessmentReport = React.createClass({
     var data = [targetTrace, currentTrace]
 
     var layout = {
-      height: 450,
+      title: this.props.assessment.team.name + ' — ' + this.props.assessment.template.name,
+      height: 480,
       width: 600,
       barmode: 'overlay',
       autosizable: true,
       margin: {
         l: 90,
-        r: 30,
-        t: 30,
+        r: 10,
+        t: 85,
         b: 150
       },
       yaxis: {
@@ -192,12 +196,28 @@ var AssessmentReport = React.createClass({
       },
       bargap: 0.50,
       showlegend: true,
-      autosize: true
+      autosize: true,
+      legend: {
+        orientation: 'h',
+        x: 0.65,
+        y: 1.15
+      }
     }
 
     var config = {
       scrollZoom: false,
-      showLink: false
+      showLink: false,
+      displaylogo: false,
+      modeBarButtonsToRemove: [
+        'zoom2d',
+        'pan2d',
+        'select2d',
+        'lasso2d',
+        'zoomIn2d',
+        'zoomOut2d',
+        'hoverClosestCartesian',
+        'hoverCompareCartesian'
+      ]
     }
 
     return (
