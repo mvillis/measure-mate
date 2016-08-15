@@ -5,7 +5,8 @@ django-crispy-forms==1.6.0
 pyver==1.0.38
 dj-database-url==0.4.1
 wsgiref==0.1.2
-django-rest-swagger==2.0.3
+#django-rest-swagger==2.0.3
+https://github.com/rloomans/django-rest-swagger/archive/master.tar.gz
 django-secure==1.0.1
 django-csp==3.0.0
 whitenoise==3.2.1
