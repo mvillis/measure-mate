@@ -6,6 +6,7 @@ Dev Central
 
 [![Build Status](https://travis-ci.org/mvillis/measure-mate.svg)](https://travis-ci.org/mvillis/measure-mate)
 [![Coverage Status](https://coveralls.io/repos/mvillis/measure-mate/badge.svg?branch=master&service=github)](https://coveralls.io/github/mvillis/measure-mate?branch=master)
+[![Codecov](https://img.shields.io/codecov/c/github/mvillis/measure-mate/master.svg?maxAge=2592000)]()
 [![Stories in Progress](https://badge.waffle.io/mvillis/measure-mate.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/mvillis/measure-mate)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Code Climate](https://codeclimate.com/github/mvillis/measure-mate/badges/gpa.svg)](https://codeclimate.com/github/mvillis/measure-mate)
