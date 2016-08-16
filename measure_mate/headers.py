@@ -30,13 +30,5 @@ def header(name, value):
     return decorator
 
 
-def allow_origin(origin):
-    return header('Access-Control-Allow-Origin', origin)
-
-
-def allow_origin_all():
-    return allow_origin('*')
-
-
 def x_ua_compatible(ie):
     return header('X-UA-Compatible', ie)
