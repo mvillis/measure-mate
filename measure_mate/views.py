@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from serializers import *
 from models import *
-from headers import x_ua_compatible
+from headers import header, x_ua_compatible
 from datetime import datetime
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
@@ -39,6 +39,7 @@ def healthcheck(request):
     return HttpResponse('ok', content_type='text/plain')
 
 
+@header('Cache-Control', 'public, max-age=315360000')
 def robots_txt(request):
     return HttpResponse('', content_type='text/plain')
 
