@@ -219,4 +219,4 @@ CSP_FONT_SRC = ("'self'", "fonts.gstatic.com",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin",)
 
 LOGIN_URL = "/admin/login/"
-LOGOUT_URL = "/"
+LOGOUT_URL = "/admin/logout/"
