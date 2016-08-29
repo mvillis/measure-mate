@@ -60,6 +60,9 @@ class AttributeViewSet(viewsets.ModelViewSet):
     queryset = Attribute.objects.all()
     serializer_class = AttributeSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
+    filter_fields = ('id', 'name', 'template__id', 'template__name')
+    ordering_fields = ('id', 'name', 'rank')
 
 
 class RatingViewSet(viewsets.ModelViewSet):
@@ -69,6 +72,9 @@ class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
+    filter_fields = ('id', 'name', 'attribute__id')
+    ordering_fields = ('id', 'name', 'rank')
 
 
 class TagViewSet(viewsets.ModelViewSet):
