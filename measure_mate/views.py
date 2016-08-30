@@ -17,7 +17,9 @@ import django_excel as excel
 @api_view()
 @renderer_classes([OpenAPIRenderer, SwaggerUIRenderer])
 def schema_view(request):
-    generator = schemas.SchemaGenerator(title='Measure Mate API')
+    generator = schemas.SchemaGenerator(
+        title='Measure Mate API',
+    )
     return Response(generator.get_schema(request=request))
 
 

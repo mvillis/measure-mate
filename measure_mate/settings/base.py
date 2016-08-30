@@ -60,8 +60,6 @@ MIDDLEWARE_CLASSES = (
     'whitenoise.middleware.WhiteNoiseMiddleware',
 )
 
-REST_FRAMEWORK = {'PAGE_SIZE': 10}
-
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -72,6 +70,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.DjangoFilterBackend',
     ),
     'COMPACT_JSON': True,
+    'PAGE_SIZE': 10
 }
 
 ROOT_URLCONF = 'measure_mate.urls'
@@ -202,7 +201,10 @@ SWAGGER_SETTINGS = {
                        'https://github.com/mvillis/measure-mate</a>.</p>',
         'license': 'MIT',
         'licenseUrl': 'https://github.com/mvillis/measure-mate/blob/master/LICENSE.txt',
-    }
+    },
+    'LOGIN_URL': 'rest_framework:login',
+    'LOGOUT_URL': 'rest_framework:logout',
+    'JSON_EDITOR': True,
 }
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
