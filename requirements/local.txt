@@ -9,5 +9,5 @@ pep8>=1.7.0
 coverage>=4.2
 pylint-django>=0.7.2
 db-sqlite3>=0.0.1
-django-extensions>=1.7.0
+django-extensions>=1.7.3
 pydot>=1.2.2

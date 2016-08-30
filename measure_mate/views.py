@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from serializers import *
 from models import *
-from headers import x_ua_compatible
+from headers import header, x_ua_compatible
 from datetime import datetime
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
@@ -17,7 +17,9 @@ import django_excel as excel
 @api_view()
 @renderer_classes([OpenAPIRenderer, SwaggerUIRenderer])
 def schema_view(request):
-    generator = schemas.SchemaGenerator(title='Measure Mate API')
+    generator = schemas.SchemaGenerator(
+        title='Measure Mate API',
+    )
     return Response(generator.get_schema(request=request))
 
 
@@ -39,6 +41,7 @@ def healthcheck(request):
     return HttpResponse('ok', content_type='text/plain')
 
 
+@header('Cache-Control', 'public, max-age=315360000')
 def robots_txt(request):
     return HttpResponse('', content_type='text/plain')
 
@@ -59,6 +62,9 @@ class AttributeViewSet(viewsets.ModelViewSet):
     queryset = Attribute.objects.all()
     serializer_class = AttributeSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
+    filter_fields = ('id', 'name', 'template__id', 'template__name')
+    ordering_fields = ('id', 'name', 'rank')
 
 
 class RatingViewSet(viewsets.ModelViewSet):
@@ -68,6 +74,9 @@ class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
+    filter_fields = ('id', 'name', 'attribute__id')
+    ordering_fields = ('id', 'name', 'rank')
 
 
 class TagViewSet(viewsets.ModelViewSet):
