@@ -5,4 +5,4 @@ var requireDir = require('require-dir')
 // Require all tasks in gulp/tasks, including subfolders
 requireDir('./gulp/tasks', { recurse: true })
 
-gulp.task('default', ['buildWatch'])
+gulp.task('default', ['build-watch'])

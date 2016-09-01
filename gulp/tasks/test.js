@@ -6,7 +6,7 @@ var injectModules = require('gulp-inject-modules')
 var config = require('../config').test
 require('babel-core/register')
 
-gulp.task('preTest', function () {
+gulp.task('pre-test', function () {
   return gulp.src(config.src)
     // Covering files
     .pipe(istanbul({includeUntested: true}))
@@ -14,7 +14,7 @@ gulp.task('preTest', function () {
     .pipe(istanbul.hookRequire())
 })
 
-gulp.task('test', ['preTest'], function () {
+gulp.task('test', ['pre-test'], function () {
   return gulp.src(config.testSrc)
     .pipe(babel())
     .pipe(injectModules())

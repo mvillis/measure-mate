@@ -1,3 +1,3 @@
 var gulp = require('gulp')
 
-gulp.task('buildWatch', ['build', 'watch'])
+gulp.task('build-watch', ['build', 'watch'])
