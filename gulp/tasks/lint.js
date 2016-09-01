@@ -8,8 +8,8 @@ if (semver.gt(process.version, '1.0.0')) {
 
   gulp.task('lint', function () {
     return gulp.src(config.src)
-        .pipe(lint({config: config.configSrc}))
-        .pipe(lint.format())
+      .pipe(lint({config: config.configSrc}))
+      .pipe(lint.format())
   })
 } else {
   gulp.task('lint', function () {
