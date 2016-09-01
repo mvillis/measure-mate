@@ -42,6 +42,7 @@ class AssessmentAPITestCases(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), Assessment.objects.count())
         self.assertEqual(response.data[0]['id'], assessment2.id)
+        self.assertEqual(response.data[1]['id'], assessment1.id)
 
     def test_create_assessment_no_team(self):
         """

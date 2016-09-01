@@ -34,13 +34,10 @@ npm install -g gulp
 npm install
 ```
 
-Be aware that as part of our `npm install` command, a gulp build will have been
-executed. This is done via the postinstall option in the `package.json` file.
+After the `npm install` command, you need to use gulp to build the javascript client.
 
-```json
-"scripts": {
-  "postinstall": "gulp build --production"
-},
+```bash
+gulp build --production
 ```
 
 `gulp build --production` and in particular the `--production` flag has the

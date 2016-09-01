@@ -10,7 +10,7 @@ django-secure==1.0.1
 django-csp==3.0.0
 whitenoise==3.2.1
 django-excel==0.0.5
-pyexcel==0.2.4
-pyexcel-xls==0.2.1
-pyexcel-xlsx==0.2.1
+pyexcel==0.2.5
+pyexcel-xls==0.2.2
+pyexcel-xlsx==0.2.2
 opbeat==3.3
