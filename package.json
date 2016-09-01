@@ -18,7 +18,8 @@
     "test": "snyk test && gulp test",
     "snyk-protect": "snyk protect",
     "gulp-build": "gulp build --production",
-    "prepublish": "npm run snyk-protect && npm run gulp-build"
+    "postinstall": "npm run snyk-protect",
+    "heroku-postbuild": "npm run gulp-build"
   },
   "browserify": {
     "transform": [
