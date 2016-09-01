@@ -4,8 +4,8 @@ install:
   - nvm install stable
   - nvm use stable
   - npm --version
-  - node --version
   - npm install gulp
+  - gulp --version
   - npm install
   - gulp build
   - pip install -U pip setuptools wheel
