@@ -160,5 +160,10 @@ module.exports = {
     lintOptions: {
       default: true
     }
+  },
+
+  standard: {
+    breakOnError: true,
+    quiet: true
   }
 }
