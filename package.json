@@ -15,10 +15,10 @@
     "url": "https://github.com/mvillis/measure-mate/issues"
   },
   "scripts": {
-    "postinstall": "gulp build --production",
     "test": "snyk test && gulp test",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "gulp-build": "gulp build --production",
+    "prepublish": "npm run snyk-protect && npm run gulp-build"
   },
   "browserify": {
     "transform": [
