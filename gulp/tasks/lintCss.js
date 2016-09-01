@@ -6,7 +6,7 @@ if (semver.gt(process.version, '1.0.0')) {
   var gulpStylelint = require('gulp-stylelint')
   var config = require('../config').lintCss
 
-  gulp.task('lintCss', function lintCssTask () {
+  gulp.task('lintCss', function () {
     var options = Object.assign(
       {
         reporters: [
@@ -21,7 +21,7 @@ if (semver.gt(process.version, '1.0.0')) {
       .pipe(gulpStylelint(options))
   })
 } else {
-  gulp.task('lintCss', function lintCssTask () {
+  gulp.task('lintCss', function () {
     util.log(util.colors.magenta('WARNING:'), ' \'lintCss\' task skipped. NodeJS is too old.')
   })
 }
