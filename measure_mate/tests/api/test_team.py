@@ -99,7 +99,7 @@ class TeamAPITestCases(APITestCase):
         newtags = [tag1.id, tag3.id]
 
         url = reverse('team-detail', args=[team.id])
-        data = { "id": team.id, "name": team.name + " updated", "short_desc": team.name + " updated", "tags": newtags }
+        data = {"id": team.id, "name": team.name + " updated", "short_desc": team.name + " updated", "tags": newtags}
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['id'], data['id'])

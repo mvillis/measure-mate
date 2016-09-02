@@ -78,8 +78,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.DjangoFilterBackend',
     ),
-    'COMPACT_JSON': True,
-#    'PAGE_SIZE': 10
+    'COMPACT_JSON': True
 }
 
 ROOT_URLCONF = 'measure_mate.urls'

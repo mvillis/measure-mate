@@ -182,4 +182,3 @@ class AssessmentAPITestCases(APITestCase):
         self.assertEqual(response.data['id'], data['id'])
         self.assertEqual(len(response.data['tags']), 2)
         self.assertItemsEqual(response.data['tags'], [tag1.id, tag3.id])
-

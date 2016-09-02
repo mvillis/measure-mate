@@ -1,3 +1,4 @@
+/* eslint-env jasmine */
 'use strict'
 
 require('../../jsdom.setup.js')
