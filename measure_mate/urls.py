@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.generic.base import RedirectView
+from django.views.generic.base import RedirectView
 from rest_framework import routers
 
 from views import AssessmentViewSet, AttributeViewSet, MeasurementViewSet, RatingViewSet, TagViewSet, TeamViewSet, TemplateViewSet, \
