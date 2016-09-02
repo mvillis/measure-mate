@@ -1,4 +1,4 @@
-from models import *
+from models import Attribute, Rating, Assessment, Measurement, Tag, Team, Template
 from rest_framework import serializers
 
 

@@ -1,11 +1,8 @@
-from django.core.exceptions import PermissionDenied
-from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-from django.core.validators import RegexValidator
-from django.utils.translation import ugettext_lazy as _, ungettext_lazy
-
 import re
+
+from django.core.validators import RegexValidator
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class Template(models.Model):

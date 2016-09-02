@@ -1,17 +1,20 @@
-from rest_framework import viewsets, generics, filters, status, schemas
-from rest_framework.response import Response
+from datetime import datetime
+
+import django_excel as excel
 import rest_framework.exceptions
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from serializers import *
-from models import *
-from headers import header, x_ua_compatible
-from datetime import datetime
+from django.shortcuts import render
+from rest_framework import viewsets, filters, status, schemas
 from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
-import django_excel as excel
+
+from headers import header, x_ua_compatible
+from models import Attribute, Rating, Assessment, Measurement, Tag, Team, Template
+from serializers import AssessmentCreateSerializer, AssessmentSerializer, AttributeSerializer, MeasurementCreateSerializer, RatingSerializer, TagSerializer, \
+        TeamCreateSerializer, TeamSerializer, TemplateSerializer
 
 
 @api_view()

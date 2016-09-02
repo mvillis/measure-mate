@@ -1,7 +1,7 @@
 import factory
 import factory.fuzzy
 import string
-from measure_mate.models import *
+from measure_mate.models import Template, Attribute, Tag, Team, Assessment, Measurement, Rating
 
 
 class TemplateFactory(factory.django.DjangoModelFactory):

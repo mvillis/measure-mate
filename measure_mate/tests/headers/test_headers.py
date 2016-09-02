@@ -2,7 +2,7 @@ from django.test import TestCase, RequestFactory
 from rest_framework import status
 from django.shortcuts import render
 
-from measure_mate.headers import headers
+from measure_mate.headers import header, x_ua_compatible
 
 
 class HeadersTestCases(TestCase):
@@ -10,10 +10,9 @@ class HeadersTestCases(TestCase):
 
         @header('X-Test-Header1', 'one')
         @header('X-Test-Header2', 'two')
-        @allow_origin_all
         @x_ua_compatible('IE=edge')
-        def test_headers(request):
-            return render(request, 'index.html')
+        def test_headers(req):
+            return render(req, 'index.html')
 
         request = RequestFactory()
         response = test_headers(request)
@@ -21,4 +20,3 @@ class HeadersTestCases(TestCase):
         self.assertEqual(response['X-Test-Header1'], 'one')
         self.assertEqual(response['X-Test-Header2'], 'two')
         self.assertEqual(response['X-UA-Compatible'], 'IE=edge')
-        self.assertEqual(response['Access-Control-Allow-Origin'], '*')
