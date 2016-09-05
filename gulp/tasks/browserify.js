@@ -60,12 +60,12 @@ gulp.task('browserify', function (callback) {
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
         .pipe(buffer())
-        .pipe(config.production ? sourcemaps.init({loadMaps: true}) : util.noop())
+        .pipe(sourcemaps.init({loadMaps: true}))
         // transforms here
         .pipe(config.production ? uglify() : util.noop())
         // Report compile errors
         .on('error', handleErrors)
-        .pipe(config.production ? sourcemaps.write('./') : util.noop())
+        .pipe(sourcemaps.write('./'))
         // Specify the output destination
         .pipe(gulp.dest(bundleConfig.dest))
         .on('end', reportFinished)
