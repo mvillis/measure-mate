@@ -1,8 +1,7 @@
-from django.core.exceptions import PermissionDenied
 from django.test import TestCase
 
-from measure_mate.tests.factories import AssessmentFactory, TagFactory
 from measure_mate.models import Assessment
+from measure_mate.tests.factories import AssessmentFactory
 
 
 class AssessmentTestCases(TestCase):

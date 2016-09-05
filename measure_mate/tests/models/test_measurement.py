@@ -1,6 +1,7 @@
 from django.test import TestCase
 
-from measure_mate.tests.factories import *
+from measure_mate.models import Measurement
+from measure_mate.tests.factories import TemplateFactory, AttributeFactory, AssessmentFactory, RatingFactory, MeasurementFactory
 
 
 class MeasurementTestCases(TestCase):
