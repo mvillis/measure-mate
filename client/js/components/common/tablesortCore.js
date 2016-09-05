@@ -1,8 +1,23 @@
 var TablesortCore = require('tablesort')
 
-// Basic dates in dd/mm/yy or dd-mm-yy format.
-// Years can be 4 digits. Days and Months can be 1 or 2 digits.
 {
+  let cleanNumber = function (i) {
+    return i.replace(/[^\-?0-9.]/g, '')
+  }
+
+  let compareNumber = function (a, b) {
+    a = parseFloat(a)
+    b = parseFloat(b)
+
+    a = isNaN(a) ? 0 : a
+    b = isNaN(b) ? 0 : b
+
+    return a - b
+  }
+
+  // Basic dates in dd/mm/yy or dd-mm-yy format.
+  // Years can be 4 digits. Days and Months can be 1 or 2 digits.
+
   let parseDate = function (date) {
     date = date.replace(/\-/g, '/')
     date = date.replace(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2}) .*/, '$1/$2/$3') // format before getTime
@@ -22,43 +37,28 @@ var TablesortCore = require('tablesort')
 
     return parseDate(b) - parseDate(a)
   })
-}
 
-// Dot separated values. E.g. IP addresses or version numbers.
-TablesortCore.extend('dotsep', function (item) {
-  return /^(\d+\.)+\d+$/.test(item)
-}, function (a, b) {
-  a = a.split('.')
-  b = b.split('.')
 
-  for (var i = 0, len = a.length, ai, bi; i < len; i++) {
-    ai = parseInt(a[i], 10)
-    bi = parseInt(b[i], 10)
+  // Dot separated values. E.g. IP addresses or version numbers.
+  TablesortCore.extend('dotsep', function (item) {
+    return /^(\d+\.)+\d+$/.test(item)
+  }, function (a, b) {
+    a = a.split('.')
+    b = b.split('.')
 
-    if (ai === bi) continue
-    if (ai > bi) return -1
-    if (ai < bi) return 1
-  }
+    for (var i = 0, len = a.length, ai, bi; i < len; i++) {
+      ai = parseInt(a[i], 10)
+      bi = parseInt(b[i], 10)
 
-  return 0
-})
+      if (ai === bi) continue
+      if (ai > bi) return -1
+      if (ai < bi) return 1
+    }
 
-// Filesizes. e.g. '5.35 K', '10 MB', '12.45 GB', or '4.67 TiB'
-{
-  let compareNumber = function (a, b) {
-    a = parseFloat(a)
-    b = parseFloat(b)
+    return 0
+  })
 
-    a = isNaN(a) ? 0 : a
-    b = isNaN(b) ? 0 : b
-
-    return a - b
-  }
-
-  let cleanNumber = function (i) {
-    return i.replace(/[^\-?0-9.]/g, '')
-  }
-
+  // Filesizes. e.g. '5.35 K', '10 MB', '12.45 GB', or '4.67 TiB'
   // Returns suffix multiplier
   // Ex. suffix2num('KB') -> 1000
   // Ex. suffix2num('KiB') -> 1024
@@ -108,31 +108,15 @@ TablesortCore.extend('dotsep', function (item) {
 
     return compareNumber(b, a)
   })
-}
 
-TablesortCore.extend('monthname', function (item) {
-  return (
-    item.search(/(January|February|March|April|May|June|July|August|September|October|November|December)/i) !== -1
-  )
-}, function (a, b) {
-  var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-  return monthNames.indexOf(b) - monthNames.indexOf(a)
-})
-
-{
-  let cleanNumber = function (i) {
-    return i.replace(/[^\-?0-9.]/g, '')
-  }
-
-  let compareNumber = function (a, b) {
-    a = parseFloat(a)
-    b = parseFloat(b)
-
-    a = isNaN(a) ? 0 : a
-    b = isNaN(b) ? 0 : b
-
-    return a - b
-  }
+  TablesortCore.extend('monthname', function (item) {
+    return (
+      item.search(/(January|February|March|April|May|June|July|August|September|October|November|December)/i) !== -1
+    )
+  }, function (a, b) {
+    var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    return monthNames.indexOf(b) - monthNames.indexOf(a)
+  })
 
   TablesortCore.extend('number', function (item) {
     return item.match(/^-?[£\x24Û¢´€]?\d+\s*([,\.]\d{0,2})/) || // Prefixed currency
