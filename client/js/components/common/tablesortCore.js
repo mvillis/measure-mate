@@ -38,7 +38,6 @@ var TablesortCore = require('tablesort')
     return parseDate(b) - parseDate(a)
   })
 
-
   // Dot separated values. E.g. IP addresses or version numbers.
   TablesortCore.extend('dotsep', function (item) {
     return /^(\d+\.)+\d+$/.test(item)
