@@ -89,7 +89,7 @@ module.exports = {
   },
 
   build: {
-    production: production,
+    production: production
   },
 
   browserify: {
