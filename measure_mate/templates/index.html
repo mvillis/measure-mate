@@ -14,7 +14,8 @@
     </script>
     <script>
       {# http://www.giftofspeed.com/defer-loading-css/, http://www.sitepoint.com/dynamically-load-jquery-library-javascript/ and https://developers.google.com/speed/docs/insights/OptimizeCSSDelivery #}
-      !function(){function c(){console.log("css...");var a = document.createElement("link");a.rel="stylesheet";a.href='{% static "css/bundle.css" %}';d(a,function(){e()});document.body.appendChild(a);}function e(){console.log("js...");var a=document.createElement("script");a.type="text/javascript";d(a,function(){console.log("done.")});a.src='{% static "js/bundle.js" %}';document.getElementsByTagName("head")[0].appendChild(a)}function d(a,b){a.readyState?a.onreadystatechange=function(){"loaded"!=a.readyState&&"complete"!=a.readyState||(a.onreadystatechange=null,b())}:a.onload=function(){b()}}(raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame)?raf(c):window.addEventListener("load",c)}()    </script>
+      !function(){function c(){console.log("css...");var a = document.createElement("link");a.rel="stylesheet";a.href='{% static "css/bundle.css" %}';d(a,function(){e()});document.body.appendChild(a);}function e(){console.log("js...");var a=document.createElement("script");a.type="text/javascript";d(a,function(){console.log("done.")});a.src='{% static "js/bundle.js" %}';document.getElementsByTagName("head")[0].appendChild(a)}function d(a,b){a.readyState?a.onreadystatechange=function(){"loaded"!=a.readyState&&"complete"!=a.readyState||(a.onreadystatechange=null,b())}:a.onload=function(){b()}}(raf=requestAnimationFrame||mozRequestAnimationFrame||webkitRequestAnimationFrame||msRequestAnimationFrame)?raf(c):window.addEventListener("load",c)}()
+    </script>
     <noscript><h1 style="text-align:center">JavaScript is required for this application!</h1></noscript>
   </body>
 </html>
