@@ -65,7 +65,7 @@
     "loglevel": "^1.4.1",
     "markdownlint": "^0.2.0",
     "moment": "^2.14.1",
-    "plotly.js": "^1.16.3",
+    "plotly.js": "^1.17.0",
     "pretty-hrtime": "^1.0.2",
     "react": "^15.3.1",
     "react-bootstrap": "^0.30.2",
