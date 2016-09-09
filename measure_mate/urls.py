@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^export/', export_data, name='export'),
     url(r'^favicon\.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/favicon.ico')), name='favicon'),
     url(r'^robots\.txt', robots_txt, name='robots'),
-    url(r'^(?:|about|assessment|team)/?', home, name='home'),
+    url(r'^(?:about|assessment|team|)(?:/|$)', home, name='home'),
 ]
