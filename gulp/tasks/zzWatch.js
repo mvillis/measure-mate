@@ -9,13 +9,10 @@ var startBrowserSync = require('../util/startBrowserSync')
 
 gulp.task('watch', function () {
   startBrowserSync()
-  gulp.watch(config.assets.src, ['assets'])
-  gulp.watch(config.css.src, ['lintCss', 'css'])
-  gulp.watch(config.templates.src, ['templates'])
+  gulp.watch(config.assets.src, gulp.parallel('assets'))
+  gulp.watch(config.css.src, gulp.parallel('lint:css', 'build:css'))
   gulp.watch([
     config.clientDir + '/js/**',
     config.clientDir + '/test/js/**'
-  ], [
-    'lint', 'test'
-  ])
+  ], gulp.parallel('lint:js', 'test'))
 })

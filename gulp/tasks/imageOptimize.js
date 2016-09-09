@@ -16,6 +16,6 @@ if (semver.gt(process.version, '1.0.0')) {
   })
 } else {
   gulp.task('assets:image-optimize', function () {
-    util.log(util.colors.magenta('WARNING:'), ' \'assets:image-optimize\' task skipped: NodeJS is too old.')
+    return util.log(util.colors.magenta('WARNING:'), ' \'assets:image-optimize\' task skipped: NodeJS is too old.')
   })
 }

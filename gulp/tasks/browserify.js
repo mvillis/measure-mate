@@ -13,7 +13,7 @@ var config = require('../config').browserify
 // build check
 var isWatching = require('../util/isWatching')
 
-gulp.task('browserify', function (callback) {
+gulp.task('build:js', function (done) {
   var bundleQueue = config.bundleConfigs.length
 
   var browserifyThis = function (bundleConfig) {
@@ -43,7 +43,7 @@ gulp.task('browserify', function (callback) {
         if (bundleQueue === 0) {
           // If queue is empty, tell gulp the task is complete.
           // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
-          return callback()
+          return done()
         }
       }
     }

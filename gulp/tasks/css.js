@@ -6,8 +6,8 @@ var browserSync = require('browser-sync')
 var handleErrors = require('../util/handleErrors')
 var config = require('../config').css
 
-gulp.task('css', function () {
-  gulp.src(config.src)
+gulp.task('build:css', function () {
+  return gulp.src(config.src)
     .pipe(sourcemaps.init({loadMaps: true}))
     // transforms here
     .pipe(concat('bundle.css'))
