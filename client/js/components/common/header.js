@@ -5,6 +5,8 @@ var ReactBootstrap = require('react-bootstrap')
 var Navbar = ReactBootstrap.Navbar
 var Nav = ReactBootstrap.Nav
 var NavItem = ReactBootstrap.NavItem
+var ReactRouter = require('react-router')
+var Link = ReactRouter.Link
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 
@@ -18,9 +20,9 @@ var Header = React.createClass({
         <Navbar fluid>
           <Navbar.Header>
             <Navbar.Brand>
-              <LinkContainer to='/'>
-                <a title='Home'>Measure Mate</a>
-              </LinkContainer>
+              <Link to='/' title='Home'>
+                Measure Mate
+              </Link>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
