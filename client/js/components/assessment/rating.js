@@ -51,7 +51,7 @@ var Rating = React.createClass({
 
     return (
       <ListGroupItem active={ratingActive} key={this.props.rating.id} header={header} className={descClass} style={{'borderLeftColor': this.props.rating.colour}}>
-        <span className='rating-desc clickable' onClick={this.ratingClick} style={{'display': 'block'}}>
+        <span className='rating-desc clickable' onClick={this.ratingClick}>
           {this.props.rating.desc}
         </span>
       </ListGroupItem>
