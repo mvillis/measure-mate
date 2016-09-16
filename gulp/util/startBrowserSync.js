@@ -13,6 +13,7 @@ assign(bsConfig, config.browserSync[mode])
 
 var startBrowserSync = function () {
   if (global.isBuilding === true) {
+    gutil.log('Build in progress...')
     setTimeout(startBrowserSync, 100)
   } else {
     gutil.log('Build complete, starting BrowserSync')

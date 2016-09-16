@@ -4,7 +4,7 @@ install:
   - nvm install stable
   - nvm use stable
   - npm --version
-  - npm install gulp
+  - npm install -g gulp-cli
   - gulp --version
   - npm install
   - gulp build

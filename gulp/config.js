@@ -20,8 +20,6 @@ var fontsSource = [
 var fontsDestination = dest + '/fonts'
 var imagesSource = src + '/assets/img/**/*.{gif,jpg,jpeg,tiff,png,svg}'
 var imagesDestination = src + '/assets/img'
-var templatesSource = 'templates/**'
-var templatesDestination = dest
 
 module.exports = {
 
@@ -91,15 +89,7 @@ module.exports = {
   },
 
   build: {
-    production: production,
-    prod_tasks: ['browserify', 'css', 'fonts', 'assets', 'templates'],
-    test_tasks: ['browserify', 'css', 'fonts', 'assets', 'templates', 'lint', 'lint-css', 'lint-markdown', 'test']
-  },
-
-  templates: {
-    // *Note* templates don't use the common src
-    src: templatesSource,
-    dest: templatesDestination
+    production: production
   },
 
   browserify: {
