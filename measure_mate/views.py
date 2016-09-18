@@ -27,6 +27,7 @@ def schema_view(request):
 
 
 @x_ua_compatible('IE=edge')
+@header('Cache-control', 'no-cache')
 def home(request):
     return render(request, 'index.html')
 
@@ -40,6 +41,7 @@ def export_data(request):
         'xls', file_name=('measure_mate_export_%s' % timestamp))
 
 
+@header('Cache-control', 'no-cache')
 def healthcheck(request):
     return HttpResponse('ok', content_type='text/plain')
 

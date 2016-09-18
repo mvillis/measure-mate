@@ -84,6 +84,7 @@
 
 .rating-desc {
   min-height: 3em;
+  display: block;
 }
 
 /* autour-one-regular - latin */

@@ -19,23 +19,25 @@ var Rating = React.createClass({
     rating: React.PropTypes.object
   },
 
-  ratingClick: function () {
+  ratingClick: function (e) {
+    e.preventDefault()
     this.props.saveMeasurement('rating', this.props.rating.id)
   },
-  targetClick: function () {
+  targetClick: function (e) {
+    e.preventDefault()
     this.props.saveMeasurement('target', this.props.rating.id)
   },
   render: function () {
     var ratingActive = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating === this.props.rating.id) : false
     var targetActive = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating === this.props.rating.id) : false
     var targetBsStyle = targetActive ? 'success' : 'default'
-    var descClass = (this.props.rating.desc_class ? ' ' + this.props.rating.desc_class : '') + (this.props.rating.colour ? ' rating-colour' : '')
+    var descClass = (this.props.rating.desc_class || '') + (this.props.rating.colour ? ' rating-colour' : '')
 
     var header = (
       <div>
         <h4 className='inline clickable' onClick={this.ratingClick}>{this.props.rating.name}</h4>
-        {(this.props.measurement && this.props.measurement.rating)
-          ? <span>
+        {(this.props.measurement && this.props.measurement.rating) &&
+          <span>
             <Button onClick={this.targetClick} bsStyle={targetBsStyle} className='target-btn' active={targetActive} bsSize='xsmall'>
               Target
             </Button>
@@ -43,16 +45,15 @@ var Rating = React.createClass({
               overlay={<Popover id={'rating-popover-' + this.props.rating.id}>You have decided your current rating. Set your future goal by selecting a target button.</Popover>}>
               <Glyphicon className='target-help clickable' glyph='question-sign' />
             </OverlayTrigger>
-          </span>
-          : undefined}
+          </span>}
       </div>
     )
 
     return (
       <ListGroupItem active={ratingActive} key={this.props.rating.id} header={header} className={descClass} style={{'borderLeftColor': this.props.rating.colour}}>
-        <div className='rating-desc clickable' onClick={this.ratingClick}>
+        <span className='rating-desc clickable' onClick={this.ratingClick}>
           {this.props.rating.desc}
-        </div>
+        </span>
       </ListGroupItem>
       )
   }
