@@ -2,7 +2,9 @@
   {
     "fields": {
       "short_desc": "An assessment of Team Health",
-      "name": "Team Health Check"
+      "name": "Team Health Check",
+      "taggable": false,
+      "enabled": false
     },
     "model": "measure_mate.template",
     "pk": 4
