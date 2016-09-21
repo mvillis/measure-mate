@@ -1,6 +1,6 @@
 Django==1.10.1
 djangorestframework==3.4.6
-django-filter==0.14.0
+django-filter==0.15.0
 django-crispy-forms==1.6.0
 pyver==1.0.38
 dj-database-url==0.4.1
@@ -11,5 +11,5 @@ django-csp==3.1
 whitenoise==3.2.1
 django-excel==0.0.5
 pyexcel==0.2.5
-pyexcel-xls==0.2.2
+pyexcel-xls==0.2.3
 pyexcel-xlsx==0.2.2
