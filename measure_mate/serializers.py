@@ -21,7 +21,7 @@ class TemplateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Template
-        fields = ('id', 'name', 'short_desc', 'taggable', 'attributes')
+        fields = ('id', 'name', 'short_desc', 'taggable', 'enabled', 'attributes')
 
 
 class TemplateSimpleSerializer(serializers.ModelSerializer):

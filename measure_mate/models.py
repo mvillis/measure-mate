@@ -14,6 +14,7 @@ class Template(models.Model):
                             verbose_name="Template Name")
     short_desc = models.CharField(max_length=256)
     taggable = models.BooleanField(default=0)
+    enabled = models.BooleanField(default=1)
 
     def __unicode__(self):
         return self.name

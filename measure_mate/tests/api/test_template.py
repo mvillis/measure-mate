@@ -19,4 +19,6 @@ class TemplateAPITestCases(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]['id'], template.id)
         self.assertEqual(response.data[0]['name'], template.name)
+        self.assertEqual(response.data[0]['taggable'], template.taggable)
+        self.assertEqual(response.data[0]['enabled'], template.enabled)
         self.assertEqual(len(response.data), Template.objects.count())
