@@ -16,7 +16,7 @@ var TemplateSelect = React.createClass({
   loadOptions: function loadOptions (input, callback) {
     setTimeout(function () {
       $.ajax({
-        url: '/api/templates/',
+        url: '/api/templates/?enabled=True',
         dataType: 'json',
         cache: true,
         success: function (output) {
