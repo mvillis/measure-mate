@@ -47,6 +47,7 @@ var TemplateSelect = React.createClass({
           allowCreate={false}
           name='tags'
           placeholder='Type to filter templates'
+          cache={{}}
           />
         <HelpBlock>Each template includes a unique set of attributes to measure.</HelpBlock>
       </div>
