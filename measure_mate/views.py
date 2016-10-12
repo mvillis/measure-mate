@@ -58,6 +58,8 @@ class TemplateViewSet(viewsets.ModelViewSet):
     queryset = Template.objects.all()
     serializer_class = TemplateSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('id', 'name', 'taggable', 'enabled')
 
 
 class AttributeViewSet(viewsets.ModelViewSet):

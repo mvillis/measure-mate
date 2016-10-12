@@ -2,7 +2,9 @@
   {
     "fields": {
       "short_desc": "This is amazingly incomplete!",
-      "name": "Governance"
+      "name": "Governance",
+      "taggable": false,
+      "enabled": false
     },
     "model": "measure_mate.template",
     "pk": 3
