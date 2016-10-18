@@ -53,7 +53,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-standard": "^8.0.2",
     "gulp-streamify": "^1.0.2",
-    "gulp-stylelint": "^3.3.0",
+    "gulp-stylelint": "^3.4.0",
     "gulp-uglify": "^2.0.0",
     "gulp-uglifycss": "^1.0.6",
     "gulp-util": "^3.0.7",

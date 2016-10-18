@@ -50,7 +50,7 @@ class Rating(models.Model):
     desc = models.TextField()
     desc_class = models.CharField(max_length=256, default="", blank=True)
     rank = models.IntegerField(default=1)
-    colour = models.CharField(max_length=256, null=True)
+    colour = models.CharField(max_length=256, null=True, blank=True)
 
     def __unicode__(self):
         return (self.attribute.name + " - " +
@@ -129,8 +129,8 @@ class Measurement(models.Model):
     assessment = models.ForeignKey(Assessment, related_name="measurements")
     rating = models.ForeignKey(Rating, related_name="measurements")
     target_rating = models.ForeignKey(Rating, blank=True, null=True, related_name="target_measurements")
-    observations = models.TextField(null=True)
-    action = models.TextField(null=True)
+    observations = models.TextField(null=True, blank=True)
+    action = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
