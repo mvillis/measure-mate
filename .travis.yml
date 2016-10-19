@@ -22,5 +22,5 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
   - coveralls-lcov -v -n ./coverage/lcov.info > coverage.json
   - "coveralls --merge=coverage.json"
-  - npm outdated
+  - yarn outdated
   - pip list -o
