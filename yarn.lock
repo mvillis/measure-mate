@@ -1191,9 +1191,9 @@ browser-sync-ui@0.6.1:
     stream-throttle "^0.1.3"
     weinre "^2.0.0-pre-I0Z7U9OV"
 
-browser-sync@^2.17.2:
-  version "2.17.3"
-  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.17.3.tgz#d3d369607fdcbf0729a14502d5fed43a2217b074"
+browser-sync@^2.17.4:
+  version "2.17.5"
+  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.17.5.tgz#8e0a9ddfc2e162e7aada085f76181c57b6dbdf7a"
   dependencies:
     browser-sync-client "^2.3.3"
     browser-sync-ui "0.6.1"
@@ -2630,7 +2630,7 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enzyme@^2.4.1:
+enzyme@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-2.5.1.tgz#d7c8e2352c04c27fcf2523fb17bc7e0569352743"
   dependencies:
@@ -2788,7 +2788,11 @@ eslint-config-standard@^6.2.0, eslint-config-standard@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-6.2.0.tgz#1d2384ee074de6f6b6c0f2bbe976863032565aee"
 
-eslint-plugin-promise@^3.0.0, eslint-plugin-promise@~3.0.0:
+eslint-plugin-promise@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.3.0.tgz#20a1ef58b4243ffdaef82ee9360a02353a7cca89"
+
+eslint-plugin-promise@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.0.0.tgz#1528635d0160f3484e425cce2169cb74cec0186a"
 
@@ -2803,7 +2807,7 @@ eslint-plugin-standard@^2.0.1, eslint-plugin-standard@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-standard/-/eslint-plugin-standard-2.0.1.tgz#3589699ff9c917f2c25f76a916687f641c369ff3"
 
-eslint@^3.0.0, eslint@^3.7.1:
+eslint@^3.0.0, eslint@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.8.1.tgz#7d02db44cd5aaf4fa7aa489e1f083baa454342ba"
   dependencies:
@@ -3452,6 +3456,10 @@ get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
 
+get-canvas-context@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/get-canvas-context/-/get-canvas-context-1.0.2.tgz#d6e7b50bc4e4c86357cd39f22647a84b73601e93"
+
 get-proxy@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/get-proxy/-/get-proxy-1.1.0.tgz#894854491bc591b0f147d7ae570f5c678b7256eb"
@@ -3637,7 +3645,7 @@ gl-mesh3d@^1.2.0:
     simplicial-complex-contour "^1.0.0"
     typedarray-pool "^1.1.0"
 
-gl-plot2d@^1.1.6:
+gl-plot2d@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/gl-plot2d/-/gl-plot2d-1.1.8.tgz#dbb1cfb2284c67370e35dde0bb7d842191bfb550"
   dependencies:
@@ -4279,7 +4287,7 @@ gulp-rename@^1.2.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
 
-gulp-sourcemaps@^1.6.0:
+gulp-sourcemaps@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-1.8.1.tgz#714bb359ac7dfe50f42aa22f4a8fbcce476da22f"
   dependencies:
@@ -5132,7 +5140,7 @@ jsbn@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.0.tgz#650987da0dd74f4ebf5a11377a2aa2d273e97dfd"
 
-jsdom@^9.6.0:
+jsdom@^9.8.0:
   version "9.8.0"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-9.8.0.tgz#8766594cf994549d8a809cf6dca0246aceef9305"
   dependencies:
@@ -6834,9 +6842,9 @@ plexer@1.0.1:
     isstream "^0.1.2"
     readable-stream "^2.0.2"
 
-plotly.js@^1.17.3:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.18.0.tgz#9b4f8571512fd2272cba810fec979a2f46afb6a5"
+plotly.js@^1.18.1:
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.18.1.tgz#42e1a1eb5c4d8509402c41adde79627f92610a91"
   dependencies:
     "3d-view" "^2.0.0"
     alpha-shape "^1.0.0"
@@ -6855,7 +6863,7 @@ plotly.js@^1.17.3:
     gl-line3d "^1.1.0"
     gl-mat4 "^1.1.2"
     gl-mesh3d "^1.2.0"
-    gl-plot2d "^1.1.6"
+    gl-plot2d "^1.1.8"
     gl-plot3d "^1.5.1"
     gl-pointcloud2d "^1.0.0"
     gl-scatter2d "^1.0.5"
@@ -6878,6 +6886,7 @@ plotly.js@^1.17.3:
     superscript-text "^1.0.0"
     tinycolor2 "^1.3.0"
     topojson "^1.6.20"
+    webgl-context "^2.2.0"
 
 plur@^2.0.0, plur@^2.1.0, plur@^2.1.2:
   version "2.1.2"
@@ -9286,6 +9295,12 @@ weak-map@^1.0.5:
 weakmap-shim@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/weakmap-shim/-/weakmap-shim-1.1.0.tgz#c8fd072e23bff1ffb59648467cdcaf0142d4db6e"
+
+webgl-context@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/webgl-context/-/webgl-context-2.2.0.tgz#8f37d7257cf6df1cd0a49e6a7b1b721b94cc86a0"
+  dependencies:
+    get-canvas-context "^1.0.1"
 
 webidl-conversions@^3.0.0, webidl-conversions@^3.0.1:
   version "3.0.1"
