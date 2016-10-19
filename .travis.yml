@@ -4,9 +4,10 @@ install:
   - nvm install stable
   - nvm use stable
   - npm --version
-  - npm install -g gulp-cli
+  - npm install -g yarn
+  - yarn global add gulp-cli
   - gulp --version
-  - npm install
+  - yarn install
   - gulp build
   - pip install -U pip setuptools wheel
   - pip install -r requirements/local.txt
