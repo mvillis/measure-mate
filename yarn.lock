@@ -2506,8 +2506,8 @@ duplexer2@~0.0.2, duplexer2@0.0.2:
     readable-stream "~1.1.9"
 
 duplexify@^3.2.0:
-  version "3.4.6"
-  resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.4.6.tgz#1e586a13028caf31d5144a059813f9b071fec557"
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/duplexify/-/duplexify-3.4.5.tgz#0e7e287a775af753bf57e6e7b7f21f183f6c3a53"
   dependencies:
     end-of-stream "1.0.0"
     inherits "^2.0.1"
@@ -2788,11 +2788,7 @@ eslint-config-standard@^6.2.0, eslint-config-standard@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-6.2.0.tgz#1d2384ee074de6f6b6c0f2bbe976863032565aee"
 
-eslint-plugin-promise@^3.0.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.3.0.tgz#20a1ef58b4243ffdaef82ee9360a02353a7cca89"
-
-eslint-plugin-promise@~3.0.0:
+eslint-plugin-promise@^3.0.0, eslint-plugin-promise@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.0.0.tgz#1528635d0160f3484e425cce2169cb74cec0186a"
 
@@ -3164,8 +3160,8 @@ file-entry-cache@^2.0.0:
     object-assign "^4.0.1"
 
 file-type@^3.1.0, file-type@^3.8.0:
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/file-type/-/file-type-3.9.0.tgz#257a078384d1db8087bc449d107d52a52672b9e9"
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/file-type/-/file-type-3.8.0.tgz#bcadf6a8f624ebe4a10e5ad26727b6b93f16d78d"
 
 filename-regex@^2.0.0:
   version "2.0.0"
@@ -3456,10 +3452,6 @@ get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
 
-get-canvas-context@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/get-canvas-context/-/get-canvas-context-1.0.2.tgz#d6e7b50bc4e4c86357cd39f22647a84b73601e93"
-
 get-proxy@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/get-proxy/-/get-proxy-1.1.0.tgz#894854491bc591b0f147d7ae570f5c678b7256eb"
@@ -3645,7 +3637,7 @@ gl-mesh3d@^1.2.0:
     simplicial-complex-contour "^1.0.0"
     typedarray-pool "^1.1.0"
 
-gl-plot2d@^1.1.8:
+gl-plot2d@^1.1.6:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/gl-plot2d/-/gl-plot2d-1.1.8.tgz#dbb1cfb2284c67370e35dde0bb7d842191bfb550"
   dependencies:
@@ -3832,11 +3824,10 @@ glob-parent@^2.0.0:
     is-glob "^2.0.0"
 
 glob-parent@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.0.1.tgz#60021327cc963ddc3b5f085764f500479ecd82ff"
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.0.0.tgz#c7bdeb5260732196c740de9274c08814056014bb"
   dependencies:
-    is-glob "^3.1.0"
-    path-dirname "^1.0.0"
+    is-glob "^3.0.0"
 
 glob-stream@^5.3.2:
   version "5.3.5"
@@ -4551,8 +4542,8 @@ htmlescape@^1.1.0:
   resolved "https://registry.yarnpkg.com/htmlescape/-/htmlescape-1.1.1.tgz#3a03edc2214bca3b66424a3e7959349509cb0351"
 
 htmlparser2@^3.9.1:
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.9.2.tgz#1bdf87acca0f3f9e53fa4fcceb0f4b4cbb00b338"
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.9.1.tgz#621b7a58bc9acd003f7af0a2c9a00aa67c8505d2"
   dependencies:
     domelementtype "^1.3.0"
     domhandler "^2.3.0"
@@ -4898,7 +4889,7 @@ is-glob@^2.0.0, is-glob@^2.0.1:
   dependencies:
     is-extglob "^1.0.0"
 
-is-glob@^3.1.0:
+is-glob@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/is-glob/-/is-glob-3.1.0.tgz#7ba5ae24217804ac70707b96922567486cc3e84a"
   dependencies:
@@ -5278,8 +5269,10 @@ jsx-ast-utils@^1.3.1:
     object-assign "^4.1.0"
 
 kdbush@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/kdbush/-/kdbush-1.0.1.tgz#3cbd03e9dead9c0f6f66ccdb96450e5cecc640e0"
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/kdbush/-/kdbush-1.0.0.tgz#d8e629fde90a6bcf6e1b54bc73c30cb2cbf71013"
+  dependencies:
+    tape "^4.5.1"
 
 keycode@^2.1.2:
   version "2.1.7"
@@ -5759,8 +5752,8 @@ lru-cache@^4.0.0:
     yallist "^2.0.0"
 
 make-error-cause@^1.1.1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/make-error-cause/-/make-error-cause-1.2.2.tgz#df0388fcd0b37816dff0a5fb8108939777dcbc9d"
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/make-error-cause/-/make-error-cause-1.2.1.tgz#cf849c2f2c2d16bbf4b1ed956d897c5c716435f6"
   dependencies:
     make-error "^1.2.0"
 
@@ -5786,13 +5779,13 @@ mapbox-gl-function@^1.2.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/mapbox-gl-function/-/mapbox-gl-function-1.3.0.tgz#cee3d95750c189d45e83ab41a0a57fc2a8a509bc"
 
-"mapbox-gl-shaders@github:mapbox/mapbox-gl-shaders#de2ab007455aa2587c552694c68583f94c9f2747":
+mapbox-gl-shaders@mapbox/mapbox-gl-shaders#de2ab007455aa2587c552694c68583f94c9f2747:
   version "1.0.0"
   resolved "https://codeload.github.com/mapbox/mapbox-gl-shaders/tar.gz/de2ab007455aa2587c552694c68583f94c9f2747"
   dependencies:
     brfs "^1.4.0"
 
-"mapbox-gl-style-spec@github:mapbox/mapbox-gl-style-spec#83b1a3e5837d785af582efd5ed1a212f2df6a4ae":
+mapbox-gl-style-spec@mapbox/mapbox-gl-style-spec#83b1a3e5837d785af582efd5ed1a212f2df6a4ae:
   version "8.8.0"
   resolved "https://codeload.github.com/mapbox/mapbox-gl-style-spec/tar.gz/83b1a3e5837d785af582efd5ed1a212f2df6a4ae"
   dependencies:
@@ -6701,10 +6694,6 @@ path-browserify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/path-browserify/-/path-browserify-0.0.0.tgz#a0b870729aae214005b7d5032ec2cbbb0fb4451a"
 
-path-dirname@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/path-dirname/-/path-dirname-1.0.2.tgz#cc33d24d525e099a5388c0336c6e32b9160609e0"
-
 path-exists@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-1.0.0.tgz#d5a8998eb71ef37a74c34eb0d9eba6e878eea081"
@@ -6846,8 +6835,8 @@ plexer@1.0.1:
     readable-stream "^2.0.2"
 
 plotly.js@^1.17.3:
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.18.1.tgz#42e1a1eb5c4d8509402c41adde79627f92610a91"
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.18.0.tgz#9b4f8571512fd2272cba810fec979a2f46afb6a5"
   dependencies:
     "3d-view" "^2.0.0"
     alpha-shape "^1.0.0"
@@ -6866,7 +6855,7 @@ plotly.js@^1.17.3:
     gl-line3d "^1.1.0"
     gl-mat4 "^1.1.2"
     gl-mesh3d "^1.2.0"
-    gl-plot2d "^1.1.8"
+    gl-plot2d "^1.1.6"
     gl-plot3d "^1.5.1"
     gl-pointcloud2d "^1.0.0"
     gl-scatter2d "^1.0.5"
@@ -6889,7 +6878,6 @@ plotly.js@^1.17.3:
     superscript-text "^1.0.0"
     tinycolor2 "^1.3.0"
     topojson "^1.6.20"
-    webgl-context "^2.2.0"
 
 plur@^2.0.0, plur@^2.1.0, plur@^2.1.2:
   version "2.1.2"
@@ -7961,37 +7949,6 @@ sntp@1.x.x:
   dependencies:
     hoek "2.x.x"
 
-snyk:
-  version "1.19.1"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.19.1.tgz#d3dda1d50a34b4a09af58392a3ffc411a6ae20bd"
-  dependencies:
-    abbrev "^1.0.7"
-    ansi-escapes "^1.3.0"
-    chalk "^1.1.1"
-    configstore "^1.2.0"
-    debug "^2.2.0"
-    es6-promise "^3.0.2"
-    hasbin "^1.2.3"
-    inquirer "1.0.3"
-    node-uuid "^1.4.3"
-    open "^0.0.5"
-    os-name "^1.0.3"
-    request "^2.74.0"
-    semver "^5.1.0"
-    snyk-config "1.0.1"
-    snyk-module "1.7.0"
-    snyk-policy "1.5.2"
-    snyk-recursive-readdir "^2.0.0"
-    snyk-resolve "1.0.0"
-    snyk-resolve-deps "1.7.0"
-    snyk-tree "^1.0.0"
-    snyk-try-require "^1.0.0"
-    tempfile "^1.1.1"
-    then-fs "^2.0.0"
-    undefsafe "0.0.3"
-    update-notifier "^0.5.0"
-    url "^0.11.0"
-
 snyk-config@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/snyk-config/-/snyk-config-1.0.1.tgz#f27aec2498b24027ac719214026521591111508f"
@@ -8078,6 +8035,37 @@ snyk-try-require@^1.0.0, snyk-try-require@^1.1.1:
     lru-cache "^4.0.0"
     then-fs "^2.0.0"
 
+snyk@^1.19.1:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.19.1.tgz#d3dda1d50a34b4a09af58392a3ffc411a6ae20bd"
+  dependencies:
+    abbrev "^1.0.7"
+    ansi-escapes "^1.3.0"
+    chalk "^1.1.1"
+    configstore "^1.2.0"
+    debug "^2.2.0"
+    es6-promise "^3.0.2"
+    hasbin "^1.2.3"
+    inquirer "1.0.3"
+    node-uuid "^1.4.3"
+    open "^0.0.5"
+    os-name "^1.0.3"
+    request "^2.74.0"
+    semver "^5.1.0"
+    snyk-config "1.0.1"
+    snyk-module "1.7.0"
+    snyk-policy "1.5.2"
+    snyk-recursive-readdir "^2.0.0"
+    snyk-resolve "1.0.0"
+    snyk-resolve-deps "1.7.0"
+    snyk-tree "^1.0.0"
+    snyk-try-require "^1.0.0"
+    tempfile "^1.1.1"
+    then-fs "^2.0.0"
+    undefsafe "0.0.3"
+    update-notifier "^0.5.0"
+    url "^0.11.0"
+
 socket.io-adapter@0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/socket.io-adapter/-/socket.io-adapter-0.4.0.tgz#fb9f82ab1aa65290bf72c3657955b930a991a24f"
@@ -8157,8 +8145,8 @@ source-map-resolve@^0.3.0:
     urix "~0.1.0"
 
 source-map-support@^0.4.0, source-map-support@^0.4.2:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.5.tgz#4438df4219e1b3c7feb674614b4c67f9722db1e4"
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.4.tgz#0df5765a05a560c91bc8f8641cf79f2affc0322e"
   dependencies:
     source-map "^0.5.3"
 
@@ -8609,21 +8597,21 @@ syntax-error@^1.1.1:
     acorn "^2.7.0"
 
 table@^3.7.8:
-  version "3.8.3"
-  resolved "https://registry.yarnpkg.com/table/-/table-3.8.3.tgz#2bbc542f0fda9861a755d3947fefd8b3f513855f"
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/table/-/table-3.8.0.tgz#252166c7f3286684a9d561b0f3a8929caf3a997b"
   dependencies:
     ajv "^4.7.0"
     ajv-keywords "^1.0.0"
     chalk "^1.1.1"
     lodash "^4.0.0"
     slice-ansi "0.0.4"
-    string-width "^2.0.0"
+    string-width "^1.0.1"
 
 tablesort@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/tablesort/-/tablesort-4.1.0.tgz#1454314480e54eb8b39ab1914ee2f13fc7450b2c"
 
-tape@^4.0.0:
+tape@^4.0.0, tape@^4.5.1:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/tape/-/tape-4.6.2.tgz#19b3d874508485a1dc30fb30fe2a7d9be2c28b78"
   dependencies:
@@ -9298,12 +9286,6 @@ weak-map@^1.0.5:
 weakmap-shim@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/weakmap-shim/-/weakmap-shim-1.1.0.tgz#c8fd072e23bff1ffb59648467cdcaf0142d4db6e"
-
-webgl-context@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/webgl-context/-/webgl-context-2.2.0.tgz#8f37d7257cf6df1cd0a49e6a7b1b721b94cc86a0"
-  dependencies:
-    get-canvas-context "^1.0.1"
 
 webidl-conversions@^3.0.0, webidl-conversions@^3.0.1:
   version "3.0.1"
