@@ -6,8 +6,8 @@ install:
   - npm --version
   - npm install -g yarn
   - yarn global add gulp-cli
-  - gulp --version
   - yarn install
+  - gulp --version
   - gulp build
   - pip install -U pip setuptools wheel
   - pip install -r requirements/local.txt
