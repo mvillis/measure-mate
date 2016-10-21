@@ -5,6 +5,7 @@ import rest_framework.exceptions
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status, schemas
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
@@ -17,13 +18,10 @@ from serializers import AssessmentCreateSerializer, AssessmentSerializer, Attrib
         TeamCreateSerializer, TeamSerializer, TemplateSerializer
 
 
-@api_view()
-@renderer_classes([OpenAPIRenderer, SwaggerUIRenderer])
-def schema_view(request):
-    generator = schemas.SchemaGenerator(
+schema_view = schemas.get_schema_view(
         title='Measure Mate API',
+        renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer]
     )
-    return Response(generator.get_schema(request=request))
 
 
 @x_ua_compatible('IE=edge')
@@ -58,7 +56,7 @@ class TemplateViewSet(viewsets.ModelViewSet):
     queryset = Template.objects.all()
     serializer_class = TemplateSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,)
     filter_fields = ('id', 'name', 'taggable', 'enabled')
 
 
@@ -69,7 +67,7 @@ class AttributeViewSet(viewsets.ModelViewSet):
     queryset = Attribute.objects.all()
     serializer_class = AttributeSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
     filter_fields = ('id', 'name', 'template__id', 'template__name')
     ordering_fields = ('id', 'name', 'rank')
 
@@ -81,7 +79,7 @@ class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()
     serializer_class = RatingSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
     filter_fields = ('id', 'name', 'attribute__id')
     ordering_fields = ('id', 'name', 'rank')
 
@@ -92,7 +90,7 @@ class TagViewSet(viewsets.ModelViewSet):
     """
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter,)
     search_fields = ('name',)
     filter_fields = ('id', 'name', 'team__id', 'assessment__id')
     ordering_fields = ('id', 'name')
@@ -104,7 +102,7 @@ class AssessmentViewSet(viewsets.ModelViewSet):
     """
     queryset = Assessment.objects.all()
     serializer_class = AssessmentSerializer
-    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
     filter_fields = ('team__id', 'team__name', 'template__id', 'template__name', 'tags__id', 'tags__name')
     ordering_fields = ('id', 'created', 'updated', 'template', 'team')
 
@@ -135,7 +133,7 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     """
     queryset = Measurement.objects.all()
     serializer_class = MeasurementCreateSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,)
     filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
 
     def is_read_only(self, request):
@@ -162,7 +160,7 @@ class TeamViewSet(viewsets.ModelViewSet):
     """
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
-    filter_backends = (filters.DjangoFilterBackend, filters.OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
     filter_fields = ('tags__id', 'tags__name')
     ordering_fields = ('id', 'name', 'created', 'updated')
 
