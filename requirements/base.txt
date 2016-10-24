@@ -1,5 +1,5 @@
 Django==1.10.2
-djangorestframework==3.4.7
+djangorestframework==3.5.1
 django-filter==0.15.3
 django-crispy-forms==1.6.1
 pyver==1.0.38
