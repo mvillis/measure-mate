@@ -2632,7 +2632,7 @@ entities@^1.1.1, entities@~1.1.1:
 
 enzyme@^2.5.1:
   version "2.5.1"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/enzyme/-/enzyme-2.5.1.tgz#d7c8e2352c04c27fcf2523fb17bc7e0569352743"
+  resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-2.5.1.tgz#d7c8e2352c04c27fcf2523fb17bc7e0569352743"
   dependencies:
     cheerio "^0.22.0"
     is-subset "^0.1.1"
@@ -3647,7 +3647,7 @@ gl-mesh3d@^1.2.0:
 
 gl-plot2d@^1.1.8:
   version "1.1.8"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/gl-plot2d/-/gl-plot2d-1.1.8.tgz#dbb1cfb2284c67370e35dde0bb7d842191bfb550"
+  resolved "https://registry.yarnpkg.com/gl-plot2d/-/gl-plot2d-1.1.8.tgz#dbb1cfb2284c67370e35dde0bb7d842191bfb550"
   dependencies:
     binary-search-bounds "^2.0.3"
     gl-buffer "^2.1.2"
@@ -4289,7 +4289,7 @@ gulp-rename@^1.2.0:
 
 gulp-sourcemaps@^1.8.1:
   version "1.9.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/gulp-sourcemaps/-/gulp-sourcemaps-1.9.0.tgz#d85c060aa775ec30e9b9fb8c2f38c4f2d5135385"
+  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-1.9.0.tgz#d85c060aa775ec30e9b9fb8c2f38c4f2d5135385"
   dependencies:
     acorn "4.X"
     convert-source-map "1.X"
@@ -5142,7 +5142,7 @@ jsbn@~0.1.0:
 
 jsdom@^9.8.0:
   version "9.8.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/jsdom/-/jsdom-9.8.0.tgz#8766594cf994549d8a809cf6dca0246aceef9305"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-9.8.0.tgz#8766594cf994549d8a809cf6dca0246aceef9305"
   dependencies:
     abab "^1.0.0"
     acorn "^2.4.0"
