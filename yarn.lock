@@ -1193,7 +1193,7 @@ browser-sync-ui@0.6.1:
 
 browser-sync@^2.17.4:
   version "2.17.5"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/browser-sync/-/browser-sync-2.17.5.tgz#8e0a9ddfc2e162e7aada085f76181c57b6dbdf7a"
+  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.17.5.tgz#8e0a9ddfc2e162e7aada085f76181c57b6dbdf7a"
   dependencies:
     browser-sync-client "^2.3.3"
     browser-sync-ui "0.6.1"
@@ -2790,7 +2790,7 @@ eslint-config-standard@^6.2.0, eslint-config-standard@6.2.0:
 
 eslint-plugin-promise@^3.3.0:
   version "3.3.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/eslint-plugin-promise/-/eslint-plugin-promise-3.3.0.tgz#20a1ef58b4243ffdaef82ee9360a02353a7cca89"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.3.0.tgz#20a1ef58b4243ffdaef82ee9360a02353a7cca89"
 
 eslint-plugin-promise@~3.0.0:
   version "3.0.0"
@@ -3458,7 +3458,7 @@ get-caller-file@^1.0.1:
 
 get-canvas-context@^1.0.1:
   version "1.0.2"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/get-canvas-context/-/get-canvas-context-1.0.2.tgz#d6e7b50bc4e4c86357cd39f22647a84b73601e93"
+  resolved "https://registry.yarnpkg.com/get-canvas-context/-/get-canvas-context-1.0.2.tgz#d6e7b50bc4e4c86357cd39f22647a84b73601e93"
 
 get-proxy@^1.0.1:
   version "1.1.0"
@@ -6844,7 +6844,7 @@ plexer@1.0.1:
 
 plotly.js@^1.18.1:
   version "1.18.1"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/plotly.js/-/plotly.js-1.18.1.tgz#42e1a1eb5c4d8509402c41adde79627f92610a91"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.18.1.tgz#42e1a1eb5c4d8509402c41adde79627f92610a91"
   dependencies:
     "3d-view" "^2.0.0"
     alpha-shape "^1.0.0"
@@ -9298,7 +9298,7 @@ weakmap-shim@^1.1.0:
 
 webgl-context@^2.2.0:
   version "2.2.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/webgl-context/-/webgl-context-2.2.0.tgz#8f37d7257cf6df1cd0a49e6a7b1b721b94cc86a0"
+  resolved "https://registry.yarnpkg.com/webgl-context/-/webgl-context-2.2.0.tgz#8f37d7257cf6df1cd0a49e6a7b1b721b94cc86a0"
   dependencies:
     get-canvas-context "^1.0.1"
 

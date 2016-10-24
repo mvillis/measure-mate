@@ -54,27 +54,27 @@ patch:
   'npm:tough-cookie:20160722':
     - npm > node-gyp > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
-      browser-sync > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
-        patched: '2016-10-05T12:10:50.635Z'
     - npm > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
-      watchify > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
-        patched: '2016-10-05T12:10:50.635Z'
     - npm > npm-registry-client > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
     - browser-sync > localtunnel > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
+    - browser-sync > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2016-10-05T12:10:50.635Z'
+    - watchify > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2016-10-05T12:10:50.635Z'
   'npm:ws:20160624':
     - engine.io-client > ws:
         patched: '2016-08-30T03:10:49.683Z'
-      browser-sync > socket.io > socket.io-client > engine.io-client > ws:
-        patched: '2016-10-05T12:10:50.635Z'
     - browser-sync > socket.io > socket.io-client > engine.io-client > ws:
         patched: '2016-08-30T03:10:49.683Z'
     - browser-sync > socket.io > engine.io > ws:
         patched: '2016-08-30T03:10:49.683Z'
     - engine.io > ws:
         patched: '2016-09-05T01:26:49.657Z'
+    - browser-sync > socket.io > socket.io-client > engine.io-client > ws:
+        patched: '2016-10-05T12:10:50.635Z'
 ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
