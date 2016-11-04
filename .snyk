@@ -3,6 +3,8 @@ patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
+      gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
+        patched: '2016-11-04T01:00:04.518Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
@@ -50,10 +52,12 @@ patch:
         patched: '2016-09-05T01:26:49.657Z'
   'npm:request:20160119':
     - browser-sync > localtunnel > request:
-        patched: '2016-09-05T01:26:49.657Z'
+        patched: '2016-11-04T01:00:04.518Z'
   'npm:tough-cookie:20160722':
     - npm > node-gyp > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
+      browser-sync > localtunnel > request > tough-cookie:
+        patched: '2016-11-04T01:00:04.518Z'
     - npm > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
     - npm > npm-registry-client > request > tough-cookie:
