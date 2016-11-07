@@ -39,9 +39,9 @@ var AssessmentTable = React.createClass({
       success: function (data) {
         var assessmentTags = {}
 
-        data.forEach(function (assessemnt) {
+        data.forEach(function (assessment) {
           if (assessment.tags.length > 0) {
-            this.loadAssessmentTagsFromServer(assessemnt.id)
+            this.loadAssessmentTagsFromServer(assessment.id)
           } else {
             assessmentTags[assessment.id] = []
           }
