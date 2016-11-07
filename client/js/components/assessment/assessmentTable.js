@@ -37,11 +37,21 @@ var AssessmentTable = React.createClass({
       dataType: 'json',
       cache: false,
       success: function (data) {
-        this.setState({assessments: data, loaded: true})
+        var assessmentTags = {}
 
         data.forEach(function (assessemnt) {
-          this.loadAssessmentTagsFromServer(assessemnt.id)
+          if (assessment.tags.length > 0) {
+            this.loadAssessmentTagsFromServer(assessemnt.id)
+          } else {
+            assessmentTags[assessment.id] = []
+          }
         }, this)
+
+        this.setState({
+          assessments: data,
+          assessmentTags: assessmentTags,
+          loaded: true
+        })
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(window.location, status, err.toString())

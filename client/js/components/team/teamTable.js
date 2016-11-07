@@ -28,11 +28,17 @@ var TeamTable = React.createClass({
       dataType: 'json',
       cache: false,
       success: function (data) {
-        this.setState({teams: data, loaded: true})
+	var teamTags = {}
 
         data.forEach(function (team) {
           this.loadTeamTagsFromServer(team.id)
         }, this)
+
+        this.setState({
+          teams: data,
+          teamTags: teamTags,
+          loaded: true
+        })
       }.bind(this),
       error: function (xhr, status, err) {
         console.error('/api/teams', status, err.toString())
