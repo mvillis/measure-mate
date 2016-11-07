@@ -4301,8 +4301,9 @@ gulp-rename@^1.2.0:
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
 
 gulp-sourcemaps@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-1.8.1.tgz#714bb359ac7dfe50f42aa22f4a8fbcce476da22f"
+<<<<<<< HEAD
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-1.9.0.tgz#d85c060aa775ec30e9b9fb8c2f38c4f2d5135385"
   dependencies:
     acorn "4.X"
     convert-source-map "1.X"
