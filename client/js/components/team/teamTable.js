@@ -28,7 +28,7 @@ var TeamTable = React.createClass({
       dataType: 'json',
       cache: false,
       success: function (data) {
-	var teamTags = {}
+        var teamTags = {}
 
         data.forEach(function (team) {
           this.loadTeamTagsFromServer(team.id)
