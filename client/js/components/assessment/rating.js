@@ -55,7 +55,7 @@ var Rating = React.createClass({
           {this.props.rating.desc}
         </span>
       </ListGroupItem>
-      )
+    )
   }
 })
 
