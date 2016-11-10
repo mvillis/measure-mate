@@ -64,7 +64,7 @@
     "lodash.assign": "^4.2.0",
     "loglevel": "^1.4.1",
     "markdownlint": "^0.3.0",
-    "moment": "^2.15.1",
+    "moment": "^2.15.2",
     "plotly.js": "^1.18.1",
     "pretty-hrtime": "^1.0.2",
     "react": "^15.3.2",
