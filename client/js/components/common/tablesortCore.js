@@ -19,8 +19,8 @@ var TablesortCore = require('tablesort')
   // Years can be 4 digits. Days and Months can be 1 or 2 digits.
 
   let parseDate = function (date) {
-    date = date.replace(/\-/g, '/')
-    date = date.replace(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2}) .*/, '$1/$2/$3') // format before getTime
+    date = date.replace(/-/g, '/')
+    date = date.replace(/(\d{1,2})[/-](\d{1,2})[/-](\d{2}) .*/, '$1/$2/$3') // format before getTime
 
     return new Date(date).getTime() || -1
   }
@@ -28,7 +28,7 @@ var TablesortCore = require('tablesort')
   TablesortCore.extend('date', function (item) {
     return (
       item.search(/(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\.?,?\s*/i) !== -1 ||
-      item.search(/\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}/) !== -1 ||
+      item.search(/\d{1,2}[/-]\d{1,2}[/-]\d{2,4}/) !== -1 ||
       item.search(/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i) !== -1
     ) && !isNaN(parseDate(item))
   }, function (a, b) {
@@ -118,9 +118,9 @@ var TablesortCore = require('tablesort')
   })
 
   TablesortCore.extend('number', function (item) {
-    return item.match(/^-?[£\x24Û¢´€]?\d+\s*([,\.]\d{0,2})/) || // Prefixed currency
-      item.match(/^-?\d+\s*([,\.]\d{0,2})?[£\x24Û¢´€]/) || // Suffixed currency
-      item.match(/^-?(\d)*-?([,\.]){0,1}-?(\d)+([E,e][\-+][\d]+)?%?$/) // Number
+    return item.match(/^-?[£\x24Û¢´€]?\d+\s*([,.]\d{0,2})/) || // Prefixed currency
+      item.match(/^-?\d+\s*([,.]\d{0,2})?[£\x24Û¢´€]/) || // Suffixed currency
+      item.match(/^-?(\d)*-?([,.]){0,1}-?(\d)+([E,e][-+][\d]+)?%?$/) // Number
   }, function (a, b) {
     a = cleanNumber(a)
     b = cleanNumber(b)

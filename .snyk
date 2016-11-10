@@ -79,16 +79,16 @@ ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: dev only
-        expires: '2016-11-04T12:16:45.867Z'
+        expires: '2016-12-09T12:01:29.999Z'
   'npm:express:20140912':
     - browser-sync > browser-sync-ui > weinre > express:
         reason: dev only
-        expires: '2016-11-04T12:16:45.867Z'
+        expires: '2016-12-09T12:01:29.999Z'
   'npm:qs:20140806':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-11-04T12:16:45.868Z'
+        expires: '2016-12-09T12:01:29.999Z'
   'npm:qs:20140806-1':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-11-04T12:16:45.868Z'
+        expires: '2016-12-09T12:01:30.000Z'
