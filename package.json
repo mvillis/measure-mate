@@ -18,7 +18,7 @@
     "test": "snyk test && gulp test",
     "snyk-protect": "snyk protect || true",
     "gulp-build": "gulp build --production",
-    "postinstall": "npm run snyk-protect",
+    "x-postinstall": "npm run snyk-protect",
     "heroku-postbuild": "npm run gulp-build"
   },
   "browserify": {
@@ -66,7 +66,6 @@
     "markdownlint": "^0.3.0",
     "moment": "^2.15.2",
     "plotly.js": "^1.18.1",
-    "pretty-hrtime": "^1.0.2",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
     "react-dom": "^15.3.2",
@@ -98,14 +97,14 @@
     "eslint-config-standard": "^6.2.0",
     "eslint-config-standard-jsx": "^3.2.0",
     "eslint-config-standard-react": "^4.2.0",
-    "eslint-plugin-promise": "^3.3.0",
+    "eslint-plugin-promise": "^3.3.1",
     "eslint-plugin-react": "^6.6.0",
     "eslint-plugin-standard": "^2.0.1",
     "jsdom": "^9.8.0",
     "mocha": "^3.1.1",
     "react-addons-test-utils": "^15.3.2",
     "sinon": "^1.17.6",
-    "stylelint": "^7.4.2",
+    "stylelint": "^7.5.0",
     "stylelint-config-standard": "^14.0.0",
     "xmldom": "^0.1.22"
   },
