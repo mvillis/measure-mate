@@ -34,8 +34,7 @@ class Attribute(models.Model):
     rank = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return (self.template.name + " - " +
-                self.name)
+        return str(self.template) + " - " + self.name
 
 
 class Rating(models.Model):
@@ -53,8 +52,7 @@ class Rating(models.Model):
     colour = models.CharField(max_length=256, null=True, blank=True)
 
     def __unicode__(self):
-        return (self.attribute.name + " - " +
-                self.name)
+        return str(self.attribute) + " - " + self.name
 
 
 uppercase_re = re.compile(r'[A-Z]')
@@ -118,7 +116,7 @@ class Assessment(models.Model):
     team = models.ForeignKey(Team, related_name="assessments")
 
     def __unicode__(self):
-        return self.created.strftime('%Y-%m-%d %H:%M%Z') + " - " + self.template.name
+        return str(self.team) + " - " + str(self.template) + " - " + self.created.strftime('%Y-%m-%d %H:%M%Z')
 
 
 class Measurement(models.Model):
