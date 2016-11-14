@@ -1,6 +1,7 @@
 import re
 
 from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -14,6 +15,7 @@ class Template(models.Model):
                             verbose_name="Template Name")
     short_desc = models.CharField(max_length=256)
     taggable = models.BooleanField(default=0)
+    enabled = models.BooleanField(default=1)
 
     def __unicode__(self):
         return self.name
@@ -33,8 +35,7 @@ class Attribute(models.Model):
     rank = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return (self.template.name + " - " +
-                self.name)
+        return str(self.template) + " - " + self.name
 
 
 class Rating(models.Model):
@@ -49,19 +50,19 @@ class Rating(models.Model):
     desc = models.TextField()
     desc_class = models.CharField(max_length=256, default="", blank=True)
     rank = models.IntegerField(default=1)
-    colour = models.CharField(max_length=256, null=True)
+    colour = models.CharField(max_length=256, null=True, blank=True)
 
     def __unicode__(self):
-        return (self.attribute.name + " - " +
-                self.name)
+        return str(self.attribute) + " - " + self.name
 
 
+# Throws a ValidationError if uppercase characters are found
 uppercase_re = re.compile(r'[A-Z]')
 validate_lowercase = RegexValidator(
-    uppercase_re,
-    _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens."),
-    'invalid',
-    True
+    regex = uppercase_re,
+    message = _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens."),
+    code = 'invalid',
+    inverse_match = True
 )
 
 
@@ -117,7 +118,7 @@ class Assessment(models.Model):
     team = models.ForeignKey(Team, related_name="assessments")
 
     def __unicode__(self):
-        return self.created.strftime('%Y-%m-%d %H:%M%Z') + " - " + self.template.name
+        return str(self.team) + " - " + str(self.template) + " - " + str(self.id)
 
 
 class Measurement(models.Model):
@@ -128,10 +129,16 @@ class Measurement(models.Model):
     assessment = models.ForeignKey(Assessment, related_name="measurements")
     rating = models.ForeignKey(Rating, related_name="measurements")
     target_rating = models.ForeignKey(Rating, blank=True, null=True, related_name="target_measurements")
-    observations = models.TextField(null=True)
-    action = models.TextField(null=True)
+    observations = models.TextField(null=True, blank=True)
+    action = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return str(self.assessment) + " - " + str(self.rating)
+        return str(self.assessment) + " - " + self.rating.attribute.name + " - " + self.rating.name
+
+    def clean(self):
+        if self.assessment.template.id != self.rating.attribute.template.id:
+            raise ValidationError(_('Measurement attributes must be for the same template as the assessment'))
+        if self.target_rating is not None and self.assessment.template.id != self.target_rating.attribute.template.id:
+            raise ValidationError(_('Measurement ratings must be for the same template as the assessment'))

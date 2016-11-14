@@ -16,7 +16,7 @@ var TemplateSelect = React.createClass({
   loadOptions: function loadOptions (input, callback) {
     setTimeout(function () {
       $.ajax({
-        url: '/api/templates/',
+        url: '/api/templates/?enabled=True',
         dataType: 'json',
         cache: true,
         success: function (output) {
@@ -47,6 +47,7 @@ var TemplateSelect = React.createClass({
           allowCreate={false}
           name='tags'
           placeholder='Type to filter templates'
+          cache={{}}
           />
         <HelpBlock>Each template includes a unique set of attributes to measure.</HelpBlock>
       </div>

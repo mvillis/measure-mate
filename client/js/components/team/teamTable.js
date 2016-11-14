@@ -6,15 +6,26 @@ var $ = require('jquery')
 var TeamList = require('./teamList')
 
 var TeamTable = React.createClass({
-  loadTeamTagsFromServer: function (teamId) {
-    var url = '/api/tags/?team__id=' + teamId
+  loadAllTagsFromServer: function () {
+    var url = '/api/tags/'
     $.ajax({
       url: url,
       dataType: 'json',
       cache: false,
       success: function (data) {
-        var teamTags = this.state.teamTags
-        teamTags[teamId] = data
+        var tags = {}
+
+        data.forEach(function (tag) {
+          tags[tag.id] = tag
+        }, this)
+
+        var teamTags = {}
+        this.state.teams.forEach(function (team) {
+          teamTags[team.id] = team.tags.map(function (tagId) {
+            return tags[tagId]
+          }, this)
+        }, this)
+
         this.setState({teamTags: teamTags})
       }.bind(this),
       error: function (xhr, status, err) {
@@ -28,11 +39,11 @@ var TeamTable = React.createClass({
       dataType: 'json',
       cache: false,
       success: function (data) {
-        this.setState({teams: data, loaded: true})
-
-        data.forEach(function (team) {
-          this.loadTeamTagsFromServer(team.id)
-        }, this)
+        this.setState({
+          teams: data,
+          loaded: true
+        })
+        this.loadAllTagsFromServer()
       }.bind(this),
       error: function (xhr, status, err) {
         console.error('/api/teams', status, err.toString())

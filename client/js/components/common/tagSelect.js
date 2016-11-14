@@ -48,6 +48,7 @@ var TagSelect = React.createClass({
           allowCreate
           name='tags'
           placeholder='Type to find existing tags or create new ones'
+          cache={{}}
         />
         <HelpBlock>
           Tags are used to drive reporting. Use them to uniquely identify your area as well as group areas together.

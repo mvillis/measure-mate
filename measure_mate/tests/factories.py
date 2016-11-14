@@ -27,7 +27,7 @@ class TagFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Tag
 
-    name = factory.Sequence(lambda n: 'tag%d' % n)
+    name = factory.Sequence(lambda n: 'Tag-%d' % n)
 
 
 class TeamFactory(factory.django.DjangoModelFactory):
@@ -72,7 +72,7 @@ class RatingFactory(factory.django.DjangoModelFactory):
         model = Rating
 
     attribute = factory.SubFactory(AttributeFactory)
-    name = factory.Sequence(lambda n: 'attribute%d' % n)
+    name = factory.Sequence(lambda n: 'Rating %d' % n)
     desc = "This is a really good description."
     rank = factory.Sequence(lambda n: n)
 

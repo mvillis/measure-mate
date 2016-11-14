@@ -133,7 +133,7 @@ var AssessmentReport = React.createClass({
           </tr>
         </thead>
         <tbody>
-        {summaryRows}
+          {summaryRows}
         </tbody>
       </Table>
     )

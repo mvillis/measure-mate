@@ -32,7 +32,7 @@ var PlotlyComponent = React.createClass({
     }
     return (
       <div ref={refValue} />
-      )
+    )
   }
 })
 
