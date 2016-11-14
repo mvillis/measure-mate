@@ -55,12 +55,13 @@ class Rating(models.Model):
         return str(self.attribute) + " - " + self.name
 
 
+# Throws a ValidationError if uppercase characters are found
 uppercase_re = re.compile(r'[A-Z]')
 validate_lowercase = RegexValidator(
-    uppercase_re,
-    _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens."),
-    'invalid',
-    True
+    regex = uppercase_re,
+    message = _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens."),
+    code = 'invalid',
+    inverse_match = True
 )
 
 
@@ -116,7 +117,7 @@ class Assessment(models.Model):
     team = models.ForeignKey(Team, related_name="assessments")
 
     def __unicode__(self):
-        return str(self.team) + " - " + str(self.template) + " - " + self.created.strftime('%Y-%m-%d %H:%M%Z')
+        return str(self.team) + " - " + str(self.template) + " - " + str(self.id)
 
 
 class Measurement(models.Model):
@@ -133,4 +134,4 @@ class Measurement(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return str(self.assessment) + " - " + str(self.rating)
+        return str(self.assessment) + " - " + self.rating.attribute.name + " - " + self.rating.name

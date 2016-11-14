@@ -16,7 +16,7 @@ class MeasurementTestCases(TestCase):
         target_rating = RatingFactory(attribute=attribute)
         measurement = MeasurementFactory(assessment=assessment, rating=rating, target_rating=target_rating)
         self.assertEqual(1, Measurement.objects.count())
-        self.assertEqual("%s - %s" % (str(assessment), str(rating)), str(measurement))
+        self.assertEqual("%s - %s - %s" % (str(assessment), attribute.name, rating.name), str(measurement))
 
     def test_creation_of_measurement_no_target(self):
         """
@@ -28,4 +28,4 @@ class MeasurementTestCases(TestCase):
         rating = RatingFactory(attribute=attribute)
         measurement = MeasurementFactory(assessment=assessment, rating=rating)
         self.assertEqual(1, Measurement.objects.count())
-        self.assertEqual("%s - %s" % (str(assessment), str(rating)), str(measurement))
+        self.assertEqual("%s - %s - %s" % (str(assessment), attribute.name, rating.name), str(measurement))
