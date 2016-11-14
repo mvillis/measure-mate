@@ -1,6 +1,7 @@
 import re
 
 from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -135,3 +136,9 @@ class Measurement(models.Model):
 
     def __unicode__(self):
         return str(self.assessment) + " - " + self.rating.attribute.name + " - " + self.rating.name
+
+    def clean(self):
+        if self.assessment.template.id != self.rating.attribute.template.id:
+            raise ValidationError(_('Measurement attributes must be for the same template as the assessment'))
+        if self.target_rating is not None and self.assessment.template.id != self.target_rating.attribute.template.id:
+            raise ValidationError(_('Measurement ratings must be for the same template as the assessment'))
