@@ -1162,9 +1162,9 @@ browser-sync-ui@0.6.1:
     stream-throttle "^0.1.3"
     weinre "^2.0.0-pre-I0Z7U9OV"
 
-browser-sync@^2.17.2:
-  version "2.17.3"
-  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.17.3.tgz#d3d369607fdcbf0729a14502d5fed43a2217b074"
+browser-sync@^2.17.4:
+  version "2.17.5"
+  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.17.5.tgz#8e0a9ddfc2e162e7aada085f76181c57b6dbdf7a"
   dependencies:
     browser-sync-client "^2.3.3"
     browser-sync-ui "0.6.1"
@@ -2613,7 +2613,7 @@ entities@^1.1.1, entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
-enzyme@^2.4.1:
+enzyme@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/enzyme/-/enzyme-2.5.1.tgz#d7c8e2352c04c27fcf2523fb17bc7e0569352743"
   dependencies:
@@ -2771,11 +2771,22 @@ eslint-config-standard@^6.2.0, eslint-config-standard@6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-6.2.0.tgz#1d2384ee074de6f6b6c0f2bbe976863032565aee"
 
-eslint-plugin-promise@^3.0.0, eslint-plugin-promise@~3.0.0:
+eslint-plugin-promise@^3.3.1:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.3.2.tgz#c1169ae6487a87cdeae44f659f4cf05131b8dc66"
+
+eslint-plugin-promise@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.0.0.tgz#1528635d0160f3484e425cce2169cb74cec0186a"
 
-eslint-plugin-react@^6.4.0, eslint-plugin-react@~6.4.1:
+eslint-plugin-react@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-6.6.0.tgz#91ceecefa8a22d8f5d23ef9a839516a7d9fa63a1"
+  dependencies:
+    doctrine "^1.2.2"
+    jsx-ast-utils "^1.3.3"
+
+eslint-plugin-react@~6.4.1:
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-6.4.1.tgz#7d1aade747db15892f71eee1fea4addf97bcfa2b"
   dependencies:
@@ -2786,7 +2797,7 @@ eslint-plugin-standard@^2.0.1, eslint-plugin-standard@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-standard/-/eslint-plugin-standard-2.0.1.tgz#3589699ff9c917f2c25f76a916687f641c369ff3"
 
-eslint@^3.0.0, eslint@^3.7.1:
+eslint@^3.0.0, eslint@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.8.1.tgz#7d02db44cd5aaf4fa7aa489e1f083baa454342ba"
   dependencies:
@@ -3439,6 +3450,10 @@ get-caller-file@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
 
+get-canvas-context@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/get-canvas-context/-/get-canvas-context-1.0.2.tgz#d6e7b50bc4e4c86357cd39f22647a84b73601e93"
+
 get-proxy@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/get-proxy/-/get-proxy-1.1.0.tgz#894854491bc591b0f147d7ae570f5c678b7256eb"
@@ -3624,7 +3639,7 @@ gl-mesh3d@^1.2.0:
     simplicial-complex-contour "^1.0.0"
     typedarray-pool "^1.1.0"
 
-gl-plot2d@^1.1.6:
+gl-plot2d@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/gl-plot2d/-/gl-plot2d-1.1.8.tgz#dbb1cfb2284c67370e35dde0bb7d842191bfb550"
   dependencies:
@@ -4292,9 +4307,9 @@ gulp-rename@^1.2.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
 
-gulp-sourcemaps@^1.6.0:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-1.8.1.tgz#714bb359ac7dfe50f42aa22f4a8fbcce476da22f"
+gulp-sourcemaps@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.2.0.tgz#dea8a4dc9aa74630a04ae9cf1871a7a08bc1310d"
   dependencies:
     acorn "4.X"
     convert-source-map "1.X"
@@ -4303,7 +4318,7 @@ gulp-sourcemaps@^1.6.0:
     detect-newline "2.X"
     graceful-fs "4.X"
     source-map "0.X"
-    strip-bom "2.X"
+    strip-bom "3.X"
     through2 "2.X"
     vinyl "1.X"
 
@@ -4501,14 +4516,14 @@ hawk@~3.1.0, hawk@~3.1.3:
     hoek "2.x.x"
     sntp "1.x.x"
 
-history@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/history/-/history-2.1.2.tgz#4aa2de897a0e4867e4539843be6ecdb2986bfdec"
+history@^3.0.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/history/-/history-3.2.1.tgz#71c7497f4e6090363d19a6713bb52a1bfcdd99aa"
   dependencies:
-    deep-equal "^1.0.0"
-    invariant "^2.0.0"
-    query-string "^3.0.0"
-    warning "^2.0.0"
+    invariant "^2.2.1"
+    loose-envify "^1.2.0"
+    query-string "^4.2.2"
+    warning "^3.0.0"
 
 history@^4.3.0:
   version "4.3.0"
@@ -4625,7 +4640,7 @@ ieee754@^1.1.4, ieee754@^1.1.6:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
-ignore@^3.0.9, ignore@^3.1.3, ignore@^3.1.5:
+ignore@^3.0.9, ignore@^3.1.3, ignore@^3.1.5, ignore@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.2.0.tgz#8d88f03c3002a0ac52114db25d2c673b0bf1e435"
 
@@ -4792,7 +4807,7 @@ interval-tree-1d@^1.0.1:
   dependencies:
     binary-search-bounds "^1.0.0"
 
-invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1:
+invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.1.tgz#b097010547668c7e337028ebe816ebe36c8a8d54"
   dependencies:
@@ -5158,7 +5173,7 @@ jsbn@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.0.tgz#650987da0dd74f4ebf5a11377a2aa2d273e97dfd"
 
-jsdom@^9.6.0:
+jsdom@^9.8.0:
   version "9.8.0"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-9.8.0.tgz#8766594cf994549d8a809cf6dca0246aceef9305"
   dependencies:
@@ -5290,6 +5305,13 @@ jsprim@^1.2.2:
 jsx-ast-utils@^1.3.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.3.2.tgz#dff658782705352111f9865d40471bc4a955961e"
+  dependencies:
+    acorn-jsx "^3.0.1"
+    object-assign "^4.1.0"
+
+jsx-ast-utils@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.3.3.tgz#ccfdbe0320ba03f7a1fc4e67ceaf7e2cc0169721"
   dependencies:
     acorn-jsx "^3.0.1"
     object-assign "^4.1.0"
@@ -5843,21 +5865,21 @@ marching-simplex-table@^1.0.0:
   dependencies:
     convex-hull "^1.0.3"
 
-markdown-it@^7.0.0:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-7.0.1.tgz#f12d8b88a93e64254348dfd183bd70bf60567a42"
+markdown-it@^8.0.1:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.1.0.tgz#38902d4e7bac2260c073eb67be623211fbb2c2e3"
   dependencies:
     argparse "^1.0.7"
     entities "~1.1.1"
     linkify-it "^2.0.0"
     mdurl "^1.0.1"
-    uc.micro "^1.0.1"
+    uc.micro "^1.0.3"
 
-markdownlint@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.2.0.tgz#05a4ba3aea7bb5da08d2b27c98afa03eb429b262"
+markdownlint@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.3.1.tgz#8bc5ad5bad8a24b3fcfa5aa5cd1ceb8e063c49c6"
   dependencies:
-    markdown-it "^7.0.0"
+    markdown-it "^8.0.1"
 
 marked-terminal@^1.6.2:
   version "1.6.2"
@@ -6841,9 +6863,9 @@ plexer@1.0.1:
     isstream "^0.1.2"
     readable-stream "^2.0.2"
 
-plotly.js@^1.17.3:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.18.0.tgz#9b4f8571512fd2272cba810fec979a2f46afb6a5"
+plotly.js@^1.18.1:
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.18.1.tgz#42e1a1eb5c4d8509402c41adde79627f92610a91"
   dependencies:
     "3d-view" "^2.0.0"
     alpha-shape "^1.0.0"
@@ -6862,7 +6884,7 @@ plotly.js@^1.17.3:
     gl-line3d "^1.1.0"
     gl-mat4 "^1.1.2"
     gl-mesh3d "^1.2.0"
-    gl-plot2d "^1.1.6"
+    gl-plot2d "^1.1.8"
     gl-plot3d "^1.5.1"
     gl-pointcloud2d "^1.0.0"
     gl-scatter2d "^1.0.5"
@@ -6885,6 +6907,7 @@ plotly.js@^1.17.3:
     superscript-text "^1.0.0"
     tinycolor2 "^1.3.0"
     topojson "^1.6.20"
+    webgl-context "^2.2.0"
 
 plur@^2.0.0, plur@^2.1.0, plur@^2.1.2:
   version "2.1.2"
@@ -6995,7 +7018,7 @@ pretty-bytes@^2.0.1:
     meow "^3.1.0"
     number-is-nan "^1.0.0"
 
-pretty-hrtime@^1.0.0, pretty-hrtime@^1.0.2:
+pretty-hrtime@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.2.tgz#70ca96f4d0628a443b918758f79416a9a7bc9fa8"
 
@@ -7088,10 +7111,11 @@ quat-slerp@^1.0.0:
   dependencies:
     gl-quat "^1.0.0"
 
-query-string@^3.0.0:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-3.0.3.tgz#ae2e14b4d05071d4e9b9eb4873c35b0dcd42e638"
+query-string@^4.2.2:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.2.3.tgz#9f27273d207a25a8ee4c7b8c74dcd45d556db822"
   dependencies:
+    object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
 
 querystring-es3@~0.2.0:
@@ -7208,11 +7232,11 @@ react-router-bootstrap@^0.23.1:
   version "0.23.1"
   resolved "https://registry.yarnpkg.com/react-router-bootstrap/-/react-router-bootstrap-0.23.1.tgz#a1e0b82f49d25a6083c72202ad16aaa64bba0e0c"
 
-react-router@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-2.8.1.tgz#73e9491f6ceb316d0f779829081863e378ee4ed7"
+react-router@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.0.0.tgz#3f313e4dbaf57048c48dd0a8c3cac24d93667dff"
   dependencies:
-    history "^2.1.2"
+    history "^3.0.0"
     hoist-non-react-statics "^1.2.0"
     invariant "^2.2.1"
     loose-envify "^1.2.0"
@@ -8432,13 +8456,13 @@ strip-bom@^1.0.0:
     first-chunk-stream "^1.0.0"
     is-utf8 "^0.2.0"
 
-strip-bom@^2.0.0, strip-bom@2.X:
+strip-bom@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-2.0.0.tgz#6219a85616520491f35788bdbf1447a99c7e6b0e"
   dependencies:
     is-utf8 "^0.2.0"
 
-strip-bom@^3.0.0:
+strip-bom@^3.0.0, strip-bom@3.X:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
 
@@ -8493,9 +8517,9 @@ stylehacks@^2.3.0:
     text-table "^0.2.0"
     write-file-stdout "0.0.2"
 
-stylelint-config-standard@^13.0.2:
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-13.0.2.tgz#721e090c53b6e59f70f63d6a9fce026c9120671e"
+stylelint-config-standard@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-14.0.0.tgz#1164b79c3a1dd924ace1b756ad8ec00cbccb8132"
 
 stylelint@^7.4.2:
   version "7.4.2"
@@ -8536,6 +8560,45 @@ stylelint@^7.4.2:
     svg-tags "^1.0.0"
     table "^3.7.8"
 
+stylelint@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-7.5.0.tgz#fe19a22e793c419d4fc31d58f3948d599fdb81fb"
+  dependencies:
+    autoprefixer "^6.0.0"
+    balanced-match "^0.4.0"
+    chalk "^1.1.1"
+    colorguard "^1.2.0"
+    cosmiconfig "^2.0.0"
+    doiuse "^2.4.1"
+    execall "^1.0.0"
+    get-stdin "^5.0.0"
+    globby "^6.0.0"
+    globjoin "^0.1.4"
+    html-tags "^1.1.1"
+    ignore "^3.2.0"
+    known-css-properties "^0.0.5"
+    lodash "^4.0.0"
+    log-symbols "^1.0.2"
+    meow "^3.3.0"
+    multimatch "^2.1.0"
+    normalize-selector "^0.2.0"
+    postcss "^5.0.20"
+    postcss-less "^0.14.0"
+    postcss-media-query-parser "^0.2.0"
+    postcss-reporter "^1.3.0"
+    postcss-resolve-nested-selector "^0.1.1"
+    postcss-scss "^0.3.0"
+    postcss-selector-parser "^2.1.1"
+    postcss-value-parser "^3.1.1"
+    resolve-from "^2.0.0"
+    specificity "^0.3.0"
+    string-width "^2.0.0"
+    style-search "^0.1.0"
+    stylehacks "^2.3.0"
+    sugarss "^0.2.0"
+    svg-tags "^1.0.0"
+    table "^3.7.8"
+
 subarg@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/subarg/-/subarg-1.0.0.tgz#f62cf17581e996b48fc965699f54c06ae268b8d2"
@@ -8547,6 +8610,12 @@ sugarss@^0.1.2:
   resolved "https://registry.yarnpkg.com/sugarss/-/sugarss-0.1.6.tgz#fe3ac0e1e07282aef1de84a80b72386ff4e7ea37"
   dependencies:
     postcss "^5.2.0"
+
+sugarss@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/sugarss/-/sugarss-0.2.0.tgz#ac34237563327c6ff897b64742bf6aec190ad39e"
+  dependencies:
+    postcss "^5.2.4"
 
 sum-up@^1.0.1:
   version "1.0.3"
@@ -8918,7 +8987,7 @@ ua-parser-js@^0.7.9, ua-parser-js@0.7.10:
   version "0.7.10"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.10.tgz#917559ddcce07cbc09ece7d80495e4c268f4ef9f"
 
-uc.micro@^1.0.1:
+uc.micro@^1.0.1, uc.micro@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.3.tgz#7ed50d5e0f9a9fb0a573379259f2a77458d50192"
 
@@ -9273,12 +9342,6 @@ ware@^1.2.0:
   dependencies:
     wrap-fn "^0.1.0"
 
-warning@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/warning/-/warning-2.1.0.tgz#21220d9c63afc77a8c92111e011af705ce0c6901"
-  dependencies:
-    loose-envify "^1.0.0"
-
 warning@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
@@ -9304,6 +9367,12 @@ weak-map@^1.0.5:
 weakmap-shim@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/weakmap-shim/-/weakmap-shim-1.1.0.tgz#c8fd072e23bff1ffb59648467cdcaf0142d4db6e"
+
+webgl-context@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/webgl-context/-/webgl-context-2.2.0.tgz#8f37d7257cf6df1cd0a49e6a7b1b721b94cc86a0"
+  dependencies:
+    get-canvas-context "^1.0.1"
 
 webidl-conversions@^3.0.0, webidl-conversions@^3.0.1:
   version "3.0.1"

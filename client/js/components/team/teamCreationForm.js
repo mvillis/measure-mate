@@ -157,7 +157,7 @@ var TeamCreationForm = React.createClass({
               _.some(currentValues, {label: potentialTag})
               ? []
               : [{
-                label: `Add \"${potentialTag}\"...`,
+                label: `Add "${potentialTag}"...`,
                 value: potentialTag,
                 create: true
               }])

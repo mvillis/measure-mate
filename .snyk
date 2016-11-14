@@ -54,41 +54,41 @@ patch:
   'npm:tough-cookie:20160722':
     - npm > node-gyp > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
-      browser-sync > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
-        patched: '2016-10-05T12:10:50.635Z'
     - npm > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
-      watchify > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
-        patched: '2016-10-05T12:10:50.635Z'
     - npm > npm-registry-client > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
     - browser-sync > localtunnel > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
+    - browser-sync > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2016-10-05T12:10:50.635Z'
+    - watchify > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2016-10-05T12:10:50.635Z'
   'npm:ws:20160624':
     - engine.io-client > ws:
         patched: '2016-08-30T03:10:49.683Z'
-      browser-sync > socket.io > socket.io-client > engine.io-client > ws:
-        patched: '2016-10-05T12:10:50.635Z'
     - browser-sync > socket.io > socket.io-client > engine.io-client > ws:
         patched: '2016-08-30T03:10:49.683Z'
     - browser-sync > socket.io > engine.io > ws:
         patched: '2016-08-30T03:10:49.683Z'
     - engine.io > ws:
         patched: '2016-09-05T01:26:49.657Z'
+    - browser-sync > socket.io > socket.io-client > engine.io-client > ws:
+        patched: '2016-10-05T12:10:50.635Z'
 ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: dev only
-        expires: '2016-11-04T12:16:45.867Z'
+        expires: '2016-12-09T12:01:29.999Z'
   'npm:express:20140912':
     - browser-sync > browser-sync-ui > weinre > express:
         reason: dev only
-        expires: '2016-11-04T12:16:45.867Z'
+        expires: '2016-12-09T12:01:29.999Z'
   'npm:qs:20140806':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-11-04T12:16:45.868Z'
+        expires: '2016-12-09T12:01:29.999Z'
   'npm:qs:20140806-1':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-11-04T12:16:45.868Z'
+        expires: '2016-12-09T12:01:30.000Z'
