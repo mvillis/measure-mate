@@ -39,18 +39,19 @@ var TeamTable = React.createClass({
       dataType: 'json',
       cache: false,
       success: function (teams) {
-        var tags = {}
+        var teamTags = {}
         teams.forEach(function (team) {
-          tags[team.id] = team.tags.map(function (tagId) {
+          teamTags[team.id] = team.tags.map(function (tagId) {
             return { id: tagId, name: '•••' }
           })
         }, this)
 
         this.setState({
           teams: teams,
-          teamTags: tags,
+          teamTags: teamTags,
           loaded: true
         })
+
         this.loadAllTagsFromServer()
       }.bind(this),
       error: function (xhr, status, err) {

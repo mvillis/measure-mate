@@ -43,6 +43,7 @@ var AssessmentTable = React.createClass({
           assessmentTags[assessment.id] = assessment.tags.map(function (tagId) {
             return { id: tagId, name: '•••' }
           })
+
           if (assessment.tags.length > 0) {
             this.loadAssessmentTagsFromServer(assessment.id)
           }
