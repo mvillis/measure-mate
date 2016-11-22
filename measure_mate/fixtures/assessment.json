@@ -7,7 +7,10 @@
       "updated": "2016-01-01T01:45:14.525Z",
       "template": 1,
       "team": 1,
-      "status": "DONE"
+      "status": "DONE",
+      "tags": [
+        12
+      ]
     }
   },
   {
@@ -19,8 +22,10 @@
       "template": 2,
       "team": 1,
       "tags": [
-        10,
-        11
+        6,
+        7,
+        12,
+        14
       ]
     }
   },
