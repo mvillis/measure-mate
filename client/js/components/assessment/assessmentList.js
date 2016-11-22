@@ -59,7 +59,7 @@ var AssessmentList = React.createClass({
                   <td className='wrap'>
                     {this.props.assessmentTags.hasOwnProperty(assessment.id)
                       ? <TagList tags={this.props.assessmentTags[assessment.id] || []} />
-                      : <span>•••&nbsp;</span>}
+                      : <span>•••</span>}
                     {assessment.status === 'DONE' && <Label bsStyle='default'>Read Only</Label>}
                   </td>
                   {this.props.showTeams && <td>

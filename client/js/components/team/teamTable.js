@@ -41,13 +41,9 @@ var TeamTable = React.createClass({
       success: function (teams) {
         var tags = {}
         teams.forEach(function (team) {
-          if (team.tags.length > 0) {
-            tags[team.id] = team.tags.map(function (tagId) {
-              return { id: tagId, name: '•••' }
-            })
-          } else {
-            tags[team.id] = []
-          }
+          tags[team.id] = team.tags.map(function (tagId) {
+            return { id: tagId, name: '•••' }
+          })
         }, this)
 
         this.setState({
