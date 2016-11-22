@@ -75,5 +75,26 @@
     },
     "model": "measure_mate.tag",
     "pk": 11
+  },
+  {
+    "fields": {
+      "name": "example"
+    },
+    "model": "measure_mate.tag",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "name": "team"
+    },
+    "model": "measure_mate.tag",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "name": "application"
+    },
+    "model": "measure_mate.tag",
+    "pk": 14
   }
 ]
