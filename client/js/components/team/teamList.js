@@ -50,7 +50,7 @@ var TeamList = React.createClass({
                   <td className='wrap'>
                     {this.props.teamTags.hasOwnProperty(team.id)
                       ? <TagList tags={this.props.teamTags[team.id] || []} />
-                      : team.tags.map(function (tagId) { return <span key={tagId}>•••&nbsp;</span> })}
+                      : <span>•••&nbsp;</span> }
                   </td>
                   <td data-sort={team.created}>
                     {prettyCreated} <small>({relativeCreated})</small>

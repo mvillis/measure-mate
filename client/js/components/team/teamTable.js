@@ -40,10 +40,14 @@ var TeamTable = React.createClass({
       cache: false,
       success: function (teams) {
         var tags = {}
-        teams.filter(function (team) {
-          return (team.tags.length == 0)
-        }, this).forEach(function (team) {
-          tags[team.id] = []
+        teams.forEach(function (team) {
+          if (team.tags.length > 0) {
+            tags[team.id] = team.tags.map(function (tagId) {
+              return { id: tagId, name: '•••' }
+            })
+          } else {
+            tags[team.id] = []
+          }
         }, this)
 
         this.setState({
