@@ -3,8 +3,8 @@
     "model": "measure_mate.team",
     "pk": 1,
     "fields": {
-      "name": "Test Team",
-      "short_desc": "A test or example team",
+      "name": "Example Team",
+      "short_desc": "An example team",
       "created": "2016-02-29T06:17:30.608Z",
       "updated": "2016-11-14T02:04:11.731Z",
       "tags": [
