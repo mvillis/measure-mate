@@ -38,9 +38,17 @@ var TeamTable = React.createClass({
       url: '/api/teams/',
       dataType: 'json',
       cache: false,
-      success: function (data) {
+      success: function (teams) {
+        var tags = {}
+        teams.filter(function (team) {
+          return (team.tags.length == 0)
+        }, this).forEach(function (team) {
+          tags[team.id] = []
+        }, this)
+
         this.setState({
-          teams: data,
+          teams: teams,
+          teamTags: tags,
           loaded: true
         })
         this.loadAllTagsFromServer()
