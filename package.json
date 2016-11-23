@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "./client/index.js",
   "engines": {
-    "node": ">=6.9.1"
+    "node": ">=6.9.1,<7.0.0"
   },
   "repository": {
     "type": "git",
