@@ -72,7 +72,7 @@ module.exports = {
   assets: {
     src: assetsSource,
     dest: assetsDestination,
-    production: production,
+    production: production
   },
 
   envSetup: {
