@@ -14,7 +14,7 @@
       "template": 2,
       "rank": 1,
       "desc_class": "like-pre",
-      "desc": "Ability to track changes made to the artefacts that affect the behaviour of a system and manage multiple contributions to a single artefact.\r\n\r\nThis includes source code, libraries, configuration files, tests, environment descriptions, dependant libraries, database schema, support documentation and anything else required to deliver the product.\r\n"
+      "desc": "Ability to track changes made to the artefacts that affect the behaviour of a system and manage multiple contributions to a single artefact.\r\n\r\nThis includes source code, libraries, configuration files, tests, environment descriptions, dependent libraries, database schema, support documentation and anything else required to deliver the product.\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 201
@@ -163,7 +163,7 @@
       "colour": "Yellow",
       "rank": 5,
       "desc_class": "like-pre",
-      "desc": "• All configuration artifacts are identified, managed and versioned together.\r\n• Changes to dependant systems are pull based.\r\n• Any team member can create new and retrieve previous versions successfully as required to deploy to any environment.\r\n• The standard is to develop code on the main trunk.\r\n• Branches are created rarely and are short lived.\r\n• Check-ins occur multiple times each day.\r\n• Distributed teams work against a single repository.\r\n• Environment specifications are managed and versioned along with all other artifacts."
+      "desc": "• All configuration artifacts are identified, managed and versioned together.\r\n• Changes to dependent systems are pull based.\r\n• Any team member can create new and retrieve previous versions successfully as required to deploy to any environment.\r\n• The standard is to develop code on the main trunk.\r\n• Branches are created rarely and are short lived.\r\n• Check-ins occur multiple times each day.\r\n• Distributed teams work against a single repository.\r\n• Environment specifications are managed and versioned along with all other artifacts."
     },
     "model": "measure_mate.rating",
     "pk": 245
@@ -391,7 +391,7 @@
       "colour": "Orange",
       "rank": 3,
       "desc_class": "like-pre",
-      "desc": "• Repeatable creation and configuration, manual deployment.\r\n• Standard artefacts are defined and are created by a combination of manual and automated means.\r\n• Dev and test environments are available for the exclusive use of the team.\r\n• The environments are not easily replicated and delays occur whenever changes to them are required.\r\n• There may be a production like environment for non functional testing and system level integration tests, but this is still shared with other teams and delays in feedback occur as a result.\r\n• Rebuilding the environments is dependant on the knowledge and skills of key individuals.\r\n"
+      "desc": "• Repeatable creation and configuration, manual deployment.\r\n• Standard artefacts are defined and are created by a combination of manual and automated means.\r\n• Dev and test environments are available for the exclusive use of the team.\r\n• The environments are not easily replicated and delays occur whenever changes to them are required.\r\n• There may be a production like environment for non functional testing and system level integration tests, but this is still shared with other teams and delays in feedback occur as a result.\r\n• Rebuilding the environments is dependent on the knowledge and skills of key individuals.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 261
@@ -595,7 +595,7 @@
       "colour": "Green",
       "rank": 6,
       "desc_class": "like-pre",
-      "desc": "• There is complete transparency of what is in each release.\r\n• The product owner is able to determine when release goes into production and it is no longer dependant on the team's capability to deliver.\r\n• Evidence of control and decisions made can be generated through automated tool sets used by the product team.\r\n"
+      "desc": "• There is complete transparency of what is in each release.\r\n• The product owner is able to determine when release goes into production and it is no longer dependent on the team's capability to deliver.\r\n• Evidence of control and decisions made can be generated through automated tool sets used by the product team.\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 276
