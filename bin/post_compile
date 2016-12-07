@@ -6,4 +6,4 @@ python manage.py loaddata LAMA DevOps HealthCheck tags
 # won't work if there are already assessments, so ignore failures
 python manage.py loaddata team assessment || true
 
-python manage.py --username admin --email admin@example.com
+python manage.py createsuperuser --username admin --email admin@example.com
