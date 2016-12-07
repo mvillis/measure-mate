@@ -109,4 +109,4 @@ class TeamCreateSerializer(serializers.ModelSerializer):
 class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
-        fields = ('id', 'created', 'updated', 'creator', 'title', 'content')
+        fields = ('id', 'created', 'updated',  'title', 'content')

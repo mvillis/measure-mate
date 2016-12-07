@@ -153,8 +153,6 @@ class Announcement(models.Model):
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    creator = models.ForeignKey(settings.AUTH_USER_MODEL)
-
 
     def __unicode__(self):
         return str(self.title)
