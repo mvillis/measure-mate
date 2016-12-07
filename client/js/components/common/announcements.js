@@ -4,6 +4,7 @@ var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var Accordion = ReactBootstrap.Accordion
 var Panel = ReactBootstrap.Panel
+var ReactMarkdown = require('react-markdown')
 
 var $ = require('jquery')
 
@@ -37,7 +38,9 @@ var Announcements = React.createClass({
     return (
       <Accordion>
         { this.state.announcements.map(function (announcement) {
-          <Panel header={announcement.title} key={announcement.id}>{announcement.content}</Panel>
+          return <Panel bsStyle='primary' header={announcement.title} key={announcement.id}>
+            <ReactMarkdown source={announcement.content} />
+          </Panel>
         })}
       </Accordion>
     )

@@ -45,8 +45,8 @@ var Header = React.createClass({
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Announcements />
         <div className='container-fluid'>
+          <Announcements />
           {this.props.children}
         </div>
       </div>
