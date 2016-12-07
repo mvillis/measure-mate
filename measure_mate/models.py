@@ -57,7 +57,7 @@ class Rating(models.Model):
         return str(self.attribute) + " - " + self.name
 
 
-tag_re = re.compile(r'^[a-z0-9][a-z0-9_-][a-z0-9]$')
+tag_re = re.compile(r'^[a-z0-9][a-z0-9_-]*[a-z0-9]$')
 validate_tag = RegexValidator(
     regex = tag_re,
     message = _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens; starting and ending with letters or numbers."),
