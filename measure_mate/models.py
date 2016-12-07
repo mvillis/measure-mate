@@ -142,3 +142,20 @@ class Measurement(models.Model):
             raise ValidationError(_('Measurement attributes must be for the same template as the assessment'))
         if self.target_rating is not None and self.assessment.template.id != self.target_rating.attribute.template.id:
             raise ValidationError(_('Measurement ratings must be for the same template as the assessment'))
+
+
+class Announcement(models.Model):
+    class Meta:
+        verbose_name_plural = "Announcements"
+
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=50, unique=True)
+    enabled = models.BooleanField(default=1)
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+
+    def __unicode__(self):
+        return str(self.title)

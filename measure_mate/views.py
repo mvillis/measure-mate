@@ -13,9 +13,8 @@ from rest_framework.response import Response
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 
 from headers import header, x_ua_compatible
-from models import Attribute, Rating, Assessment, Measurement, Tag, Team, Template
-from serializers import AssessmentCreateSerializer, AssessmentSerializer, AttributeSerializer, MeasurementCreateSerializer, RatingSerializer, TagSerializer, \
-        TeamCreateSerializer, TeamSerializer, TemplateSerializer
+from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
+from serializers import AnnouncementSerializer, AssessmentCreateSerializer, AssessmentSerializer, AttributeSerializer, MeasurementCreateSerializer, RatingSerializer, TagSerializer, TeamCreateSerializer, TeamSerializer, TemplateSerializer
 
 
 schema_view = schemas.get_schema_view(
@@ -170,3 +169,14 @@ class TeamViewSet(viewsets.ModelViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class AnnouncementViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint for the Announcement resource.
+    """
+    queryset = Announcement.objects.all()
+    serializer_class = AnnouncementSerializer
+    filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
+    filter_fields = ('enabled',)
+    ordering_fields = ('id', 'title', 'created', 'updated')
