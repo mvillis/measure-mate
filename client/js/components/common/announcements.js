@@ -44,4 +44,4 @@ var Announcements = React.createClass({
   }
 })
 
-module.exports = Accordion
+module.exports = Announcements

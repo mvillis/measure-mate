@@ -9,7 +9,7 @@ var ReactRouter = require('react-router')
 var Link = ReactRouter.Link
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
-var Announcments = require('./announcements')
+var Announcements = require('./announcements')
 
 var Header = React.createClass({
   propTypes: {
