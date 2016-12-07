@@ -36,9 +36,9 @@ var Announcements = React.createClass({
   render: function () {
     return (
       <Accordion>
-        { this.state.announcments.map(function (announcement) {
+        { this.state.announcements.map(function (announcement) {
           <Panel header={announcement.title} key={announcement.id}>{announcement.content}</Panel>
-	})}
+        })}
       </Accordion>
     )
   }
