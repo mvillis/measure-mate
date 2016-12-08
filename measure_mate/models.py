@@ -148,12 +148,12 @@ class Announcement(models.Model):
         verbose_name_plural = "Announcements"
 
     STYLE_CHOICES = (
-        ('Default', 'default'),
-        ('Primary', 'primary'),
-        ('Success', 'success'),
-        ('Info', 'success'),
-        ('Warning', 'warning'),
-        ('Danger', 'danger'),
+        ('default', 'Default'),
+        ('primary', 'Primary'),
+        ('success', 'Success'),
+        ('info',    'Success'),
+        ('warning', 'Warning'),
+        ('danger',  'Danger'),
     )
 
     id = models.AutoField(primary_key=True)
