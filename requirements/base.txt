@@ -13,3 +13,4 @@ django-excel==0.0.5
 pyexcel==0.3.3
 pyexcel-xls==0.2.3
 pyexcel-xlsx==0.2.3
+pytz==2016.10
