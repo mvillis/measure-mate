@@ -4,9 +4,9 @@ from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag
 
 class AnnouncementAdmin(admin.ModelAdmin):
     date_hierarchy = "created"
-    list_display = ("id", "title", "created", "updated", "enabled")
+    list_display = ("id", "title", "style", "created", "updated", "enabled")
     list_display_links = ("id", "title")
-    list_filter = ("enabled",)
+    list_filter = ("enabled", "style")
     readonly_fields = ("id", "created", "updated")
 
 

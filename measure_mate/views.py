@@ -178,5 +178,6 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
     queryset = Announcement.objects.all()
     serializer_class = AnnouncementSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     filter_fields = ('enabled',)
     ordering_fields = ('id', 'title', 'created', 'updated')

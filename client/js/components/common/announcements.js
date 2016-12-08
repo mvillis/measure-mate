@@ -27,8 +27,7 @@ var Announcements = React.createClass({
   },
   getInitialState: function () {
     return {
-      announcements: [],
-      loaded: false
+      announcements: []
     }
   },
   componentDidMount: function () {
@@ -38,7 +37,7 @@ var Announcements = React.createClass({
     return (
       <Accordion>
         { this.state.announcements.map(function (announcement) {
-          return <Panel bsStyle='primary' header={announcement.title} key={announcement.id}>
+          return <Panel bsStyle={announcement.style} header={announcement.title} key={announcement.id}>
             <ReactMarkdown source={announcement.content} />
           </Panel>
         })}

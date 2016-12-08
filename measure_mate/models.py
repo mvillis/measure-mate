@@ -147,9 +147,19 @@ class Announcement(models.Model):
     class Meta:
         verbose_name_plural = "Announcements"
 
+    STYLE_CHOICES = (
+        ('Default', 'default'),
+        ('Primary', 'primary'),
+        ('Success', 'success'),
+        ('Info', 'success'),
+        ('Warning', 'warning'),
+        ('Danger', 'danger'),
+    )
+
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50, unique=True)
     enabled = models.BooleanField(default=1)
+    style = models.CharField(max_length=50, choices=STYLE_CHOICES, default='warning')
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
