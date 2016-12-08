@@ -18,7 +18,7 @@
       "created": "2016-12-08T01:45:14.525Z",
       "updated": "2016-12-08T01:45:14.525Z",
       "title": "This is a test announcement",
-      "content": "This is a test of the announcement system.\r\n\r\nPlease ignore announcements until further notice.",
+      "content": "This is a test of the announcement system.\r\n\r\n**_Please ignore announcements until further notice._**",
       "style": "danger",
       "enabled": true
     }
