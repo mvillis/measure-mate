@@ -7,6 +7,19 @@
       "updated": "2016-11-01T01:45:14.525Z",
       "title": "Test",
       "content": "Test 1 2 3...",
+      "style": "warning",
+      "enabled": false
+    }
+  },
+  {
+    "model": "measure_mate.announcement",
+    "pk": 2,
+    "fields": {
+      "created": "2016-12-08T01:45:14.525Z",
+      "updated": "2016-12-08T01:45:14.525Z",
+      "title": "This is a test announcement",
+      "content": "This is a test of the announcement system.\r\n\r\nPlease ignore announcements until further notice.",
+      "style": "danger",
       "enabled": true
     }
   }
