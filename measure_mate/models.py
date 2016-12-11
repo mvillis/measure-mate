@@ -15,7 +15,7 @@ class Template(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, unique=True)
     taggable = models.BooleanField(default=0)
-    enabled = models.BooleanField(default=1)
+    enabled = models.BooleanField(default=1, db_index=True)
     short_desc = models.CharField(max_length=256, verbose_name="Description")
 
     def __unicode__(self):
@@ -31,7 +31,7 @@ class Attribute(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256)
     template = models.ForeignKey(Template, related_name='attributes')
-    rank = models.IntegerField(default=1)
+    rank = models.IntegerField(default=1, db_index=True)
     desc = models.TextField(verbose_name="Description")
     desc_class = models.CharField(max_length=256, default="", blank=True, verbose_name="Description CSS Class")
 
@@ -48,7 +48,7 @@ class Rating(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256)
     attribute = models.ForeignKey(Attribute, related_name='ratings')
-    rank = models.IntegerField(default=1)
+    rank = models.IntegerField(default=1, db_index=True)
     colour = models.CharField(max_length=256, null=True, blank=True)
     desc = models.TextField(verbose_name="Description")
     desc_class = models.CharField(max_length=256, default="", blank=True, verbose_name="Description CSS Class")
@@ -71,7 +71,7 @@ class Tag(models.Model):
         ordering = ['name']
 
     id = models.AutoField(primary_key=True)
-    name = models.SlugField(unique=True, validators=[validate_tag])
+    name = models.SlugField(unique=True, validators=[validate_tag], db_index=True)
 
     def __unicode__(self):
         return self.name
@@ -82,7 +82,7 @@ class Team(models.Model):
         verbose_name_plural = "Teams"
         ordering = ['pk']
 
-    id = models.AutoField(primary_key=True, verbose_name="Team ID")
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, unique=True)
     short_desc = models.CharField(max_length=256, verbose_name="Description")
     tags = models.ManyToManyField(Tag,)
@@ -104,7 +104,7 @@ class Assessment(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    team = models.ForeignKey(Team, related_name="assessments")
+    team = models.ForeignKey(Team, related_name="assessments", db_index=True)
     template = models.ForeignKey(Template, related_name="assessments")
     status = models.CharField(
         max_length=128,
@@ -158,7 +158,7 @@ class Announcement(models.Model):
 
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50, unique=True)
-    enabled = models.BooleanField(default=1)
+    enabled = models.BooleanField(default=1, db_index=True)
     style = models.CharField(max_length=50, choices=STYLE_CHOICES, default='warning')
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
