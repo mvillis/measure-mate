@@ -4,8 +4,9 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from rest_framework import routers
 
-from views import AnnouncementViewSet, AssessmentViewSet, AttributeViewSet, MeasurementViewSet, RatingViewSet, TagViewSet, TeamViewSet, TemplateViewSet, \
-        export_data, healthcheck, home, robots_txt, schema_view
+from views import AnnouncementViewSet, AssessmentViewSet, AttributeViewSet, MeasurementViewSet, RatingViewSet, \
+    TagViewSet, TeamViewSet, TemplateViewSet, \
+    export_data, healthcheck, home, robots_txt, schema_view
 
 router = routers.DefaultRouter()
 router.register(r'announcements', AnnouncementViewSet)

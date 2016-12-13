@@ -7,20 +7,20 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status, schemas
-from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 
 from headers import header, x_ua_compatible
 from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
-from serializers import AnnouncementSerializer, AssessmentCreateSerializer, AssessmentSerializer, AttributeSerializer, MeasurementCreateSerializer, RatingSerializer, TagSerializer, TeamCreateSerializer, TeamSerializer, TemplateSerializer
-
+from serializers import AnnouncementSerializer, AssessmentCreateSerializer, AssessmentSerializer, AttributeSerializer, \
+    MeasurementCreateSerializer, RatingSerializer, TagSerializer, TeamCreateSerializer, TeamSerializer, \
+    TemplateSerializer
 
 schema_view = schemas.get_schema_view(
-        title='Measure Mate API',
-        renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer]
-    )
+    title='Measure Mate API',
+    renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer]
+)
 
 
 @x_ua_compatible('IE=edge')

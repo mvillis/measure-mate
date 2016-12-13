@@ -26,7 +26,9 @@ def header(name, value):
             response = func(request, *args, **kwargs)
             response[name] = value
             return response
+
         return inner
+
     return decorator
 
 

@@ -1,13 +1,13 @@
-from django.test import TestCase
-from django.core.urlresolvers import reverse
+import datetime
+
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.test import TestCase
 from django.utils.timezone import utc
 from rest_framework import status
-import datetime
 
 
 class ExportViewTestCases(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         cls.superuser = User.objects.create(

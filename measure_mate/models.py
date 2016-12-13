@@ -1,16 +1,15 @@
 import re
 
-from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.conf import settings
 
 
 class Template(models.Model):
     class Meta:
         verbose_name_plural = "Templates"
-        ordering = ['pk',]
+        ordering = ['pk', ]
 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, unique=True)
@@ -59,9 +58,10 @@ class Rating(models.Model):
 
 tag_re = re.compile(r'^[a-z0-9][a-z0-9_-]*[a-z0-9]$')
 validate_tag = RegexValidator(
-    regex = tag_re,
-    message = _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens; starting and ending with letters or numbers."),
-    code = 'invalid',
+    regex=tag_re,
+    message=_(
+        u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens; starting and ending with letters or numbers."),
+    code='invalid',
 )
 
 
@@ -85,7 +85,7 @@ class Team(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256, unique=True)
     short_desc = models.CharField(max_length=256, verbose_name="Description")
-    tags = models.ManyToManyField(Tag,)
+    tags = models.ManyToManyField(Tag, )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -112,7 +112,7 @@ class Assessment(models.Model):
         default='TODO',
         blank=False,
     )
-    tags = models.ManyToManyField(Tag,)
+    tags = models.ManyToManyField(Tag, )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

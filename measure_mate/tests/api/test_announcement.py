@@ -36,4 +36,3 @@ class AnnouncementAPITestCases(APITestCase):
         self.assertEqual(response.data[0]['id'], announcement2.id)
         self.assertEqual(response.data[0]['title'], announcement2.title)
         self.assertEqual(len(response.data), 1)
-
