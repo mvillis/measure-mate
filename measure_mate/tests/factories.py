@@ -1,6 +1,8 @@
+import string
+
 import factory
 import factory.fuzzy
-import string
+
 from measure_mate.models import Template, Attribute, Tag, Team, Assessment, Measurement, Rating, Announcement
 
 
@@ -33,7 +35,6 @@ class TagFactory(factory.django.DjangoModelFactory):
 class TeamFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Team
-#        django_get_or_create = ('name', 'short_desc', 'created', 'updated')
 
     name = factory.Sequence(lambda n: 'Team %d' % n)
     short_desc = 'Test Team Short Description'

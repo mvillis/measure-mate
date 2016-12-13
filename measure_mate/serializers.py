@@ -1,5 +1,6 @@
-from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
 from rest_framework import serializers
+
+from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
 
 
 class RatingSerializer(serializers.ModelSerializer):
@@ -25,14 +26,12 @@ class TemplateSerializer(serializers.ModelSerializer):
 
 
 class TemplateSimpleSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Template
         # fields = ('id', 'name', 'short_desc')
 
 
 class TagSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Tag
         fields = ('id', 'name')
@@ -81,7 +80,6 @@ class AssessmentCreateSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSimpleSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Assessment
         fields = ('id', 'template', 'tags', 'created', 'updated', 'status')

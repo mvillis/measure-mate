@@ -1,13 +1,12 @@
+from django.shortcuts import render
 from django.test import TestCase, RequestFactory
 from rest_framework import status
-from django.shortcuts import render
 
 from measure_mate.headers import header, x_ua_compatible
 
 
 class HeadersTestCases(TestCase):
     def test_double_header(self):
-
         @header('X-Test-Header1', 'one')
         @header('X-Test-Header2', 'two')
         @x_ua_compatible('IE=edge')
