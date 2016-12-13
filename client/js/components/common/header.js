@@ -9,6 +9,7 @@ var ReactRouter = require('react-router')
 var Link = ReactRouter.Link
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
+var Announcements = require('./announcements')
 
 var Header = React.createClass({
   propTypes: {
@@ -45,6 +46,7 @@ var Header = React.createClass({
           </Navbar.Collapse>
         </Navbar>
         <div className='container-fluid'>
+          <Announcements />
           {this.props.children}
         </div>
       </div>

@@ -18,8 +18,6 @@ var fontsSource = [
   'client/fonts/**'
 ]
 var fontsDestination = dest + '/fonts'
-var imagesSource = src + '/assets/img/**/*.{gif,jpg,jpeg,tiff,png,svg}'
-var imagesDestination = src + '/assets/img'
 
 module.exports = {
 
@@ -72,16 +70,7 @@ module.exports = {
   assets: {
     src: assetsSource,
     dest: assetsDestination,
-    production: production,
-    processImages: /\.(gif|jpg|jpeg|tiff|png)$/i,
-    imageminOptions: {
-      progressive: true,
-      svgoPlugins: [{removeViewBox: false}],
-      // png optimization
-      optimizationLevel: 1
-    },
-    imgSrc: imagesSource,
-    imgDest: imagesDestination
+    production: production
   },
 
   envSetup: {

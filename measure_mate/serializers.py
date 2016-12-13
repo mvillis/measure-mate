@@ -1,4 +1,4 @@
-from models import Attribute, Rating, Assessment, Measurement, Tag, Team, Template
+from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
 from rest_framework import serializers
 
 
@@ -104,3 +104,9 @@ class TeamCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = ('id', 'created', 'updated', 'name', 'short_desc', 'tags')
+
+
+class AnnouncementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Announcement
+        fields = ('id', 'created', 'updated', 'title', 'content', 'enabled', 'style')
