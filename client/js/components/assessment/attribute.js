@@ -9,6 +9,7 @@ var _ = require('lodash')
 var Panel = ReactBootstrap.Panel
 var Alert = ReactBootstrap.Alert
 var ListGroup = ReactBootstrap.ListGroup
+var ReactMarkdown = require('react-markdown')
 
 var Attribute = React.createClass({
   propTypes: {
@@ -106,27 +107,28 @@ var Attribute = React.createClass({
     }
 
     return (
-      <Panel
-        header={(this.state.attribute && this.state.attribute.name) ? this.state.attribute.name : ''}
-        bsStyle='primary'>
-        <Alert
-          bsStyle='warning'
-          className={this.state.attribute && this.state.attribute.desc_class ? this.state.attribute.desc_class : ''}>
-          {this.state.attribute && this.state.attribute.desc ? this.state.attribute.desc : ''}
-        </Alert>
-        <ObserveFormControl
-          measurement={this.state.measurement}
-          syncMeasurement={this.props.syncMeasurement}
-          onObservationChange={this.onObservationChange}
-          onActionChange={this.onActionChange}
-          attributeId={(this.state.attribute) ? this.state.attribute.id : null}
-          disabled={this.props.disabled}
-          />
-        <Loader loaded={!this.props.measureSyncActivity} />
-        <ListGroup fill>
-          {ratingList}
-        </ListGroup>
-      </Panel>
+      <Loader loaded={this.state.attribute}>
+        {this.state.attribute &&
+          <Panel header={this.state.attribute.name || ''} bsStyle='primary'>
+            <Alert bsStyle='warning'>
+              <ReactMarkdown escapeHtml
+                source={this.state.attribute.desc || ''}
+                className={this.state.attribute.desc_class || ''} />
+            </Alert>
+            <ObserveFormControl
+              measurement={this.state.measurement}
+              syncMeasurement={this.props.syncMeasurement}
+              onObservationChange={this.onObservationChange}
+              onActionChange={this.onActionChange}
+              attributeId={(this.state.attribute) ? this.state.attribute.id : null}
+              disabled={this.props.disabled}
+              />
+            <Loader loaded={!this.props.measureSyncActivity} />
+            <ListGroup fill>
+              {ratingList}
+            </ListGroup>
+          </Panel>}
+      </Loader>
     )
   }
 })
