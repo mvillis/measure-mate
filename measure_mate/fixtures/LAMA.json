@@ -74,7 +74,7 @@
       "template": 1,
       "rank": 7,
       "desc_class": "like-pre",
-      "desc": "Engaging the customer through showcases, planning, progress and team meetings to support definition and prioritisation.\r\nFor projects, Customer = Product Owner\r\n"
+      "desc": "Engaging the customer through showcases, planning, progress and team meetings to support definition and prioritisation.\r\n\r\nFor projects, Customer = Product Owner\r\n"
     },
     "model": "measure_mate.attribute",
     "pk": 107
