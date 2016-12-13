@@ -3,14 +3,24 @@ patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
+      gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - gulp-jshint > minimatch:
@@ -79,16 +89,16 @@ ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-12T10:59:06.845Z'
   'npm:express:20140912':
     - browser-sync > browser-sync-ui > weinre > express:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-12T10:59:06.845Z'
   'npm:qs:20140806':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-12T10:59:06.846Z'
   'npm:qs:20140806-1':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-12-09T12:01:30.000Z'
+        expires: '2017-01-12T10:59:06.848Z'
