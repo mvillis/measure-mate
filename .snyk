@@ -3,14 +3,24 @@ patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
+      gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - gulp-jshint > minimatch:
@@ -43,6 +53,26 @@ patch:
         patched: '2016-09-05T01:26:49.657Z'
     - gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2016-12-14T01:20:29.121Z'
+    - gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2016-12-14T01:20:29.121Z'
+    - gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
+        patched: '2016-12-14T01:20:29.121Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2016-12-14T01:20:29.121Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2016-12-14T01:20:29.121Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
+    - gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
+    - gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2016-12-13T10:56:16.887Z'
   'npm:negotiator:20160616':
     - browser-sync > socket.io > engine.io > accepts > negotiator:
         patched: '2016-08-30T03:10:49.683Z'
@@ -79,16 +109,16 @@ ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-13T01:24:24.929Z'
   'npm:express:20140912':
     - browser-sync > browser-sync-ui > weinre > express:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-13T01:24:24.930Z'
   'npm:qs:20140806':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-13T01:24:24.930Z'
   'npm:qs:20140806-1':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-12-09T12:01:30.000Z'
+        expires: '2017-01-13T01:24:24.931Z'

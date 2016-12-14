@@ -38,7 +38,7 @@ var Announcements = React.createClass({
       <Accordion>
         { this.state.announcements.map(function (announcement) {
           return <Panel bsStyle={announcement.style} header={announcement.title} key={announcement.id}>
-            <ReactMarkdown source={announcement.content} />
+            <ReactMarkdown escapeHtml source={announcement.content} />
           </Panel>
         })}
       </Accordion>
