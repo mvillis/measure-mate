@@ -1092,7 +1092,7 @@ browser-sync-ui@0.6.2:
     stream-throttle "^0.1.3"
     weinre "^2.0.0-pre-I0Z7U9OV"
 
-browser-sync@^2.18.3:
+browser-sync@^2.18.5:
   version "2.18.5"
   resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.18.5.tgz#c04b10037289df5157a363d42100069d77e744e9"
   dependencies:
@@ -2031,9 +2031,15 @@ debug@2.2.0, debug@~2.2.0:
   dependencies:
     ms "0.7.1"
 
-debug@2.3.3, debug@2.X, debug@^2.1.1, debug@^2.2.0:
+debug@2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.3.3.tgz#40c453e67e6e13c901ddec317af8986cda9eff8c"
+  dependencies:
+    ms "0.7.2"
+
+debug@2.X, debug@^2.1.1, debug@^2.2.0:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.4.1.tgz#ef2532d2753d282045c13c82ce47a09e56b91d53"
   dependencies:
     ms "0.7.2"
 
@@ -2556,7 +2562,7 @@ eslint-plugin-promise@^3.4.0, eslint-plugin-promise@~3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.4.0.tgz#6ba9048c2df57be77d036e0c68918bc9b4fc4195"
 
-eslint-plugin-react@^6.7.1:
+eslint-plugin-react@^6.8.0:
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-6.8.0.tgz#741ab5438a094532e5ce1bbb935d6832356f492d"
   dependencies:
@@ -2574,7 +2580,7 @@ eslint-plugin-standard@^2.0.1, eslint-plugin-standard@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-standard/-/eslint-plugin-standard-2.0.1.tgz#3589699ff9c917f2c25f76a916687f641c369ff3"
 
-eslint@^3.0.0, eslint@^3.10.2:
+eslint@^3.0.0, eslint@^3.12.1:
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.12.1.tgz#507a609fe251dfefd58fda03e6dbd7e851c07581"
   dependencies:
@@ -3931,7 +3937,7 @@ gulp-sourcemaps@^2.2.1:
     through2 "2.X"
     vinyl "1.X"
 
-gulp-standard@^8.0.2:
+gulp-standard@^8.0.3:
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/gulp-standard/-/gulp-standard-8.0.3.tgz#b5806c8e36f1e1c46be7aac0ae4a6e00c5425457"
   dependencies:
@@ -3943,7 +3949,7 @@ gulp-standard@^8.0.2:
     standard "^8.0.0"
     through2 "^2.0.0"
 
-gulp-stylelint@^3.4.0:
+gulp-stylelint@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/gulp-stylelint/-/gulp-stylelint-3.6.0.tgz#29fdbe6fc6c4e53f2ada7e821fe22c03f876da1b"
   dependencies:
@@ -4118,7 +4124,7 @@ history@^3.0.0:
     query-string "^4.2.2"
     warning "^3.0.0"
 
-history@^4.4.0:
+history@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/history/-/history-4.4.1.tgz#88c2634b6b8cc68252258a7ddaa3f5f193641955"
   dependencies:
@@ -4465,8 +4471,8 @@ is-npm@^1.0.0:
   resolved "https://registry.yarnpkg.com/is-npm/-/is-npm-1.0.0.tgz#f2fb63a65e4905b406c86072765a1a4dc793b9f4"
 
 is-number-like@^1.0.3:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/is-number-like/-/is-number-like-1.0.6.tgz#f0511d22c3f9c1e3e9d5b66a960ec49a342466df"
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/is-number-like/-/is-number-like-1.0.7.tgz#a38d6b0fd2cd4282449128859eed86c03fd23552"
   dependencies:
     bubleify "^0.5.1"
     lodash.isfinite "^3.3.2"
@@ -4756,8 +4762,8 @@ kdbush@^1.0.0:
   resolved "https://registry.yarnpkg.com/kdbush/-/kdbush-1.0.1.tgz#3cbd03e9dead9c0f6f66ccdb96450e5cecc640e0"
 
 keycode@^2.1.2:
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.7.tgz#7b9255919f6cff562b09a064d222dca70b020f5c"
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.8.tgz#94d2b7098215eff0e8f9a8931d5a59076c4532fb"
 
 kind-of@^3.0.2:
   version "3.1.0"
@@ -5451,7 +5457,7 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
-mocha@^3.0.0, mocha@^3.1.1:
+mocha@^3.0.0, mocha@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.2.0.tgz#7dc4f45e5088075171a68896814e6ae9eb7a85e3"
   dependencies:
@@ -5487,7 +5493,7 @@ module-deps@^4.0.8:
     through2 "^2.0.0"
     xtend "^4.0.0"
 
-moment@^2.17.0:
+moment@^2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
@@ -5966,8 +5972,8 @@ os-tmpdir@^1.0.0, os-tmpdir@^1.0.1:
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
 
 osenv@^0.1.0:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/osenv/-/osenv-0.1.3.tgz#83cf05c6d6458fc4d5ac6362ea325d92f2754217"
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/osenv/-/osenv-0.1.4.tgz#42fe6d5953df06c8064be6f176c3d05aaaa34644"
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
@@ -6216,7 +6222,7 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.18.1:
+plotly.js@^1.21.0:
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.21.0.tgz#0eb9863dc73bc47acc8c4b06e153635520b7d76b"
   dependencies:
@@ -6836,7 +6842,7 @@ req-from@^1.0.1:
   dependencies:
     resolve-from "^2.0.0"
 
-request@2.75.0, request@^2.55.0, request@^2.74.0:
+request@2.75.0, request@^2.39.0, request@^2.55.0, request@^2.74.0:
   version "2.75.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.75.0.tgz#d2b8268a286da13eaa5d01adf5d18cc90f657d93"
   dependencies:
@@ -6862,7 +6868,7 @@ request@2.75.0, request@^2.55.0, request@^2.74.0:
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
 
-request@2.78.0, request@^2.39.0:
+request@2.78.0:
   version "2.78.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.78.0.tgz#e1c8dec346e1c81923b24acdb337f11decabe9cc"
   dependencies:
@@ -6968,13 +6974,17 @@ resolve-url@^0.2.1, resolve-url@~0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
 
-resolve@1.1.7, resolve@1.1.x, resolve@^1.0.0, resolve@^1.1.3, resolve@^1.1.4, resolve@^1.1.5, resolve@^1.1.6, resolve@^1.1.7, resolve@~1.1.7:
+resolve@1.1.7, resolve@1.1.x, resolve@~1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
 
 resolve@^0.6.1:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-0.6.3.tgz#dd957982e7e736debdf53b58a4dd91754575dd46"
+
+resolve@^1.0.0, resolve@^1.1.3, resolve@^1.1.4, resolve@^1.1.5, resolve@^1.1.6, resolve@^1.1.7:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.2.0.tgz#9589c3f2f6149d1417a40becc1663db6ec6bc26c"
 
 resp-modifier@6.0.2:
   version "6.0.2"
@@ -7432,7 +7442,7 @@ snyk-try-require@^1.1.1, snyk-try-require@^1.2.0:
     lru-cache "^4.0.0"
     then-fs "^2.0.0"
 
-snyk@^1.20.0:
+snyk@^1.21.2:
   version "1.21.2"
   resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.21.2.tgz#bb8784c7879c31fa273c7503552264bc38a98c47"
   dependencies:
@@ -8157,8 +8167,8 @@ turntable-camera-controller@^3.0.0:
     gl-vec3 "^1.0.2"
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
-  version "0.14.4"
-  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.4.tgz#8c9dbfb52795686f166cd2023794bcf103d13c2b"
+  version "0.14.5"
+  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
 two-product@^1.0.0, two-product@^1.0.2:
   version "1.0.2"
@@ -8637,8 +8647,8 @@ wordwrap@1.0.x, wordwrap@~1.0.0:
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
 
 world-calendars@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/world-calendars/-/world-calendars-1.0.1.tgz#603600aba0fd22e7978065ae99e28fc4c6e00c5e"
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/world-calendars/-/world-calendars-1.0.2.tgz#3f1c1c250393e3320e17d7a92044e4353ee74292"
   dependencies:
     object-assign "^4.1.0"
 
@@ -8692,7 +8702,7 @@ xdg-basedir@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-2.0.1.tgz#4d8b8f1eccd3419aa362061becef515e1e559635"
 
-xmldom@^0.1.22:
+xmldom@^0.1.27:
   version "0.1.27"
   resolved "https://registry.yarnpkg.com/xmldom/-/xmldom-0.1.27.tgz#d501f97b3bdb403af8ef9ecc20573187aadac0e9"
 
