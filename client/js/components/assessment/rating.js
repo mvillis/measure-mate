@@ -8,6 +8,7 @@ var Button = ReactBootstrap.Button
 var Glyphicon = ReactBootstrap.Glyphicon
 var OverlayTrigger = ReactBootstrap.OverlayTrigger
 var Popover = ReactBootstrap.Popover
+var ReactMarkdown = require('react-markdown')
 
 var Rating = React.createClass({
   propTypes: {
@@ -51,9 +52,8 @@ var Rating = React.createClass({
 
     return (
       <ListGroupItem active={ratingActive} key={this.props.rating.id} header={header} className={descClass} style={{'borderLeftColor': this.props.rating.colour}}>
-        <span className='rating-desc clickable' onClick={this.ratingClick}>
-          {this.props.rating.desc}
-        </span>
+        <ReactMarkdown escapeHtml source={this.props.rating.desc} containerTag='span'
+          className='rating-desc clickable' onClick={this.ratingClick} />
       </ListGroupItem>
     )
   }
