@@ -1,7 +1,9 @@
+import string
+
 import factory
 import factory.fuzzy
-import string
-from measure_mate.models import Template, Attribute, Tag, Team, Assessment, Measurement, Rating
+
+from measure_mate.models import Template, Attribute, Tag, Team, Assessment, Measurement, Rating, Announcement
 
 
 class TemplateFactory(factory.django.DjangoModelFactory):
@@ -33,7 +35,6 @@ class TagFactory(factory.django.DjangoModelFactory):
 class TeamFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Team
-#        django_get_or_create = ('name', 'short_desc', 'created', 'updated')
 
     name = factory.Sequence(lambda n: 'Team %d' % n)
     short_desc = 'Test Team Short Description'
@@ -84,3 +85,11 @@ class MeasurementFactory(factory.django.DjangoModelFactory):
     assessment = factory.SubFactory(AssessmentFactory)
     rating = factory.SubFactory(RatingFactory)
     observations = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
+
+
+class AnnouncementFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Announcement
+
+    title = factory.Sequence(lambda n: 'Announcement-%d' % n)
+    content = "This is the really good content for %s\n" % title

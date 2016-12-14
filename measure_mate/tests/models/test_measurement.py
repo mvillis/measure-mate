@@ -2,7 +2,8 @@ from django.test import TestCase
 from django.core.exceptions import ValidationError
 
 from measure_mate.models import Measurement
-from measure_mate.tests.factories import TemplateFactory, AttributeFactory, AssessmentFactory, RatingFactory, MeasurementFactory
+from measure_mate.tests.factories import TemplateFactory, AttributeFactory, AssessmentFactory, RatingFactory, \
+    MeasurementFactory
 
 
 class MeasurementTestCases(TestCase):
@@ -52,4 +53,3 @@ class MeasurementTestCases(TestCase):
 
         measurement2 = MeasurementFactory(assessment=assessment, rating=rating1, target_rating=rating2)
         self.assertRaises(ValidationError, measurement2.clean)
-

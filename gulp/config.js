@@ -18,8 +18,6 @@ var fontsSource = [
   'client/fonts/**'
 ]
 var fontsDestination = dest + '/fonts'
-var templatesSource = 'templates/**'
-var templatesDestination = dest
 
 module.exports = {
 
@@ -81,14 +79,8 @@ module.exports = {
 
   build: {
     production: production,
-    prod_tasks: ['browserify', 'css', 'fonts', 'assets', 'templates'],
-    test_tasks: ['browserify', 'css', 'fonts', 'assets', 'templates', 'lint', 'lint-css', 'lint-markdown', 'test']
-  },
-
-  templates: {
-    // *Note* templates don't use the common src
-    src: templatesSource,
-    dest: templatesDestination
+    prod_tasks: ['browserify', 'css', 'fonts', 'assets'],
+    test_tasks: ['browserify', 'css', 'fonts', 'assets', 'lint', 'lint-css', 'lint-markdown', 'test']
   },
 
   browserify: {

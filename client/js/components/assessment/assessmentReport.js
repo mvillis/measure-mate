@@ -5,6 +5,7 @@ var _ = require('lodash')
 var PlotlyComponent = require('./plotlyComponent')
 var ReactBootstrap = require('react-bootstrap')
 var Table = ReactBootstrap.Table
+var ReactMarkdown = require('react-markdown')
 
 var AssessmentReport = React.createClass({
   propTypes: {
@@ -113,10 +114,14 @@ var AssessmentReport = React.createClass({
 
         summaryRows.push(
           <tr key={attribute.id}>
-            <td style={{verticalAlign: 'middle'}}>{attribute.name}</td>
+            <td style={{verticalAlign: 'middle', fontWeight: 'bold'}}>{attribute.name}</td>
             <td className='text-center' style={currentStyle}>{currentRating ? currentRating.name : '-'}</td>
             <td className='text-center' style={targetStyle}>{targetRating ? targetRating.name : '-'}</td>
-            <td>{measurement ? measurement.action : '-'}</td>
+            <td>
+              {measurement && measurement.action
+                ? <ReactMarkdown escapeHtml source={measurement.action} />
+                : '-'}
+            </td>
           </tr>
         )
       }, this))
@@ -129,7 +134,7 @@ var AssessmentReport = React.createClass({
             <th>Practice/Capability</th>
             <th className='text-center'>Current</th>
             <th className='text-center'>Target</th>
-            <th>Action</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>

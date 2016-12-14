@@ -5,3 +5,7 @@ python manage.py loaddata LAMA DevOps HealthCheck tags
 
 # won't work if there are already assessments, so ignore failures
 python manage.py loaddata team assessment || true
+
+if [ "$DJANGO_DEBUG" = "True" ]; then
+    python manage.py loaddata announcement || true
+fi

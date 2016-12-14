@@ -4,17 +4,19 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from rest_framework import routers
 
-from views import AssessmentViewSet, AttributeViewSet, MeasurementViewSet, RatingViewSet, TagViewSet, TeamViewSet, TemplateViewSet, \
-        export_data, healthcheck, home, robots_txt, schema_view
+from views import AnnouncementViewSet, AssessmentViewSet, AttributeViewSet, MeasurementViewSet, RatingViewSet, \
+    TagViewSet, TeamViewSet, TemplateViewSet, \
+    export_data, healthcheck, home, robots_txt, schema_view
 
 router = routers.DefaultRouter()
-router.register(r'templates', TemplateViewSet)
-router.register(r'attributes', AttributeViewSet)
-router.register(r'tags', TagViewSet)
-router.register(r'measurements', MeasurementViewSet)
+router.register(r'announcements', AnnouncementViewSet)
 router.register(r'assessments', AssessmentViewSet)
+router.register(r'attributes', AttributeViewSet)
+router.register(r'measurements', MeasurementViewSet)
 router.register(r'ratings', RatingViewSet)
+router.register(r'tags', TagViewSet)
 router.register(r'teams', TeamViewSet)
+router.register(r'templates', TemplateViewSet)
 
 urlpatterns = [
     url(r'^healthcheck/?$', healthcheck, name='healthcheck'),

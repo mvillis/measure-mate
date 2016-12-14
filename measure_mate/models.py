@@ -1,7 +1,7 @@
 import re
 
-from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -9,13 +9,13 @@ from django.utils.translation import ugettext_lazy as _
 class Template(models.Model):
     class Meta:
         verbose_name_plural = "Templates"
+        ordering = ['pk', ]
 
-    id = models.AutoField(primary_key=True, verbose_name="Template ID")
-    name = models.CharField(max_length=256, unique=True,
-                            verbose_name="Template Name")
-    short_desc = models.CharField(max_length=256)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=256, unique=True)
     taggable = models.BooleanField(default=0)
-    enabled = models.BooleanField(default=1)
+    enabled = models.BooleanField(default=1, db_index=True)
+    short_desc = models.CharField(max_length=256, verbose_name="Description")
 
     def __unicode__(self):
         return self.name
@@ -27,12 +27,12 @@ class Attribute(models.Model):
         unique_together = ("template", "name")
         ordering = ['template', 'rank', 'pk']
 
-    id = models.AutoField(primary_key=True, verbose_name="Attribute ID")
-    name = models.CharField(max_length=256, verbose_name="Attribute Name")
-    desc = models.TextField()
-    desc_class = models.CharField(max_length=256, default="", blank=True)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=256)
     template = models.ForeignKey(Template, related_name='attributes')
-    rank = models.IntegerField(default=1)
+    rank = models.IntegerField(default=1, db_index=True)
+    desc = models.TextField(verbose_name="Description")
+    desc_class = models.CharField(max_length=256, default="", blank=True, verbose_name="Description CSS Class")
 
     def __unicode__(self):
         return str(self.template) + " - " + self.name
@@ -44,25 +44,24 @@ class Rating(models.Model):
         unique_together = ("attribute", "name")
         ordering = ['attribute', 'rank', 'pk']
 
-    id = models.AutoField(primary_key=True, verbose_name="Rating ID")
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=256)
     attribute = models.ForeignKey(Attribute, related_name='ratings')
-    name = models.CharField(max_length=256, verbose_name="Rating Name")
-    desc = models.TextField()
-    desc_class = models.CharField(max_length=256, default="", blank=True)
-    rank = models.IntegerField(default=1)
+    rank = models.IntegerField(default=1, db_index=True)
     colour = models.CharField(max_length=256, null=True, blank=True)
+    desc = models.TextField(verbose_name="Description")
+    desc_class = models.CharField(max_length=256, default="", blank=True, verbose_name="Description CSS Class")
 
     def __unicode__(self):
         return str(self.attribute) + " - " + self.name
 
 
-# Throws a ValidationError if uppercase characters are found
-uppercase_re = re.compile(r'[A-Z]')
-validate_lowercase = RegexValidator(
-    regex = uppercase_re,
-    message = _(u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens."),
-    code = 'invalid',
-    inverse_match = True
+tag_re = re.compile(r'^[a-z0-9][a-z0-9_-]*[a-z0-9]$')
+validate_tag = RegexValidator(
+    regex=tag_re,
+    message=_(
+        u"Enter a valid 'slug' consisting of lowercase letters, numbers, underscores or hyphens; starting and ending with letters or numbers."),
+    code='invalid',
 )
 
 
@@ -71,8 +70,8 @@ class Tag(models.Model):
         verbose_name_plural = "Tags"
         ordering = ['name']
 
-    id = models.AutoField(primary_key=True, verbose_name="Tag ID")
-    name = models.SlugField(unique=True, verbose_name="Tag Name", validators=[validate_lowercase])
+    id = models.AutoField(primary_key=True)
+    name = models.SlugField(unique=True, validators=[validate_tag], db_index=True)
 
     def __unicode__(self):
         return self.name
@@ -83,12 +82,12 @@ class Team(models.Model):
         verbose_name_plural = "Teams"
         ordering = ['pk']
 
-    id = models.AutoField(primary_key=True, verbose_name="Team ID")
-    name = models.CharField(max_length=256, unique=True, verbose_name="Team Name")
-    short_desc = models.CharField(max_length=256)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=256, unique=True)
+    short_desc = models.CharField(max_length=256, verbose_name="Description")
+    tags = models.ManyToManyField(Tag, )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    tags = models.ManyToManyField(Tag,)
 
     def __unicode__(self):
         return self.name
@@ -104,18 +103,18 @@ class Assessment(models.Model):
         ('DONE', 'Done'),
     )
 
-    id = models.AutoField(primary_key=True, verbose_name="Assessment ID")
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    id = models.AutoField(primary_key=True)
+    team = models.ForeignKey(Team, related_name="assessments", db_index=True)
+    template = models.ForeignKey(Template, related_name="assessments")
     status = models.CharField(
         max_length=128,
         choices=STATUS_CHOICES,
         default='TODO',
         blank=False,
     )
-    template = models.ForeignKey(Template, related_name="assessments")
-    tags = models.ManyToManyField(Tag,)
-    team = models.ForeignKey(Team, related_name="assessments")
+    tags = models.ManyToManyField(Tag, )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return str(self.team) + " - " + str(self.template) + " - " + str(self.id)
@@ -142,3 +141,28 @@ class Measurement(models.Model):
             raise ValidationError(_('Measurement attributes must be for the same template as the assessment'))
         if self.target_rating is not None and self.assessment.template.id != self.target_rating.attribute.template.id:
             raise ValidationError(_('Measurement ratings must be for the same template as the assessment'))
+
+
+class Announcement(models.Model):
+    class Meta:
+        verbose_name_plural = "Announcements"
+
+    STYLE_CHOICES = (
+        ('default', 'Default'),
+        ('primary', 'Primary'),
+        ('success', 'Success'),
+        ('info',    'Success'),
+        ('warning', 'Warning'),
+        ('danger',  'Danger'),
+    )
+
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=50, unique=True)
+    enabled = models.BooleanField(default=1, db_index=True)
+    style = models.CharField(max_length=50, choices=STYLE_CHOICES, default='warning')
+    content = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return str(self.title)
