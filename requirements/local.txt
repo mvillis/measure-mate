@@ -2,6 +2,7 @@
 
 mock>=2.0.0
 factory_boy>=2.7.0
+fake-factory=0.7.2
 flake8>=3.0.4
 mccabe>=0.5.2
 pyflakes>=1.2.3
