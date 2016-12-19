@@ -1,15 +1,16 @@
 var browserSync = require('browser-sync')
 var browserify = require('browserify')
-var watchify = require('watchify')
 var uglify = require('gulp-uglify')
-var bundleLogger = require('../util/bundleLogger')
 var gulp = require('gulp')
 var util = require('gulp-util')
-var handleErrors = require('../util/handleErrors')
 var source = require('vinyl-source-stream')
 var sourcemaps = require('gulp-sourcemaps')
 var buffer = require('vinyl-buffer')
+
 var config = require('../config').browserify
+
+var bundleLogger = require('../util/bundleLogger')
+var handleErrors = require('../util/handleErrors')
 // build check
 var isWatching = require('../util/isWatching')
 
@@ -71,7 +72,9 @@ gulp.task('browserify', function (callback) {
         .on('end', reportFinished)
     }
 
-    if (isWatching) {
+    if (!config.production && isWatching) {
+      var watchify = require('watchify')
+
       util.log('Enabling Watchify for Browserify')
       // Wrap with watchify and rebundle on changes
       bundler = watchify(bundler)

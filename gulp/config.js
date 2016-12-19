@@ -99,6 +99,7 @@ module.exports = {
   },
 
   lint: {
+    production: production,
     src: [
       'gulpfile.js',
       './gulp/*.js',
@@ -111,6 +112,7 @@ module.exports = {
   },
 
   test: {
+    production: production,
     src: './client/js/**/*.js',
     testSrc: './client/**/*test.js',
     mochaOptions: {
@@ -126,6 +128,7 @@ module.exports = {
   },
 
   lintCss: {
+    production: production,
     src: [
       'client/css/*.css'
     ],
@@ -135,6 +138,7 @@ module.exports = {
   },
 
   markdownlint: {
+    production: production,
     src: [
       '*.md'
     ],
@@ -144,6 +148,7 @@ module.exports = {
   },
 
   standard: {
+    production: production,
     breakOnError: true,
     quiet: true
   }
