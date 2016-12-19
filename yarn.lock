@@ -5151,10 +5151,6 @@ log-symbols@^1.0.2:
   dependencies:
     chalk "^1.0.0"
 
-loglevel@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.4.1.tgz#95b383f91a3c2756fd4ab093667e4309161f2bcd"
-
 lolex@1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/lolex/-/lolex-1.3.2.tgz#7c3da62ffcb30f0f5a80a2566ca24e45d8a01f31"
@@ -6842,7 +6838,7 @@ req-from@^1.0.1:
   dependencies:
     resolve-from "^2.0.0"
 
-request@2.75.0, request@^2.55.0, request@^2.74.0:
+request@2.75.0, request@^2.39.0, request@^2.55.0, request@^2.74.0:
   version "2.75.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.75.0.tgz#d2b8268a286da13eaa5d01adf5d18cc90f657d93"
   dependencies:
@@ -6893,7 +6889,7 @@ request@2.78.0:
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
 
-request@^2.39.0, request@^2.79.0:
+request@^2.79.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -8527,7 +8523,7 @@ warning@^3.0.0:
   dependencies:
     loose-envify "^1.0.0"
 
-watchify@^3.7.0:
+watchify@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/watchify/-/watchify-3.8.0.tgz#a5cacc3517ca1e637d7b0af745375cafb597d6bb"
   dependencies:
