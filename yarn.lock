@@ -8796,7 +8796,7 @@ yargs@^4.3.2:
 
 yargs@^6.5.0:
   version "6.5.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/yargs/-/yargs-6.5.0.tgz#a902e23a1f0fe912b2a03f6131b7ed740c9718ff"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.5.0.tgz#a902e23a1f0fe912b2a03f6131b7ed740c9718ff"
   dependencies:
     camelcase "^3.0.0"
     cliui "^3.2.0"
