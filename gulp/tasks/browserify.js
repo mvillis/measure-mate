@@ -1,4 +1,3 @@
-var browserSync = require('browser-sync')
 var browserify = require('browserify')
 var uglify = require('gulp-uglify')
 var gulp = require('gulp')
@@ -13,6 +12,9 @@ var bundleLogger = require('../util/bundleLogger')
 var handleErrors = require('../util/handleErrors')
 // build check
 var isWatching = require('../util/isWatching')
+
+var browserSync = config.production || require('browser-sync')
+var watchify = config.production || require('watchify')
 
 gulp.task('browserify', function (callback) {
   var bundleQueue = config.bundleConfigs.length
@@ -38,7 +40,7 @@ gulp.task('browserify', function (callback) {
 
       if (bundleQueue) {
         // reload browserSync on changes
-        browserSync.reload()
+        config.production || browserSync.reload()
 
         bundleQueue--
         if (bundleQueue === 0) {
@@ -73,8 +75,6 @@ gulp.task('browserify', function (callback) {
     }
 
     if (!config.production && isWatching) {
-      var watchify = require('watchify')
-
       util.log('Enabling Watchify for Browserify')
       // Wrap with watchify and rebundle on changes
       bundler = watchify(bundler)

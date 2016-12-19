@@ -90,6 +90,7 @@
     "gulp-standard": "^8.0.3",
     "gulp-stylelint": "^3.6.0",
     "jsdom": "^9.8.3",
+    "lodash.assign": "^4.2.0",
     "markdownlint": "^0.3.0",
     "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.4.1",
