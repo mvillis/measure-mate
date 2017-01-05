@@ -16,7 +16,7 @@ if (!config.production) {
   var mode = config.browserSyncMode + 'Options'
   assign(bsConfig, config.browserSync[mode])
 
-  var startBrowserSync = function () {
+  startBrowserSync = function () {
     if (global.isBuilding === true) {
       setTimeout(startBrowserSync, 100)
     } else {
