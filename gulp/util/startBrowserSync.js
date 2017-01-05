@@ -20,7 +20,7 @@ if (!config.production) {
     if (global.isBuilding === true) {
       setTimeout(startBrowserSync, 100)
     } else {
-      gutil.log('Build complete, starting BrowserSync')
+      util.log('Build complete, starting BrowserSync')
       browserSync(bsConfig)
     }
   }
