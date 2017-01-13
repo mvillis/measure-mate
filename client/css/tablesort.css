@@ -1,17 +1,8 @@
-th.sort-header::-moz-selection { background: transparent; }
-
-th.sort-header::selection { background: transparent; }
-
-th.sort-header {
+th[role=columnheader]:not(.no-sort) {
   cursor: pointer;
 }
 
-th.sort-header::-moz-selection,
-th.sort-header::selection {
-  background: transparent;
-}
-
-table th.sort-header::after {
+th[role=columnheader]:not(.no-sort)::after {
   content: '';
   float: right;
   margin-top: 7px;
@@ -19,20 +10,23 @@ table th.sort-header::after {
   border-style: solid;
   border-color: #404040 transparent;
   visibility: hidden;
+  opacity: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
-table th.sort-header:hover::after {
-  visibility: visible;
+th[aria-sort=ascending]:not(.no-sort)::after {
+  border-bottom: none;
+  border-width: 4px 4px 0;
 }
 
-table th.sort-up::after,
-table th.sort-down::after,
-table th.sort-down:hover::after {
+th[aria-sort]:not(.no-sort)::after {
   visibility: visible;
   opacity: 0.4;
 }
 
-table th.sort-up::after {
-  border-bottom: none;
-  border-width: 4px 4px 0;
+th[role=columnheader]:not(.no-sort):hover::after {
+  visibility: visible;
+  opacity: 1;
 }
