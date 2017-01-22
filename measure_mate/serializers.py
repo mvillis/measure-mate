@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
+from .models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
 
 
 class RatingSerializer(serializers.ModelSerializer):
