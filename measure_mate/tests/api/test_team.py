@@ -1,3 +1,4 @@
+import six
 import datetime
 
 from rest_framework import status
@@ -28,7 +29,7 @@ class TeamAPITestCases(APITestCase):
         self.assertEqual(datetime.datetime.strptime(response.data['updated'], '%Y-%m-%dT%H:%M:%S.%fZ'),
                          team.updated.replace(tzinfo=None))
         self.assertEqual(len(response.data['tags']), 2)
-        self.assertItemsEqual(response.data['tags'], [tag1.id, tag2.id])
+        six.assertCountEqual(self, response.data['tags'], [tag1.id, tag2.id])
 
     def test_list_team(self):
         """
@@ -105,4 +106,4 @@ class TeamAPITestCases(APITestCase):
         self.assertEqual(response.data['name'], data['name'])
         self.assertEqual(response.data['short_desc'], data['short_desc'])
         self.assertEqual(len(response.data['tags']), 2)
-        self.assertItemsEqual(response.data['tags'], [tag1.id, tag3.id])
+        six.assertCountEqual(self, response.data['tags'], [tag1.id, tag3.id])

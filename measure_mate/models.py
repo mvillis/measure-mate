@@ -1,13 +1,17 @@
 import re
 
+from builtins import str, object
+from future.utils import python_2_unicode_compatible
+
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
+@python_2_unicode_compatible
 class Template(models.Model):
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Templates"
         ordering = ['pk', ]
 
@@ -17,12 +21,13 @@ class Template(models.Model):
     enabled = models.BooleanField(default=1, db_index=True)
     short_desc = models.CharField(max_length=256, verbose_name="Description")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
+@python_2_unicode_compatible
 class Attribute(models.Model):
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Attributes"
         unique_together = ("template", "name")
         ordering = ['template', 'rank', 'pk']
@@ -34,12 +39,13 @@ class Attribute(models.Model):
     desc = models.TextField(verbose_name="Description")
     desc_class = models.CharField(max_length=256, default="", blank=True, verbose_name="Description CSS Class")
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.template) + " - " + self.name
 
 
+@python_2_unicode_compatible
 class Rating(models.Model):
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Ratings"
         unique_together = ("attribute", "name")
         ordering = ['attribute', 'rank', 'pk']
@@ -52,7 +58,7 @@ class Rating(models.Model):
     desc = models.TextField(verbose_name="Description")
     desc_class = models.CharField(max_length=256, default="", blank=True, verbose_name="Description CSS Class")
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.attribute) + " - " + self.name
 
 
@@ -65,20 +71,22 @@ validate_tag = RegexValidator(
 )
 
 
+@python_2_unicode_compatible
 class Tag(models.Model):
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Tags"
         ordering = ['name']
 
     id = models.AutoField(primary_key=True)
     name = models.SlugField(unique=True, validators=[validate_tag], db_index=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
+@python_2_unicode_compatible
 class Team(models.Model):
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Teams"
         ordering = ['pk']
 
@@ -89,12 +97,13 @@ class Team(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
+@python_2_unicode_compatible
 class Assessment(models.Model):
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Assessments"
         ordering = ['-pk']
 
@@ -116,12 +125,13 @@ class Assessment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.team) + " - " + str(self.template) + " - " + str(self.id)
 
 
+@python_2_unicode_compatible
 class Measurement(models.Model):
-    class Meta:
+    class Meta(object):
         unique_together = ("assessment", "rating")
         verbose_name_plural = "Measurements"
 
@@ -133,7 +143,7 @@ class Measurement(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.assessment) + " - " + self.rating.attribute.name + " - " + self.rating.name
 
     def clean(self):
@@ -143,8 +153,9 @@ class Measurement(models.Model):
             raise ValidationError(_('Measurement ratings must be for the same template as the assessment'))
 
 
+@python_2_unicode_compatible
 class Announcement(models.Model):
-    class Meta:
+    class Meta(object):
         verbose_name_plural = "Announcements"
 
     STYLE_CHOICES = (
@@ -164,5 +175,5 @@ class Announcement(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.title)
