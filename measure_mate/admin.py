@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
+from .models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
 
 
 class AnnouncementAdmin(admin.ModelAdmin):
