@@ -1,4 +1,6 @@
-version: v1.5.2
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.0
+# patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
@@ -43,6 +45,10 @@ patch:
         patched: '2016-09-05T01:26:49.657Z'
     - gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+    - gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
+        patched: '2016-11-04T01:00:04.518Z'
+    - gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
+        patched: '2016-12-14T23:33:08.253Z'
   'npm:negotiator:20160616':
     - browser-sync > socket.io > engine.io > accepts > negotiator:
         patched: '2016-08-30T03:10:49.683Z'
@@ -50,7 +56,7 @@ patch:
         patched: '2016-09-05T01:26:49.657Z'
   'npm:request:20160119':
     - browser-sync > localtunnel > request:
-        patched: '2016-09-05T01:26:49.657Z'
+        patched: '2016-11-04T01:00:04.518Z'
   'npm:tough-cookie:20160722':
     - npm > node-gyp > request > tough-cookie:
         patched: '2016-09-05T01:26:49.657Z'
@@ -64,6 +70,12 @@ patch:
         patched: '2016-10-05T12:10:50.635Z'
     - watchify > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
         patched: '2016-10-05T12:10:50.635Z'
+    - browser-sync > localtunnel > request > tough-cookie:
+        patched: '2016-11-04T01:00:04.518Z'
+    - glob-watcher > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2016-11-09T11:59:30.484Z'
+    - gulp > glob-watcher > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2016-11-09T11:59:30.484Z'
   'npm:ws:20160624':
     - engine.io-client > ws:
         patched: '2016-08-30T03:10:49.683Z'
@@ -75,20 +87,24 @@ patch:
         patched: '2016-09-05T01:26:49.657Z'
     - browser-sync > socket.io > socket.io-client > engine.io-client > ws:
         patched: '2016-10-05T12:10:50.635Z'
+  'npm:marked:20170112':
+    - gulp-notify > node-notifier > cli-usage > marked:
+        patched: '2017-02-10T14:35:47.264Z'
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-13T23:43:19.492Z'
   'npm:express:20140912':
     - browser-sync > browser-sync-ui > weinre > express:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-13T23:43:19.492Z'
   'npm:qs:20140806':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-12-09T12:01:29.999Z'
+        expires: '2017-01-13T23:43:19.493Z'
   'npm:qs:20140806-1':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2016-12-09T12:01:30.000Z'
+        expires: '2017-01-13T23:43:19.493Z'

@@ -1,3 +1,4 @@
+from builtins import str
 from django.test import TestCase
 
 from measure_mate.tests.factories import TagFactory

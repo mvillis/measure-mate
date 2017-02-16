@@ -1,5 +1,5 @@
 {
-  "name": "measure-mate",
+  "name": "autolama",
   "description": "Simple tool to track maturity assessments.",
   "repository": "https://github.com/mvillis/measure-mate",
   "website": "https://github.com/mvillis/measure-mate",
@@ -21,7 +21,7 @@
   ],
   "buildpacks": [
     {
-      "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs.git#yarn"
     },
     {
       "url": "https://github.com/heroku/heroku-buildpack-python.git"

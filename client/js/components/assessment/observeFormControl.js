@@ -9,6 +9,7 @@ var FormGroup = ReactBootstrap.FormGroup
 var ControlLabel = ReactBootstrap.ControlLabel
 var Button = ReactBootstrap.Button
 var Panel = ReactBootstrap.Panel
+var ReactMarkdown = require('react-markdown')
 
 var ObserveFormControl = React.createClass({
   propTypes: {
@@ -135,7 +136,7 @@ var ObserveFormControl = React.createClass({
         <FormGroup>
           <ControlLabel>Observations</ControlLabel>
           {this.props.disabled
-            ? <Panel bsStyle='default'><FormControl.Static className='like-pre'>{this.state.observations}</FormControl.Static></Panel>
+            ? <Panel bsStyle='default'><ReactMarkdown escapeHtml source={this.state.observations} /></Panel>
             : <FormControl componentClass='textarea' rows='3'
               placeholder='Discuss your current practices and capture some notes.'
               ref='observeInput'
@@ -146,7 +147,7 @@ var ObserveFormControl = React.createClass({
         <FormGroup>
           <ControlLabel>Actions</ControlLabel>
           {this.props.disabled
-            ? <Panel bsStyle='default'><FormControl.Static className='like-pre'>{this.state.action}</FormControl.Static></Panel>
+            ? <Panel bsStyle='default'><ReactMarkdown escapeHtml source={this.state.action} /></Panel>
             : <FormControl componentClass='textarea' rows='3'
               placeholder='Record actions you can take to improve your current practices.'
               ref='actionInput'

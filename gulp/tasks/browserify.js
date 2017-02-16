@@ -1,19 +1,22 @@
-var browserSync = require('browser-sync')
 var browserify = require('browserify')
-var watchify = require('watchify')
 var uglify = require('gulp-uglify')
-var bundleLogger = require('../util/bundleLogger')
 var gulp = require('gulp')
 var util = require('gulp-util')
-var handleErrors = require('../util/handleErrors')
 var source = require('vinyl-source-stream')
 var sourcemaps = require('gulp-sourcemaps')
 var buffer = require('vinyl-buffer')
+
 var config = require('../config').browserify
+
+var bundleLogger = require('../util/bundleLogger')
+var handleErrors = require('../util/handleErrors')
 // build check
 var isWatching = require('../util/isWatching')
 
-gulp.task('build:js', function (done) {
+var browserSync = config.production || require('browser-sync')
+var watchify = config.production || require('watchify')
+
+gulp.task('build:js', function (callback) {
   var bundleQueue = config.bundleConfigs.length
 
   var browserifyThis = function (bundleConfig) {
@@ -37,13 +40,13 @@ gulp.task('build:js', function (done) {
 
       if (bundleQueue) {
         // reload browserSync on changes
-        browserSync.reload()
+        config.production || browserSync.reload()
 
         bundleQueue--
         if (bundleQueue === 0) {
           // If queue is empty, tell gulp the task is complete.
           // https://github.com/gulpjs/gulp/blob/master/docs/API.md#accept-a-callback
-          return done()
+          return callback()
         }
       }
     }
@@ -71,7 +74,7 @@ gulp.task('build:js', function (done) {
         .on('end', reportFinished)
     }
 
-    if (isWatching) {
+    if (!config.production && isWatching) {
       util.log('Enabling Watchify for Browserify')
       // Wrap with watchify and rebundle on changes
       bundler = watchify(bundler)

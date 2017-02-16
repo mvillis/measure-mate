@@ -1,11 +1,14 @@
+from builtins import object
+import string
+
 import factory
 import factory.fuzzy
-import string
-from measure_mate.models import Template, Attribute, Tag, Team, Assessment, Measurement, Rating
+
+from measure_mate.models import Template, Attribute, Tag, Team, Assessment, Measurement, Rating, Announcement
 
 
 class TemplateFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Template
         django_get_or_create = ('name', 'short_desc')
 
@@ -14,7 +17,7 @@ class TemplateFactory(factory.django.DjangoModelFactory):
 
 
 class AttributeFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Attribute
         django_get_or_create = ('name', 'desc', 'template')
 
@@ -24,16 +27,15 @@ class AttributeFactory(factory.django.DjangoModelFactory):
 
 
 class TagFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Tag
 
     name = factory.Sequence(lambda n: 'Tag-%d' % n)
 
 
 class TeamFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Team
-#        django_get_or_create = ('name', 'short_desc', 'created', 'updated')
 
     name = factory.Sequence(lambda n: 'Team %d' % n)
     short_desc = 'Test Team Short Description'
@@ -50,7 +52,7 @@ class TeamFactory(factory.django.DjangoModelFactory):
 
 
 class AssessmentFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Assessment
 
     template = factory.SubFactory(TemplateFactory)
@@ -68,7 +70,7 @@ class AssessmentFactory(factory.django.DjangoModelFactory):
 
 
 class RatingFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Rating
 
     attribute = factory.SubFactory(AttributeFactory)
@@ -78,9 +80,17 @@ class RatingFactory(factory.django.DjangoModelFactory):
 
 
 class MeasurementFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Measurement
 
     assessment = factory.SubFactory(AssessmentFactory)
     rating = factory.SubFactory(RatingFactory)
     observations = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
+
+
+class AnnouncementFactory(factory.django.DjangoModelFactory):
+    class Meta(object):
+        model = Announcement
+
+    title = factory.Sequence(lambda n: 'Announcement-%d' % n)
+    content = "This is the really good content for %s\n" % title

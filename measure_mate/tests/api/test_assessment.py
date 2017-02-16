@@ -1,9 +1,11 @@
+import six
 import datetime
 
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+
 from measure_mate.models import Assessment
 from measure_mate.tests.factories import AssessmentFactory, TemplateFactory, TagFactory, TeamFactory
 
@@ -175,9 +177,10 @@ class AssessmentAPITestCases(APITestCase):
         tag3 = TagFactory()
 
         url = reverse('assessment-detail', args=(assessment.id,))
-        data = {"id": assessment.id, "template": assessment.template.id, "status": assessment.status, "tags": [tag1.id, tag3.id]}
+        data = {"id": assessment.id, "template": assessment.template.id, "status": assessment.status,
+                "tags": [tag1.id, tag3.id]}
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['id'], data['id'])
         self.assertEqual(len(response.data['tags']), 2)
-        self.assertItemsEqual(response.data['tags'], [tag1.id, tag3.id])
+        six.assertCountEqual(self, response.data['tags'], [tag1.id, tag3.id])

@@ -40,7 +40,7 @@ var Assessment = React.createClass({
       alertType: '',
       previous_hide: false,
       next_hide: false,
-      assessmentTags: null
+      assessmentTags: []
     }
   },
   contextTypes: {
@@ -67,10 +67,13 @@ var Assessment = React.createClass({
     }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.assessmentId, this.measurementCallback)
     )
   },
-  assessmentCallback: function (data) {
+  assessmentCallback: function (assessment) {
     this.setState({
-      assessment: data
-    }, this.dataSource('/api/templates/' + data.template.id + '/', this.templateCallback)
+      assessment: assessment,
+      assessmentTags: assessment.tags.map(function (tagId) {
+        return { id: tagId, name: '•••' }
+      })
+    }, this.dataSource('/api/templates/' + assessment.template.id + '/', this.templateCallback)
     )
   },
   handleAlertHide () {
@@ -220,10 +223,9 @@ var Assessment = React.createClass({
               &nbsp;
               {this.state.assessment.template.short_desc}
               &nbsp;
-              {this.state.assessmentTags &&
-                <span className='wrap'>
-                  <TagList tags={this.state.assessmentTags} />
-                </span>}
+              <span className='wrap'>
+                <TagList tags={this.state.assessmentTags} />
+              </span>
               {this.state.assessment.status === 'DONE' && <Label>Read Only</Label>}
             </small>
           </PageHeader>}

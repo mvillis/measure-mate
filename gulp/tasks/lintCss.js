@@ -1,10 +1,18 @@
 var gulp = require('gulp')
 var util = require('gulp-util')
 var semver = require('semver')
+var config = require('../config').lintCss
 
-if (semver.gt(process.version, '1.0.0')) {
+if (semver.lt(process.version, '1.0.0')) {
+  gulp.task('lint-css', function () {
+    util.log(util.colors.magenta('WARNING:'), ' \'lint-css\' task skipped: NodeJS is too old.')
+  })
+} else if (config.production) {
+  gulp.task('lint-css', function () {
+    util.log(util.colors.magenta('WARNING:'), ' \'lint-css\' task skipped in production.')
+  })
+} else {
   var gulpStylelint = require('gulp-stylelint')
-  var config = require('../config').lintCss
 
   gulp.task('lint:css', function () {
     var options = Object.assign(
@@ -19,10 +27,6 @@ if (semver.gt(process.version, '1.0.0')) {
     return gulp
       .src(config.src)
       .pipe(gulpStylelint(options))
-  })
-} else {
-  gulp.task('lint:css', function () {
-    return util.log(util.colors.magenta('WARNING:'), ' \'lint:css\' task skipped: NodeJS is too old.')
   })
 }
 
