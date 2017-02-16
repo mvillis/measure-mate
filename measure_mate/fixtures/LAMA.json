@@ -150,7 +150,7 @@
       "colour": "Yellow",
       "rank": 2,
       "desc_class": "like-pre",
-      "desc": "(Includes items from Emerging marked with (+))\r\n\r\n* Stand-up meetings occur regularly but are usually initiated by the Iteration Manager/Project Manager or another facilitator (-)\r\n* At each meeting, all of the core team members answer the questions (+)\r\n  - \"What I have done since we last met\",\r\n  - \"What I plan to do before we next meet\",\r\n  - \"What is blocking me or may block me\"\r\n* Geographically remote team members are involved in Stand-up meetings (+)\r\n"
+      "desc": "(Includes items from Emerging marked with (+))\r\n\r\n* Stand-up meetings occur regularly but are usually initiated by the Iteration Manager/Project Manager or another facilitator (-)\r\n* At each meeting, all of the core team members answer the questions (+)\r\n  - \"What I have done since we last met?\",\r\n  - \"What I plan to do before we next meet?\",\r\n  - \"What is blocking me or may block me?\"\r\n* Geographically remote team members are involved in Stand-up meetings (+)\r\n"
     },
     "model": "measure_mate.rating",
     "pk": 103

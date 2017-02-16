@@ -1,10 +1,13 @@
 var gulp = require('gulp')
+var util = require('gulp-util')
 var concat = require('gulp-concat')
 var uglifycss = require('gulp-uglifycss')
 var sourcemaps = require('gulp-sourcemaps')
-var browserSync = require('browser-sync')
+
 var handleErrors = require('../util/handleErrors')
 var config = require('../config').css
+
+var browserSync = config.production || require('browser-sync')
 
 gulp.task('build:css', function () {
   return gulp.src(config.src)
@@ -18,5 +21,5 @@ gulp.task('build:css', function () {
     .on('error', handleErrors)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.dest))
-    .pipe(browserSync.reload({stream: true}))
+    .pipe(config.production ? util.noop() : browserSync.reload({stream: true}))
 })
