@@ -11,9 +11,9 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework_swagger.renderers import OpenAPIRenderer, SwaggerUIRenderer
 
-from headers import header, x_ua_compatible
-from models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
-from serializers import AnnouncementSerializer, AssessmentCreateSerializer, AssessmentSerializer, AttributeSerializer, \
+from .headers import header, x_ua_compatible
+from .models import Announcement, Attribute, Rating, Assessment, Measurement, Tag, Team, Template
+from .serializers import AnnouncementSerializer, AssessmentCreateSerializer, AssessmentSerializer, AttributeSerializer, \
     MeasurementCreateSerializer, RatingSerializer, TagSerializer, TeamCreateSerializer, TeamSerializer, \
     TemplateSerializer
 

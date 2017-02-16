@@ -1,3 +1,4 @@
+from builtins import object
 import string
 
 import factory
@@ -7,7 +8,7 @@ from measure_mate.models import Template, Attribute, Tag, Team, Assessment, Meas
 
 
 class TemplateFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Template
         django_get_or_create = ('name', 'short_desc')
 
@@ -16,7 +17,7 @@ class TemplateFactory(factory.django.DjangoModelFactory):
 
 
 class AttributeFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Attribute
         django_get_or_create = ('name', 'desc', 'template')
 
@@ -26,14 +27,14 @@ class AttributeFactory(factory.django.DjangoModelFactory):
 
 
 class TagFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Tag
 
     name = factory.Sequence(lambda n: 'Tag-%d' % n)
 
 
 class TeamFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Team
 
     name = factory.Sequence(lambda n: 'Team %d' % n)
@@ -51,7 +52,7 @@ class TeamFactory(factory.django.DjangoModelFactory):
 
 
 class AssessmentFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Assessment
 
     template = factory.SubFactory(TemplateFactory)
@@ -69,7 +70,7 @@ class AssessmentFactory(factory.django.DjangoModelFactory):
 
 
 class RatingFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Rating
 
     attribute = factory.SubFactory(AttributeFactory)
@@ -79,7 +80,7 @@ class RatingFactory(factory.django.DjangoModelFactory):
 
 
 class MeasurementFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Measurement
 
     assessment = factory.SubFactory(AssessmentFactory)
@@ -88,7 +89,7 @@ class MeasurementFactory(factory.django.DjangoModelFactory):
 
 
 class AnnouncementFactory(factory.django.DjangoModelFactory):
-    class Meta:
+    class Meta(object):
         model = Announcement
 
     title = factory.Sequence(lambda n: 'Announcement-%d' % n)
