@@ -1,26 +1,26 @@
-version: v1.5.2
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.0
+# patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
       gulp > vinyl-fs > glob-stream > minimatch:
-        patched: '2016-12-14T11:50:53.424Z'
+        patched: '2017-02-16T11:46:44.800Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
       gulp > vinyl-fs > glob-stream > glob > minimatch:
-        patched: '2016-12-14T11:50:53.424Z'
+        patched: '2017-02-16T11:46:44.800Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
-        patched: '2016-12-14T11:50:53.424Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2017-02-16T11:46:44.800Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
-        patched: '2016-12-14T11:50:53.424Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2017-02-16T11:46:44.800Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
-        patched: '2016-12-14T11:50:53.424Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - gulp-jshint > minimatch:
@@ -73,6 +73,16 @@ patch:
         patched: '2016-12-13T10:56:16.887Z'
     - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
         patched: '2016-12-13T10:56:16.887Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
+    - gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
+    - gulp-babel-istanbul > babel-istanbul > fileset > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2016-12-14T11:50:53.424Z'
   'npm:negotiator:20160616':
     - browser-sync > socket.io > engine.io > accepts > negotiator:
         patched: '2016-08-30T03:10:49.683Z'
@@ -105,20 +115,35 @@ patch:
         patched: '2016-09-05T01:26:49.657Z'
     - browser-sync > socket.io > socket.io-client > engine.io-client > ws:
         patched: '2016-10-05T12:10:50.635Z'
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: dev only
-        expires: '2017-01-13T01:24:24.929Z'
+        expires: '2017-03-18T11:48:52.247Z'
   'npm:express:20140912':
     - browser-sync > browser-sync-ui > weinre > express:
         reason: dev only
-        expires: '2017-01-13T01:24:24.930Z'
+        expires: '2017-03-18T11:48:52.248Z'
   'npm:qs:20140806':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2017-01-13T01:24:24.930Z'
+        expires: '2017-03-18T11:48:52.249Z'
   'npm:qs:20140806-1':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2017-01-13T01:24:24.931Z'
+        expires: '2017-03-18T11:48:52.253Z'
+  'npm:connect:20120107':
+    - browser-sync > browser-sync-ui > weinre > express > connect:
+        reason: None given
+        expires: '2017-03-18T11:48:52.246Z'
+  'npm:ws:20160920':
+    - browser-sync > socket.io-client > engine.io-client > ws:
+        reason: None given
+        expires: '2017-03-18T11:48:52.254Z'
+    - browser-sync > socket.io > engine.io > ws:
+        reason: None given
+        expires: '2017-03-18T11:48:52.255Z'
+    - browser-sync > socket.io > socket.io-client > engine.io-client > ws:
+        reason: None given
+        expires: '2017-03-18T11:48:52.257Z'
