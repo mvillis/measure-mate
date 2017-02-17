@@ -7,7 +7,10 @@ var sourcemaps = require('gulp-sourcemaps')
 var handleErrors = require('../util/handleErrors')
 var config = require('../config').css
 
-var browserSync = config.production || require('browser-sync')
+var reload = util.noop()
+if (!config.production) {
+  reload = require('browser-sync').reload
+}
 
 gulp.task('css', function () {
   gulp.src(config.src)
@@ -21,5 +24,5 @@ gulp.task('css', function () {
     .on('error', handleErrors)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.dest))
-    .pipe(config.production ? util.noop() : browserSync.reload({stream: true}))
+    .pipe(reload({stream: true}))
 })

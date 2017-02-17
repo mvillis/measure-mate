@@ -120,30 +120,34 @@ ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: dev only
-        expires: '2017-03-18T11:48:52.247Z'
+        expires: '2017-03-18T23:55:24.219Z'
   'npm:express:20140912':
     - browser-sync > browser-sync-ui > weinre > express:
         reason: dev only
-        expires: '2017-03-18T11:48:52.248Z'
+        expires: '2017-03-18T23:55:24.219Z'
   'npm:qs:20140806':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2017-03-18T11:48:52.249Z'
+        expires: '2017-03-18T23:55:24.219Z'
   'npm:qs:20140806-1':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2017-03-18T11:48:52.253Z'
+        expires: '2017-03-18T23:55:24.219Z'
   'npm:connect:20120107':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: None given
-        expires: '2017-03-18T11:48:52.246Z'
+        expires: '2017-03-18T23:55:24.219Z'
   'npm:ws:20160920':
     - browser-sync > socket.io-client > engine.io-client > ws:
         reason: None given
-        expires: '2017-03-18T11:48:52.254Z'
+        expires: '2017-03-18T23:55:24.219Z'
     - browser-sync > socket.io > engine.io > ws:
         reason: None given
-        expires: '2017-03-18T11:48:52.255Z'
+        expires: '2017-03-18T23:55:24.219Z'
     - browser-sync > socket.io > socket.io-client > engine.io-client > ws:
         reason: None given
-        expires: '2017-03-18T11:48:52.257Z'
+        expires: '2017-03-18T23:55:24.235Z'
+  'npm:shelljs:20140723':
+    - gulp-standard > standard > eslint > shelljs:
+        reason: None given
+        expires: '2017-03-18T23:55:24.219Z'
