@@ -3,8 +3,9 @@ var util = require('gulp-util')
 var config = require('../config').test
 
 if (config.production) {
-  gulp.task('test', function () {
+  gulp.task('test', function (done) {
     util.log(util.colors.magenta('WARNING:'), ' \'test\' task skipped in production.')
+    done()
   })
 } else {
   var mocha = require('gulp-mocha')
