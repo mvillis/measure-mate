@@ -4,7 +4,7 @@ var config = require('../config')
 
 var startBrowserSync = function () { }
 
-if (!config.production) {
+if (!config.production && !util.env.production) {
   var _ = require('lodash')
   var assign = require('lodash.assign')
   var browserSync = require('browser-sync')
