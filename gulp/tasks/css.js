@@ -7,7 +7,7 @@ var sourcemaps = require('gulp-sourcemaps')
 var handleErrors = require('../util/handleErrors')
 var config = require('../config').css
 
-var reload = util.noop()
+var reload = util.noop
 if (!config.production) {
   reload = require('browser-sync').reload
 }

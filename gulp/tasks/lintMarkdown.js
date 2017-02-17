@@ -4,8 +4,9 @@ var through2 = require('through2')
 var config = require('../config').markdownlint
 
 if (config.production) {
-  gulp.task('lint:markdown', function () {
+  gulp.task('lint:markdown', function (done) {
     util.log(util.colors.magenta('WARNING:'), ' \'lint-markdown\' task skipped in production.')
+    done()
   })
 } else {
   var markdownlint = require('markdownlint')
