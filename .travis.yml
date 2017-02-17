@@ -8,9 +8,12 @@ install:
   - nvm use stable
   - npm --version
   - npm install -g yarn
+  - yarn --version
   - yarn global add gulp-cli
-  - yarn install
+  - yarn install --production
   - gulp --version
+  - gulp build --production
+  - yarn install
   - gulp build
   - pip install -U pip setuptools wheel
   - pip install -r requirements/local.txt
