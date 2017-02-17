@@ -7,13 +7,13 @@ var sourcemaps = require('gulp-sourcemaps')
 var handleErrors = require('../util/handleErrors')
 var config = require('../config').css
 
-var reload = util.noop()
+var reload = util.noop
 if (!config.production) {
   reload = require('browser-sync').reload
 }
 
 gulp.task('css', function () {
-  gulp.src(config.src)
+  return gulp.src(config.src)
     .pipe(sourcemaps.init({loadMaps: true}))
     // transforms here
     .pipe(concat('bundle.css'))

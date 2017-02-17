@@ -8,8 +8,9 @@ var util = require('gulp-util')
 var config = require('../config')
 
 if (config.production) {
-  gulp.task('watch', function () {
+  gulp.task('watch', function (done) {
     util.log(util.colors.magenta('WARNING:'), ' \'watch\' task skipped in production.')
+    done()
   })
 } else {
   var startBrowserSync = require('../util/startBrowserSync')
