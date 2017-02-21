@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'crispy_forms',
     'rest_framework',
     'rest_framework_swagger',
+    'cspreports',
     'measure_mate',
 )
 
@@ -218,6 +219,7 @@ CSP_STYLE_SRC = ("'unsafe-inline'", "'self'", "fonts.googleapis.com",)
 CSP_IMG_SRC = ("'self'", "data:", "blob:", "online.swagger.io",)
 CSP_FONT_SRC = ("'self'", "fonts.gstatic.com",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin",)
+CSP_REPORT_URI = reverse_lazy('report_csp')
 
 LOGIN_URL = "/admin/login/"
 LOGOUT_URL = "/admin/logout/"
