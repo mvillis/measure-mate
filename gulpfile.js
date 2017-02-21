@@ -10,5 +10,5 @@ requireDir('./gulp/tasks', { recurse: true })
 if (config.production) {
   gulp.task('default', 'build')
 } else {
-  gulp.task('default', 'build-watch')
+  gulp.task('default', gulp.series('build', 'watch'))
 }
