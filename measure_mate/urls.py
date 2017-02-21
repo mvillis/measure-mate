@@ -4,7 +4,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.views.generic.base import RedirectView
 from rest_framework import routers
 
-import cspreports
+import cspreports.urls
 
 from .views import AnnouncementViewSet, AssessmentViewSet, AttributeViewSet, MeasurementViewSet, RatingViewSet, \
     TagViewSet, TeamViewSet, TemplateViewSet, \
@@ -31,5 +31,5 @@ urlpatterns = [
     url(r'^favicon\.ico', RedirectView.as_view(url=staticfiles_storage.url('assets/favicon.ico')), name='favicon'),
     url(r'^robots\.txt', robots_txt, name='robots'),
     url(r'^(?:about|assessment|team|)(?:/|$)', home, name='home'),
-    url(r'^csp-reports/', include(cspreports.urls)),
+    url(r'^csp/', include(cspreports.urls)),
 ]
