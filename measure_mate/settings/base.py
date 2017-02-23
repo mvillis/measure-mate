@@ -46,18 +46,9 @@ INSTALLED_APPS = (
     'rest_framework_swagger',
     'cspreports',
     'measure_mate',
-    'opbeat.contrib.django',
 )
 
-OPBEAT = {
-    'ORGANIZATION_ID': 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
-    'APP_ID': '906f4b4169',
-    'SECRET_TOKEN': '853611a92dc27df59c1c8ea73e446055a836eeee',
-}
-
-
 MIDDLEWARE_CLASSES = (
-    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',

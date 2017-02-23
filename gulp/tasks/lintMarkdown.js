@@ -5,7 +5,7 @@ var config = require('../config').markdownlint
 
 if (config.production) {
   gulp.task('lint:markdown', function (done) {
-    util.log(util.colors.magenta('WARNING:'), ' \'lint-markdown\' task skipped in production.')
+    util.log(util.colors.magenta('WARNING:'), ' \'lint:markdown\' task skipped in production.')
     done()
   })
 } else {
