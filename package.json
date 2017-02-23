@@ -6,7 +6,6 @@
   "main": "./client/index.js",
   "engines": {
     "node": ">=6.9.1 <7.0.0",
-    "npm": ">3.0.0",
     "yarn": ">0.20.3"
   },
   "repository": {
@@ -20,7 +19,6 @@
     "test": "snyk test && gulp test",
     "snyk-protect": "snyk protect",
     "gulp-build": "gulp build --production",
-    "x-postinstall": "npm run snyk-protect",
     "heroku-postbuild": "npm run gulp-build",
     "prepublish": "npm run snyk-protect"
   },
