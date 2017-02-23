@@ -374,7 +374,7 @@ aws4@^1.2.1:
 
 babel-cli@^6.23.0:
   version "6.23.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/babel-cli/-/babel-cli-6.23.0.tgz#52ff946a2b0f64645c35e7bd5eea267aa0948c0f"
+  resolved "https://registry.yarnpkg.com/babel-cli/-/babel-cli-6.23.0.tgz#52ff946a2b0f64645c35e7bd5eea267aa0948c0f"
   dependencies:
     babel-core "^6.23.0"
     babel-polyfill "^6.23.0"
@@ -551,7 +551,7 @@ babel-messages@^6.23.0:
 
 babel-plugin-add-react-displayname@^0.0.4:
   version "0.0.4"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/babel-plugin-add-react-displayname/-/babel-plugin-add-react-displayname-0.0.4.tgz#bc2a74bcbee6e505025b3352fea85ee7bc4c6f7c"
+  resolved "https://registry.yarnpkg.com/babel-plugin-add-react-displayname/-/babel-plugin-add-react-displayname-0.0.4.tgz#bc2a74bcbee6e505025b3352fea85ee7bc4c6f7c"
 
 babel-plugin-check-es2015-constants@^6.22.0:
   version "6.22.0"
@@ -828,7 +828,7 @@ babel-preset-flow@^6.23.0:
 
 babel-preset-react@^6.23.0:
   version "6.23.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/babel-preset-react/-/babel-preset-react-6.23.0.tgz#eb7cee4de98a3f94502c28565332da9819455195"
+  resolved "https://registry.yarnpkg.com/babel-preset-react/-/babel-preset-react-6.23.0.tgz#eb7cee4de98a3f94502c28565332da9819455195"
   dependencies:
     babel-plugin-syntax-jsx "^6.3.13"
     babel-plugin-transform-react-display-name "^6.23.0"
@@ -1131,7 +1131,7 @@ browser-sync-ui@0.6.3:
 
 browser-sync@^2.18.8:
   version "2.18.8"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/browser-sync/-/browser-sync-2.18.8.tgz#2fb4de253798d7cfb839afb9c2f801968490cec2"
+  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.18.8.tgz#2fb4de253798d7cfb839afb9c2f801968490cec2"
   dependencies:
     browser-sync-client "2.4.5"
     browser-sync-ui "0.6.3"
@@ -1852,7 +1852,7 @@ country-regex@^1.0.0:
 
 coveralls@^2.11.16:
   version "2.11.16"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/coveralls/-/coveralls-2.11.16.tgz#da9061265142ddee954f68379122be97be8ab4b1"
+  resolved "https://registry.yarnpkg.com/coveralls/-/coveralls-2.11.16.tgz#da9061265142ddee954f68379122be97be8ab4b1"
   dependencies:
     js-yaml "3.6.1"
     lcov-parse "0.0.10"
@@ -2429,7 +2429,7 @@ error-ex@^1.2.0:
 
 error-stack-parser@^1.3.5:
   version "1.3.6"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/error-stack-parser/-/error-stack-parser-1.3.6.tgz#e0e73b93e417138d1cd7c0b746b1a4a14854c292"
+  resolved "https://registry.yarnpkg.com/error-stack-parser/-/error-stack-parser-1.3.6.tgz#e0e73b93e417138d1cd7c0b746b1a4a14854c292"
   dependencies:
     stackframe "^0.3.1"
 
@@ -2573,11 +2573,11 @@ eslint-config-standard@6.2.1, eslint-config-standard@^6.2.1:
 
 eslint-plugin-promise@^3.4.1, eslint-plugin-promise@~3.4.0:
   version "3.4.2"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/eslint-plugin-promise/-/eslint-plugin-promise-3.4.2.tgz#1be2793eafe2d18b5b123b8136c269f804fe7122"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.4.2.tgz#1be2793eafe2d18b5b123b8136c269f804fe7122"
 
 eslint-plugin-react@^6.10.0:
   version "6.10.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/eslint-plugin-react/-/eslint-plugin-react-6.10.0.tgz#9c48b48d101554b5355413e7c64238abde6ef1ef"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-6.10.0.tgz#9c48b48d101554b5355413e7c64238abde6ef1ef"
   dependencies:
     array.prototype.find "^2.0.1"
     doctrine "^1.2.2"
@@ -3927,7 +3927,7 @@ gulp-sourcemaps@1.6.0:
 
 gulp-sourcemaps@^2.4.1:
   version "2.4.1"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/gulp-sourcemaps/-/gulp-sourcemaps-2.4.1.tgz#8f65dc5c0d07b2fd5c88bc60ec7f13e56716bf74"
+  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.4.1.tgz#8f65dc5c0d07b2fd5c88bc60ec7f13e56716bf74"
   dependencies:
     acorn "4.X"
     convert-source-map "1.X"
@@ -3942,7 +3942,7 @@ gulp-sourcemaps@^2.4.1:
 
 gulp-standard@^8.0.4:
   version "8.0.4"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/gulp-standard/-/gulp-standard-8.0.4.tgz#d4e5ea97a3fb34246108d824f049c6d5a5bb54b4"
+  resolved "https://registry.yarnpkg.com/gulp-standard/-/gulp-standard-8.0.4.tgz#d4e5ea97a3fb34246108d824f049c6d5a5bb54b4"
   dependencies:
     app-root-path "^1.0.0"
     colors "^1.1.2"
@@ -3954,7 +3954,7 @@ gulp-standard@^8.0.4:
 
 gulp-stylelint@^3.8.0:
   version "3.9.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/gulp-stylelint/-/gulp-stylelint-3.9.0.tgz#a09a67af490b1fb28eb910b4cbfb5412c7f0bb71"
+  resolved "https://registry.yarnpkg.com/gulp-stylelint/-/gulp-stylelint-3.9.0.tgz#a09a67af490b1fb28eb910b4cbfb5412c7f0bb71"
   dependencies:
     chalk "^1.1.3"
     deep-extend "^0.4.1"
@@ -4645,7 +4645,7 @@ jsbn@~0.1.0:
 
 jsdom@^9.11.0:
   version "9.11.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/jsdom/-/jsdom-9.11.0.tgz#a95b0304e521a2ca5a63c6ea47bf7708a7a84591"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-9.11.0.tgz#a95b0304e521a2ca5a63c6ea47bf7708a7a84591"
   dependencies:
     abab "^1.0.3"
     acorn "^4.0.4"
@@ -5167,7 +5167,7 @@ log-symbols@^1.0.2:
 
 loglevel@^1.4.0:
   version "1.4.1"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/loglevel/-/loglevel-1.4.1.tgz#95b383f91a3c2756fd4ab093667e4309161f2bcd"
+  resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.4.1.tgz#95b383f91a3c2756fd4ab093667e4309161f2bcd"
 
 lolex@1.3.2:
   version "1.3.2"
@@ -5903,7 +5903,7 @@ onetime@^1.0.0:
 
 opbeat-react@^2.1.7:
   version "2.1.7"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/opbeat-react/-/opbeat-react-2.1.7.tgz#8217c524a7d01826ecd721084de5c37c8b001834"
+  resolved "https://registry.yarnpkg.com/opbeat-react/-/opbeat-react-2.1.7.tgz#8217c524a7d01826ecd721084de5c37c8b001834"
   dependencies:
     error-stack-parser "^1.3.5"
     loglevel "^1.4.0"
@@ -6244,7 +6244,7 @@ planar-graph-to-polyline@^1.0.0:
 
 plotly.js@^1.23.1:
   version "1.23.1"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/plotly.js/-/plotly.js-1.23.1.tgz#508babf14ea62698f6a46148179ae1361730c6fc"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.23.1.tgz#508babf14ea62698f6a46148179ae1361730c6fc"
   dependencies:
     "3d-view" "^2.0.0"
     alpha-shape "^1.0.0"
@@ -7273,7 +7273,7 @@ signum@^1.0.0:
 
 simple-lru-cache@0.0.2:
   version "0.0.2"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/simple-lru-cache/-/simple-lru-cache-0.0.2.tgz#d59cc3a193c1a5d0320f84ee732f6e4713e511dd"
+  resolved "https://registry.yarnpkg.com/simple-lru-cache/-/simple-lru-cache-0.0.2.tgz#d59cc3a193c1a5d0320f84ee732f6e4713e511dd"
 
 simplicial-complex-boundary@^1.0.0:
   version "1.0.1"
@@ -7628,7 +7628,7 @@ sshpk@^1.7.0:
 
 stack-generator@^1.0.7:
   version "1.1.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stack-generator/-/stack-generator-1.1.0.tgz#36f6a920751a6c10f499a13c32cbb5f51a0b8b25"
+  resolved "https://registry.yarnpkg.com/stack-generator/-/stack-generator-1.1.0.tgz#36f6a920751a6c10f499a13c32cbb5f51a0b8b25"
   dependencies:
     stackframe "^1.0.2"
 
@@ -7638,11 +7638,11 @@ stack-trace@0.0.9:
 
 stackframe@^0.3.1:
   version "0.3.1"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stackframe/-/stackframe-0.3.1.tgz#33aa84f1177a5548c8935533cbfeb3420975f5a4"
+  resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-0.3.1.tgz#33aa84f1177a5548c8935533cbfeb3420975f5a4"
 
 stackframe@^1.0.2:
   version "1.0.2"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stackframe/-/stackframe-1.0.2.tgz#162245509c687d328b14f671dab8fdb755b1e1e8"
+  resolved "https://registry.yarnpkg.com/stackframe/-/stackframe-1.0.2.tgz#162245509c687d328b14f671dab8fdb755b1e1e8"
 
 standard-engine@~5.2.0:
   version "5.2.0"
@@ -7854,7 +7854,7 @@ stylehacks@^2.3.0:
 
 stylelint-config-standard@^16.0.0:
   version "16.0.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stylelint-config-standard/-/stylelint-config-standard-16.0.0.tgz#bb7387bff1d7dd7186a52b3ebf885b2405d691bf"
+  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-16.0.0.tgz#bb7387bff1d7dd7186a52b3ebf885b2405d691bf"
 
 stylelint@^7.8.0:
   version "7.8.0"
@@ -7897,7 +7897,7 @@ stylelint@^7.8.0:
 
 stylelint@^7.9.0:
   version "7.9.0"
-  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stylelint/-/stylelint-7.9.0.tgz#b8d9ea20f887ab351075c6aded9528de24509327"
+  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-7.9.0.tgz#b8d9ea20f887ab351075c6aded9528de24509327"
   dependencies:
     autoprefixer "^6.0.0"
     balanced-match "^0.4.0"
