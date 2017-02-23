@@ -78,13 +78,9 @@ acorn-object-spread@^1.0.0:
   dependencies:
     acorn "^3.1.0"
 
-acorn@4.0.4:
+acorn@4.0.4, acorn@4.X, acorn@^4.0.0, acorn@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.4.tgz#17a8d6a7a6c4ef538b814ec9abac2779293bf30a"
-
-acorn@4.X, acorn@^4.0.0, acorn@^4.0.4:
-  version "4.0.11"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.11.tgz#edcda3bd937e7556410d42ed5860f67399c794c0"
 
 acorn@^1.0.3:
   version "1.2.2"
@@ -376,9 +372,9 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-babel-cli@^6.18.0:
+babel-cli@^6.23.0:
   version "6.23.0"
-  resolved "https://registry.yarnpkg.com/babel-cli/-/babel-cli-6.23.0.tgz#52ff946a2b0f64645c35e7bd5eea267aa0948c0f"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/babel-cli/-/babel-cli-6.23.0.tgz#52ff946a2b0f64645c35e7bd5eea267aa0948c0f"
   dependencies:
     babel-core "^6.23.0"
     babel-polyfill "^6.23.0"
@@ -552,6 +548,10 @@ babel-messages@^6.23.0:
   resolved "https://registry.yarnpkg.com/babel-messages/-/babel-messages-6.23.0.tgz#f3cdf4703858035b2a2951c6ec5edf6c62f2630e"
   dependencies:
     babel-runtime "^6.22.0"
+
+babel-plugin-add-react-displayname@^0.0.4:
+  version "0.0.4"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/babel-plugin-add-react-displayname/-/babel-plugin-add-react-displayname-0.0.4.tgz#bc2a74bcbee6e505025b3352fea85ee7bc4c6f7c"
 
 babel-plugin-check-es2015-constants@^6.22.0:
   version "6.22.0"
@@ -826,9 +826,9 @@ babel-preset-flow@^6.23.0:
   dependencies:
     babel-plugin-transform-flow-strip-types "^6.22.0"
 
-babel-preset-react@^6.16.0:
+babel-preset-react@^6.23.0:
   version "6.23.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-react/-/babel-preset-react-6.23.0.tgz#eb7cee4de98a3f94502c28565332da9819455195"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/babel-preset-react/-/babel-preset-react-6.23.0.tgz#eb7cee4de98a3f94502c28565332da9819455195"
   dependencies:
     babel-plugin-syntax-jsx "^6.3.13"
     babel-plugin-transform-react-display-name "^6.23.0"
@@ -837,7 +837,7 @@ babel-preset-react@^6.16.0:
     babel-plugin-transform-react-jsx-source "^6.22.0"
     babel-preset-flow "^6.23.0"
 
-babel-register@^6.18.0, babel-register@^6.23.0:
+babel-register@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-register/-/babel-register-6.23.0.tgz#c9aa3d4cca94b51da34826c4a0f9e08145d74ff3"
   dependencies:
@@ -1129,9 +1129,9 @@ browser-sync-ui@0.6.3:
     stream-throttle "^0.1.3"
     weinre "^2.0.0-pre-I0Z7U9OV"
 
-browser-sync@^2.18.6:
+browser-sync@^2.18.8:
   version "2.18.8"
-  resolved "https://registry.yarnpkg.com/browser-sync/-/browser-sync-2.18.8.tgz#2fb4de253798d7cfb839afb9c2f801968490cec2"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/browser-sync/-/browser-sync-2.18.8.tgz#2fb4de253798d7cfb839afb9c2f801968490cec2"
   dependencies:
     browser-sync-client "2.4.5"
     browser-sync-ui "0.6.3"
@@ -1211,7 +1211,7 @@ browserify-zlib@~0.1.2:
   dependencies:
     pako "~0.2.0"
 
-browserify@^14.0.0:
+browserify@^14.0.0, browserify@^14.1.0:
   version "14.1.0"
   resolved "https://registry.yarnpkg.com/browserify/-/browserify-14.1.0.tgz#0508cc1e7bf4c152312c2fa523e676c0b0b92311"
   dependencies:
@@ -1850,9 +1850,9 @@ country-regex@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/country-regex/-/country-regex-1.0.3.tgz#f3b85b08b03b6a4c5c5c055a2dc4fe6838d7771b"
 
-coveralls@^2.11.14:
+coveralls@^2.11.16:
   version "2.11.16"
-  resolved "https://registry.yarnpkg.com/coveralls/-/coveralls-2.11.16.tgz#da9061265142ddee954f68379122be97be8ab4b1"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/coveralls/-/coveralls-2.11.16.tgz#da9061265142ddee954f68379122be97be8ab4b1"
   dependencies:
     js-yaml "3.6.1"
     lcov-parse "0.0.10"
@@ -2427,6 +2427,12 @@ error-ex@^1.2.0:
   dependencies:
     is-arrayish "^0.2.1"
 
+error-stack-parser@^1.3.5:
+  version "1.3.6"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/error-stack-parser/-/error-stack-parser-1.3.6.tgz#e0e73b93e417138d1cd7c0b746b1a4a14854c292"
+  dependencies:
+    stackframe "^0.3.1"
+
 es-abstract@^1.5.0, es-abstract@^1.6.1, es-abstract@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.7.0.tgz#dfade774e01bfcd97f96180298c449c8623fb94c"
@@ -2551,7 +2557,7 @@ eslint-config-standard-jsx@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/eslint-config-standard-jsx/-/eslint-config-standard-jsx-3.2.0.tgz#c240e26ed919a11a42aa4de8059472b38268d620"
 
-eslint-config-standard-jsx@^3.0.0, eslint-config-standard-jsx@^3.2.0:
+eslint-config-standard-jsx@^3.0.0, eslint-config-standard-jsx@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/eslint-config-standard-jsx/-/eslint-config-standard-jsx-3.3.0.tgz#cab0801a15a360bf63facb97ab22fbdd88d8a5e0"
 
@@ -2565,13 +2571,13 @@ eslint-config-standard@6.2.1, eslint-config-standard@^6.2.1:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/eslint-config-standard/-/eslint-config-standard-6.2.1.tgz#d3a68aafc7191639e7ee441e7348739026354292"
 
-eslint-plugin-promise@^3.4.0, eslint-plugin-promise@~3.4.0:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-3.4.1.tgz#6911a9010bf84e17d82e19e0ab0f80ab3ad6db4c"
+eslint-plugin-promise@^3.4.1, eslint-plugin-promise@~3.4.0:
+  version "3.4.2"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/eslint-plugin-promise/-/eslint-plugin-promise-3.4.2.tgz#1be2793eafe2d18b5b123b8136c269f804fe7122"
 
-eslint-plugin-react@^6.9.0:
+eslint-plugin-react@^6.10.0:
   version "6.10.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-6.10.0.tgz#9c48b48d101554b5355413e7c64238abde6ef1ef"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/eslint-plugin-react/-/eslint-plugin-react-6.10.0.tgz#9c48b48d101554b5355413e7c64238abde6ef1ef"
   dependencies:
     array.prototype.find "^2.0.1"
     doctrine "^1.2.2"
@@ -2590,7 +2596,7 @@ eslint-plugin-standard@^2.0.1, eslint-plugin-standard@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-standard/-/eslint-plugin-standard-2.0.1.tgz#3589699ff9c917f2c25f76a916687f641c369ff3"
 
-eslint@^3.0.0, eslint@^3.13.1:
+eslint@^3.0.0, eslint@^3.15.0:
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.15.0.tgz#bdcc6a6c5ffe08160e7b93c066695362a91e30f2"
   dependencies:
@@ -3919,9 +3925,9 @@ gulp-sourcemaps@1.6.0:
     through2 "^2.0.0"
     vinyl "^1.0.0"
 
-gulp-sourcemaps@^2.3.0:
+gulp-sourcemaps@^2.4.1:
   version "2.4.1"
-  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.4.1.tgz#8f65dc5c0d07b2fd5c88bc60ec7f13e56716bf74"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/gulp-sourcemaps/-/gulp-sourcemaps-2.4.1.tgz#8f65dc5c0d07b2fd5c88bc60ec7f13e56716bf74"
   dependencies:
     acorn "4.X"
     convert-source-map "1.X"
@@ -3934,9 +3940,9 @@ gulp-sourcemaps@^2.3.0:
     through2 "2.X"
     vinyl "1.X"
 
-gulp-standard@^8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/gulp-standard/-/gulp-standard-8.0.3.tgz#b5806c8e36f1e1c46be7aac0ae4a6e00c5425457"
+gulp-standard@^8.0.4:
+  version "8.0.4"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/gulp-standard/-/gulp-standard-8.0.4.tgz#d4e5ea97a3fb34246108d824f049c6d5a5bb54b4"
   dependencies:
     app-root-path "^1.0.0"
     colors "^1.1.2"
@@ -3946,16 +3952,16 @@ gulp-standard@^8.0.3:
     standard "^8.0.0"
     through2 "^2.0.0"
 
-gulp-stylelint@^3.7.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/gulp-stylelint/-/gulp-stylelint-3.8.0.tgz#f056de9b58d84affa28e3c867e9f520d98b3a20a"
+gulp-stylelint@^3.8.0:
+  version "3.9.0"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/gulp-stylelint/-/gulp-stylelint-3.9.0.tgz#a09a67af490b1fb28eb910b4cbfb5412c7f0bb71"
   dependencies:
     chalk "^1.1.3"
     deep-extend "^0.4.1"
     gulp-util "^3.0.8"
     mkdirp "^0.5.1"
     promise "^7.1.1"
-    stylelint "^7.8.0"
+    stylelint "^7.9.0"
     through2 "^2.0.3"
 
 gulp-uglify@^2.0.0:
@@ -4637,9 +4643,9 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
 
-jsdom@^9.9.1:
+jsdom@^9.11.0:
   version "9.11.0"
-  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-9.11.0.tgz#a95b0304e521a2ca5a63c6ea47bf7708a7a84591"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/jsdom/-/jsdom-9.11.0.tgz#a95b0304e521a2ca5a63c6ea47bf7708a7a84591"
   dependencies:
     abab "^1.0.3"
     acorn "^4.0.4"
@@ -5158,6 +5164,10 @@ log-symbols@^1.0.2:
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
   dependencies:
     chalk "^1.0.0"
+
+loglevel@^1.4.0:
+  version "1.4.1"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/loglevel/-/loglevel-1.4.1.tgz#95b383f91a3c2756fd4ab093667e4309161f2bcd"
 
 lolex@1.3.2:
   version "1.3.2"
@@ -5891,6 +5901,16 @@ onetime@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
 
+opbeat-react@^2.1.7:
+  version "2.1.7"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/opbeat-react/-/opbeat-react-2.1.7.tgz#8217c524a7d01826ecd721084de5c37c8b001834"
+  dependencies:
+    error-stack-parser "^1.3.5"
+    loglevel "^1.4.0"
+    simple-lru-cache "0.0.2"
+    stack-generator "^1.0.7"
+    zone.js "git://github.com/jahtalab/zone.js.git#dist"
+
 open@^0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/open/-/open-0.0.5.tgz#42c3e18ec95466b6bf0dc42f3a2945c3f0cad8fc"
@@ -6222,9 +6242,9 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.21.3:
+plotly.js@^1.23.1:
   version "1.23.1"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.23.1.tgz#508babf14ea62698f6a46148179ae1361730c6fc"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/plotly.js/-/plotly.js-1.23.1.tgz#508babf14ea62698f6a46148179ae1361730c6fc"
   dependencies:
     "3d-view" "^2.0.0"
     alpha-shape "^1.0.0"
@@ -6424,11 +6444,11 @@ public-encrypt@^4.0.0:
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
 
-punycode@1.3.2:
+punycode@1.3.2, punycode@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
 
-punycode@^1.3.2, punycode@^1.4.1:
+punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
@@ -6561,7 +6581,7 @@ react-markdown@^2.4.4:
     commonmark-react-renderer "^4.2.4"
     in-publish "^2.0.0"
 
-react-overlays@^0.6.10:
+react-overlays@^0.6.10, react-overlays@^0.6.11:
   version "0.6.11"
   resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.6.11.tgz#30689e813b0e1a000f24baee0f8a4a318a1a4232"
   dependencies:
@@ -7251,6 +7271,10 @@ signum@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/signum/-/signum-1.0.0.tgz#74a7d2bf2a20b40eba16a92b152124f1d559fa77"
 
+simple-lru-cache@0.0.2:
+  version "0.0.2"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/simple-lru-cache/-/simple-lru-cache-0.0.2.tgz#d59cc3a193c1a5d0320f84ee732f6e4713e511dd"
+
 simplicial-complex-boundary@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/simplicial-complex-boundary/-/simplicial-complex-boundary-1.0.1.tgz#72c9ff1e24deaa374c9bb2fa0cbf0c081ebef815"
@@ -7602,9 +7626,23 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
+stack-generator@^1.0.7:
+  version "1.1.0"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stack-generator/-/stack-generator-1.1.0.tgz#36f6a920751a6c10f499a13c32cbb5f51a0b8b25"
+  dependencies:
+    stackframe "^1.0.2"
+
 stack-trace@0.0.9:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/stack-trace/-/stack-trace-0.0.9.tgz#a8f6eaeca90674c333e7c43953f275b451510695"
+
+stackframe@^0.3.1:
+  version "0.3.1"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stackframe/-/stackframe-0.3.1.tgz#33aa84f1177a5548c8935533cbfeb3420975f5a4"
+
+stackframe@^1.0.2:
+  version "1.0.2"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stackframe/-/stackframe-1.0.2.tgz#162245509c687d328b14f671dab8fdb755b1e1e8"
 
 standard-engine@~5.2.0:
   version "5.2.0"
@@ -7814,11 +7852,11 @@ stylehacks@^2.3.0:
     text-table "^0.2.0"
     write-file-stdout "0.0.2"
 
-stylelint-config-standard@^15.0.1:
-  version "15.0.1"
-  resolved "https://registry.yarnpkg.com/stylelint-config-standard/-/stylelint-config-standard-15.0.1.tgz#f588e036bca6bb52391ea784198e773a9ca70efe"
+stylelint-config-standard@^16.0.0:
+  version "16.0.0"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stylelint-config-standard/-/stylelint-config-standard-16.0.0.tgz#bb7387bff1d7dd7186a52b3ebf885b2405d691bf"
 
-stylelint@^7.7.1, stylelint@^7.8.0:
+stylelint@^7.8.0:
   version "7.8.0"
   resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-7.8.0.tgz#ac701044ed03c44f7a9f73d4d5dc1bd1eaae12d1"
   dependencies:
@@ -7836,6 +7874,45 @@ stylelint@^7.7.1, stylelint@^7.8.0:
     ignore "^3.2.0"
     known-css-properties "^0.0.6"
     lodash "^4.0.0"
+    log-symbols "^1.0.2"
+    meow "^3.3.0"
+    micromatch "^2.3.11"
+    normalize-selector "^0.2.0"
+    postcss "^5.0.20"
+    postcss-less "^0.14.0"
+    postcss-media-query-parser "^0.2.0"
+    postcss-reporter "^3.0.0"
+    postcss-resolve-nested-selector "^0.1.1"
+    postcss-scss "^0.4.0"
+    postcss-selector-parser "^2.1.1"
+    postcss-value-parser "^3.1.1"
+    resolve-from "^2.0.0"
+    specificity "^0.3.0"
+    string-width "^2.0.0"
+    style-search "^0.1.0"
+    stylehacks "^2.3.0"
+    sugarss "^0.2.0"
+    svg-tags "^1.0.0"
+    table "^4.0.1"
+
+stylelint@^7.9.0:
+  version "7.9.0"
+  resolved "http://nexus.int.corp.sun/content/groups/publicnpm/stylelint/-/stylelint-7.9.0.tgz#b8d9ea20f887ab351075c6aded9528de24509327"
+  dependencies:
+    autoprefixer "^6.0.0"
+    balanced-match "^0.4.0"
+    chalk "^1.1.1"
+    colorguard "^1.2.0"
+    cosmiconfig "^2.1.1"
+    doiuse "^2.4.1"
+    execall "^1.0.0"
+    get-stdin "^5.0.0"
+    globby "^6.0.0"
+    globjoin "^0.1.4"
+    html-tags "^1.1.1"
+    ignore "^3.2.0"
+    known-css-properties "^0.0.6"
+    lodash "^4.17.4"
     log-symbols "^1.0.2"
     meow "^3.3.0"
     micromatch "^2.3.11"
@@ -8799,7 +8876,7 @@ yargs-parser@^4.1.0, yargs-parser@^4.2.0:
   dependencies:
     camelcase "^3.0.0"
 
-yargs@3.29.0, yargs@^3.28.0, yargs@^3.5.4:
+yargs@3.29.0, yargs@^3.28.0:
   version "3.29.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-3.29.0.tgz#1aab9660eae79d8b8f675bcaeeab6ee34c2cf69c"
   dependencies:
@@ -8832,6 +8909,15 @@ yargs@6.4.0:
 yargs@^1.2.6:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-1.3.3.tgz#054de8b61f22eefdb7207059eaef9d6b83fb931a"
+
+yargs@^3.5.4, yargs@~3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/yargs/-/yargs-3.10.0.tgz#f7ee7bd857dd7c1d2d38c0e74efbd681d1431fd1"
+  dependencies:
+    camelcase "^1.0.2"
+    cliui "^2.1.0"
+    decamelize "^1.0.0"
+    window-size "0.1.0"
 
 yargs@^4.3.2:
   version "4.8.1"
@@ -8870,15 +8956,6 @@ yargs@^6.6.0:
     y18n "^3.2.1"
     yargs-parser "^4.2.0"
 
-yargs@~3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-3.10.0.tgz#f7ee7bd857dd7c1d2d38c0e74efbd681d1431fd1"
-  dependencies:
-    camelcase "^1.0.2"
-    cliui "^2.1.0"
-    decamelize "^1.0.0"
-    window-size "0.1.0"
-
 yargs@~3.15.0:
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-3.15.0.tgz#3d9446ef21fb3791b3985690662e4b9683c7f181"
@@ -8897,3 +8974,7 @@ zero-crossings@^1.0.0:
   resolved "https://registry.yarnpkg.com/zero-crossings/-/zero-crossings-1.0.1.tgz#c562bd3113643f3443a245d12406b88b69b9a9ff"
   dependencies:
     cwise-compiler "^1.0.0"
+
+"zone.js@git://github.com/jahtalab/zone.js.git#dist":
+  version "0.6.17-noexc"
+  resolved "git://github.com/jahtalab/zone.js.git#1e065c75189130886722608709aade7a799880d0"

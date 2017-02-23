@@ -1,5 +1,13 @@
 'use strict'
 
+var initOpbeat = require('opbeat-react').initOpbeat
+require('opbeat-react/router')
+
+initOpbeat({
+  orgId: 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
+  appId: '708c8739c2',
+});
+
 var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactRouter = require('react-router')
