@@ -2,7 +2,8 @@
   {
     "fields": {
       "short_desc": "Lightweight Agile Maturity Assessment",
-      "name": "LAMA"
+      "name": "LAMA",
+      "taggable": true
     },
     "model": "measure_mate.template",
     "pk": 1
