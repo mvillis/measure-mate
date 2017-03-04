@@ -27,4 +27,3 @@ describe('About Component', function () {
       .contain('A tool to track maturity assessments for your team')
   })
 })
-

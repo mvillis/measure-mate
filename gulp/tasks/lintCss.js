@@ -31,4 +31,3 @@ if (semver.lt(process.version, '1.0.0')) {
       .pipe(gulpStylelint(options))
   })
 }
-
