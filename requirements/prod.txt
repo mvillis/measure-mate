@@ -2,4 +2,4 @@
 
 psycopg2==2.7
 gunicorn==19.7.0
-gevent==1.2.0
+gevent==1.2.1
