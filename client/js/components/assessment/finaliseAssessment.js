@@ -20,9 +20,7 @@ var FinaliseAssessment = React.createClass({
   },
   shouldComponentUpdate: function (nextProps, nextState) {
     return (
-      nextProps.assessment.status !== this.props.assessment.status ||
-      nextProps.isSummaryTab ||
-      this.props.isSummaryTab && !nextProps.isSummaryTab
+      (nextProps.assessment.status !== this.props.assessment.status) || nextProps.isSummaryTab || (this.props.isSummaryTab && !nextProps.isSummaryTab)
     )
   },
   close () {

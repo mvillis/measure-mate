@@ -43,12 +43,14 @@
 .target-btn {
   position: absolute;
   right: 25px;
+  z-index: 100;
 }
 
 .target-help {
   position: absolute;
   right: 5px;
   top: 13px;
+  z-index: 100;
 }
 
 #attribute-list {
@@ -56,7 +58,8 @@
 }
 
 .inline {
-  display: inline;
+  display: inline-block;
+  width: 100%;
 }
 
 .clickable {

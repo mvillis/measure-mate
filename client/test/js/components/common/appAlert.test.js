@@ -36,4 +36,3 @@ describe('AppAlert Component', function () {
       .contain('alert detail alpha beta gamma')
   })
 })
-
