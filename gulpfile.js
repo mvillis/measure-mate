@@ -7,4 +7,8 @@ var config = require('./gulp/config')
 // Require all tasks in gulp/tasks, including subfolders
 requireDir('./gulp/tasks', { recurse: true })
 
-gulp.task('default', gulp.series('build', 'watch'))
+if (config.production) {
+  gulp.task('default', 'build')
+} else {
+  gulp.task('default', gulp.series('build', 'watch'))
+}

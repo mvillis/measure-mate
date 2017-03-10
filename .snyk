@@ -108,3 +108,7 @@ ignore:
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
         expires: '2017-01-13T23:43:19.493Z'
+  'npm:concat-stream:20160901':
+    - plotly.js > mapbox-gl > geojson-rewind > concat-stream:
+        reason: None given
+        expires: '2017-04-09T11:33:52.308Z'
