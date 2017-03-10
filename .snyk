@@ -5,20 +5,12 @@ patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
-      gulp > vinyl-fs > glob-stream > minimatch:
-        patched: '2017-02-17T05:59:51.378Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-stream > glob > minimatch:
-        patched: '2017-02-17T05:59:51.378Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
-        patched: '2017-02-17T05:59:51.378Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
-        patched: '2017-02-17T05:59:51.378Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
@@ -99,6 +91,14 @@ patch:
         patched: '2017-02-17T05:38:16.412Z'
     - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
         patched: '2017-02-17T05:38:16.412Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2017-02-17T05:59:51.378Z'
+    - gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2017-02-17T05:59:51.378Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2017-02-17T05:59:51.378Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2017-02-17T05:59:51.378Z'
   'npm:negotiator:20160616':
     - browser-sync > socket.io > engine.io > accepts > negotiator:
         patched: '2016-08-30T03:10:49.683Z'
@@ -167,3 +167,7 @@ ignore:
     - gulp-standard > standard > eslint > shelljs:
         reason: None given
         expires: '2017-03-18T23:55:24.219Z'
+  'npm:concat-stream:20160901':
+    - plotly.js > mapbox-gl > geojson-rewind > concat-stream:
+        reason: None given
+        expires: '2017-04-09T11:15:20.138Z'
