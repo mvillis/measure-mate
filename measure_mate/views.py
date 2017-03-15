@@ -133,7 +133,7 @@ class MeasurementViewSet(viewsets.ModelViewSet):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementCreateSerializer
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('rating__id', 'rating__attribute', 'assessment__id')
+    filter_fields = ('rating__id', 'rating__name', 'target_rating__id', 'target_rating__name', 'assessment__id', 'attribute__name', 'attribute__id')
 
     def is_read_only(self, request):
         old_assessment = Assessment.objects.get(pk=request.data.get('assessment'))
