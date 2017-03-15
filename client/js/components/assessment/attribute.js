@@ -76,6 +76,7 @@ var Attribute = React.createClass({
       action: (this.state.action) ? this.state.action : '',
       id: (this.state.measurement) ? this.state.measurement.id : '',
       assessment: this.props.params.assessmentId,
+      attribute: this.state.attribute.id,
       rating: (ratingType === 'rating') ? value : this.state.measurement.rating,
       target_rating: (ratingType === 'target')
         ? value
@@ -107,7 +108,7 @@ var Attribute = React.createClass({
     }
 
     return (
-      <Loader loaded={this.state.attribute}>
+      <Loader loaded={!!this.state.attribute}>
         {this.state.attribute &&
           <Panel header={this.state.attribute.name || ''} bsStyle='primary'>
             <Alert bsStyle='warning'>

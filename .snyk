@@ -5,12 +5,20 @@ patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
+      gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2017-03-15T11:01:37.069Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2017-03-15T11:01:37.069Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2017-03-15T11:01:37.069Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2017-03-15T11:01:37.069Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
@@ -171,3 +179,72 @@ ignore:
     - plotly.js > mapbox-gl > geojson-rewind > concat-stream:
         reason: None given
         expires: '2017-04-09T11:15:20.138Z'
+      brfs > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.199Z'
+    - mapbox-gl-shaders > brfs > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.199Z'
+    - plotly.js > gl-contour2d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.200Z'
+    - plotly.js > gl-error2d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.200Z'
+    - plotly.js > gl-error3d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.200Z'
+    - plotly.js > gl-heatmap2d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.202Z'
+    - plotly.js > gl-line2d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.202Z'
+    - plotly.js > gl-line3d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.203Z'
+    - plotly.js > gl-mesh3d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.204Z'
+    - plotly.js > gl-pointcloud2d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.204Z'
+    - plotly.js > gl-scatter2d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.204Z'
+    - plotly.js > gl-scatter3d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.205Z'
+    - plotly.js > gl-select-box > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.205Z'
+    - plotly.js > gl-surface3d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.206Z'
+    - plotly.js > gl-scatter2d-fancy > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.207Z'
+    - plotly.js > ndarray-fill > cwise > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.207Z'
+    - plotly.js > gl-plot2d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.208Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.208Z'
+    - plotly.js > gl-plot3d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.208Z'
+    - plotly.js > gl-plot3d > gl-axes3d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.208Z'
+    - plotly.js > gl-plot3d > gl-spikes3d > glslify > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.209Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.209Z'
+    - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.209Z'
