@@ -14,11 +14,12 @@ class MeasurementTestCases(TestCase):
         """
         template = TemplateFactory()
         attribute = AttributeFactory(template=template)
-        assessment = AssessmentFactory(template=template)
         rating = RatingFactory(attribute=attribute)
         target_rating = RatingFactory(attribute=attribute)
-        measurement = MeasurementFactory(assessment=assessment, rating=rating, target_rating=target_rating)
+        assessment = AssessmentFactory(template=template)
+        measurement = MeasurementFactory(assessment=assessment, attribute=attribute, rating=rating, target_rating=target_rating)
         measurement.clean()
+
         self.assertEqual(1, Measurement.objects.count())
         self.assertEqual("%s - %s - %s" % (str(assessment), attribute.name, rating.name), str(measurement))
 
@@ -30,7 +31,7 @@ class MeasurementTestCases(TestCase):
         attribute = AttributeFactory(template=template)
         assessment = AssessmentFactory(template=template)
         rating = RatingFactory(attribute=attribute)
-        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+        measurement = MeasurementFactory(assessment=assessment, attribute=attribute, rating=rating)
         measurement.clean()
         self.assertEqual(1, Measurement.objects.count())
         self.assertEqual("%s - %s - %s" % (str(assessment), attribute.name, rating.name), str(measurement))
@@ -49,8 +50,8 @@ class MeasurementTestCases(TestCase):
         attribute2 = AttributeFactory(template=template2)
         rating2 = RatingFactory(attribute=attribute2)
 
-        measurement1 = MeasurementFactory(assessment=assessment, rating=rating2)
+        measurement1 = MeasurementFactory(assessment=assessment, attribute=attribute1, rating=rating2)
         self.assertRaises(ValidationError, measurement1.clean)
 
-        measurement2 = MeasurementFactory(assessment=assessment, rating=rating1, target_rating=rating2)
+        measurement2 = MeasurementFactory(assessment=assessment, attribute=attribute2, rating=rating1, target_rating=rating2)
         self.assertRaises(ValidationError, measurement2.clean)

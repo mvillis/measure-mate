@@ -1,4 +1,5 @@
 import re
+import sys
 
 from builtins import str, object
 from future.utils import python_2_unicode_compatible
@@ -132,7 +133,7 @@ class Assessment(models.Model):
 @python_2_unicode_compatible
 class Measurement(models.Model):
     class Meta(object):
-        unique_together = (("assessment", "rating"), ("assessment", "target_rating"), ("assessment", "attribute"),)
+        unique_together = (("assessment", "attribute"),)
         verbose_name_plural = "Measurements"
 
     assessment = models.ForeignKey(Assessment, related_name="measurements")
@@ -148,14 +149,19 @@ class Measurement(models.Model):
         return str(self.assessment) + " - " + self.rating.attribute.name + " - " + self.rating.name
 
     def clean(self):
-        if not self.attribute and self.rating:
-            self.attribute = self.rating.attribute
-        if self.assessment.template.id != self.rating.attribute.template.id or self.attribute.id != self.rating.attribute.id:
+        if self.assessment.template.id != self.attribute.template.id:
             raise ValidationError(_('Measurement attributes must be for the same template as the assessment'))
-        if self.target_rating is not None and \
-            (self.assessment.template.id != self.target_rating.attribute.template.id or \
-             self.attribute.id != self.target_rating.attribute.id):
+
+        if self.attribute.id != self.rating.attribute.id:
+            raise ValidationError(_('Measurement rating must be for the same attribute'))
+        if self.assessment.template.id != self.rating.attribute.template.id:
             raise ValidationError(_('Measurement ratings must be for the same template as the assessment'))
+
+        if self.target_rating is not None:
+            if self.attribute.id != self.target_rating.attribute.id:
+                raise ValidationError(_('Measurement target rating must be for the same attribute'))
+            if self.assessment.template.id != self.target_rating.attribute.template.id:
+                raise ValidationError(_('Measurement target ratings must be for the same template as the assessment'))
 
 
 @python_2_unicode_compatible
