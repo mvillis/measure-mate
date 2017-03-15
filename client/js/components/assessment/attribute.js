@@ -108,7 +108,7 @@ var Attribute = React.createClass({
     }
 
     return (
-      <Loader loaded={this.state.attribute}>
+      <Loader loaded={!!this.state.attribute}>
         {this.state.attribute &&
           <Panel header={this.state.attribute.name || ''} bsStyle='primary'>
             <Alert bsStyle='warning'>
