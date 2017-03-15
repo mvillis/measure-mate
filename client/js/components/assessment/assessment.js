@@ -81,13 +81,13 @@ var Assessment = React.createClass({
   },
   handleSubmitFailure: function (xhr, ajaxOptions, thrownError) {
     console.log(thrownError)
-    console.log(xhr.responseJSON.detail)
+    console.log(xhr.responseJSON)
     console.log(ajaxOptions)
     this.setState({
       measureSyncActivity: false,
       showAlert: true,
       alertType: thrownError,
-      alertDetail: xhr.responseJSON.detail
+      alertDetail: xhr.responseJSON.detail ? xhr.responseJSON.detail : 'Unexpected error'
     })
   },
   dataSource: function (url, callback) {
