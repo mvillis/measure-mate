@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='measurement',
             name='attribute',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='measurements', to='measure_mate.Attribute'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='measurements', to='measure_mate.Attribute'),
             preserve_default=False,
         ),
     ]
