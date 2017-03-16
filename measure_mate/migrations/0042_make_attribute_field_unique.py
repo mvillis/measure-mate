@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             name='measurement',
             unique_together=set([('assessment', 'attribute')]),
         ),
-        migrations.AddField(
+        migrations.AlterField(
             model_name='measurement',
             name='attribute',
             field=models.ForeignKey(null=False, on_delete=django.db.models.deletion.CASCADE, related_name='measurements', to='measure_mate.Attribute'),
