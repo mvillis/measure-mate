@@ -18,7 +18,7 @@ if (config.production || util.env.production) {
   gulp.task('watch', ['build'], function () {
     startBrowserSync()
     gulp.watch(config.assets.src, ['assets'])
-    gulp.watch(config.css.src, ['lintCss', 'css'])
+    gulp.watch(config.css.src, ['lint-css', 'css'])
     gulp.watch([
       config.clientDir + '/js/**',
       config.clientDir + '/test/js/**'
