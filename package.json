@@ -37,7 +37,7 @@
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-notify": "^3.0.0",
-    "gulp-sourcemaps": "^2.4.1",
+    "gulp-sourcemaps": "^2.5.0",
     "gulp-uglify": "^2.1.2",
     "gulp-uglifycss": "^1.0.8",
     "gulp-util": "^3.0.8",
