@@ -74,7 +74,7 @@
     "babel-register": "^6.24.0",
     "browser-sync": "^2.18.8",
     "chai": "^3.5.0",
-    "coveralls": "^2.11.16",
+    "coveralls": "^2.13.0",
     "enzyme": "^2.8.0",
     "eslint": "^3.18.0",
     "eslint-config-standard": "^7.1.0",
