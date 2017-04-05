@@ -27,6 +27,7 @@ var TeamList = React.createClass({
           <tr>
             <th>#</th>
             <th>Team Name</th>
+            <th>Team Description</th>
             <th className='no-sort'>Tags</th>
             <th data-sort-method='string'>Created Date</th>
             <th data-sort-method='string'>Updated Date</th>
@@ -47,6 +48,7 @@ var TeamList = React.createClass({
                     <a href={teamUrl}>{team.id}</a>
                   </td>
                   <td>{team.name}</td>
+                  <td>{team.short_desc}</td>
                   <td className='wrap'>
                     {this.props.teamTags.hasOwnProperty(team.id)
                       ? <TagList tags={this.props.teamTags[team.id] || []} />
