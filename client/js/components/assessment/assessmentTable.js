@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
 var Loader = require('react-loader')
 var $ = require('jquery')
@@ -7,7 +9,7 @@ var AssessmentList = require('./assessmentList')
 
 var AssessmentTable = React.createClass({
   propTypes: {
-    teamId: React.PropTypes.number
+    teamId: PropTypes.number
   },
   loadAssessmentTagsFromServer: function (assessmentId) {
     var url = '/api/tags/?assessment__id=' + assessmentId

@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
 var ReactRouter = require('react-router')
 var browserHistory = ReactRouter.browserHistory
@@ -19,8 +21,8 @@ var HttpStatus = require('http-status-codes')
 
 var TeamCreationForm = React.createClass({
   propTypes: {
-    initialTeam: React.PropTypes.object,
-    initialTags: React.PropTypes.array
+    initialTeam: PropTypes.object,
+    initialTags: PropTypes.array
   },
   getInitialState: function () {
     if (this.props.initialTeam) {
