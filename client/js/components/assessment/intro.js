@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
@@ -9,8 +11,8 @@ var Button = ReactBootstrap.Button
 
 var Intro = React.createClass({
   propTypes: {
-    template: React.PropTypes.object,
-    params: React.PropTypes.object
+    template: PropTypes.object,
+    params: PropTypes.object
   },
   getInitialState: function () {
     return {

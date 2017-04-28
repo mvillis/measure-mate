@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactBootstrap = require('react-bootstrap')
@@ -13,9 +15,9 @@ var TablesortCore = require('../common/tablesortCore')
 
 var AssessmentList = React.createClass({
   propTypes: {
-    showTeams: React.PropTypes.bool,
-    assessments: React.PropTypes.array.isRequired,
-    assessmentTags: React.PropTypes.object.isRequired
+    showTeams: PropTypes.bool,
+    assessments: PropTypes.array.isRequired,
+    assessmentTags: PropTypes.object.isRequired
   },
   componentDidMount: function () {
     var assessmentList = ReactDOM.findDOMNode(this.refs.assessmentList)

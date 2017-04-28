@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
@@ -21,9 +23,9 @@ var $ = require('jquery')
 
 var Assessment = React.createClass({
   propTypes: {
-    params: React.PropTypes.object,
-    location: React.PropTypes.object,
-    children: React.PropTypes.object
+    params: PropTypes.object,
+    location: PropTypes.object,
+    children: PropTypes.object
   },
   getInitialState: function () {
     return {
@@ -44,7 +46,7 @@ var Assessment = React.createClass({
     }
   },
   contextTypes: {
-    router: React.PropTypes.object
+    router: PropTypes.object
   },
   componentWillMount: function () {
     this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
@@ -81,13 +83,13 @@ var Assessment = React.createClass({
   },
   handleSubmitFailure: function (xhr, ajaxOptions, thrownError) {
     console.log(thrownError)
-    console.log(xhr.responseJSON.detail)
+    console.log(xhr.responseJSON)
     console.log(ajaxOptions)
     this.setState({
       measureSyncActivity: false,
       showAlert: true,
       alertType: thrownError,
-      alertDetail: xhr.responseJSON.detail
+      alertDetail: xhr.responseJSON.detail ? xhr.responseJSON.detail : 'Unexpected error'
     })
   },
   dataSource: function (url, callback) {

@@ -84,7 +84,8 @@ class MeasurementFactory(factory.django.DjangoModelFactory):
         model = Measurement
 
     assessment = factory.SubFactory(AssessmentFactory)
-    rating = factory.SubFactory(RatingFactory)
+    attribute = factory.SubFactory(AttributeFactory)
+    rating = factory.SubFactory(RatingFactory, attribute=attribute)
     observations = factory.fuzzy.FuzzyText(length=256, chars=string.ascii_letters)
 
 

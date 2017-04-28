@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
 var Select = require('react-select')
 var ReactBootstrap = require('react-bootstrap')
@@ -8,8 +10,8 @@ var $ = require('jquery')
 
 var TemplateSelect = React.createClass({
   propTypes: {
-    value: React.PropTypes.any,
-    onChange: React.PropTypes.func.isRequired
+    value: PropTypes.any,
+    onChange: PropTypes.func.isRequired
   },
   displayName: 'TemplateSelect',
 
