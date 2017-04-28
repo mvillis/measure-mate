@@ -1,8 +1,12 @@
 'use strict'
 
-var OpbeatReact = require('opbeat-react')
+import initOpbeat from 'opbeat-react'
+import { Router } from 'react-router'
+import { wrapRouter } from 'opbeat-react'
 
-OpbeatReact.configure({
+const OpbeatRouter = wrapRouter(Router)
+
+initOpbeat({
   orgId: 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
   appId: '708c8739c2'
 })
@@ -11,7 +15,6 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var ReactRouter = require('react-router')
 var browserHistory = ReactRouter.browserHistory
-var Router = ReactRouter.Router
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute
 var IndexRedirect = ReactRouter.IndexRedirect
@@ -27,8 +30,6 @@ var TeamTable = require('./components/team/teamTable')
 var NotFoundPage = require('./components/notFoundPage')
 var About = require('./components/common/about')
 var ReactRedirect = require('react-redirect')
-
-const OpbeatRouter = OpbeatReact.wrapRouter(Router)
 
 var Admin = React.createClass({
   render: function () {

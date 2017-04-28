@@ -216,7 +216,7 @@ X_FRAME_OPTIONS = 'DENY'
 
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_SCRIPT_SRC = ("'unsafe-eval'", "'unsafe-inline'", "'self'",)
-CSP_CONNECT_SRC = ("'self'",)
+CSP_CONNECT_SRC = ("'self'","intake.opbeat.com")
 CSP_STYLE_SRC = ("'unsafe-inline'", "'self'", "fonts.googleapis.com",)
 CSP_IMG_SRC = ("'self'", "data:", "blob:", "online.swagger.io",)
 CSP_FONT_SRC = ("'self'", "fonts.gstatic.com",)
