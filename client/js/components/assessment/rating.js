@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
 global.jQuery = require('jquery')
 var ReactBootstrap = require('react-bootstrap')
@@ -12,12 +14,12 @@ var ReactMarkdown = require('react-markdown')
 
 var Rating = React.createClass({
   propTypes: {
-    eventKey: React.PropTypes.number,
-    measurement: React.PropTypes.object,
-    assessId: React.PropTypes.string.isRequired,
-    attribute: React.PropTypes.object,
-    saveMeasurement: React.PropTypes.func.isRequired,
-    rating: React.PropTypes.object
+    eventKey: PropTypes.number,
+    measurement: PropTypes.object,
+    assessId: PropTypes.string.isRequired,
+    attribute: PropTypes.object,
+    saveMeasurement: PropTypes.func.isRequired,
+    rating: PropTypes.object
   },
 
   ratingClick: function (e) {
