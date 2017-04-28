@@ -1,7 +1,6 @@
 'use strict'
 
 var OpbeatReact = require('opbeat-react')
-require('opbeat-react/router')
 
 OpbeatReact.initOpbeat({
   orgId: 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
@@ -27,8 +26,9 @@ var Team = require('./components/team/team')
 var TeamTable = require('./components/team/teamTable')
 var NotFoundPage = require('./components/notFoundPage')
 var About = require('./components/common/about')
-
 var ReactRedirect = require('react-redirect')
+
+var OpbeatRouter = OpbeatReact.wrapRouter(Router)
 
 var Admin = React.createClass({
   render: function () {
@@ -47,7 +47,7 @@ var Export = React.createClass({
 })
 
 ReactDOM.render(
-  <Router history={browserHistory}>
+  <OpbeatRouter history={browserHistory}>
     <Route path='/' component={Header}>
       <IndexRoute component={Home} />
       <Route path='about' component={About} />
@@ -70,6 +70,6 @@ ReactDOM.render(
       <Route path='export' component={Export} />
       <Route status={404} path='*' component={NotFoundPage} />
     </Route>
-  </Router>,
+  </OpbeatRouter>,
   document.getElementById('app')
 )
