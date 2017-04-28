@@ -2,7 +2,7 @@
 
 var OpbeatReact = require('opbeat-react')
 
-OpbeatReact.initOpbeat({
+OpbeatReact.configure({
   orgId: 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
   appId: '708c8739c2'
 })
@@ -28,7 +28,7 @@ var NotFoundPage = require('./components/notFoundPage')
 var About = require('./components/common/about')
 var ReactRedirect = require('react-redirect')
 
-var OpbeatRouter = OpbeatReact.wrapRouter(Router)
+const OpbeatRouter = OpbeatReact.wrapRouter(Router)
 
 var Admin = React.createClass({
   render: function () {
