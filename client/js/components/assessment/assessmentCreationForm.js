@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types');
+
 var React = require('react')
 var browserHistory = require('react-router').browserHistory
 var ReactBootstrap = require('react-bootstrap')
@@ -17,7 +19,7 @@ var HttpStatus = require('http-status-codes')
 
 var AssessmentCreationForm = React.createClass({
   propTypes: {
-    teamId: React.PropTypes.number.isRequired
+    teamId: PropTypes.number.isRequired
   },
   getInitialState: function () {
     return {

@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types');
+
 var React = require('react')
 var _ = require('lodash')
 var PlotlyComponent = require('./plotlyComponent')
@@ -9,12 +11,12 @@ var ReactMarkdown = require('react-markdown')
 
 var AssessmentReport = React.createClass({
   propTypes: {
-    activeTab: React.PropTypes.number,
-    eventKey: React.PropTypes.number,
-    assessment: React.PropTypes.object,
-    measurements: React.PropTypes.array,
-    attributes: React.PropTypes.array,
-    template: React.PropTypes.object
+    activeTab: PropTypes.number,
+    eventKey: PropTypes.number,
+    assessment: PropTypes.object,
+    measurements: PropTypes.array,
+    attributes: PropTypes.array,
+    template: PropTypes.object
   },
   shouldComponentUpdate: function (nextProps, nextState) {
     if (nextProps.activeTab === this.props.eventKey) {

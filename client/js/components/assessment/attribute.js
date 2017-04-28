@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types');
+
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var Rating = require('./rating')
@@ -13,13 +15,13 @@ var ReactMarkdown = require('react-markdown')
 
 var Attribute = React.createClass({
   propTypes: {
-    attribute: React.PropTypes.object,
-    params: React.PropTypes.object,
-    template: React.PropTypes.object,
-    measurements: React.PropTypes.array,
-    syncMeasurement: React.PropTypes.func,
-    measureSyncActivity: React.PropTypes.bool,
-    disabled: React.PropTypes.bool
+    attribute: PropTypes.object,
+    params: PropTypes.object,
+    template: PropTypes.object,
+    measurements: PropTypes.array,
+    syncMeasurement: PropTypes.func,
+    measureSyncActivity: PropTypes.bool,
+    disabled: PropTypes.bool
   },
   getInitialState: function () {
     return {

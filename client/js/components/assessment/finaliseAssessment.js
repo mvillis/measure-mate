@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types');
+
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
@@ -11,9 +13,9 @@ var LinkContainer = ReactRouterBootstrap.LinkContainer
 
 var FinaliseAssessment = React.createClass({
   propTypes: {
-    assessment: React.PropTypes.object,
-    markAssessmentDone: React.PropTypes.func.isRequired,
-    isSummaryTab: React.PropTypes.bool.isRequired
+    assessment: PropTypes.object,
+    markAssessmentDone: PropTypes.func.isRequired,
+    isSummaryTab: PropTypes.bool.isRequired
   },
   getInitialState () {
     return { showModal: false }

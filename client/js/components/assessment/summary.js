@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types');
+
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var AssessmentReport = require('./assessmentReport')
@@ -8,13 +10,13 @@ var Alert = ReactBootstrap.Alert
 
 var Summary = React.createClass({
   propTypes: {
-    eventKey: React.PropTypes.number,
-    activeTab: React.PropTypes.number,
-    params: React.PropTypes.object,
-    template: React.PropTypes.object,
-    measurements: React.PropTypes.array,
-    attribute: React.PropTypes.object,
-    assessment: React.PropTypes.object
+    eventKey: PropTypes.number,
+    activeTab: PropTypes.number,
+    params: PropTypes.object,
+    template: PropTypes.object,
+    measurements: PropTypes.array,
+    attribute: PropTypes.object,
+    assessment: PropTypes.object
   },
   getInitialState: function () {
     return {

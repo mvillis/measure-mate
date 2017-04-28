@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types');
+
 var React = require('react')
 
 var Loader = require('react-loader')
@@ -16,7 +18,7 @@ var AssessmentCreationForm = require('../assessment/assessmentCreationForm')
 
 var Team = React.createClass({
   propTypes: {
-    params: React.PropTypes.object
+    params: PropTypes.object
   },
 
   loadTagsFromServer: function () {

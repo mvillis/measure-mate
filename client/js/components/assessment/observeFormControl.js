@@ -1,5 +1,7 @@
 'use strict'
 
+var PropTypes = require('prop-types');
+
 var React = require('react')
 var ReactBootstrap = require('react-bootstrap')
 var _ = require('lodash')
@@ -13,12 +15,12 @@ var ReactMarkdown = require('react-markdown')
 
 var ObserveFormControl = React.createClass({
   propTypes: {
-    measurement: React.PropTypes.object,
-    syncMeasurement: React.PropTypes.func.isRequired,
-    onObservationChange: React.PropTypes.func.isRequired,
-    onActionChange: React.PropTypes.func.isRequired,
-    attributeId: React.PropTypes.number,
-    disabled: React.PropTypes.bool
+    measurement: PropTypes.object,
+    syncMeasurement: PropTypes.func.isRequired,
+    onObservationChange: PropTypes.func.isRequired,
+    onActionChange: PropTypes.func.isRequired,
+    attributeId: PropTypes.number,
+    disabled: PropTypes.bool
   },
   getInitialState: function () {
     return {
