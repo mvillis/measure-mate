@@ -1,6 +1,6 @@
 'use strict'
 
-var PropTypes = require('prop-types');
+var PropTypes = require('prop-types')
 
 var React = require('react')
 var ReactBootrap = require('react-bootstrap')
