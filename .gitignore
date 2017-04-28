@@ -66,4 +66,4 @@ docs/_build/
 *.swp
 
 # Virtual env
-.venv
+.venv*

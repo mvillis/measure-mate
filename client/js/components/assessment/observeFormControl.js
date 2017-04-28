@@ -99,6 +99,7 @@ var ObserveFormControl = React.createClass({
       var postData = {
         id: this.props.measurement.id,
         assessment: this.props.measurement.assessment,
+        attribute: this.props.attributeId,
         rating: this.props.measurement.rating,
         targetRating: this.props.measurement.targetRating,
         observations: this.state.observations,

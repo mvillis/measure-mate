@@ -15,13 +15,14 @@ class MeasurementAPITestCases(APITestCase):
         One measurement relates to a rating that is not in the scope of the search.
         """
         template = TemplateFactory()
-        attribute = AttributeFactory(template=template)
-        rating_in_scope = RatingFactory(attribute=attribute)
-        rating_out_of_scope = RatingFactory()
+        attribute1 = AttributeFactory(template=template)
+        attribute2 = AttributeFactory(template=template)
+        rating_in_scope = RatingFactory(attribute=attribute1)
+        rating_out_of_scope = RatingFactory(attribute=attribute2)
         assessment = AssessmentFactory(template=template)
-        measurement1 = MeasurementFactory(assessment=assessment, rating=rating_in_scope)
-        measurement2 = MeasurementFactory(assessment=assessment, rating=rating_out_of_scope)
-        url = "%s?assessment__id=%s&rating__attribute=%s" % (reverse('measurement-list'), assessment.id, attribute.id)
+        measurement1 = MeasurementFactory(assessment=assessment, attribute=attribute1, rating=rating_in_scope)
+        measurement2 = MeasurementFactory(assessment=assessment, attribute=attribute2, rating=rating_out_of_scope)
+        url = "%s?assessment__id=%d&attribute__id=%d" % (reverse('measurement-list'), assessment.id, attribute1.id)
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data[0]['id'], measurement1.id)
@@ -39,8 +40,8 @@ class MeasurementAPITestCases(APITestCase):
         assessment1 = AssessmentFactory(template=template)
         assessment2 = AssessmentFactory(template=template)
         assessment3 = AssessmentFactory()
-        measurement1 = MeasurementFactory(assessment=assessment1, rating=rating_in_scope1)
-        measurement2 = MeasurementFactory(assessment=assessment2, rating=rating_in_scope2)
+        measurement1 = MeasurementFactory(assessment=assessment1, attribute=attribute, rating=rating_in_scope1)
+        measurement2 = MeasurementFactory(assessment=assessment2, attribute=attribute, rating=rating_in_scope2)
         url = "%s?assessment__id=%s&rating__attribute=%s" % (reverse('measurement-list'), assessment3.id, attribute.id)
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -58,8 +59,8 @@ class MeasurementAPITestCases(APITestCase):
         rating = RatingFactory(attribute=attribute1)
         assessment1 = AssessmentFactory(template=template1)
         assessment2 = AssessmentFactory(template=template2)
-        measurement1 = MeasurementFactory(assessment=assessment1, rating=rating)
-        measurement2 = MeasurementFactory(assessment=assessment2, rating=rating)
+        measurement1 = MeasurementFactory(assessment=assessment1, attribute=attribute1, rating=rating)
+        measurement2 = MeasurementFactory(assessment=assessment2, attribute=attribute2, rating=rating)
         url = "%s?assessment__id=%s&rating__attribute=%s" % (reverse('measurement-list'), assessment1.id, attribute1.id)
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -75,7 +76,9 @@ class MeasurementAPITestCases(APITestCase):
         rating = RatingFactory()
         target_rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
+                "rating": rating.id,
                 "target_rating": target_rating.id, "observations": "123",
                 "action": "456"}
         response = self.client.post(url, data, format='json')
@@ -89,7 +92,9 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         target_rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": None,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": target_rating.attribute.id,
+                "rating": None,
                 "target_rating": target_rating.id, "observations": "123",
                 "action": "456"}
         response = self.client.post(url, data, format='json')
@@ -103,7 +108,9 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
+                "rating": rating.id,
                 "observations": "", "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -116,7 +123,9 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
+                "rating": rating.id,
                 "observations": None, "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -129,7 +138,9 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
+                "rating": rating.id,
                 "observations": None, "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -142,7 +153,9 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory(status="DONE")
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
+                "rating": rating.id,
                 "observations": None, "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
@@ -161,7 +174,9 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory(status="DONE")
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
+                "rating": rating.id,
                 "observations": None, "action": "456"}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -173,11 +188,12 @@ class MeasurementAPITestCases(APITestCase):
         """
         assessment = AssessmentFactory()
         rating = RatingFactory()
-        rating2 = RatingFactory()
-        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+        rating2 = RatingFactory(attribute=rating.attribute)
+        measurement = MeasurementFactory(assessment=assessment, attribute=rating.attribute, rating=rating)
 
         url = reverse('measurement-detail', args=(measurement.id,))
         data = {"id": measurement.id, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
                 "rating": rating2.id, "observations": "123", "action": "456"}
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -191,11 +207,12 @@ class MeasurementAPITestCases(APITestCase):
         """
         assessment = AssessmentFactory()
         rating = RatingFactory()
-        target_rating = RatingFactory()
-        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+        target_rating = RatingFactory(attribute=rating.attribute)
+        measurement = MeasurementFactory(assessment=assessment, attribute=rating.attribute, rating=rating)
 
         url = reverse('measurement-detail', args=(measurement.id,))
         data = {"id": measurement.id, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
                 "rating": rating.id, "target_rating": target_rating.id,
                 "observations": "123", "action": "456"}
         response = self.client.put(url, data, format='json')
@@ -210,11 +227,12 @@ class MeasurementAPITestCases(APITestCase):
         """
         assessment = AssessmentFactory(status="DONE")
         rating = RatingFactory()
-        target_rating = RatingFactory()
-        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+        target_rating = RatingFactory(attribute=rating.attribute)
+        measurement = MeasurementFactory(assessment=assessment, attribute=rating.attribute, rating=rating)
 
         url = reverse('measurement-detail', args=(measurement.id,))
         data = {"id": measurement.id, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
                 "rating": rating.id, "target_rating": target_rating.id,
                 "observations": "123", "action": "456"}
         response = self.client.put(url, data, format='json')
@@ -226,8 +244,8 @@ class MeasurementAPITestCases(APITestCase):
         """
         assessment = AssessmentFactory(status="DONE")
         rating = RatingFactory()
-        target_rating = RatingFactory()
-        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+        target_rating = RatingFactory(attribute=rating.attribute)
+        measurement = MeasurementFactory(assessment=assessment, attribute=rating.attribute, rating=rating)
 
         password = 'mypassword'
         my_admin = User.objects.create_superuser('myuser', 'myemail@test.com', password)
@@ -236,6 +254,7 @@ class MeasurementAPITestCases(APITestCase):
 
         url = reverse('measurement-detail', args=(measurement.id,))
         data = {"id": measurement.id, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
                 "rating": rating.id, "target_rating": target_rating.id,
                 "observations": "123", "action": "456"}
         response = self.client.put(url, data, format='json')
@@ -248,7 +267,9 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
+                "rating": rating.id,
                 "observations": "123", "action": ""}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -261,7 +282,9 @@ class MeasurementAPITestCases(APITestCase):
         assessment = AssessmentFactory()
         rating = RatingFactory()
         url = reverse('measurement-list')
-        data = {"id": None, "assessment": assessment.id, "rating": rating.id,
+        data = {"id": None, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
+                "rating": rating.id,
                 "observations": "123", "action": None}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -273,11 +296,12 @@ class MeasurementAPITestCases(APITestCase):
         """
         assessment = AssessmentFactory(status="DONE")
         rating = RatingFactory()
-        target_rating = RatingFactory()
-        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+        target_rating = RatingFactory(attribute=rating.attribute)
+        measurement = MeasurementFactory(assessment=assessment, attribute=rating.attribute, rating=rating)
 
         url = reverse('measurement-detail', args=(measurement.id,))
         data = {"id": measurement.id, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
                 "rating": rating.id, "target_rating": target_rating.id,
                 "observations": "123", "action": "456"}
         response = self.client.delete(url, data, format='json')
@@ -290,8 +314,8 @@ class MeasurementAPITestCases(APITestCase):
         """
         assessment = AssessmentFactory(status="DONE")
         rating = RatingFactory()
-        target_rating = RatingFactory()
-        measurement = MeasurementFactory(assessment=assessment, rating=rating)
+        target_rating = RatingFactory(attribute=rating.attribute)
+        measurement = MeasurementFactory(assessment=assessment, attribute=rating.attribute, rating=rating)
 
         password = 'mypassword'
         my_admin = User.objects.create_superuser('myuser', 'myemail@test.com', password)
@@ -300,6 +324,7 @@ class MeasurementAPITestCases(APITestCase):
 
         url = reverse('measurement-detail', args=(measurement.id,))
         data = {"id": measurement.id, "assessment": assessment.id,
+                "attribute": rating.attribute.id,
                 "rating": rating.id, "target_rating": target_rating.id,
                 "observations": "123", "action": "456"}
         response = self.client.delete(url, data, format='json')
