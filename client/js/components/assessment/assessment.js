@@ -89,7 +89,7 @@ var Assessment = React.createClass({
       measureSyncActivity: false,
       showAlert: true,
       alertType: thrownError,
-      alertDetail: xhr.responseJSON.detail ? xhr.responseJSON.detail : 'Unexpected error'
+      alertDetail: (xhr.responseJSON && xhr.responseJSON.detail) ? xhr.responseJSON.detail : 'Unexpected error'
     })
   },
   dataSource: function (url, callback) {
