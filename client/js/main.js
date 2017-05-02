@@ -1,13 +1,14 @@
 'use strict'
 
 import initOpbeat from 'opbeat-react'
-import { Router } from 'react-router'
-import { wrapRouter } from 'opbeat-react'
 
 initOpbeat({
   orgId: 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
   appId: '708c8739c2'
 })
+
+import { Router } from 'react-router'
+import { wrapRouter } from 'opbeat-react'
 
 const OpbeatRouter = wrapRouter(Router)
 
