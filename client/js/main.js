@@ -7,14 +7,13 @@ initOpbeat({
   appId: '708c8739c2'
 })
 
-import { Router } from 'react-router'
+import { ReactRouter } from 'react-router'
 import { wrapRouter } from 'opbeat-react'
 
-const OpbeatRouter = wrapRouter(Router)
+const OpbeatRouter = wrapRouter(ReactRouter)
 
 var React = require('react')
 var ReactDOM = require('react-dom')
-var ReactRouter = require('react-router')
 var browserHistory = ReactRouter.browserHistory
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute
