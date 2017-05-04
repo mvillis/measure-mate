@@ -2,36 +2,34 @@
 
 import initOpbeat from 'opbeat-react'
 
-initOpbeat({
-  orgId: 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
-  appId: '708c8739c2'
-})
-
 import { Router } from 'react-router'
 import { wrapRouter } from 'opbeat-react'
 
 const OpbeatRouter = wrapRouter(Router)
 
-var React = require('react')
-var ReactDOM = require('react-dom')
-var browserHistory = Router.browserHistory
-var Route = Router.Route
-var IndexRoute = Router.IndexRoute
-var IndexRedirect = Router.IndexRedirect
-var Header = require('./components/common/header')
-var Home = require('./components/home/home')
-var Assessment = require('./components/assessment/assessment')
-var Attribute = require('./components/assessment/attribute')
-var Summary = require('./components/assessment/summary')
-var Intro = require('./components/assessment/intro')
-var AssessmentTable = require('./components/assessment/assessmentTable')
-var Team = require('./components/team/team')
-var TeamTable = require('./components/team/teamTable')
-var NotFoundPage = require('./components/notFoundPage')
-var About = require('./components/common/about')
-var ReactRedirect = require('react-redirect')
+initOpbeat({
+  orgId: 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
+  appId: '708c8739c2'
+})
 
-var Admin = React.createClass({
+import React from 'react'
+import ReactDOM from 'react-dom'
+import ReactRedirect from 'react-redirect'
+import { browserHistory, Route, IndexRoute, IndexRedirect } from 'react-router'
+
+import Header from './components/common/header'
+import Home from './components/home/home'
+import Assessment from './components/assessment/assessment'
+import Attribute from './components/assessment/attribute'
+import Summary from './components/assessment/summary'
+import Intro from './components/assessment/intro'
+import AssessmentTable from './components/assessment/assessmentTable'
+import Team from './components/team/team'
+import TeamTable from './components/team/teamTable'
+import NotFoundPage from './components/notFoundPage'
+import About from './components/common/about'
+
+const Admin = React.createClass({
   render: function () {
     return (
       <ReactRedirect location='/admin/' />
@@ -39,7 +37,7 @@ var Admin = React.createClass({
   }
 })
 
-var Export = React.createClass({
+const Export = React.createClass({
   render: function () {
     return (
       <ReactRedirect location='/export/' />
