@@ -5,20 +5,12 @@ patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
-      gulp > vinyl-fs > glob-stream > minimatch:
-        patched: '2017-03-15T11:01:37.069Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-stream > glob > minimatch:
-        patched: '2017-03-15T11:01:37.069Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
-        patched: '2017-03-15T11:01:37.069Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
-        patched: '2017-03-15T11:01:37.069Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
@@ -107,6 +99,14 @@ patch:
         patched: '2017-02-17T05:59:51.378Z'
     - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
         patched: '2017-02-17T05:59:51.378Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2017-03-15T11:01:37.069Z'
+    - gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2017-03-15T11:01:37.069Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2017-03-15T11:01:37.069Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2017-03-15T11:01:37.069Z'
   'npm:negotiator:20160616':
     - browser-sync > socket.io > engine.io > accepts > negotiator:
         patched: '2016-08-30T03:10:49.683Z'
@@ -178,10 +178,7 @@ ignore:
   'npm:concat-stream:20160901':
     - plotly.js > mapbox-gl > geojson-rewind > concat-stream:
         reason: None given
-        expires: '2017-04-09T11:15:20.138Z'
-      brfs > static-module > concat-stream:
-        reason: None given
-        expires: '2017-04-14T11:03:50.199Z'
+        expires: '2017-06-04T12:04:49.764Z'
     - mapbox-gl-shaders > brfs > static-module > concat-stream:
         reason: None given
         expires: '2017-04-14T11:03:50.199Z'
@@ -248,3 +245,6 @@ ignore:
     - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > concat-stream:
         reason: None given
         expires: '2017-04-14T11:03:50.209Z'
+    - brfs > static-module > concat-stream:
+        reason: None given
+        expires: '2017-04-14T11:03:50.199Z'
