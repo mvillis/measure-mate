@@ -17,7 +17,7 @@ if (semver.lt(process.version, '1.0.0')) {
   var standard = require('gulp-standard')
 
   gulp.task('lint:standard', function () {
-    return gulp.src(config.lint.src)
+    return gulp.src(config.src)
       .pipe(standard())
       .pipe(standard.reporter('stylish', config.standard))
   })
