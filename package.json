@@ -82,7 +82,7 @@
     "eslint-config-standard-jsx": "^4.0.1",
     "eslint-config-standard-react": "^5.0.0",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-standard": "^3.0.1",
     "gulp-babel": "^6.1.2",
     "gulp-babel-istanbul": "^1.6.0",
