@@ -1,24 +1,16 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.0
+version: v1.7.1
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
-      gulp > vinyl-fs > glob-stream > minimatch:
-        patched: '2017-05-09T11:07:17.039Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-stream > glob > minimatch:
-        patched: '2017-05-09T11:07:17.039Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
-        patched: '2017-05-09T11:07:17.039Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
-        patched: '2017-05-09T11:07:17.039Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
@@ -65,6 +57,14 @@ patch:
         patched: '2017-03-15T11:01:37.069Z'
     - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
         patched: '2017-03-15T11:01:37.069Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2017-05-09T11:07:17.039Z'
+    - gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2017-05-09T11:07:17.039Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2017-05-09T11:07:17.039Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2017-05-09T11:07:17.039Z'
   'npm:negotiator:20160616':
     - browser-sync > socket.io > engine.io > accepts > negotiator:
         patched: '2016-08-30T03:10:49.683Z'
@@ -197,3 +197,139 @@ ignore:
     - brfs > static-module > concat-stream:
         reason: None given
         expires: '2017-04-14T11:03:50.199Z'
+  'npm:ms:20170412':
+    - gulp-sourcemaps > debug-fabulous > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.813Z'
+    - babelify > babel-core > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.814Z'
+    - babelify > babel-core > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.814Z'
+    - babelify > babel-core > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.815Z'
+    - babelify > babel-core > babel-helpers > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.817Z'
+    - node-pre-gyp > tar-pack > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.818Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-block-scoping > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.818Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-block-scoping > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.819Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-computed-properties > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.820Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-modules-commonjs > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.820Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-modules-systemjs > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.821Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-parameters > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.821Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-parameters > babel-helper-call-delegate > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.821Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-parameters > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.822Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-function-name > babel-helper-function-name > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.822Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-function-name > babel-helper-function-name > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.823Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-modules-amd > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.823Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-modules-amd > babel-plugin-transform-es2015-modules-commonjs > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.823Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-object-super > babel-helper-replace-supers > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.823Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-object-super > babel-helper-replace-supers > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.824Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-classes > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.824Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-classes > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.824Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-classes > babel-helper-function-name > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.825Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-classes > babel-helper-function-name > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.825Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-classes > babel-helper-replace-supers > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.825Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-classes > babel-helper-replace-supers > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.825Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-classes > babel-helper-define-map > babel-helper-function-name > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.826Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-classes > babel-helper-define-map > babel-helper-function-name > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.826Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-modules-umd > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.826Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-modules-umd > babel-plugin-transform-es2015-modules-amd > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.826Z'
+    - babel-preset-es2015 > babel-plugin-transform-es2015-modules-umd > babel-plugin-transform-es2015-modules-amd > babel-plugin-transform-es2015-modules-commonjs > babel-template > babel-traverse > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.827Z'
+    - snyk > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.827Z'
+    - snyk > snyk-module > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.827Z'
+    - snyk > snyk-resolve > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.827Z'
+    - snyk > snyk-try-require > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.828Z'
+    - snyk > snyk-policy > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.828Z'
+    - snyk > snyk-policy > snyk-module > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.828Z'
+    - snyk > snyk-policy > snyk-resolve > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.828Z'
+    - snyk > snyk-policy > snyk-try-require > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.829Z'
+    - snyk > snyk-config > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.829Z'
+    - snyk > snyk-resolve-deps > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.829Z'
+    - snyk > snyk-resolve-deps > snyk-module > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.829Z'
+    - snyk > snyk-resolve-deps > snyk-resolve > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.829Z'
+    - snyk > snyk-resolve-deps > snyk-try-require > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.829Z'
+    - snyk > snyk-resolve-deps > clite > debug > ms:
+        reason: None given
+        expires: '2017-06-15T11:08:19.829Z'
