@@ -125,7 +125,7 @@ var Attribute = React.createClass({
               onActionChange={this.onActionChange}
               attributeId={(this.state.attribute) ? this.state.attribute.id : null}
               disabled={this.props.disabled}
-              />
+            />
             <Loader loaded={!this.props.measureSyncActivity} />
             <ListGroup fill>
               {ratingList}

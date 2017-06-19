@@ -116,7 +116,7 @@ var AssessmentCreationForm = React.createClass({
         // ... add the option to create the tag
         filteredOptions = filteredOptions
           .concat(
-              _.some(currentValues, {label: potentialTag})
+            _.some(currentValues, {label: potentialTag})
               ? []
               : [{
                 label: `Add "${potentialTag}"...`,
