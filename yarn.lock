@@ -22,7 +22,7 @@
 
 "@gulp-sourcemaps/identity-map@1.X":
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@gulp-sourcemaps%2fidentity-map/-/identity-map-1.0.1.tgz#cfa23bc5840f9104ce32a65e74db7e7a974bbee1"
+  resolved "https://registry.yarnpkg.com/@gulp-sourcemaps/identity-map/-/identity-map-1.0.1.tgz#cfa23bc5840f9104ce32a65e74db7e7a974bbee1"
   dependencies:
     acorn "^5.0.3"
     css "^2.2.1"
@@ -32,14 +32,14 @@
 
 "@gulp-sourcemaps/map-sources@1.X":
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@gulp-sourcemaps%2fmap-sources/-/map-sources-1.0.0.tgz#890ae7c5d8c877f6d384860215ace9d7ec945bda"
+  resolved "https://registry.yarnpkg.com/@gulp-sourcemaps/map-sources/-/map-sources-1.0.0.tgz#890ae7c5d8c877f6d384860215ace9d7ec945bda"
   dependencies:
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
 "@plotly/d3-sankey@^0.5.0":
   version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@plotly%2fd3-sankey/-/d3-sankey-0.5.0.tgz#b22faea742e58251335ee5d9fba248772607800f"
+  resolved "https://registry.yarnpkg.com/@plotly/d3-sankey/-/d3-sankey-0.5.0.tgz#b22faea742e58251335ee5d9fba248772607800f"
   dependencies:
     d3-array "1"
     d3-collection "1"
