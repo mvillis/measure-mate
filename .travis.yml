@@ -7,13 +7,11 @@ install:
   - nvm install stable
   - nvm use stable
   - npm --version
-  - npm install -g yarn
-  - yarn --version
-  - yarn global add gulp-cli
-  - yarn install --production
+  - npm install -g gulp-cli
+  - npm install --production
   - gulp --version
   - gulp build --production
-  - yarn install
+  - npm install
   - gulp build
   - pip install -U pip setuptools wheel
   - pip install -r requirements/local.txt
@@ -28,5 +26,5 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
   - coveralls-lcov -v -n ./coverage/lcov.info > coverage.json
   - "coveralls --merge=coverage.json"
-  - yarn outdated
+  - npm outdated
   - pip list -o
