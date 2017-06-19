@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 global.jQuery = require('jquery')
 var ReactBootstrap = require('react-bootstrap')
 var ListGroupItem = ReactBootstrap.ListGroupItem
@@ -12,7 +13,9 @@ var OverlayTrigger = ReactBootstrap.OverlayTrigger
 var Popover = ReactBootstrap.Popover
 var ReactMarkdown = require('react-markdown')
 
-var Rating = React.createClass({
+var Rating = createReactClass({
+  displayName: 'Rating',
+
   propTypes: {
     eventKey: PropTypes.number,
     measurement: PropTypes.object,
@@ -26,10 +29,12 @@ var Rating = React.createClass({
     e.preventDefault()
     this.props.saveMeasurement('rating', this.props.rating.id)
   },
+
   targetClick: function (e) {
     e.preventDefault()
     this.props.saveMeasurement('target', this.props.rating.id)
   },
+
   render: function () {
     var ratingActive = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating === this.props.rating.id) : false
     var targetActive = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating === this.props.rating.id) : false

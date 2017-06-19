@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactDOM = require('react-dom')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
@@ -12,11 +13,14 @@ var Table = ReactBootstrap.Table
 var TagList = require('../common/tagList')
 var TablesortCore = require('../common/tablesortCore')
 
-var TeamList = React.createClass({
+var TeamList = createReactClass({
+  displayName: 'TeamList',
+
   propTypes: {
     teams: PropTypes.array.isRequired,
     teamTags: PropTypes.object.isRequired
   },
+
   componentDidMount: function () {
     var teamList = ReactDOM.findDOMNode(this.refs.teamList)
     TablesortCore(teamList)

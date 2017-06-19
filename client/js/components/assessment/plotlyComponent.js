@@ -3,9 +3,10 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var Plotly = require('../common/plotlyCore.js')
 
-var PlotlyComponent = React.createClass({
+var PlotlyComponent = createReactClass({
 
   displayName: 'Plotly',
   propTypes: {

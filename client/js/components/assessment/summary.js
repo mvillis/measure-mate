@@ -3,12 +3,15 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var AssessmentReport = require('./assessmentReport')
 var Panel = ReactBootstrap.Panel
 var Alert = ReactBootstrap.Alert
 
-var Summary = React.createClass({
+var Summary = createReactClass({
+  displayName: 'Summary',
+
   propTypes: {
     eventKey: PropTypes.number,
     activeTab: PropTypes.number,
@@ -18,12 +21,14 @@ var Summary = React.createClass({
     attribute: PropTypes.object,
     assessment: PropTypes.object
   },
+
   getInitialState: function () {
     return {
       attribute: undefined,
       dirtyObservation: false
     }
   },
+
   render: function () {
     return (
       <Panel header='Summary' bsStyle='primary'>

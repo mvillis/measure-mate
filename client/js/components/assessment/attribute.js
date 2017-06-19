@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var Rating = require('./rating')
 var ObserveFormControl = require('./observeFormControl')
@@ -13,7 +14,9 @@ var Alert = ReactBootstrap.Alert
 var ListGroup = ReactBootstrap.ListGroup
 var ReactMarkdown = require('react-markdown')
 
-var Attribute = React.createClass({
+var Attribute = createReactClass({
+  displayName: 'Attribute',
+
   propTypes: {
     attribute: PropTypes.object,
     params: PropTypes.object,
@@ -23,6 +26,7 @@ var Attribute = React.createClass({
     measureSyncActivity: PropTypes.bool,
     disabled: PropTypes.bool
   },
+
   getInitialState: function () {
     return {
       attribute: null,
@@ -33,6 +37,7 @@ var Attribute = React.createClass({
       action: ''
     }
   },
+
   componentDidMount: function () {
     var attribute = this.getAttributeViaTemplate(this.props.template, this.props.params.attribute)
     var measurement = this.getMeasurementForAttribute(this.props.measurements, attribute)
@@ -46,6 +51,7 @@ var Attribute = React.createClass({
       }
     )
   },
+
   componentWillReceiveProps: function (nextProps) {
     var attribute = this.getAttributeViaTemplate(nextProps.template, nextProps.params.attribute)
     var measurement = this.getMeasurementForAttribute(nextProps.measurements, attribute)
@@ -59,18 +65,21 @@ var Attribute = React.createClass({
       }
     )
   },
+
   getAttributeViaTemplate: function (template, attributeId) {
     var match = _.find(template.attributes, function (attribute) {
       return attribute.id === parseInt(attributeId, 10)
     })
     return match
   },
+
   getMeasurementForAttribute: function (measurements, attribute) {
     var ids = _.map(attribute.ratings, 'id')
     return _.head(_.filter(measurements, function (c) {
       return ids.indexOf(c.rating) !== -1
     }))
   },
+
   saveMeasurement: function (ratingType, value) {
     var existingMeasurement = this.state.measurement
     var postData = {
@@ -88,12 +97,15 @@ var Attribute = React.createClass({
     }
     this.props.syncMeasurement(postData)
   },
+
   onObservationChange: function (text) {
     this.setState({observations: text})
   },
+
   onActionChange: function (text) {
     this.setState({action: text})
   },
+
   render: function () {
     if (this.state.attribute !== null) {
       var ratingList = this.state.attribute.ratings.map(function (rating) {
