@@ -4,6 +4,8 @@ var PropTypes = require('prop-types')
 
 var React = require('react')
 
+var createReactClass = require('create-react-class')
+
 var Loader = require('react-loader')
 var ReactBootstrap = require('react-bootstrap')
 var Panel = ReactBootstrap.Panel
@@ -16,7 +18,9 @@ var TeamCreationForm = require('./teamCreationForm')
 var AssessmentTable = require('../assessment/assessmentTable')
 var AssessmentCreationForm = require('../assessment/assessmentCreationForm')
 
-var Team = React.createClass({
+var Team = createReactClass({
+  displayName: 'Team',
+
   propTypes: {
     params: PropTypes.object
   },
@@ -36,6 +40,7 @@ var Team = React.createClass({
       }
     })
   },
+
   loadTeamFromServer: function () {
     var teamId = parseInt(this.props.params.teamId, 10)
     var url = '/api/teams/' + teamId + '/'
@@ -51,6 +56,7 @@ var Team = React.createClass({
       }
     })
   },
+
   getInitialState: function () {
     return {
       team: {},
@@ -60,10 +66,12 @@ var Team = React.createClass({
       loaded: false
     }
   },
+
   componentDidMount: function () {
     this.loadTeamFromServer()
     this.loadTagsFromServer()
   },
+
   render: function () {
     var teamId = parseInt(this.props.params.teamId, 10)
     return (

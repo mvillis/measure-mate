@@ -3,13 +3,16 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var _ = require('lodash')
 var PlotlyComponent = require('./plotlyComponent')
 var ReactBootstrap = require('react-bootstrap')
 var Table = ReactBootstrap.Table
 var ReactMarkdown = require('react-markdown')
 
-var AssessmentReport = React.createClass({
+var AssessmentReport = createReactClass({
+  displayName: 'AssessmentReport',
+
   propTypes: {
     activeTab: PropTypes.number,
     eventKey: PropTypes.number,
@@ -18,12 +21,14 @@ var AssessmentReport = React.createClass({
     attributes: PropTypes.array,
     template: PropTypes.object
   },
+
   shouldComponentUpdate: function (nextProps, nextState) {
     if (nextProps.activeTab === this.props.eventKey) {
       return true
     }
     return false
   },
+
   getAttributeForRating: function (queryRating) {
     var matchingAttribute = null
     for (var i = 0; i < this.props.template.attributes.length; i++) {
@@ -36,6 +41,7 @@ var AssessmentReport = React.createClass({
     }
     return matchingAttribute
   },
+
   getMeasurementForAttribute: function (attribute) {
     if (this.props.measurements !== null) {
       for (var i = 0; i < this.props.measurements.length; i++) {
@@ -47,6 +53,7 @@ var AssessmentReport = React.createClass({
       return null
     }
   },
+
   render: function () {
     var BLUE = '#337ab7'
     var RED = '#b73333'

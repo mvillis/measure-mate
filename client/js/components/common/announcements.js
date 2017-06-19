@@ -1,6 +1,7 @@
 'use strict'
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var Accordion = ReactBootstrap.Accordion
 var Panel = ReactBootstrap.Panel
@@ -8,7 +9,9 @@ var ReactMarkdown = require('react-markdown')
 
 var $ = require('jquery')
 
-var Announcements = React.createClass({
+var Announcements = createReactClass({
+  displayName: 'Announcements',
+
   loadAnnouncementsFromServer: function () {
     var url = '/api/announcements/?enabled=True'
     $.ajax({
@@ -25,14 +28,17 @@ var Announcements = React.createClass({
       }
     })
   },
+
   getInitialState: function () {
     return {
       announcements: []
     }
   },
+
   componentDidMount: function () {
     this.loadAnnouncementsFromServer()
   },
+
   render: function () {
     return (
       <Accordion>

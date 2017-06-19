@@ -1,6 +1,7 @@
 'use strict'
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var Panel = ReactBootstrap.Panel
 var Row = ReactBootstrap.Row
@@ -8,7 +9,9 @@ var Col = ReactBootstrap.Col
 var Jumbotron = ReactBootstrap.Jumbotron
 var TeamCreationForm = require('../team/teamCreationForm')
 
-var Home = React.createClass({
+var Home = createReactClass({
+  displayName: 'Home',
+
   render: function () {
     return (
       <div>
