@@ -3,12 +3,13 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var Select = require('react-select')
 var ReactBootstrap = require('react-bootstrap')
 var HelpBlock = ReactBootstrap.HelpBlock
 var $ = require('jquery')
 
-var TagSelect = React.createClass({
+var TagSelect = createReactClass({
   propTypes: {
     value: PropTypes.any,
     onChange: PropTypes.func.isRequired

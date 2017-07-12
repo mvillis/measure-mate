@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var browserHistory = require('react-router').browserHistory
 var ReactBootstrap = require('react-bootstrap')
 var Alert = ReactBootstrap.Alert
@@ -17,10 +18,13 @@ var $ = require('jquery')
 var _ = require('lodash')
 var HttpStatus = require('http-status-codes')
 
-var AssessmentCreationForm = React.createClass({
+var AssessmentCreationForm = createReactClass({
+  displayName: 'AssessmentCreationForm',
+
   propTypes: {
     teamId: PropTypes.number.isRequired
   },
+
   getInitialState: function () {
     return {
       template: '',
@@ -30,12 +34,14 @@ var AssessmentCreationForm = React.createClass({
       formError: ''
     }
   },
+
   changeHandlerTemplate: function (val) {
     this.setState({
       template: val.value,
       taggable: val.taggable
     })
   },
+
   handleSubmit: function (e) {
     e.preventDefault()
     if (this.state.template) {
@@ -116,7 +122,7 @@ var AssessmentCreationForm = React.createClass({
         // ... add the option to create the tag
         filteredOptions = filteredOptions
           .concat(
-              _.some(currentValues, {label: potentialTag})
+            _.some(currentValues, {label: potentialTag})
               ? []
               : [{
                 label: `Add "${potentialTag}"...`,
@@ -140,6 +146,7 @@ var AssessmentCreationForm = React.createClass({
       changed: true
     })
   },
+
   // /FIXME -----------------
 
   createAssessment: function (template, teamId, tags) {

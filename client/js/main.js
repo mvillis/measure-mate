@@ -1,9 +1,7 @@
 'use strict'
 
-import initOpbeat from 'opbeat-react'
-
-import { Router } from 'react-router'
-import { wrapRouter } from 'opbeat-react'
+import initOpbeat, { wrapRouter } from 'opbeat-react'
+import { browserHistory, Route, Router, IndexRoute, IndexRedirect } from 'react-router'
 
 const OpbeatRouter = wrapRouter(Router)
 
@@ -15,7 +13,7 @@ initOpbeat({
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactRedirect from 'react-redirect'
-import { browserHistory, Route, IndexRoute, IndexRedirect } from 'react-router'
+import createReactClass from 'create-react-class'
 
 import Header from './components/common/header'
 import Home from './components/home/home'
@@ -29,7 +27,9 @@ import TeamTable from './components/team/teamTable'
 import NotFoundPage from './components/notFoundPage'
 import About from './components/common/about'
 
-const Admin = React.createClass({
+const Admin = createReactClass({
+  displayName: 'Admin',
+
   render: function () {
     return (
       <ReactRedirect location='/admin/' />
@@ -37,7 +37,9 @@ const Admin = React.createClass({
   }
 })
 
-const Export = React.createClass({
+const Export = createReactClass({
+  displayName: 'Export',
+
   render: function () {
     return (
       <ReactRedirect location='/export/' />

@@ -3,14 +3,18 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var Loader = require('react-loader')
 var $ = require('jquery')
 var AssessmentList = require('./assessmentList')
 
-var AssessmentTable = React.createClass({
+var AssessmentTable = createReactClass({
+  displayName: 'AssessmentTable',
+
   propTypes: {
     teamId: PropTypes.number
   },
+
   loadAssessmentTagsFromServer: function (assessmentId) {
     var url = '/api/tags/?assessment__id=' + assessmentId
     $.ajax({
@@ -29,6 +33,7 @@ var AssessmentTable = React.createClass({
       }
     })
   },
+
   loadAssessmentsFromServer: function () {
     var url = '/api/assessments/'
     if (this.props.teamId) {
@@ -62,6 +67,7 @@ var AssessmentTable = React.createClass({
       }
     })
   },
+
   getInitialState: function () {
     return {
       assessments: [],
@@ -69,9 +75,11 @@ var AssessmentTable = React.createClass({
       loaded: false
     }
   },
+
   componentDidMount: function () {
     this.loadAssessmentsFromServer()
   },
+
   render: function () {
     return (
       <Loader loaded={this.state.loaded}>

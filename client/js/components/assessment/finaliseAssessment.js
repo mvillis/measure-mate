@@ -3,6 +3,7 @@
 var PropTypes = require('prop-types')
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var Panel = ReactBootstrap.Panel
@@ -11,30 +12,38 @@ var Label = ReactBootstrap.Label
 var Modal = ReactBootstrap.Modal
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 
-var FinaliseAssessment = React.createClass({
+var FinaliseAssessment = createReactClass({
+  displayName: 'FinaliseAssessment',
+
   propTypes: {
     assessment: PropTypes.object,
     markAssessmentDone: PropTypes.func.isRequired,
     isSummaryTab: PropTypes.bool.isRequired
   },
+
   getInitialState () {
     return { showModal: false }
   },
+
   shouldComponentUpdate: function (nextProps, nextState) {
     return (
       (nextProps.assessment.status !== this.props.assessment.status) || nextProps.isSummaryTab || (this.props.isSummaryTab && !nextProps.isSummaryTab)
     )
   },
+
   close () {
     this.setState({ showModal: false })
   },
+
   open () {
     this.setState({ showModal: true })
   },
+
   handleLock: function () {
     this.props.markAssessmentDone()
     this.close()
   },
+
   render: function () {
     if (this.props.assessment.status === 'DONE') {
       return (
