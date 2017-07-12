@@ -1,4 +1,11 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "ie >= 10"]
+      }
+    }],
+    "react"
+  ],
   "plugins": ["add-react-displayname"]
 }
