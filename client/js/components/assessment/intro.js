@@ -1,17 +1,23 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Jumbotron = ReactBootstrap.Jumbotron
 var Button = ReactBootstrap.Button
 
-var Intro = React.createClass({
+var Intro = createReactClass({
+  displayName: 'Intro',
+
   propTypes: {
-    template: React.PropTypes.object,
-    params: React.PropTypes.object
+    template: PropTypes.object,
+    params: PropTypes.object
   },
+
   getInitialState: function () {
     return {
       attribute: undefined,
@@ -19,6 +25,7 @@ var Intro = React.createClass({
       dirtyObservation: false
     }
   },
+
   render: function () {
     return (
       <Jumbotron>

@@ -1,6 +1,9 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactRouter = require('react-router')
 var browserHistory = ReactRouter.browserHistory
 var ReactBootstrap = require('react-bootstrap')
@@ -17,11 +20,14 @@ var $ = require('jquery')
 var _ = require('lodash')
 var HttpStatus = require('http-status-codes')
 
-var TeamCreationForm = React.createClass({
+var TeamCreationForm = createReactClass({
+  displayName: 'TeamCreationForm',
+
   propTypes: {
-    initialTeam: React.PropTypes.object,
-    initialTags: React.PropTypes.array
+    initialTeam: PropTypes.object,
+    initialTags: PropTypes.array
   },
+
   getInitialState: function () {
     if (this.props.initialTeam) {
       var team = this.props.initialTeam
@@ -52,6 +58,7 @@ var TeamCreationForm = React.createClass({
       }
     }
   },
+
   handleNameChange: function (e) {
     // This could also be done using ReactLink:
     // http://facebook.github.io/react/docs/two-way-binding-helpers.html
@@ -61,6 +68,7 @@ var TeamCreationForm = React.createClass({
       changed: true
     })
   },
+
   handleDescChange: function (e) {
     var value = e.target.value
     this.setState({
@@ -68,6 +76,7 @@ var TeamCreationForm = React.createClass({
       changed: true
     })
   },
+
   handleSubmit: function (e) {
     e.preventDefault()
 
@@ -154,7 +163,7 @@ var TeamCreationForm = React.createClass({
         // ... add the option to create the tag
         filteredOptions = filteredOptions
           .concat(
-              _.some(currentValues, {label: potentialTag})
+            _.some(currentValues, {label: potentialTag})
               ? []
               : [{
                 label: `Add "${potentialTag}"...`,
@@ -178,6 +187,7 @@ var TeamCreationForm = React.createClass({
       changed: true
     })
   },
+
   // /FIXME -----------------
 
   createTeam: function (teamName, teamDesc, tags) {

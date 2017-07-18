@@ -1,22 +1,31 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var Label = ReactBootstrap.Label
 
-var Tag = React.createClass({
+var Tag = createReactClass({
+  displayName: 'Tag',
+
   propTypes: {
-    tagName: React.PropTypes.string.isRequired
+    tagName: PropTypes.string.isRequired
   },
+
   render: function () {
     return <span><Label bsStyle='primary'>{this.props.tagName}</Label> </span>
   }
 })
 
-var TagList = React.createClass({
+var TagList = createReactClass({
+  displayName: 'TagList',
+
   propTypes: {
-    tags: React.PropTypes.array.isRequired
+    tags: PropTypes.array.isRequired
   },
+
   render: function () {
     return (
       <span>

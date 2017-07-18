@@ -1,6 +1,9 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var Navbar = ReactBootstrap.Navbar
 var Nav = ReactBootstrap.Nav
@@ -11,10 +14,13 @@ var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 var Announcements = require('./announcements')
 
-var Header = React.createClass({
+var Header = createReactClass({
+  displayName: 'Header',
+
   propTypes: {
-    children: React.PropTypes.object
+    children: PropTypes.object
   },
+
   render: function render () {
     return (
       <div>

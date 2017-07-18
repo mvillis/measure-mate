@@ -1,6 +1,9 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 global.jQuery = require('jquery')
 var ReactBootstrap = require('react-bootstrap')
 var ListGroupItem = ReactBootstrap.ListGroupItem
@@ -10,24 +13,28 @@ var OverlayTrigger = ReactBootstrap.OverlayTrigger
 var Popover = ReactBootstrap.Popover
 var ReactMarkdown = require('react-markdown')
 
-var Rating = React.createClass({
+var Rating = createReactClass({
+  displayName: 'Rating',
+
   propTypes: {
-    eventKey: React.PropTypes.number,
-    measurement: React.PropTypes.object,
-    assessId: React.PropTypes.string.isRequired,
-    attribute: React.PropTypes.object,
-    saveMeasurement: React.PropTypes.func.isRequired,
-    rating: React.PropTypes.object
+    eventKey: PropTypes.number,
+    measurement: PropTypes.object,
+    assessId: PropTypes.string.isRequired,
+    attribute: PropTypes.object,
+    saveMeasurement: PropTypes.func.isRequired,
+    rating: PropTypes.object
   },
 
   ratingClick: function (e) {
     e.preventDefault()
     this.props.saveMeasurement('rating', this.props.rating.id)
   },
+
   targetClick: function (e) {
     e.preventDefault()
     this.props.saveMeasurement('target', this.props.rating.id)
   },
+
   render: function () {
     var ratingActive = (this.props.measurement && this.props.measurement.rating) ? (this.props.measurement.rating === this.props.rating.id) : false
     var targetActive = (this.props.measurement && this.props.measurement.target_rating) ? (this.props.measurement.target_rating === this.props.rating.id) : false
@@ -52,8 +59,9 @@ var Rating = React.createClass({
 
     return (
       <ListGroupItem active={ratingActive} key={this.props.rating.id} header={header} className={descClass} style={{'borderLeftColor': this.props.rating.colour}}>
-        <ReactMarkdown escapeHtml source={this.props.rating.desc} containerTag='span'
-          className='rating-desc clickable' onClick={this.ratingClick} />
+        <div className='clickable' onClick={this.ratingClick}>
+          <ReactMarkdown escapeHtml source={this.props.rating.desc} containerTag='span' className='rating-desc' />
+        </div>
       </ListGroupItem>
     )
   }

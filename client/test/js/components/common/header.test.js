@@ -18,4 +18,3 @@ describe('Header Component', function () {
       .length(1)
   })
 })
-

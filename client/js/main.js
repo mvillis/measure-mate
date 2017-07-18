@@ -1,6 +1,7 @@
 'use strict'
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactDOM = require('react-dom')
 var ReactRouter = require('react-router')
 var browserHistory = ReactRouter.browserHistory
@@ -22,7 +23,9 @@ var About = require('./components/common/about')
 
 var ReactRedirect = require('react-redirect')
 
-var Admin = React.createClass({
+var Admin = createReactClass({
+  displayName: 'Admin',
+
   render: function () {
     return (
       <ReactRedirect location='/admin/' />
@@ -30,7 +33,9 @@ var Admin = React.createClass({
   }
 })
 
-var Export = React.createClass({
+var Export = createReactClass({
+  displayName: 'Export',
+
   render: function () {
     return (
       <ReactRedirect location='/export/' />

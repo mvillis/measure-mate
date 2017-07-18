@@ -1,6 +1,9 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactDOM = require('react-dom')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
@@ -10,11 +13,14 @@ var Table = ReactBootstrap.Table
 var TagList = require('../common/tagList')
 var TablesortCore = require('../common/tablesortCore')
 
-var TeamList = React.createClass({
+var TeamList = createReactClass({
+  displayName: 'TeamList',
+
   propTypes: {
-    teams: React.PropTypes.array.isRequired,
-    teamTags: React.PropTypes.object.isRequired
+    teams: PropTypes.array.isRequired,
+    teamTags: PropTypes.object.isRequired
   },
+
   componentDidMount: function () {
     var teamList = ReactDOM.findDOMNode(this.refs.teamList)
     TablesortCore(teamList)
@@ -27,6 +33,7 @@ var TeamList = React.createClass({
           <tr>
             <th>#</th>
             <th>Team Name</th>
+            <th>Team Description</th>
             <th className='no-sort'>Tags</th>
             <th data-sort-method='string'>Created Date</th>
             <th data-sort-method='string'>Updated Date</th>
@@ -47,6 +54,7 @@ var TeamList = React.createClass({
                     <a href={teamUrl}>{team.id}</a>
                   </td>
                   <td>{team.name}</td>
+                  <td>{team.short_desc}</td>
                   <td className='wrap'>
                     {this.props.teamTags.hasOwnProperty(team.id)
                       ? <TagList tags={this.props.teamTags[team.id] || []} />

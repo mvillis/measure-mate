@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import dj_database_url
 
+from django.urls import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
@@ -39,9 +41,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'django_filters',
     'crispy_forms',
     'rest_framework',
     'rest_framework_swagger',
+    'cspreports',
     'measure_mate',
 )
 
@@ -218,6 +222,7 @@ CSP_STYLE_SRC = ("'unsafe-inline'", "'self'", "fonts.googleapis.com",)
 CSP_IMG_SRC = ("'self'", "data:", "blob:", "online.swagger.io",)
 CSP_FONT_SRC = ("'self'", "fonts.gstatic.com",)
 CSP_EXCLUDE_URL_PREFIXES = ("/admin",)
+CSP_REPORT_URI = reverse_lazy('report_csp')
 
 LOGIN_URL = "/admin/login/"
 LOGOUT_URL = "/admin/logout/"

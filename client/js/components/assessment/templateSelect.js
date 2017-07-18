@@ -1,15 +1,18 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var Select = require('react-select')
 var ReactBootstrap = require('react-bootstrap')
 var HelpBlock = ReactBootstrap.HelpBlock
 var $ = require('jquery')
 
-var TemplateSelect = React.createClass({
+var TemplateSelect = createReactClass({
   propTypes: {
-    value: React.PropTypes.any,
-    onChange: React.PropTypes.func.isRequired
+    value: PropTypes.any,
+    onChange: PropTypes.func.isRequired
   },
   displayName: 'TemplateSelect',
 
@@ -48,7 +51,7 @@ var TemplateSelect = React.createClass({
           name='tags'
           placeholder='Type to filter templates'
           cache={{}}
-          />
+        />
         <HelpBlock>Each template includes a unique set of attributes to measure.</HelpBlock>
       </div>
     )

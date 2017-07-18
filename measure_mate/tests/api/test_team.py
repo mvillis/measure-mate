@@ -1,5 +1,6 @@
-import six
 import datetime
+
+from django.utils import six
 
 from rest_framework import status
 from rest_framework.reverse import reverse

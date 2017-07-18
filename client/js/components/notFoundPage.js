@@ -1,12 +1,15 @@
 'use strict'
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var Button = ReactBootstrap.Button
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var LinkContainer = ReactRouterBootstrap.LinkContainer
 
-var NotFoundPage = React.createClass({
+var NotFoundPage = createReactClass({
+  displayName: 'NotFoundPage',
+
   render: function () {
     return (
       <div>

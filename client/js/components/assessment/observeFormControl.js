@@ -1,6 +1,9 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var _ = require('lodash')
 var Glyphicon = ReactBootstrap.Glyphicon
@@ -11,15 +14,18 @@ var Button = ReactBootstrap.Button
 var Panel = ReactBootstrap.Panel
 var ReactMarkdown = require('react-markdown')
 
-var ObserveFormControl = React.createClass({
+var ObserveFormControl = createReactClass({
+  displayName: 'ObserveFormControl',
+
   propTypes: {
-    measurement: React.PropTypes.object,
-    syncMeasurement: React.PropTypes.func.isRequired,
-    onObservationChange: React.PropTypes.func.isRequired,
-    onActionChange: React.PropTypes.func.isRequired,
-    attributeId: React.PropTypes.number,
-    disabled: React.PropTypes.bool
+    measurement: PropTypes.object,
+    syncMeasurement: PropTypes.func.isRequired,
+    onObservationChange: PropTypes.func.isRequired,
+    onActionChange: PropTypes.func.isRequired,
+    attributeId: PropTypes.number,
+    disabled: PropTypes.bool
   },
+
   getInitialState: function () {
     return {
       dirtyObservation: false,
@@ -28,6 +34,7 @@ var ObserveFormControl = React.createClass({
       action: ''
     }
   },
+
   isObserveDirty: function (props) {
     if (props.measurement) {
       if (props.measurement.observations === this.state.observations) {
@@ -41,6 +48,7 @@ var ObserveFormControl = React.createClass({
       return !!this.state.observations
     }
   },
+
   isActionDirty: function (props) {
     if (props.measurement) {
       if (props.measurement.action === this.state.action) {
@@ -54,9 +62,11 @@ var ObserveFormControl = React.createClass({
       return !!this.state.action
     }
   },
+
   isSaveDisabled: function (props, dirty) {
     return !(!!props.measurement === true && dirty === true)
   },
+
   componentWillMount: function () {
     this.handleObserveDebounced = _.debounce(function () {
       this.props.onObservationChange.apply(this, [this.state.observations])
@@ -72,6 +82,7 @@ var ObserveFormControl = React.createClass({
       dirtyObservation: false
     })
   },
+
   componentWillReceiveProps: function (nextProps) {
     var dirty = this.isObserveDirty(nextProps) || this.isActionDirty(nextProps)
     var saveDisabled = this.isSaveDisabled(nextProps, dirty)
@@ -86,19 +97,23 @@ var ObserveFormControl = React.createClass({
       this.setState({saveBtnDisabled: saveDisabled, dirtyObservation: dirty})
     }
   },
+
   onObservationChange: function (event) {
     this.setState({ observations: event.target.value })
     this.handleObserveDebounced()
   },
+
   onActionChange: function (event) {
     this.setState({ action: event.target.value })
     this.handleActionDebounced()
   },
+
   handleSave: function () {
     if (this.state.saveBtnDisabled === false) {
       var postData = {
         id: this.props.measurement.id,
         assessment: this.props.measurement.assessment,
+        attribute: this.props.attributeId,
         rating: this.props.measurement.rating,
         targetRating: this.props.measurement.targetRating,
         observations: this.state.observations,
@@ -107,6 +122,7 @@ var ObserveFormControl = React.createClass({
       this.props.syncMeasurement(postData)
     }
   },
+
   render: function () {
     var syncStatus = <span />
     if (this.state.dirtyObservation === true) {

@@ -1,11 +1,14 @@
 'use strict'
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var Loader = require('react-loader')
 var $ = require('jquery')
 var TeamList = require('./teamList')
 
-var TeamTable = React.createClass({
+var TeamTable = createReactClass({
+  displayName: 'TeamTable',
+
   loadAllTagsFromServer: function () {
     var url = '/api/tags/'
     $.ajax({
@@ -33,6 +36,7 @@ var TeamTable = React.createClass({
       }
     })
   },
+
   loadTeamsFromServer: function () {
     $.ajax({
       url: '/api/teams/',
@@ -59,6 +63,7 @@ var TeamTable = React.createClass({
       }
     })
   },
+
   getInitialState: function () {
     return {
       teams: [],
@@ -66,9 +71,11 @@ var TeamTable = React.createClass({
       loaded: false
     }
   },
+
   componentDidMount: function () {
     this.loadTeamsFromServer()
   },
+
   render: function () {
     return (
       <div>

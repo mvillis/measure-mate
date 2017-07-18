@@ -1,5 +1,5 @@
 -r base.txt
 
-psycopg2==2.6.2
-gunicorn==19.6.0
-gevent==1.2.0
+psycopg2==2.7
+gunicorn==19.7.0
+gevent==1.2.1

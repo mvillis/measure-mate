@@ -1,17 +1,23 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootrap = require('react-bootstrap')
 var Modal = ReactBootrap.Modal
 var Button = ReactBootrap.Button
 
-var AppAlert = React.createClass({
+var AppAlert = createReactClass({
+  displayName: 'AppAlert',
+
   propTypes: {
-    showAlert: React.PropTypes.bool.isRequired,
-    alertType: React.PropTypes.string.isRequired,
-    alertDetail: React.PropTypes.string.isRequired,
-    handleHide: React.PropTypes.func.isRequired
+    showAlert: PropTypes.bool.isRequired,
+    alertType: PropTypes.string.isRequired,
+    alertDetail: PropTypes.string.isRequired,
+    handleHide: PropTypes.func.isRequired
   },
+
   render: function render () {
     return (
       <Modal show={this.props.showAlert} onHide={this.props.handleHide}>

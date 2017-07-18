@@ -1,6 +1,9 @@
 'use strict'
 
+var PropTypes = require('prop-types')
+
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var ReactRouterBootstrap = require('react-router-bootstrap')
 var _ = require('lodash')
@@ -19,12 +22,15 @@ var Loader = require('react-loader')
 var TagList = require('../common/tagList')
 var $ = require('jquery')
 
-var Assessment = React.createClass({
+var Assessment = createReactClass({
+  displayName: 'Assessment',
+
   propTypes: {
-    params: React.PropTypes.object,
-    location: React.PropTypes.object,
-    children: React.PropTypes.object
+    params: PropTypes.object,
+    location: PropTypes.object,
+    children: PropTypes.object
   },
+
   getInitialState: function () {
     return {
       activeTab: parseInt(this.props.location.query.tab, 10) || 1,
@@ -43,17 +49,21 @@ var Assessment = React.createClass({
       assessmentTags: []
     }
   },
+
   contextTypes: {
-    router: React.PropTypes.object
+    router: PropTypes.object
   },
+
   componentWillMount: function () {
     this.dataSource('/api/assessments/' + this.props.params.assessmentId + '/', this.assessmentCallback)
   },
+
   tagsCallback: function (data) {
     this.setState({
       assessmentTags: data
     })
   },
+
   measurementCallback: function (data) {
     this.setState({
       measurements: data,
@@ -61,12 +71,14 @@ var Assessment = React.createClass({
     }, this.dataSource('/api/tags/?assessment__id=' + this.props.params.assessmentId, this.tagsCallback)
     )
   },
+
   templateCallback: function (data) {
     this.setState({
       template: data
     }, this.dataSource('/api/measurements/?assessment__id=' + this.props.params.assessmentId, this.measurementCallback)
     )
   },
+
   assessmentCallback: function (assessment) {
     this.setState({
       assessment: assessment,
@@ -76,20 +88,23 @@ var Assessment = React.createClass({
     }, this.dataSource('/api/templates/' + assessment.template.id + '/', this.templateCallback)
     )
   },
+
   handleAlertHide () {
     this.setState({ showAlert: false })
   },
+
   handleSubmitFailure: function (xhr, ajaxOptions, thrownError) {
     console.log(thrownError)
-    console.log(xhr.responseJSON.detail)
+    console.log(xhr.responseJSON)
     console.log(ajaxOptions)
     this.setState({
       measureSyncActivity: false,
       showAlert: true,
       alertType: thrownError,
-      alertDetail: xhr.responseJSON.detail
+      alertDetail: (xhr.responseJSON && xhr.responseJSON.detail) ? xhr.responseJSON.detail : 'Unexpected error'
     })
   },
+
   dataSource: function (url, callback) {
     $.ajax({
       type: 'get',
@@ -99,6 +114,7 @@ var Assessment = React.createClass({
       error: this.handleSubmitFailure
     })
   },
+
   measurementUpdateCallback: function (data) {
     var existingMeasurementIndex = _.findIndex(this.state.measurements, function (measurement) {
       return measurement.id === data.id
@@ -120,6 +136,7 @@ var Assessment = React.createClass({
       })
     }
   },
+
   syncMeasurement: function (postData) {
     var createNewMeasure = !postData.id
     this.setState({ measureSyncActivity: true })
@@ -133,6 +150,7 @@ var Assessment = React.createClass({
       error: this.handleSubmitFailure
     })
   },
+
   markAssessmentDone: function () {
     var data = this.state.assessment
     data.status = 'DONE'
@@ -150,6 +168,7 @@ var Assessment = React.createClass({
       error: this.handleSubmitFailure
     })
   },
+
   handleNext: function () {
     this.scrollToTop('#attribute-list')
     var currentAttribute = this.props.params.attribute
@@ -158,6 +177,7 @@ var Assessment = React.createClass({
     var path = '/assessment/' + this.props.params.assessmentId + '/' + nextId
     this.context.router.push(path)
   },
+
   handlePrevious: function () {
     this.scrollToTop('#attribute-list')
     var currentAttribute = this.props.params.attribute
@@ -166,15 +186,17 @@ var Assessment = React.createClass({
     var path = '/assessment/' + this.props.params.assessmentId + '/' + nextId
     this.context.router.push(path)
   },
+
   scrollToTop: function (attList) {
     var $target = $(attList)
 
     $('html, body').stop().animate({
       'scrollTop': $target.offset().top
     }, 900, 'swing', function () {
-        // window.location.hash = $target
+      // window.location.hash = $target
     })
   },
+
   getAttributeForRating: function (queryRating) {
     var matchingAttribute = null
     for (var i = 0; i < this.state.template.attributes.length; i++) {
@@ -187,6 +209,7 @@ var Assessment = React.createClass({
     }
     return matchingAttribute
   },
+
   getMeasurementForAttribute: function (attribute) {
     if (this.state.measurements !== null) {
       for (var i = 0; i < this.state.measurements.length; i++) {
@@ -198,6 +221,7 @@ var Assessment = React.createClass({
       return null
     }
   },
+
   render: function () {
     if (this.state.template) {
       var attributeNodes = this.state.template.attributes.map(function (attribute, i) {

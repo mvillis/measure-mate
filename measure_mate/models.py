@@ -1,4 +1,7 @@
+from __future__ import unicode_literals
+
 import re
+import sys
 
 from builtins import str, object
 from future.utils import python_2_unicode_compatible
@@ -132,10 +135,11 @@ class Assessment(models.Model):
 @python_2_unicode_compatible
 class Measurement(models.Model):
     class Meta(object):
-        unique_together = ("assessment", "rating")
+        unique_together = (("assessment", "attribute"),)
         verbose_name_plural = "Measurements"
 
     assessment = models.ForeignKey(Assessment, related_name="measurements")
+    attribute = models.ForeignKey(Attribute, related_name="measurements")
     rating = models.ForeignKey(Rating, related_name="measurements")
     target_rating = models.ForeignKey(Rating, blank=True, null=True, related_name="target_measurements")
     observations = models.TextField(null=True, blank=True)
@@ -147,10 +151,19 @@ class Measurement(models.Model):
         return str(self.assessment) + " - " + self.rating.attribute.name + " - " + self.rating.name
 
     def clean(self):
-        if self.assessment.template.id != self.rating.attribute.template.id:
+        if self.assessment.template.id != self.attribute.template.id:
             raise ValidationError(_('Measurement attributes must be for the same template as the assessment'))
-        if self.target_rating is not None and self.assessment.template.id != self.target_rating.attribute.template.id:
+
+        if self.attribute.id != self.rating.attribute.id:
+            raise ValidationError(_('Measurement rating must be for the same attribute'))
+        if self.assessment.template.id != self.rating.attribute.template.id:
             raise ValidationError(_('Measurement ratings must be for the same template as the assessment'))
+
+        if self.target_rating is not None:
+            if self.attribute.id != self.target_rating.attribute.id:
+                raise ValidationError(_('Measurement target rating must be for the same attribute'))
+            if self.assessment.template.id != self.target_rating.attribute.template.id:
+                raise ValidationError(_('Measurement target ratings must be for the same template as the assessment'))
 
 
 @python_2_unicode_compatible

@@ -17,23 +17,25 @@ class AttributeAdmin(admin.ModelAdmin):
     list_display_links = ("id", "name")
     list_filter = ("template", )
     readonly_fields = ("id", )
-    search_fields = ("name", )
+    search_fields = ("name",)
 
 
 class AssessmentAdmin(admin.ModelAdmin):
     date_hierarchy = "updated"
     list_display = ("id", "team", "template", "created", "updated", "status")
-    list_filter = ("template", "status", "tags")
+    list_filter = ("template", "status",)
     filter_horizontal = ("tags", )
     radio_fields = {"status": admin.VERTICAL}
     readonly_fields = ("id", "created", "updated")
-    search_fields = ("team", "tags__name")
+    search_fields = ("team__name", "tags__name",)
 
 
 class MeasurementAdmin(admin.ModelAdmin):
-    list_display = ("id", "assessment", "created", "updated")
-    list_filter = ("assessment", )
+    date_hierarchy = "updated"
+    list_display = ("id", "assessment", "attribute", "created", "updated")
+    list_filter = ("attribute", )
     readonly_fields = ("id", "created", "updated")
+    search_fields = ("attribute__name", "rating__name", "target_rating__name", "attribute__template__name")
 
 
 class RatingAdmin(admin.ModelAdmin):
@@ -41,7 +43,7 @@ class RatingAdmin(admin.ModelAdmin):
     list_display_links = ("id", "name")
     list_filter = ("attribute", "colour", "desc_class")
     readonly_fields = ("id", )
-    search_fields = ("name", "tags__name")
+    search_fields = ("name", "tags__name", "attribute__name")
 
 
 class TagAdmin(admin.ModelAdmin):

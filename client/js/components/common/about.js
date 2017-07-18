@@ -1,13 +1,16 @@
 'use strict'
 
 var React = require('react')
+var createReactClass = require('create-react-class')
 var ReactBootstrap = require('react-bootstrap')
 var Grid = ReactBootstrap.Grid
 var Row = ReactBootstrap.Row
 var Col = ReactBootstrap.Col
 var Jumbotron = ReactBootstrap.Jumbotron
 
-var About = React.createClass({
+var About = createReactClass({
+  displayName: 'About',
+
   render: function () {
     return (
       <Grid fluid>
