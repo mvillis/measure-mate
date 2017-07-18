@@ -5,12 +5,20 @@ patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
+      gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2017-07-18T01:45:10.918Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2017-07-18T01:45:10.918Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2017-07-18T01:45:10.918Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
+      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2017-07-18T01:45:10.918Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
@@ -146,7 +154,7 @@ ignore:
   'npm:concat-stream:20160901':
     - plotly.js > mapbox-gl > geojson-rewind > concat-stream:
         reason: None given
-        expires: '2017-08-10T11:07:11.029Z'
+        expires: '2017-08-17T01:45:54.132Z'
     - mapbox-gl-shaders > brfs > static-module > concat-stream:
         reason: None given
         expires: '2017-04-14T11:03:50.199Z'
