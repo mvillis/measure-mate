@@ -5,20 +5,12 @@ patch:
   'npm:minimatch:20160620':
     - npm > init-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
-      gulp > vinyl-fs > glob-stream > minimatch:
-        patched: '2017-07-11T11:05:38.333Z'
     - npm > read-installed > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-stream > glob > minimatch:
-        patched: '2017-07-11T11:05:38.333Z'
     - npm > read-package-tree > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
-        patched: '2017-07-11T11:05:38.333Z'
     - npm > read-package-json > glob > minimatch:
         patched: '2016-09-05T01:26:49.657Z'
-      gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
-        patched: '2017-07-11T11:05:38.333Z'
     - npm > init-package-json > read-package-json > glob > minimatch:
         patched: '2016-08-30T03:10:49.683Z'
     - npm > fstream-npm > fstream-ignore > minimatch:
@@ -81,6 +73,14 @@ patch:
         patched: '2017-05-25T05:12:42.204Z'
     - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
         patched: '2017-05-25T05:12:42.204Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2017-07-11T11:05:38.333Z'
+    - gulp > vinyl-fs > glob-stream > glob > minimatch:
+        patched: '2017-07-11T11:05:38.333Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2017-07-11T11:05:38.333Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2017-07-11T11:05:38.333Z'
   'npm:negotiator:20160616':
     - browser-sync > socket.io > engine.io > accepts > negotiator:
         patched: '2016-08-30T03:10:49.683Z'
@@ -122,6 +122,9 @@ patch:
   'npm:marked:20170112':
     - gulp-notify > node-notifier > cli-usage > marked:
         patched: '2017-02-10T14:35:47.264Z'
+  'npm:ms:20170412':
+    - gulp-sourcemaps > debug-fabulous > debug > ms:
+        patched: '2017-07-18T01:44:24.248Z'
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:connect:20130701':
