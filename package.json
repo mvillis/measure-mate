@@ -70,7 +70,7 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.8.0",
-    "yargs": "^6.6.0"
+    "yargs": "^8.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
