@@ -163,15 +163,15 @@ ignore:
   'npm:connect:20130701':
     - browser-sync > browser-sync-ui > weinre > express > connect:
         reason: dev only
-        expires: '2017-01-13T23:43:19.492Z'
+        expires: '2017-03-18T23:55:24.219Z'
   'npm:express:20140912':
     - browser-sync > browser-sync-ui > weinre > express:
         reason: dev only
-        expires: '2017-01-13T23:43:19.492Z'
+        expires: '2017-03-18T23:55:24.219Z'
   'npm:qs:20140806':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
-        expires: '2017-01-13T23:43:19.493Z'
+        expires: '2017-03-18T23:55:24.219Z'
   'npm:qs:20140806-1':
     - browser-sync > browser-sync-ui > weinre > express > qs:
         reason: dev only
