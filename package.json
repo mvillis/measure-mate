@@ -36,7 +36,7 @@
     "bootstrap": "^3.3.7",
     "browserify": "^14.1.0",
     "create-react-class": "^15.6.0",
-    "gulp": "^3.9.1",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-concat": "^2.6.1",
     "gulp-notify": "^3.0.0",
     "gulp-sourcemaps": "^2.6.0",
