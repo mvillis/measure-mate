@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "snyk test && gulp test",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk protect || true",
     "gulp-build": "gulp build --production",
     "postinstall": "npm run snyk-protect",
     "heroku-postbuild": "npm run gulp-build"
