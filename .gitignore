@@ -67,3 +67,8 @@ docs/_build/
 
 # Virtual env
 .venv*
+
+# runtime files
+backup/
+log/
+*.pid
