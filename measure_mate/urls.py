@@ -22,8 +22,8 @@ router.register(r'templates', TemplateViewSet)
 
 urlpatterns = [
     url(r'^healthcheck/?$', healthcheck, name='healthcheck'),
-    url(r'^admin/', include('admin.site.urls')),
-    url(r'^api/', include('router.urls')),
+    url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(router.urls)),
     url(r'^api/api-auth/', include(
         'rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', schema_view, name='schema'),
