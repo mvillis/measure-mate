@@ -7120,7 +7120,7 @@ opbeat-js-core@^0.3.1:
 
 opbeat-react@^3.4.0:
   version "3.4.0"
-  resolved "https://nexus.int.corp.sun/content/groups/publicnpm/opbeat-react/-/opbeat-react-3.4.0.tgz#8af38b9e322adc905096d93b68227c84175d75fd"
+  resolved "https://registry.yarnpkg.com/opbeat-react/-/opbeat-react-3.4.0.tgz#8af38b9e322adc905096d93b68227c84175d75fd"
   dependencies:
     loglevel "^1.4.0"
     opbeat-js-core "^0.3.1"
