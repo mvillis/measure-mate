@@ -175,9 +175,9 @@ class Announcement(models.Model):
         ('default', 'Default'),
         ('primary', 'Primary'),
         ('success', 'Success'),
-        ('info',    'Success'),
+        ('info', 'Success'),
         ('warning', 'Warning'),
-        ('danger',  'Danger'),
+        ('danger', 'Danger'),
     )
 
     id = models.AutoField(primary_key=True)
