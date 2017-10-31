@@ -133,6 +133,16 @@ patch:
   'npm:ms:20170412':
     - gulp-sourcemaps > debug-fabulous > debug > ms:
         patched: '2017-07-18T01:44:24.248Z'
+  'npm:debug:20170905':
+    - glob-watcher > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
+        patched: '2017-10-24T04:22:34.498Z'
+    - node-pre-gyp > tar-pack > debug:
+        patched: '2017-10-24T04:22:34.498Z'
+  'npm:tough-cookie:20170905':
+    - glob-watcher > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2017-10-24T04:22:34.498Z'
+    - node-pre-gyp > request > tough-cookie:
+        patched: '2017-10-24T04:22:34.498Z'
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:connect:20130701':
@@ -360,3 +370,73 @@ ignore:
     - snyk > snyk-resolve-deps > clite > debug > ms:
         reason: None given
         expires: '2017-06-15T11:08:19.829Z'
+  'npm:static-eval:20171016':
+    - brfs > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.221Z'
+    - mapbox-gl-shaders > brfs > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.221Z'
+    - plotly.js > gl-contour2d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.221Z'
+    - plotly.js > gl-error2d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-heatmap2d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-line2d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-line3d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-mesh3d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-pointcloud2d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-scatter2d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-scatter2d-sdf > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-scatter3d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-select-box > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.222Z'
+    - plotly.js > gl-surface3d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > ndarray-fill > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > gl-plot2d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > gl-plot3d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > gl-plot3d > gl-axes3d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > gl-plot3d > gl-spikes3d > glslify > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.223Z'
+    - plotly.js > gl-error3d > glslify > static-eval:
+        reason: None given
+        expires: '2017-11-23T04:30:30.224Z'
