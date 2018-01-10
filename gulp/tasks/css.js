@@ -12,7 +12,7 @@ if (!config.production) {
   reload = require('browser-sync').reload
 }
 
-gulp.task('css', function () {
+gulp.task('build:css', function () {
   return gulp.src(config.src)
     .pipe(sourcemaps.init({loadMaps: true}))
     // transforms here

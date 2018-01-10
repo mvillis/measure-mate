@@ -18,6 +18,7 @@ if (!config.production && !util.env.production) {
 
   startBrowserSync = function () {
     if (global.isBuilding === true) {
+      util.log('Build in progress...')
       setTimeout(startBrowserSync, 100)
     } else {
       util.log('Build complete, starting BrowserSync')

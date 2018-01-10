@@ -21,7 +21,7 @@ if (!config.production) {
   watchify = require('watchify')
 }
 
-gulp.task('browserify', function (callback) {
+gulp.task('build:js', function (callback) {
   var bundleQueue = config.bundleConfigs.length
 
   var browserifyThis = function (bundleConfig) {

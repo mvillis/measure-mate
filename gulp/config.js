@@ -78,9 +78,7 @@ module.exports = {
   },
 
   build: {
-    production: production,
-    prod_tasks: ['browserify', 'css', 'fonts', 'assets'],
-    test_tasks: ['browserify', 'css', 'fonts', 'assets', 'lint', 'lint-css', 'lint-markdown', 'test']
+    production: production
   },
 
   browserify: {

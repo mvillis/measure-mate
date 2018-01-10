@@ -15,7 +15,7 @@ if (config.production || util.env.production) {
 } else {
   var startBrowserSync = require('../util/startBrowserSync')
 
-  gulp.task('watch', ['build'], function () {
+  gulp.task('watch', function () {
     startBrowserSync()
     gulp.watch(config.assets.src, ['assets'])
     gulp.watch(config.css.src, ['lint-css', 'css'])
