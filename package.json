@@ -32,9 +32,9 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "babelify": "^7.3.0",
+    "babelify": "^8.0.0",
     "bootstrap": "^3.3.7",
-    "browserify": "^14.5.0",
+    "browserify": "^15.0.0",
     "create-react-class": "^15.6.2",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
@@ -70,7 +70,7 @@
     "through2": "^2.0.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "yargs": "^9.0.1"
+    "yargs": "^10.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -80,7 +80,7 @@
     "coveralls": "^3.0.0",
     "enzyme": "^2.9.1",
     "eslint": "^4.9.0",
-    "eslint-config-standard": "^10.2.1",
+    "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-config-standard-jsx": "^4.0.1",
     "eslint-config-standard-react": "^5.0.0",
     "eslint-plugin-import": "^2.8.0",
@@ -94,7 +94,7 @@
     "gulp-inject-modules": "^1.0.0",
     "gulp-mocha": "^3.0.1",
     "gulp-standard": "^10.1.1",
-    "gulp-stylelint": "^5.0.0",
+    "gulp-stylelint": "^6.0.0",
     "jsdom": "^9.12.0",
     "lodash.assign": "^4.2.0",
     "markdownlint": "^0.6.1",

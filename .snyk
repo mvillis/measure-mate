@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.1
+version: v1.10.1
 # patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:minimatch:20160620':
@@ -139,6 +139,12 @@ patch:
         patched: '2017-07-18T01:45:10.918Z'
     - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
         patched: '2017-07-18T01:45:10.918Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > glob > minimatch:
+        patched: '2018-01-10T10:36:35.472Z'
+    - gulp > vinyl-fs > glob-watcher > gaze > globule > minimatch:
+        patched: '2018-01-10T10:36:35.472Z'
+    - gulp > vinyl-fs > glob-stream > minimatch:
+        patched: '2018-01-10T10:36:35.472Z'
   'npm:negotiator:20160616':
     - browser-sync > socket.io > engine.io > accepts > negotiator:
         patched: '2016-08-30T03:10:49.683Z'
@@ -173,10 +179,10 @@ patch:
         patched: '2016-10-05T12:10:50.635Z'
   'npm:debug:20170905':
     - node-pre-gyp > tar-pack > debug:
-        patched: '2017-10-24T04:07:04.567Z'
+        patched: '2018-01-10T10:36:35.472Z'
   'npm:tough-cookie:20170905':
     - node-pre-gyp > request > tough-cookie:
-        patched: '2017-10-24T04:07:04.567Z'
+        patched: '2018-01-10T10:36:35.472Z'
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:connect:20130701':
@@ -216,7 +222,7 @@ ignore:
   'npm:concat-stream:20160901':
     - plotly.js > mapbox-gl > geojson-rewind > concat-stream:
         reason: None given
-        expires: '2017-11-02T01:51:41.633Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - mapbox-gl-shaders > brfs > static-module > concat-stream:
         reason: None given
         expires: '2017-04-14T11:03:50.199Z'
@@ -425,70 +431,70 @@ ignore:
   'npm:static-eval:20171016':
     - brfs > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.530Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - mapbox-gl-shaders > brfs > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.531Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-contour2d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.531Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-error2d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.531Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-heatmap2d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.531Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-line2d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.531Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-line3d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.531Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-mesh3d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.531Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-pointcloud2d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.531Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-scatter2d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-scatter2d-sdf > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-scatter3d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-select-box > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-surface3d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > ndarray-fill > cwise > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-plot2d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.277Z'
     - plotly.js > gl-plot3d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.278Z'
     - plotly.js > gl-plot3d > gl-axes3d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.278Z'
     - plotly.js > gl-plot3d > gl-spikes3d > glslify > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.532Z'
+        expires: '2018-02-09T10:40:01.278Z'
     - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.533Z'
+        expires: '2018-02-09T10:40:01.278Z'
     - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.533Z'
+        expires: '2018-02-09T10:40:01.278Z'
     - plotly.js > gl-error3d > glslify > static-eval:
         reason: None given
-        expires: '2017-11-23T04:10:52.533Z'
+        expires: '2018-02-09T10:40:01.278Z'
