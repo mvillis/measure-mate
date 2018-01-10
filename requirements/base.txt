@@ -1,5 +1,5 @@
-Django==1.11.6
-djangorestframework==3.7.1
+Django==1.11.9
+djangorestframework==3.7.7
 django-filter==1.1.0
 django-crispy-forms==1.7.0
 dj-database-url==0.4.2
@@ -9,9 +9,9 @@ django-csp==3.3
 django-csp-reports==1.1
 whitenoise==3.3.1
 django-excel==0.0.9
-pyexcel==0.5.5
-pyexcel-xls==0.5.1
-pyexcel-xlsx==0.5.1
-pytz==2017.2
+pyexcel==0.5.6
+pyexcel-xls==0.5.5
+pyexcel-xlsx==0.5.5
+pytz==2017.3
 future==0.16.0
 opbeat==3.5.3
