@@ -1,4 +1,4 @@
 -r prod.txt
 
-supervisor==3.3.3
+supervisor==3.3.4
 django-supervisor==0.4.0
