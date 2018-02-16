@@ -1,15 +1,15 @@
 .logo-slogan-text {
-  font-family: 'News Cycle';
+  font-family: 'News Cycle', sans-serif;
   text-align: center;
 }
 
 .logo-text {
-  font-family: 'Autour One';
+  font-family: 'Autour One', sans-serif;
   text-align: center;
 }
 
 .navbar-brand {
-  font-family: 'Autour One';
+  font-family: 'Autour One', sans-serif;
 }
 
 .logo {
