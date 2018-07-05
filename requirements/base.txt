@@ -5,7 +5,7 @@ django-crispy-forms==1.7.0
 dj-database-url==0.4.2
 django-rest-swagger==2.1.2
 django-secure==1.0.1
-django-csp==3.3
+django-csp==3.4
 django-csp-reports==1.1
 whitenoise==3.3.1
 django-excel==0.0.10
