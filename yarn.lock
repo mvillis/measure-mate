@@ -6530,9 +6530,9 @@ markdown-table@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.2.tgz#c78db948fa879903a41bce522e3b96f801c63786"
 
-markdownlint@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.8.1.tgz#a87572ccc84273b2a723205e65fa657437fe06c6"
+markdownlint@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.10.0.tgz#ee941ee943f78ff6adbc1ff0fad49365e600b664"
   dependencies:
     markdown-it "8.4.1"
 
