@@ -4918,13 +4918,14 @@ gulp-uglify@^3.0.0:
     uglify-js "^3.0.5"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-uglifycss@^1.0.8:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/gulp-uglifycss/-/gulp-uglifycss-1.0.9.tgz#4d58cca04251c3f1e0140fb2a5dcbe8bebb21244"
+gulp-uglifycss@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gulp-uglifycss/-/gulp-uglifycss-1.1.0.tgz#95ba1ff6cbd046edfa1c074de477a9bea4410a1a"
   dependencies:
-    gulp-util "^3.0.8"
+    plugin-error "^1.0.1"
     through2 "^2.0.3"
     uglifycss "^0.0.25"
+    vinyl "^2.1.0"
 
 gulp-util@^3.0.0, gulp-util@^3.0.8:
   version "3.0.8"
