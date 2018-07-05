@@ -1,15 +1,6 @@
 'use strict'
 
-import initOpbeat, { wrapRouter } from 'opbeat-react'
 import { browserHistory, Route, Router, IndexRoute, IndexRedirect } from 'react-router'
-
-const OpbeatRouter = wrapRouter(Router)
-
-initOpbeat({
-  orgId: 'd7dba82e5f3c4f57b6ccda5c1f876bc6',
-  appId: '708c8739c2'
-})
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactRedirect from 'react-redirect'
@@ -48,7 +39,7 @@ const Export = createReactClass({
 })
 
 ReactDOM.render(
-  <OpbeatRouter history={browserHistory}>
+  <Router history={browserHistory}>
     <Route path='/' component={Header}>
       <IndexRoute component={Home} />
       <Route path='about' component={About} />
@@ -71,6 +62,6 @@ ReactDOM.render(
       <Route path='export' component={Export} />
       <Route status={404} path='*' component={NotFoundPage} />
     </Route>
-  </OpbeatRouter>,
+  </Router>,
   document.getElementById('app')
 )
