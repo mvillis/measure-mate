@@ -1,5 +1,5 @@
 Django==1.11.10
-djangorestframework==3.7.7
+djangorestframework==3.8.2
 django-filter==1.1.0
 django-crispy-forms==1.7.0
 dj-database-url==0.4.2
