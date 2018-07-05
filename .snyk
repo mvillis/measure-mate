@@ -374,27 +374,15 @@ ignore:
     - brfs > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.221Z'
-      plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2018-08-04T02:02:51.771Z'
     - mapbox-gl-shaders > brfs > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.221Z'
-      plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2018-08-04T02:02:51.771Z'
     - plotly.js > gl-contour2d > glslify > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.221Z'
-      plotly.js > ndarray-fill > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2018-08-04T02:02:51.771Z'
     - plotly.js > gl-error2d > glslify > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.222Z'
-      plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2018-08-04T02:02:51.771Z'
     - plotly.js > gl-heatmap2d > glslify > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.222Z'
@@ -452,6 +440,18 @@ ignore:
     - plotly.js > gl-error3d > glslify > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.224Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2018-08-04T02:02:51.771Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2018-08-04T02:02:51.771Z'
+    - plotly.js > ndarray-fill > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2018-08-04T02:02:51.771Z'
+    - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2018-08-04T02:02:51.771Z'
   'npm:is-mobile:20170905':
     - plotly.js > gl-plot3d > is-mobile:
         reason: None given
