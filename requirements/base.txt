@@ -14,4 +14,4 @@ pyexcel-xls==0.5.5
 pyexcel-xlsx==0.5.5
 pytz==2017.3
 future==0.16.0
-opbeat==3.5.3
+opbeat==3.6.1
