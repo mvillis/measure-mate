@@ -10,7 +10,7 @@ django-csp-reports==1.1
 whitenoise==3.3.1
 django-excel==0.0.10
 pyexcel==0.5.8
-pyexcel-xls==0.5.5
+pyexcel-xls==0.5.7
 pyexcel-xlsx==0.5.6
 pytz==2018.5
 future==0.16.0
