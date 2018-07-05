@@ -8,11 +8,12 @@ var expect = require('chai').expect
 var shallow = require('enzyme').shallow
 var AppAlert = require('../../../../js/components/common/appAlert')
 
+const handleHideFunc = function () {
+  // console.log('handleHideFunc() called')
+}
+const showAlert = true
+
 describe('AppAlert Component', function () {
-  const handleHideFunc = function () {
-    // console.log('handleHideFunc() called')
-  }
-  const showAlert = true
   const wrapper = shallow(
     <AppAlert showAlert={showAlert} alertType='alert type alpha' alertDetail='alert detail alpha beta gamma' handleHide={handleHideFunc} />
   )
