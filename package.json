@@ -84,7 +84,7 @@
     "chai": "^4.1.1",
     "coveralls": "^3.0.2",
     "enzyme": "^2.9.1",
-    "eslint": "^4.19.1",
+    "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-config-standard-jsx": "^4.0.1",
     "eslint-config-standard-react": "^5.0.0",
