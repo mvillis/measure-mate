@@ -19,11 +19,10 @@
   "scripts": {
     "build": "gulp build",
     "default": "gulp default",
+    "heroku-postbuild": "gulp build --production",
+    "postinstall": "yarn run snyk-protect",
+    "snyk-protect": "snyk protect || true",
     "test": "snyk test && gulp test",
-    "snyk-protect": "snyk protect",
-    "gulp-build": "gulp build --production",
-    "heroku-postbuild": "yarn run gulp-build",
-    "prepublish": "yarn run snyk-protect",
     "watch": "gulp watch"
   },
   "browserify": {
