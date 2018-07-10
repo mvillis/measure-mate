@@ -1,10 +1,11 @@
 var browserify = require('browserify')
 var uglify = require('gulp-uglify')
 var gulp = require('gulp')
-var util = require('gulp-util')
+var noop = require('gulp-noop')
 var source = require('vinyl-source-stream')
 var sourcemaps = require('gulp-sourcemaps')
 var buffer = require('vinyl-buffer')
+var log = require('fancy-log')
 
 var config = require('../config').browserify
 
@@ -70,7 +71,7 @@ gulp.task('build:js', function (callback) {
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         // transforms here
-        .pipe(config.production ? uglify() : util.noop())
+        .pipe(config.production ? uglify() : noop())
         // Report compile errors
         .on('error', handleErrors)
         .pipe(sourcemaps.write('./'))
@@ -80,7 +81,7 @@ gulp.task('build:js', function (callback) {
     }
 
     if (!config.production && isWatching) {
-      util.log('Enabling Watchify for Browserify')
+      log('Enabling Watchify for Browserify')
       // Wrap with watchify and rebundle on changes
       bundler = watchify(bundler)
       // Rebundle on update

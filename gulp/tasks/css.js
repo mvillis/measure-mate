@@ -1,5 +1,5 @@
 var gulp = require('gulp')
-var util = require('gulp-util')
+var noop = require('gulp-noop')
 var concat = require('gulp-concat')
 var uglifycss = require('gulp-uglifycss')
 var sourcemaps = require('gulp-sourcemaps')
@@ -7,7 +7,7 @@ var sourcemaps = require('gulp-sourcemaps')
 var handleErrors = require('../util/handleErrors')
 var config = require('../config').css
 
-var reload = util.noop
+var reload = noop
 if (!config.production) {
   reload = require('browser-sync').reload
 }

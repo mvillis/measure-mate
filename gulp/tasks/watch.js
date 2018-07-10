@@ -4,12 +4,14 @@
 */
 
 var gulp = require('gulp')
-var util = require('gulp-util')
+var log = require('fancy-log')
+var colors = require('ansi-colors')
+var env = require('../util/env')
 var config = require('../config')
 
-if (config.production || util.env.production) {
+if (config.production || env.production) {
   gulp.task('watch', function (done) {
-    util.log(util.colors.magenta('WARNING:'), ' \'watch\' task skipped in production.')
+    log.warn(colors.magenta('WARNING:'), ' \'watch\' task skipped in production.')
     done()
   })
 } else {

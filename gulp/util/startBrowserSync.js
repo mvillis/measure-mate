@@ -1,10 +1,11 @@
-var util = require('gulp-util')
+var log = require('fancy-log')
+var env = require('../util/env')
 
 var config = require('../config')
 
 var startBrowserSync = function () { }
 
-if (!config.production && !util.env.production) {
+if (!config.production && !env.production) {
   var _ = require('lodash')
   var assign = require('lodash.assign')
   var browserSync = require('browser-sync')
@@ -18,10 +19,10 @@ if (!config.production && !util.env.production) {
 
   startBrowserSync = function () {
     if (global.isBuilding === true) {
-      util.log('Build in progress...')
+      log('Build in progress...')
       setTimeout(startBrowserSync, 100)
     } else {
-      util.log('Build complete, starting BrowserSync')
+      log('Build complete, starting BrowserSync')
       browserSync(bsConfig)
     }
   }
