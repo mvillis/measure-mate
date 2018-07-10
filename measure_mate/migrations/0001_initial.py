@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('observations', models.TextField()),
-                ('assessment', models.ForeignKey(related_name='measurements', to='measure_mate.Assessment')),
+                ('assessment', models.ForeignKey(related_name='measurements', to='measure_mate.Assessment', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name_plural': 'Measurements',
@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=256)),
                 ('desc', models.TextField()),
                 ('rank', models.IntegerField(default=1)),
-                ('attribute', models.ForeignKey(related_name='ratings', to='measure_mate.Attribute')),
+                ('attribute', models.ForeignKey(related_name='ratings', to='measure_mate.Attribute', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name_plural': 'Ratings',
@@ -78,12 +78,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='measurement',
             name='rating',
-            field=models.ForeignKey(related_name='measurements', to='measure_mate.Rating'),
+            field=models.ForeignKey(related_name='measurements', to='measure_mate.Rating', on_delete=models.PROTECT),
         ),
         migrations.AddField(
             model_name='attribute',
             name='discipline',
-            field=models.ForeignKey(related_name='attributes', to='measure_mate.Template'),
+            field=models.ForeignKey(related_name='attributes', to='measure_mate.Template', on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='assessment',
@@ -93,7 +93,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='assessment',
             name='template',
-            field=models.ForeignKey(related_name='assessments', to='measure_mate.Template'),
+            field=models.ForeignKey(related_name='assessments', to='measure_mate.Template', on_delete=models.PROTECT),
         ),
         migrations.AlterUniqueTogether(
             name='rating',

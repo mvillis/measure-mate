@@ -1,10 +1,11 @@
 var gulp = require('gulp')
-var util = require('gulp-util')
+var log = require('fancy-log')
+var colors = require('ansi-colors')
 var config = require('../config').test
 
 if (config.production) {
   gulp.task('test', function (done) {
-    util.log(util.colors.magenta('WARNING:'), ' \'test\' task skipped in production.')
+    log.warn(colors.magenta('WARNING:'), ' \'test\' task skipped in production.')
     done()
   })
 } else {

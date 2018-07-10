@@ -1,29 +1,24 @@
 'use strict'
 
-var React = require('react')
-var createReactClass = require('create-react-class')
-var ReactDOM = require('react-dom')
-var ReactRouter = require('react-router')
-var browserHistory = ReactRouter.browserHistory
-var Router = ReactRouter.Router
-var Route = ReactRouter.Route
-var IndexRoute = ReactRouter.IndexRoute
-var IndexRedirect = ReactRouter.IndexRedirect
-var Header = require('./components/common/header')
-var Home = require('./components/home/home')
-var Assessment = require('./components/assessment/assessment')
-var Attribute = require('./components/assessment/attribute')
-var Summary = require('./components/assessment/summary')
-var Intro = require('./components/assessment/intro')
-var AssessmentTable = require('./components/assessment/assessmentTable')
-var Team = require('./components/team/team')
-var TeamTable = require('./components/team/teamTable')
-var NotFoundPage = require('./components/notFoundPage')
-var About = require('./components/common/about')
+import { browserHistory, Route, Router, IndexRoute, IndexRedirect } from 'react-router'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import ReactRedirect from 'react-redirect'
+import createReactClass from 'create-react-class'
 
-var ReactRedirect = require('react-redirect')
+import Header from './components/common/header'
+import Home from './components/home/home'
+import Assessment from './components/assessment/assessment'
+import Attribute from './components/assessment/attribute'
+import Summary from './components/assessment/summary'
+import Intro from './components/assessment/intro'
+import AssessmentTable from './components/assessment/assessmentTable'
+import Team from './components/team/team'
+import TeamTable from './components/team/teamTable'
+import NotFoundPage from './components/notFoundPage'
+import About from './components/common/about'
 
-var Admin = createReactClass({
+const Admin = createReactClass({
   displayName: 'Admin',
 
   render: function () {
@@ -33,7 +28,7 @@ var Admin = createReactClass({
   }
 })
 
-var Export = createReactClass({
+const Export = createReactClass({
   displayName: 'Export',
 
   render: function () {

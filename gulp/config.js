@@ -1,5 +1,5 @@
-var util = require('gulp-util')
-var production = !!util.env.production
+var env = require('./util/env')
+var production = !!env.production
 
 var dest = 'build'
 var src = 'client'
