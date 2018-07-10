@@ -37,7 +37,7 @@ class Attribute(models.Model):
 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256)
-    template = models.ForeignKey(Template, related_name='attributes')
+    template = models.ForeignKey(Template, related_name='attributes', on_delete=models.CASCADE)
     rank = models.IntegerField(default=1, db_index=True)
     desc = models.TextField(verbose_name="Description")
     desc_class = models.CharField(max_length=256, default="", blank=True, verbose_name="Description CSS Class")
@@ -55,7 +55,7 @@ class Rating(models.Model):
 
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=256)
-    attribute = models.ForeignKey(Attribute, related_name='ratings')
+    attribute = models.ForeignKey(Attribute, related_name='ratings', on_delete=models.CASCADE)
     rank = models.IntegerField(default=1, db_index=True)
     colour = models.CharField(max_length=256, null=True, blank=True)
     desc = models.TextField(verbose_name="Description")
@@ -116,8 +116,8 @@ class Assessment(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    team = models.ForeignKey(Team, related_name="assessments", db_index=True)
-    template = models.ForeignKey(Template, related_name="assessments")
+    team = models.ForeignKey(Team, related_name="assessments", db_index=True, on_delete=models.CASCADE)
+    template = models.ForeignKey(Template, related_name="assessments", on_delete=models.PROTECT)
     status = models.CharField(
         max_length=128,
         choices=STATUS_CHOICES,
@@ -138,10 +138,10 @@ class Measurement(models.Model):
         unique_together = (("assessment", "attribute"),)
         verbose_name_plural = "Measurements"
 
-    assessment = models.ForeignKey(Assessment, related_name="measurements")
-    attribute = models.ForeignKey(Attribute, related_name="measurements")
-    rating = models.ForeignKey(Rating, related_name="measurements")
-    target_rating = models.ForeignKey(Rating, blank=True, null=True, related_name="target_measurements")
+    assessment = models.ForeignKey(Assessment, related_name="measurements", on_delete=models.CASCADE)
+    attribute = models.ForeignKey(Attribute, related_name="measurements", on_delete=models.PROTECT)
+    rating = models.ForeignKey(Rating, related_name="measurements", on_delete=models.PROTECT)
+    target_rating = models.ForeignKey(Rating, blank=True, null=True, related_name="target_measurements", on_delete=models.PROTECT)
     observations = models.TextField(null=True, blank=True)
     action = models.TextField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
