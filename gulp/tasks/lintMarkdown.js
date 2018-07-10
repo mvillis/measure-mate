@@ -1,11 +1,12 @@
 var gulp = require('gulp')
-var util = require('gulp-util')
 var through2 = require('through2')
+var log = require('fancy-log')
+var colors = require('ansi-colors')
 var config = require('../config').markdownlint
 
 if (config.production) {
   gulp.task('lint:markdown', function (done) {
-    util.log(util.colors.magenta('WARNING:'), ' \'lint:markdown\' task skipped in production.')
+    log.warn(colors.magenta('WARNING:'), ' \'lint:markdown\' task skipped in production.')
     done()
   })
 } else {
