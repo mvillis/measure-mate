@@ -6310,9 +6310,9 @@ markdown-escapes@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.2.tgz#e639cbde7b99c841c0bacc8a07982873b46d2122"
 
-markdown-it@8.4.1:
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.1.tgz#206fe59b0e4e1b78a7c73250af9b34a4ad0aaf44"
+markdown-it@8.4.2:
+  version "8.4.2"
+  resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.2.tgz#386f98998dc15a37722aa7722084f4020bdd9b54"
   dependencies:
     argparse "^1.0.7"
     entities "~1.1.1"
@@ -6324,11 +6324,11 @@ markdown-table@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-1.1.2.tgz#c78db948fa879903a41bce522e3b96f801c63786"
 
-markdownlint@^0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.10.0.tgz#ee941ee943f78ff6adbc1ff0fad49365e600b664"
+markdownlint@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.11.0.tgz#3858bbdbc1ab78abf0c098d841c72b63dd3206a0"
   dependencies:
-    markdown-it "8.4.1"
+    markdown-it "8.4.2"
 
 mat4-decompose@^1.0.3:
   version "1.0.4"
