@@ -58,7 +58,7 @@ var Rating = createReactClass({
     )
 
     return (
-      <ListGroupItem active={ratingActive} key={this.props.rating.id} header={header} className={descClass} style={{'borderLeftColor': this.props.rating.colour}}>
+      <ListGroupItem active={ratingActive} key={this.props.rating.id} header={header} className={descClass} style={{ 'borderLeftColor': this.props.rating.colour }}>
         <div className='clickable' onClick={this.ratingClick}>
           <ReactMarkdown escapeHtml source={this.props.rating.desc} containerTag='span' className='rating-desc' />
         </div>

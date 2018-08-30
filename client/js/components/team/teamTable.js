@@ -29,7 +29,7 @@ var TeamTable = createReactClass({
           }, this)
         }, this)
 
-        this.setState({teamTags: teamTags})
+        this.setState({ teamTags: teamTags })
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(url, status, err.toString())

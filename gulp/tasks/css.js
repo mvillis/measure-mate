@@ -14,7 +14,7 @@ if (!config.production) {
 
 gulp.task('build:css', function () {
   return gulp.src(config.src)
-    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(sourcemaps.init({ loadMaps: true }))
     // transforms here
     .pipe(concat('bundle.css'))
     // Report compile errors
@@ -24,5 +24,5 @@ gulp.task('build:css', function () {
     .on('error', handleErrors)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.dest))
-    .pipe(reload({stream: true}))
+    .pipe(reload({ stream: true }))
 })

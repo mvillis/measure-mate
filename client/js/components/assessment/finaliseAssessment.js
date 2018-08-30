@@ -75,7 +75,7 @@ var FinaliseAssessment = createReactClass({
       return (
         <Panel bsStyle='default' header='Happy how everything looks?'>
           <p>When you're finished, lock in your results on the Summary screen.</p>
-          <LinkContainer key='summary' to={{pathname: '/assessment/' + this.props.assessment.id + '/summary'}}>
+          <LinkContainer key='summary' to={{ pathname: '/assessment/' + this.props.assessment.id + '/summary' }}>
             <Button bsStyle='primary'>Summary</Button>
           </LinkContainer>
         </Panel>

@@ -50,7 +50,7 @@ var AssessmentList = createReactClass({
             var assessmentUrl = '/assessment/' + assessment.id + '/' + 'summary'
 
             return (
-              <LinkContainer key={assessment.id} to={{pathname: assessmentUrl}}>
+              <LinkContainer key={assessment.id} to={{ pathname: assessmentUrl }}>
                 <tr className='clickable' >
                   <td data-sort={assessment.id} data-sort-method='number'>
                     <a href={assessmentUrl}>{assessment.id}</a>

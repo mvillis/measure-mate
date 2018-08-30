@@ -19,7 +19,7 @@ if (semver.lt(process.version, '1.0.0')) {
 
   gulp.task('lint:js', function () {
     return gulp.src(config.src)
-      .pipe(lint({config: config.configSrc}))
+      .pipe(lint({ config: config.configSrc }))
       .pipe(lint.format())
   })
 }

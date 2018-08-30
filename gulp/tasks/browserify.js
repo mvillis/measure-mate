@@ -38,7 +38,7 @@ gulp.task('build:js', function (callback) {
       debug: true
     })
       // Specify the entry point of your app
-      .require(bundleConfig.entries, {entry: true})
+      .require(bundleConfig.entries, { entry: true })
 
     var reportFinished = function () {
       // Log when bundling completes
@@ -69,7 +69,7 @@ gulp.task('build:js', function (callback) {
         // desired output filename here.
         .pipe(source(bundleConfig.outputName))
         .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.init({ loadMaps: true }))
         // transforms here
         .pipe(config.production ? uglify() : noop())
         // Report compile errors

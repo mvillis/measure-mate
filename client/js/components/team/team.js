@@ -33,7 +33,7 @@ var Team = createReactClass({
       dataType: 'json',
       cache: false,
       success: function (data) {
-        this.setState({tags: data, loadedTags: true, loaded: this.state.loadedTeam})
+        this.setState({ tags: data, loadedTags: true, loaded: this.state.loadedTeam })
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(url, status, err.toString())
@@ -49,7 +49,7 @@ var Team = createReactClass({
       dataType: 'json',
       cache: false,
       success: function (data) {
-        this.setState({team: data, loadedTeam: true, loaded: this.state.loadedTags})
+        this.setState({ team: data, loadedTeam: true, loaded: this.state.loadedTags })
       }.bind(this),
       error: function (xhr, status, err) {
         console.error(url, status, err.toString())

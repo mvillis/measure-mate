@@ -70,7 +70,7 @@ var AssessmentCreationForm = createReactClass({
     var data = {
       name: tagName
     }
-    this.setState({creatingTag: true})
+    this.setState({ creatingTag: true })
     this.showError('')
     $.ajax({
       context: this,
@@ -82,8 +82,8 @@ var AssessmentCreationForm = createReactClass({
       cache: true,
       success: function (newTag) {
         var tags = this.state.tags
-        tags.push({value: newTag.id, label: newTag.name})
-        this.setState({tags: _.uniq(tags), creatingTag: false})
+        tags.push({ value: newTag.id, label: newTag.name })
+        this.setState({ tags: _.uniq(tags), creatingTag: false })
       },
       error: function (xhr, status, err) {
         console.log(xhr.status + ' ' + xhr.statusText)
@@ -122,7 +122,7 @@ var AssessmentCreationForm = createReactClass({
         // ... add the option to create the tag
         filteredOptions = filteredOptions
           .concat(
-            _.some(currentValues, {label: potentialTag})
+            _.some(currentValues, { label: potentialTag })
               ? []
               : [{
                 label: `Add "${potentialTag}"...`,
@@ -229,7 +229,7 @@ var AssessmentCreationForm = createReactClass({
         </FormGroup>
         {tagSelect}
         <FormGroup>
-          <Col lg={2} xs={12} sm={3} style={{width: 'auto'}}>
+          <Col lg={2} xs={12} sm={3} style={{ width: 'auto' }}>
             <Button bsStyle='primary' type='submit' onClick={this.handleSubmit} disabled={!this.state.template || this.state.creatingTag}>Launch</Button>
           </Col>
         </FormGroup>
