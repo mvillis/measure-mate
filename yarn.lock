@@ -8313,9 +8313,9 @@ react-loader@^2.4.5:
     prop-types "^15.5.8"
     spin.js "2.x"
 
-react-markdown@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-3.5.0.tgz#dd571829139597efafb58a039ded551cd8e132d1"
+react-markdown@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-3.6.0.tgz#29f6aaab5270c8ef0a5e234093a873ec3e01722b"
   dependencies:
     mdast-add-list-metadata "1.0.1"
     prop-types "^15.6.1"
