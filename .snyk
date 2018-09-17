@@ -456,3 +456,7 @@ ignore:
     - plotly.js > gl-plot3d > is-mobile:
         reason: None given
         expires: '2018-08-04T02:02:51.771Z'
+  'npm:bootstrap:20160627':
+    - bootstrap:
+        reason: None given
+        expires: '2018-10-17T22:42:31.629Z'
