@@ -73,7 +73,7 @@
     "require-dir": "^1.0.0",
     "semver": "^5.5.1",
     "snyk": "^1.95.3",
-    "tablesort": "^5.0.0",
+    "tablesort": "^5.1.0",
     "through2": "^2.0.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^2.0.0",
