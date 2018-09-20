@@ -31,7 +31,7 @@
     ]
   },
   "dependencies": {
-    "ansi-colors": "^3.0.5",
+    "ansi-colors": "^3.0.6",
     "babel-core": "^6.26.3",
     "babel-plugin-add-react-displayname": "^0.0.5",
     "babel-plugin-transform-react-jsx-self": "^6.11.0",
