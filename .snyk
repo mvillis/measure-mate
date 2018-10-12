@@ -452,11 +452,27 @@ ignore:
     - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
         reason: None given
         expires: '2018-08-04T02:02:51.771Z'
+    - plotly.js > ndarray-fill > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2018-11-11T00:28:47.325Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2018-11-11T00:28:47.325Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2018-11-11T00:28:47.325Z'
+    - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2018-11-11T00:28:47.325Z'
   'npm:is-mobile:20170905':
     - plotly.js > gl-plot3d > is-mobile:
         reason: None given
-        expires: '2018-08-04T02:02:51.771Z'
+        expires: '2018-11-11T00:28:47.325Z'
   'npm:bootstrap:20160627':
     - bootstrap:
         reason: None given
         expires: '2018-10-17T22:42:31.629Z'
+  'npm:chownr:20180731':
+    - gulp > glob-watcher > chokidar > fsevents > node-pre-gyp > tar > chownr:
+        reason: None given
+        expires: '2018-11-11T00:28:47.325Z'
