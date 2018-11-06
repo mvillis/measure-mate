@@ -74,7 +74,7 @@
     "semver": "^5.6.0",
     "snyk": "^1.106.0",
     "tablesort": "^5.1.0",
-    "through2": "^2.0.3",
+    "through2": "^2.0.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^2.0.0",
     "yargs": "^12.0.2"
