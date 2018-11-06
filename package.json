@@ -56,7 +56,7 @@
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
     "moment": "^2.22.2",
-    "plotly.js": "^1.42.2",
+    "plotly.js": "^1.42.3",
     "prop-types": "^15.6.2",
     "react": "^15.6.2",
     "react-bootstrap": "^0.31.1",
