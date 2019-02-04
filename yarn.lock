@@ -5040,10 +5040,10 @@ gl-contour2d@^1.1.5:
     ndarray "^1.0.18"
     surface-nets "^1.0.2"
 
-gl-error3d@^1.0.11:
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/gl-error3d/-/gl-error3d-1.0.11.tgz#7a6acbfb2981a830bbeec13e75331604cc1684b0"
-  integrity sha512-WpdmK19qH+6kW9HSeCf2/blELxu+0jevUPLvpKnVdRGirNX0yoEW+X4MFyFaVbqLq40aljI7opgLiDXOXVVX4w==
+gl-error3d@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/gl-error3d/-/gl-error3d-1.0.12.tgz#55ff312287cd8645f23cd3c8e1a8bc2879e3d008"
+  integrity sha512-OaYMB0G9RJx8MfC16x6Q0TnYKZ51nrac4GiUqBlIKyDuNGW1U6YLmiuzY3u6ftQlh0jVhk7lDXCawgAeeYA3JA==
   dependencies:
     gl-buffer "^2.1.2"
     gl-shader "^4.2.1"
@@ -5080,10 +5080,10 @@ gl-heatmap2d@^1.0.5:
     iota-array "^1.0.0"
     typedarray-pool "^1.1.0"
 
-gl-line3d@^1.1.8:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/gl-line3d/-/gl-line3d-1.1.8.tgz#6f07e3bac1897ad3dcd539f499cf3fd37572780e"
-  integrity sha512-rTN7JR/F9soPOa35/Tn1bEsly/lEyDRXPftMVlk3iL1vnZUAlt2DtszOzxvBMhCmAk2RdfWqZ5DkciRikXVpng==
+gl-line3d@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/gl-line3d/-/gl-line3d-1.1.9.tgz#dc6b59e0415f8d14b8eb699e2cbd53a0988ba224"
+  integrity sha512-00E3VAxTXGOpn8cGImtMaDnKs6UkyVYEZ2tzUBYwjea9N8UB6wvR1NBoKwb0A/wFNIYUsLhdc3LKZyliB0DVLA==
   dependencies:
     binary-search-bounds "^2.0.4"
     gl-buffer "^2.0.8"
@@ -5119,7 +5119,7 @@ gl-matrix-invert@^1.0.0:
     gl-mat3 "^1.0.0"
     gl-mat4 "^1.0.0"
 
-gl-mesh3d@^2.0.6:
+gl-mesh3d@^2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/gl-mesh3d/-/gl-mesh3d-2.0.7.tgz#db8faddd0197af04990d722a2bbe64e88118c543"
   integrity sha512-sP4qv1c3nBRfCJmW499DldibUjm7DNVOJMiyTS33Q39dcBGPdI9u1yzpzIRi6eQ216DZasaKZrLPF6W7nEABkQ==
@@ -5190,10 +5190,10 @@ gl-quat@^1.0.0:
     gl-vec3 "^1.0.3"
     gl-vec4 "^1.0.0"
 
-gl-scatter3d@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/gl-scatter3d/-/gl-scatter3d-1.1.4.tgz#3796fbbeb0f22b82d5dc854b6ca78a2644f98d09"
-  integrity sha512-rliOq1MWv0d4E7y2IVb0hxC5vMaU238cdEhCcF/F2zQlIPD8ZB6ThIKa3D9oeT10mM/yjb70Tk604RWn5d88NA==
+gl-scatter3d@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/gl-scatter3d/-/gl-scatter3d-1.1.5.tgz#e8978af3bb64a37d4527eeeeee139ad0e4ae74da"
+  integrity sha512-i/5Vrd2c9rqvgISkJcrSz3st7eCCIBgCkICb73MBJANd+PI+ptRZ3mgrUttwGB3bQm01HKJPpBr/R4/gQ6PPAw==
   dependencies:
     gl-buffer "^2.0.6"
     gl-mat4 "^1.0.0"
@@ -9465,10 +9465,10 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.44.1:
-  version "1.44.1"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.44.1.tgz#a3507f91c1bac06664ba8cdc0e45fce2721d9fb9"
-  integrity sha512-uJZYLuUNbNVI00VHCmDwbvs3MBCNewAX7+7sIHSMTw3D/E12ufqpqsFzUc87LzBMPc34gjOJWxeJbVFiSXZ5xQ==
+plotly.js@^1.44.2:
+  version "1.44.2"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.44.2.tgz#b093a1144c1ac381f417bd506a68fb8e7bba3f95"
+  integrity sha512-BkHeJEXPpOEh/V+Agy7jaC6/cm4RpLKKQq5A+CEsdqzvmkpdR0mn6zfppX9M1rfdO0s1dG+hdtij9LiTMkNA4A==
   dependencies:
     "3d-view" "^2.0.0"
     "@plotly/d3-sankey" "^0.5.1"
@@ -9486,15 +9486,15 @@ plotly.js@^1.44.1:
     font-atlas-sdf "^1.3.3"
     gl-cone3d "^1.2.2"
     gl-contour2d "^1.1.5"
-    gl-error3d "^1.0.11"
+    gl-error3d "^1.0.12"
     gl-heatmap2d "^1.0.5"
-    gl-line3d "^1.1.8"
+    gl-line3d "^1.1.9"
     gl-mat4 "^1.2.0"
-    gl-mesh3d "^2.0.6"
+    gl-mesh3d "^2.0.7"
     gl-plot2d "^1.4.2"
     gl-plot3d "^1.6.3"
     gl-pointcloud2d "^1.0.2"
-    gl-scatter3d "^1.1.4"
+    gl-scatter3d "^1.1.5"
     gl-select-box "^1.0.3"
     gl-spikes2d "^1.0.2"
     gl-streamtube3d "^1.1.2"
