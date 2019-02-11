@@ -57,7 +57,7 @@
     "minimist": "^1.2.0",
     "moment": "^2.24.0",
     "plotly.js": "^1.44.3",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.1",
     "react": "^15.6.2",
     "react-bootstrap": "^0.31.1",
     "react-dom": "^15.6.2",
