@@ -10110,10 +10110,10 @@ react-overlays@^0.7.4:
     prop-types-extra "^1.0.1"
     warning "^3.0.0"
 
-react-overlays@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-1.1.1.tgz#81f8dddce11f8402cf86ece0f8c9780941495b64"
-  integrity sha512-acL+HwhD1I/AY1Hz7qWQvnBaXEZt5K+huZ2AySdBtJORKNSxnLrd6j2FL3KOEM3rQQWuzAubCYiinlrm2XxXFA==
+react-overlays@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-1.1.2.tgz#9b203154bf023554fdd151a8bd431240c0883461"
+  integrity sha512-2YSsVcS0DP1+TEWY6BMIZcrO/8yN2GxJ34w1c3g9p+bSwZSki0dTzgtl7pw4QwLvf8xBDOyDffAU9iE0h/x4eA==
   dependencies:
     classnames "^2.2.6"
     dom-helpers "^3.4.0"
