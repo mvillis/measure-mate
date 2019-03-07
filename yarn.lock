@@ -5087,10 +5087,10 @@ gl-buffer@^2.0.3, gl-buffer@^2.0.6, gl-buffer@^2.0.8, gl-buffer@^2.1.1, gl-buffe
     ndarray-ops "^1.1.0"
     typedarray-pool "^1.0.0"
 
-gl-cone3d@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/gl-cone3d/-/gl-cone3d-1.2.3.tgz#4e49b927bf83a69a1908706e4892d4dd790479a2"
-  integrity sha512-c8Gx2L37bVvlqaMoJOMOFlNS2swtC2mDovtPugoz3BF2oWwg2FS6tsCktpGViYxyH1SUI9CV8FlTixhipUV2HA==
+gl-cone3d@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/gl-cone3d/-/gl-cone3d-1.3.0.tgz#d99fc8bce06a7bb3435a0902f1b1c6f4a6969a47"
+  integrity sha512-XOOrEkwRongv6FYUu1/y4C3uFf1pwYWXnpXFrdyQsQNNTUje04aj+ImMXcsnSUIH0aE1chL3Q7i/R6AU3NHU6g==
   dependencies:
     gl-shader "^4.2.1"
     gl-vec3 "^1.1.3"
@@ -5337,10 +5337,10 @@ gl-state@^1.0.0:
   dependencies:
     uniq "^1.0.0"
 
-gl-streamtube3d@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/gl-streamtube3d/-/gl-streamtube3d-1.1.3.tgz#d214625b65128226edeaa4b3f413c2ef39d0fca4"
-  integrity sha512-X0b+y7Hdwtp0GYHSbNFfJpizaX5RQ0ZtNvTKcgojnBLntXsiJcyRBT4+neTwEP5HRbordX35nX2AiLHk6SMfnw==
+gl-streamtube3d@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/gl-streamtube3d/-/gl-streamtube3d-1.2.0.tgz#d5312e3b148e1b9b805b99b0db727677d925081e"
+  integrity sha512-16JFrCb8yOPYrBVMZEgaTmP7I9NRZfBlizaZkKZ2nQpOY+p36WVdDQUqJAJ02/8ZUhjg8YlOzg//8Lk3qPrUzQ==
   dependencies:
     gl-vec3 "^1.0.0"
     glsl-inverse "^1.0.0"
@@ -9548,10 +9548,10 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.45.0:
-  version "1.45.0"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.45.0.tgz#ecdb4737ff8be29b26ecd8e67a5763751d91f2fe"
-  integrity sha512-W3CEaeD8YyX7eITymKMCJL58fBm3KTcAJmXk1XyJ7ULD6ip70AzO8ZI3KzyIR1id/cdztQ10BDvZgnfmCTK8gw==
+plotly.js@^1.45.1:
+  version "1.45.1"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.45.1.tgz#e3d9f698e098aff30cdba201c89d891c7c084f4a"
+  integrity sha512-skidwnK7++4tONLlYcrffsg5bjE+rKys6pqSXXgowNeqSrU/ICIUZ5JZcMWiUqrHfJ8kgSbYbQZWOTVh/U2iCw==
   dependencies:
     "@plotly/d3-sankey" "0.7.2"
     alpha-shape "^1.0.0"
@@ -9568,7 +9568,7 @@ plotly.js@^1.45.0:
     es6-promise "^3.0.2"
     fast-isnumeric "^1.1.2"
     font-atlas-sdf "^1.3.3"
-    gl-cone3d "^1.2.3"
+    gl-cone3d "^1.3.0"
     gl-contour2d "^1.1.5"
     gl-error3d "^1.0.14"
     gl-heatmap2d "^1.0.5"
@@ -9581,7 +9581,7 @@ plotly.js@^1.45.0:
     gl-scatter3d "^1.2.0"
     gl-select-box "^1.0.3"
     gl-spikes2d "^1.0.2"
-    gl-streamtube3d "^1.1.3"
+    gl-streamtube3d "^1.2.0"
     gl-surface3d "^1.4.2"
     gl-text "^1.1.6"
     glslify "^7.0.0"
