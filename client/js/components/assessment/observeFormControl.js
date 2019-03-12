@@ -94,7 +94,7 @@ var ObserveFormControl = createReactClass({
         dirtyObservation: false
       })
     } else {
-      this.setState({saveBtnDisabled: saveDisabled, dirtyObservation: dirty})
+      this.setState({ saveBtnDisabled: saveDisabled, dirtyObservation: dirty })
     }
   },
 

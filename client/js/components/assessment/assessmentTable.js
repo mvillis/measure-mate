@@ -25,7 +25,7 @@ var AssessmentTable = createReactClass({
         this.setState(function (previousState, currentProps) {
           var assessmentTags = previousState.assessmentTags
           assessmentTags[assessmentId] = data
-          return {assessmentTags: assessmentTags}
+          return { assessmentTags: assessmentTags }
         })
       }.bind(this),
       error: function (xhr, status, err) {

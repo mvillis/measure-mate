@@ -18,7 +18,7 @@ if (config.production) {
   gulp.task('test:setup', function () {
     return gulp.src(config.src)
       // Covering files
-      .pipe(istanbul({includeUntested: true}))
+      .pipe(istanbul({ includeUntested: true }))
       // Force `require` to return covered files
       .pipe(istanbul.hookRequire())
   })

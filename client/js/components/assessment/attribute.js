@@ -99,11 +99,11 @@ var Attribute = createReactClass({
   },
 
   onObservationChange: function (text) {
-    this.setState({observations: text})
+    this.setState({ observations: text })
   },
 
   onActionChange: function (text) {
-    this.setState({action: text})
+    this.setState({ action: text })
   },
 
   render: function () {

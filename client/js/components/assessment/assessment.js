@@ -163,7 +163,7 @@ var Assessment = createReactClass({
       type: 'PUT',
       cache: true,
       success: function (output) {
-        this.setState({assessment: data})
+        this.setState({ assessment: data })
       }.bind(this),
       error: this.handleSubmitFailure
     })
@@ -231,7 +231,7 @@ var Assessment = createReactClass({
         return (
           <LinkContainer
             key={attribute.id}
-            to={{pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id}}>
+            to={{ pathname: '/assessment/' + this.state.assessment.id + '/' + attribute.id }}>
             <NavItem eventKey={i + 1}>{tabIcon} {attribute.name}</NavItem>
           </LinkContainer>
         )
@@ -280,7 +280,7 @@ var Assessment = createReactClass({
                   {this.state.template &&
                     <LinkContainer
                       key='summary'
-                      to={{pathname: '/assessment/' + this.state.assessment.id + '/summary'}}>
+                      to={{ pathname: '/assessment/' + this.state.assessment.id + '/summary' }}>
                       <NavItem eventKey={this.state.template.attributes.length + 1}>
                         <Glyphicon glyph='stats' /> Summary
                       </NavItem>
