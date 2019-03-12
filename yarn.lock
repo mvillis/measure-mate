@@ -3243,10 +3243,10 @@ d3-quadtree@1:
   resolved "https://registry.yarnpkg.com/d3-quadtree/-/d3-quadtree-1.0.5.tgz#305394840b01f51a341a0da5008585e837fe7e9b"
   integrity sha512-U2tjwDFbZ75JRAg8A+cqMvqPg1G3BE7UTJn3h8DHjY/pnsAfWdbJKgyfcy7zKjqGtLAmI0q8aDSeG1TVIKRaHQ==
 
-d3-sankey-circular@0.32.0:
-  version "0.32.0"
-  resolved "https://registry.yarnpkg.com/d3-sankey-circular/-/d3-sankey-circular-0.32.0.tgz#55611e0a3ebaa1a22eb5ed4930b0995dcc14fb98"
-  integrity sha512-lZvF25xPFNzsHkI4VPAxRVH+U6iZnWKswknOmXd5jl88obWZ7iJJG/nhE49B0+I6ZDsUB78ggsMmSR3S5m9+Sg==
+d3-sankey-circular@0.33.0:
+  version "0.33.0"
+  resolved "https://registry.yarnpkg.com/d3-sankey-circular/-/d3-sankey-circular-0.33.0.tgz#756d3ea3f5d74d468226d6886d0ef5c2f746a819"
+  integrity sha512-sn6Nuoc1lgZ5PYrxqJ0G3ZbInHM4ZP+lrg5SMc0AolgenQ9CBERf3gVliQzxeXyo2kSU7QgewUZwjvddEzT/JA==
   dependencies:
     d3-array "^1.2.1"
     d3-collection "^1.0.4"
@@ -9548,10 +9548,10 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.45.1:
-  version "1.45.1"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.45.1.tgz#e3d9f698e098aff30cdba201c89d891c7c084f4a"
-  integrity sha512-skidwnK7++4tONLlYcrffsg5bjE+rKys6pqSXXgowNeqSrU/ICIUZ5JZcMWiUqrHfJ8kgSbYbQZWOTVh/U2iCw==
+plotly.js@^1.45.2:
+  version "1.45.2"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.45.2.tgz#b88aeb35ed620ad6c83d15fad180f21b9b942146"
+  integrity sha512-IRmQ5D8CKu6u0bOec6MYLFrwYWqwEdFAg0kYGyKsRFMorSKl8i3qVI4uxJe0reh08jtW6GIHzOi2qSl6m9jB8w==
   dependencies:
     "@plotly/d3-sankey" "0.7.2"
     alpha-shape "^1.0.0"
@@ -9563,7 +9563,7 @@ plotly.js@^1.45.1:
     d3 "^3.5.12"
     d3-force "^1.0.6"
     d3-interpolate "1"
-    d3-sankey-circular "0.32.0"
+    d3-sankey-circular "0.33.0"
     delaunay-triangulate "^1.1.6"
     es6-promise "^3.0.2"
     fast-isnumeric "^1.1.2"
