@@ -48,7 +48,7 @@ var TeamList = createReactClass({
             var teamUrl = '/team/' + team.id + '/'
 
             return (
-              <LinkContainer key={team.id} to={{pathname: teamUrl}}>
+              <LinkContainer key={team.id} to={{ pathname: teamUrl }}>
                 <tr className='clickable'>
                   <td data-sort={team.id} data-sort-method='number'>
                     <a href={teamUrl}>{team.id}</a>

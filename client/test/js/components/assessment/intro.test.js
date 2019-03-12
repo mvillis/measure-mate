@@ -6,8 +6,8 @@ var expect = require('chai').expect
 var shallow = require('enzyme').shallow
 var Intro = require('../../../../js/components/assessment/intro')
 
-var mockedParams = {'assessmentId': 1}
-var mockedTemplate = {'attributes': [{'id': 1}]}
+var mockedParams = { 'assessmentId': 1 }
+var mockedTemplate = { 'attributes': [{ 'id': 1 }] }
 
 describe('Intro Component', function () {
   it('contains welcome text', function () {

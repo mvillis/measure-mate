@@ -16,7 +16,7 @@ var PlotlyComponent = createReactClass({
   },
 
   componentDidMount () {
-    let {data, layout, config} = this.props
+    let { data, layout, config } = this.props
     Plotly.plot(this.container, data, layout, config)
   },
 

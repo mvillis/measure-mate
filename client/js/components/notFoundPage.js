@@ -18,7 +18,7 @@ var NotFoundPage = createReactClass({
             <h1>Whoops!</h1>
             <p>Sorry, there is nothing to see here.</p>
             <p>
-              <LinkContainer to={{pathname: '/'}}>
+              <LinkContainer to={{ pathname: '/' }}>
                 <Button>Back to Home</Button>
               </LinkContainer>
             </p>

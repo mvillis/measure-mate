@@ -21,7 +21,7 @@ if (semver.lt(process.version, '1.0.0')) {
     var options = Object.assign(
       {
         reporters: [
-          {formatter: 'verbose', console: true}
+          { formatter: 'verbose', console: true }
         ]
       },
       config.lintOptions

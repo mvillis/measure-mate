@@ -123,7 +123,7 @@ var AssessmentReport = createReactClass({
 
         summaryRows.push(
           <tr key={attribute.id}>
-            <td style={{verticalAlign: 'middle', fontWeight: 'bold'}}>{attribute.name}</td>
+            <td style={{ verticalAlign: 'middle', fontWeight: 'bold' }}>{attribute.name}</td>
             <td className='text-center' style={currentStyle}>{currentRating ? currentRating.name : '-'}</td>
             <td className='text-center' style={targetStyle}>{targetRating ? targetRating.name : '-'}</td>
             <td>

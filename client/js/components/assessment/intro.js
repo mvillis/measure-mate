@@ -34,11 +34,11 @@ var Intro = createReactClass({
         <p>For each area we will ask you to rate your current level of capability. You can also select a target and write down some observations.</p>
         <p>Let&#39;s get started!</p>
         <span>
-          <LinkContainer to={{pathname: '/assessment/' + this.props.params.assessmentId + '/' + this.props.template.attributes[0].id}}>
+          <LinkContainer to={{ pathname: '/assessment/' + this.props.params.assessmentId + '/' + this.props.template.attributes[0].id }}>
             <Button bsStyle='primary'>Begin</Button>
           </LinkContainer>
           &nbsp;
-          <LinkContainer to={{pathname: '/assessment/' + this.props.params.assessmentId + '/summary'}}>
+          <LinkContainer to={{ pathname: '/assessment/' + this.props.params.assessmentId + '/summary' }}>
             <Button bsStyle='default'>See Results</Button>
           </LinkContainer>
         </span>
