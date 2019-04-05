@@ -1,5 +1,5 @@
 -r base.txt
 
-psycopg2-binary==2.7.7
+psycopg2-binary==2.8
 gunicorn==19.9.0
 gevent==1.4.0
