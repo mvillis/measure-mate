@@ -5205,10 +5205,10 @@ gl-matrix-invert@^1.0.0:
     gl-mat3 "^1.0.0"
     gl-mat4 "^1.0.0"
 
-gl-mesh3d@^2.0.10:
-  version "2.0.10"
-  resolved "https://registry.yarnpkg.com/gl-mesh3d/-/gl-mesh3d-2.0.10.tgz#0714d07240c6c9fde7440833fe46c95066f5348c"
-  integrity sha512-JJ0NvZbyQXtlAkIYgVFCxJIujjsaAB7HwszCig3MqdDOk6SLkAaT85hLUc+ypGLDXpVpxoSuEKO350oONyx7dg==
+gl-mesh3d@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/gl-mesh3d/-/gl-mesh3d-2.1.1.tgz#b42159654909ec1478500cbc330162d1d7e23a1c"
+  integrity sha512-UuDnuSE/xX8y9/B6EtDsBKllEmKDVmuiD9lsFoQdUq4FPSvwFOo9rKH3fsjK2pfxsTigguF6GhFjHqq+sJKQWg==
   dependencies:
     barycentric "^1.0.1"
     colormap "^2.3.1"
@@ -9550,10 +9550,10 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.46.1:
-  version "1.46.1"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.46.1.tgz#eb65a56ab28098190b99c1cf4c72ef1c5b44906a"
-  integrity sha512-VKnx5D6DOUBJDNmA6cjeqR1vukb5xDMpM0MCt1/5R6bJ6YGdakaTzGz3cNvdeDqrlHo3aVQUWTDeLOhERRzhig==
+plotly.js@^1.47.0:
+  version "1.47.0"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.47.0.tgz#fc7e6f39ce506d2121c43f8ecd956d2597bbcb00"
+  integrity sha512-j365SB84rF47tGXfMNwfEiZQvYG5AAGs9uOJGW3B08/CFFey3Fh1n3y8Vea8KgntN/aoDRXrOD3yRaTvY1RMUQ==
   dependencies:
     "@plotly/d3-sankey" "0.7.2"
     alpha-shape "^1.0.0"
@@ -9577,7 +9577,7 @@ plotly.js@^1.46.1:
     gl-heatmap2d "^1.0.5"
     gl-line3d "^1.1.11"
     gl-mat4 "^1.2.0"
-    gl-mesh3d "^2.0.10"
+    gl-mesh3d "^2.1.1"
     gl-plot2d "^1.4.2"
     gl-plot3d "^2.2.1"
     gl-pointcloud2d "^1.0.2"
@@ -9601,7 +9601,7 @@ plotly.js@^1.46.1:
     point-cluster "^3.1.4"
     polybooljs "^1.2.0"
     regl "^1.3.11"
-    regl-error2d "^2.0.6"
+    regl-error2d "^2.0.7"
     regl-line2d "3.0.13"
     regl-scatter2d "^3.1.4"
     regl-splom "^1.0.6"
@@ -10529,10 +10529,10 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-regl-error2d@^2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/regl-error2d/-/regl-error2d-2.0.6.tgz#0d980b4b0e5b8fba23b3bf16b51a29daad7ccc0d"
-  integrity sha512-Ef7oj7Sgb4W+B1CNbr7IU2w2G4jU6yu4pSofqZxTUvH4cwFw9Jj6QpCPS+36rZgCT0DJVbfGeV6Cq8Ia1855OQ==
+regl-error2d@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/regl-error2d/-/regl-error2d-2.0.7.tgz#26488bcc62d55d1c7085e330228dbc3142888afa"
+  integrity sha512-YCXlu3BIDpR1hsU8HqMn+SiRldevdP2gIFNpaOdBSV2PEJsMmDHo532elzU2K3sB7heDqZzXuY66CfYRL89oDg==
   dependencies:
     array-bounds "^1.0.1"
     bubleify "^1.0.0"
