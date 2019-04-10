@@ -12,5 +12,5 @@ django-excel==0.0.10
 pyexcel==0.5.13
 pyexcel-xls==0.5.8
 pyexcel-xlsx==0.5.7
-pytz==2018.9
+pytz==2019.1
 future==0.17.1
