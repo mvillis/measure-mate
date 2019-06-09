@@ -108,7 +108,7 @@
     "mocha": "^6.1.4",
     "react-test-renderer": "^15.6.2",
     "sinon": "^7.3.2",
-    "stylelint": "^10.0.1",
+    "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
     "watchify": "^3.11.1",
     "xmldom": "^0.1.27"
