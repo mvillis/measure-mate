@@ -82,7 +82,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-register": "^6.26.0",
-    "browser-sync": "^2.26.5",
+    "browser-sync": "^2.26.7",
     "chai": "^4.2.0",
     "coveralls": "^3.0.4",
     "enzyme": "^2.9.1",
