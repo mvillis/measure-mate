@@ -63,7 +63,7 @@
     "react-dom": "^15.6.2",
     "react-input-autosize": "^2.0.1",
     "react-loader": "^2.4.5",
-    "react-markdown": "^4.0.8",
+    "react-markdown": "^4.0.9",
     "react-overlays": "^1.2.0",
     "react-prop-types": "^0.4.0",
     "react-redirect": "^1.0.0",
