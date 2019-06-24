@@ -71,7 +71,7 @@
     "react-router-bootstrap": "^0.23.3",
     "react-select": "^1.2.1",
     "require-dir": "^1.2.0",
-    "semver": "^6.1.1",
+    "semver": "^6.1.2",
     "snyk": "^1.181.0",
     "tablesort": "^5.1.0",
     "through2": "^3.0.1",
