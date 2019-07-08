@@ -21,9 +21,10 @@
     "default": "gulp default",
     "heroku-postbuild": "gulp build --production",
     "postinstall": "yarn run snyk-protect",
-    "snyk-protect": "snyk protect || true",
+    "snyk-protect": "snyk protect",
     "test": "snyk test && gulp test",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "prepublish": "npm run snyk-protect"
   },
   "browserify": {
     "transform": [
