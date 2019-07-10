@@ -146,8 +146,12 @@ patch:
   SNYK-JS-LODASH-450202:
     - babel-preset-env > babel-plugin-transform-es2015-classes > babel-template > babel-traverse > lodash:
         patched: '2019-07-08T07:17:42.541Z'
+      snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2019-07-10T05:05:14.296Z'
     - lodash:
         patched: '2019-07-08T07:17:42.541Z'
+      snyk > snyk-mvn-plugin > lodash:
+        patched: '2019-07-10T05:05:14.296Z'
     - babel-core > lodash:
         patched: '2019-07-08T07:17:42.541Z'
     - snyk > @snyk/dep-graph > lodash:
@@ -733,27 +737,15 @@ ignore:
     - brfs > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.221Z'
-      plotly.js > ndarray-fill > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2019-08-09T01:40:37.852Z'
     - mapbox-gl-shaders > brfs > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.221Z'
-      plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2019-08-09T01:40:37.852Z'
     - plotly.js > gl-contour2d > glslify > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.221Z'
-      plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2019-08-09T01:40:37.852Z'
     - plotly.js > gl-error2d > glslify > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.222Z'
-      plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
-        reason: None given
-        expires: '2019-08-09T01:40:37.852Z'
     - plotly.js > gl-heatmap2d > glslify > static-module > static-eval:
         reason: None given
         expires: '2017-11-23T04:30:30.222Z'
@@ -835,6 +827,18 @@ ignore:
     - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
         reason: None given
         expires: '2018-11-11T00:28:47.325Z'
+    - plotly.js > ndarray-fill > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2019-08-09T01:40:37.852Z'
+    - plotly.js > gl-plot2d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2019-08-09T01:40:37.852Z'
+    - plotly.js > gl-plot3d > gl-select-static > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2019-08-09T01:40:37.852Z'
+    - plotly.js > ndarray-homography > ndarray-warp > cwise > static-module > static-eval:
+        reason: None given
+        expires: '2019-08-09T01:40:37.852Z'
   'npm:is-mobile:20170905':
     - plotly.js > gl-plot3d > is-mobile:
         reason: None given
