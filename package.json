@@ -85,7 +85,7 @@
     "babel-register": "^6.26.0",
     "browser-sync": "^2.26.7",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.4",
+    "coveralls": "^3.0.5",
     "enzyme": "^2.9.1",
     "eslint": "6.0.1",
     "eslint-config-standard": "^13.0.1",
