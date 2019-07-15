@@ -5,9 +5,9 @@
   "license": "MIT",
   "main": "./client/index.js",
   "engines": {
-    "node": ">=6.9.1",
-    "npm": ">3.0.0",
-    "yarn": ">0.20.3"
+    "node": "12.x",
+    "npm": "6.x",
+    "yarn": "1.x"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "default": "gulp default",
     "heroku-postbuild": "gulp build --production",
     "postinstall": "yarn run snyk-protect",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk protect || true",
     "test": "snyk test && gulp test",
     "watch": "gulp watch",
     "prepublish": "npm run snyk-protect"
