@@ -1,8 +1,12 @@
 language: python
+dist: xenial
+sudo: true
 python:
-  - "3.6"
-  - "3.7"
-  - "3.8"
+  - "3.6.8"
+  - "3.7.4"
+env:
+  global:
+    - DATABASE_URL="sqlite:///:memory"
 install:
   - . $HOME/.nvm/nvm.sh
   - nvm install stable
@@ -16,13 +20,13 @@ install:
   - gulp build --production
   - yarn install
   - gulp build
-  - pip install -U pip setuptools wheel
+  - pip install -U pip
+  - pip install -U setuptools wheel
   - pip install -r requirements/local.txt
   - pip install coveralls
+  - python manage.py migrate --no-input
   - python manage.py collectstatic --no-input
   - gem install coveralls-lcov
-before_script:
-  - "export DATABASE_URL=sqlite:///:memory"
 script:
   - coverage run manage.py test
 after_success:
