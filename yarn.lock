@@ -5363,10 +5363,10 @@ gl-quat@^1.0.0:
     gl-vec3 "^1.0.3"
     gl-vec4 "^1.0.0"
 
-gl-scatter3d@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/gl-scatter3d/-/gl-scatter3d-1.2.1.tgz#149950900ad3002364e40925f0df0c7347662240"
-  integrity sha512-bGeCkqWOvjE+CM6eJGapTfZcVAjAVdUoi3LjRtvnVmpaTBeMF+HWG5mTa1pWKHu+DNEosH3Yjr52wNenYHMUdg==
+gl-scatter3d@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/gl-scatter3d/-/gl-scatter3d-1.2.2.tgz#9a4d4d096b5ed3537588ccf9744afd4f8591e7ed"
+  integrity sha512-oZh3WQ0bVXnpASpZmYmiEp7eUiD0oU6J4G5C9KUOhUo5d2gucvZEILAtfWmzCT3zsOltoROn4jGuuP2tlLN88Q==
   dependencies:
     gl-buffer "^2.0.6"
     gl-mat4 "^1.0.0"
@@ -9677,10 +9677,10 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.49.0:
-  version "1.49.0"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.49.0.tgz#6a160c39f539dca7d523fd0c4c01ef477a18c34e"
-  integrity sha512-zKM4AwLVfqeqRDn3Y+7DzNHdV7svJYD4j8M6mwFN5UGEq7WhEgmGexu3E5Xw12sNWwQ/adeemlAIo+4zkGUORA==
+plotly.js@^1.49.1:
+  version "1.49.1"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.49.1.tgz#496003beb1629c6909c287996fe2e3d2d464c3f1"
+  integrity sha512-hWYqsKZMV/DSA/i4z5dPdqZ5o2FMPVTgerGe3f0x7TRd0UFEd8GdiUzHz8xs+lZvFn2SwMUpri1IKWJqBAxfcQ==
   dependencies:
     "@plotly/d3-sankey" "0.7.2"
     "@plotly/d3-sankey-circular" "0.33.1"
@@ -9708,7 +9708,7 @@ plotly.js@^1.49.0:
     gl-plot2d "^1.4.2"
     gl-plot3d "^2.2.1"
     gl-pointcloud2d "^1.0.2"
-    gl-scatter3d "^1.2.1"
+    gl-scatter3d "^1.2.2"
     gl-select-box "^1.0.3"
     gl-spikes2d "^1.0.2"
     gl-streamtube3d "^1.2.1"
