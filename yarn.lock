@@ -9845,10 +9845,10 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.49.3:
-  version "1.49.3"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.49.3.tgz#36ad965922eceb30fb0737cdcbb6ff1e0ac9673c"
-  integrity sha512-NoIgk3NFyKlEk9Psqe+p1Hkp7BuZY24YVVQM6aS4ZVx0qED+3zD4AkRG8Egxgx5ZD5qq1zqt6Ca4PfrqVRwt/Q==
+plotly.js@^1.49.4:
+  version "1.49.4"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.49.4.tgz#4b287f25f09597d4bc51f3ef4dbd12cca658540c"
+  integrity sha512-yOcA1GKLY6vsGLWYoGa/jWTPXcHPTyTWwkgAhopNtCgxTVexXzKfnnGQ2SslL//+TkpNX8CpCzC88HQVV4p42Q==
   dependencies:
     "@plotly/d3-sankey" "0.7.2"
     "@plotly/d3-sankey-circular" "0.33.1"
