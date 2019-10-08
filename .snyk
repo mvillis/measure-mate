@@ -143,6 +143,11 @@ patch:
         patched: '2017-10-24T04:22:34.498Z'
     - node-pre-gyp > request > tough-cookie:
         patched: '2017-10-24T04:22:34.498Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-07T07:20:23.048Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-07T07:20:23.048Z'
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:connect:20130701':
@@ -488,10 +493,10 @@ ignore:
     - gulp > glob-watcher > chokidar > fsevents > node-pre-gyp > tar > chownr:
         reason: None given
         expires: '2018-11-11T00:28:47.325Z'
-      chownr:
+    - node-pre-gyp > tar > chownr:
         reason: None given
         expires: '2019-08-09T05:32:02.474Z'
-    - node-pre-gyp > tar > chownr:
+    - chownr:
         reason: None given
         expires: '2019-08-09T05:32:02.474Z'
   SNYK-JS-STATICEVAL-173693:
