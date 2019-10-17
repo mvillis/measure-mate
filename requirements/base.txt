@@ -13,4 +13,4 @@ pyexcel==0.5.15
 pyexcel-xls==0.5.8
 pyexcel-xlsx==0.5.7
 pytz==2019.3
-future==0.18.0
+future==0.18.1
