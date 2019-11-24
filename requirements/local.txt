@@ -10,4 +10,4 @@ mock>=2.0.0
 pycodestyle>=2.0.0
 pydot>=1.2.2
 pyflakes>=1.2.3
-pylint-django==2.0.12
+pylint-django==2.0.13
