@@ -63,7 +63,7 @@
     "react-bootstrap": "^0.31.1",
     "react-dom": "^15.6.2",
     "react-input-autosize": "^2.2.2",
-    "react-loader": "^2.4.5",
+    "react-loader": "^2.4.6",
     "react-markdown": "^4.2.2",
     "react-overlays": "^2.1.0",
     "react-prop-types": "^0.4.0",

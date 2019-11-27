@@ -10604,10 +10604,10 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-loader@^2.4.5:
-  version "2.4.5"
-  resolved "https://registry.yarnpkg.com/react-loader/-/react-loader-2.4.5.tgz#cd3e551c6cd0738c1c0f13f073654f93828be5a9"
-  integrity sha1-zT5VHGzQc4wcDxPwc2VPk4KL5ak=
+react-loader@^2.4.6:
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/react-loader/-/react-loader-2.4.6.tgz#2ed74a23df992d9dbbbcc827b54a39150693e11e"
+  integrity sha512-z69iu/eq+LdBOGhMgQLZi3Q7Yov32PGiXyIAqHlwbN2oMwRZC+Rqw9XB0sCAcw6cR4H/Rg0nQlcQ5KtyThvl8A==
   dependencies:
     create-react-class "^15.5.2"
     prop-types "^15.5.8"
