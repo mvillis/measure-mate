@@ -11,6 +11,6 @@ whitenoise==5.0.1
 django-excel==0.0.10
 pyexcel==0.5.15
 pyexcel-xls==0.5.8
-pyexcel-xlsx==0.5.7
+pyexcel-xlsx==0.5.8
 pytz==2019.3
 future==0.18.2
