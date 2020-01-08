@@ -409,6 +409,14 @@
     "@turf/helpers" "6.x"
     "@turf/meta" "6.x"
 
+"@turf/bbox@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@turf/bbox/-/bbox-6.0.1.tgz#b966075771475940ee1c16be2a12cf389e6e923a"
+  integrity sha512-EGgaRLettBG25Iyx7VyUINsPpVj1x3nFQFiGS3ER8KCI1MximzNLsam3eXRabqQDjyAKyAE1bJ4EZEpGvspQxw==
+  dependencies:
+    "@turf/helpers" "6.x"
+    "@turf/meta" "6.x"
+
 "@turf/centroid@^6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@turf/centroid/-/centroid-6.0.2.tgz#c4eb16b4bc60b692f74e1809cf9a7c4a4f5ba1cc"
@@ -5683,10 +5691,10 @@ gl-matrix@^3.0.0:
   resolved "https://registry.yarnpkg.com/gl-matrix/-/gl-matrix-3.0.0.tgz#888301ac7650e148c3865370e13ec66d08a8381f"
   integrity sha512-PD4mVH/C/Zs64kOozeFnKY8ybhgwxXXQYGWdB4h68krAHknWJgk9uKOn6z8YElh5//vs++90pb6csrTIDWnexA==
 
-gl-mesh3d@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/gl-mesh3d/-/gl-mesh3d-2.1.3.tgz#6d46f43a2f4e17fa197cddeefab1dcd7116786c1"
-  integrity sha512-c1zMvkVoKrVPSn/YA0JTDE/I289xqAjkH52HZBLvEGmKAg0Ezwi/Llg1M7NPIb4d5nwekCBMXGZmemsZaedI5g==
+gl-mesh3d@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/gl-mesh3d/-/gl-mesh3d-2.2.0.tgz#3efa6f886bb22424ba03c88cb97755547542ee8d"
+  integrity sha512-wO6EKjBUo/k7ZLGsMACWGETjmjfsGwwoDWEKjDbjyjo1qPvgkTQQB9Y8p+OKGjE6GeihsfQuoqGBUTu9tiAOmg==
   dependencies:
     barycentric "^1.0.1"
     colormap "^2.3.1"
@@ -10173,14 +10181,15 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly.js@^1.51.3:
-  version "1.51.3"
-  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.51.3.tgz#32862b86cf80c7e5438161fa3787de920a9a8887"
-  integrity sha512-1HsGdm+TPkJzxNvC3Whwh2U97FGrwCVDJ+W6s202qV5hJ0GQjqokPxGZalnjZDBLm0E1QAdQmiXBRVl10Pw+0A==
+plotly.js@^1.52.0:
+  version "1.52.0"
+  resolved "https://registry.yarnpkg.com/plotly.js/-/plotly.js-1.52.0.tgz#eb398d9ad07c6c8704fa419b7ccf065568479b4a"
+  integrity sha512-wpADcoTt1EzSwTNiG9Z6Ku/+46ozLYnx//Suu8IR1dntO6pUanLIMToya0Bekxzkk86DFqN08Ia0kR+rjIryBg==
   dependencies:
     "@plotly/d3-sankey" "0.7.2"
     "@plotly/d3-sankey-circular" "0.33.1"
     "@turf/area" "^6.0.1"
+    "@turf/bbox" "^6.0.1"
     "@turf/centroid" "^6.0.2"
     alpha-shape "^1.0.0"
     canvas-fit "^1.5.0"
@@ -10201,7 +10210,7 @@ plotly.js@^1.51.3:
     gl-heatmap2d "^1.0.5"
     gl-line3d "^1.1.11"
     gl-mat4 "^1.2.0"
-    gl-mesh3d "^2.1.3"
+    gl-mesh3d "^2.2.0"
     gl-plot2d "^1.4.2"
     gl-plot3d "^2.3.0"
     gl-pointcloud2d "^1.0.2"
