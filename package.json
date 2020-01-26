@@ -106,7 +106,7 @@
     "jsdom": "^9.12.0",
     "lodash.assign": "^4.2.0",
     "markdownlint": "^0.18.0",
-    "mocha": "^7.0.0",
+    "mocha": "^7.0.1",
     "react-test-renderer": "^15.6.2",
     "sinon": "^8.0.4",
     "stylelint": "^12.0.1",
