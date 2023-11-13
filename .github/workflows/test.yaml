@@ -1,0 +1,76 @@
+name: Test
+
+on:
+    workflow_call:
+    workflow_dispatch:
+    push:
+       branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.10"]
+        node-version: [12.x, 14.x, 16.x]
+    env:
+      DATABASE_URL: "sqlite:///:memory"
+      DJANGO_SETTINGS_MODULE: measuremate.settings.dev
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+           node-version: ${{ matrix.node-version }}
+      - name: Install production dependencies
+        run: |
+            yarn global add gulp-cli
+            yarn install --production
+      - name: Gulp production build
+        run: |
+            gulp build --production
+      - name: Install development dependencies
+        run: |
+            yarn install
+      - name: Gulp development build
+        run: |
+            gulp build
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+           python-version: ${{ matrix.python-version }}
+      - name: Install requirements
+        run: |
+            pip install -U pip wheel setuptools
+            pip install -U -r requirements/local.txt
+            pip install coveralls
+      - name: Setup
+        run: |
+            python manage.py migrate --no-input
+            python manage.py collectstatic --no-input
+      - name: Run tests
+        run: |
+            gem install coveralls-lcov
+            coverage run manage.py test
+            coverage xml
+            coverage lcov
+            coveralls-lcov -v -n ./coverage/lcov.info > coverage.json
+      - name: Upload coverage to coveralls.io
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ github.token }}
+          path-to-lcov: coverage.json
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          #token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
+          verbose: true
+#     - name: Upload coverage to CodeClimate
+#       uses: paambaati/codeclimate-action@v3.0.0
+#       env:
+#         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
